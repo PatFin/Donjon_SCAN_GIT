@@ -6,6 +6,7 @@ import java.io.File;
 
 
 
+
 import javax.imageio.ImageIO;
 
 	/**
@@ -46,4 +47,33 @@ public abstract class Case {
 	public void setCollisionBoxLocation(int vertical, int horizontal){
 		this.collision.setLocation(horizontal*Case.TAILLE, vertical*Case.TAILLE);
 	}
+	
+	/**
+	 * 
+	 * @param p
+	 * @return
+	 */
+	public void inCollision(Personnage z){
+		
+		System.out.println("Hep t'as pas le droit d'être ici!");
+		/**
+		 * Replace the character to the limit of the collision box
+		 */
+		switch(z.o){
+		
+		case NORD:
+			z.setLocation(z.image.x, this.collision.y + this.collision.height + z.collisionDecor.height - z.image.height);
+			break;
+		case EST:
+			
+			break;
+		case OUEST:
+			
+			break;
+		case SUD:
+			
+		
+		}
+	}
+	
 }

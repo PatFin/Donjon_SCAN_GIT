@@ -16,7 +16,7 @@ public class Salle {
 	
     
 	BufferedImage imageSalle;  				//Contient l'image de la salle. Les objets n'y sont pas dessinés.
-    Graphics2D bufferImageSalle;            	//espace graphique associe a l'arriere plan
+    Graphics bufferImageSalle;            	//espace graphique associe a l'arriere plan
 	BufferedImage buffer1;					//buffer utilisé pour générer l'image de la salle avec les personnage dedans.
 	Graphics monG;								//espace graphique associé à buffer1
     
@@ -47,7 +47,7 @@ public class Salle {
 				for(int j=0;j<cases.length;j++){
 					if(casesSalle[j][i]!=null){
 						this.cases[j][i]= casesSalle[j][i];
-						this.cases[j][i].setCollisionBoxLocation(j, i);
+						this.cases[j][i].setCollisionBoxLocation(i, j);
 					}
 				}
 			}
@@ -151,6 +151,11 @@ public class Salle {
 	 */
 	protected void refreshRoomCases(Case[][] caseSalle){
 		this.cases = caseSalle;
+		for(int i=2;i<cases[0].length;i++){
+			for(int j=0;j<cases.length;j++){
+				this.cases[j][i].setCollisionBoxLocation(i, j);
+			}
+		}
 		generateImage();
 	}
 
@@ -160,38 +165,18 @@ public class Salle {
 			z=personnage.get(i);
 			if(z!=null){
 				z.update(temps);
-				
-				/**
-				 * Now checking that the character just moved isn't somewhere it shouldn't.
-				 */
 				for(int x=0; x<cases.length;x++){
 					for(int y=0; y<cases[0].length; y++){
 						if(z.enCollision(cases[x][y].collision) && !cases[x][y].traversable){
-							System.out.println("Hep t'aspas le droit d'être ici!");
-							/**
-							 * Replace the character to the limit of the collision box
-							 */
-							switch(z.o){
-							case NORD:
-								
-								break;
-							case EST:
-								
-								break;
-							case OUEST:
-								
-								break;
-							case SUD:
-								
-							
-							}
-							
+							cases[x][y].inCollision(z);
 						}
 					}
 				}
-				
 			}
 		}
+		/**
+		 * Now checking that the character just moved isn't somewhere it shouldn't be.
+		 */
 		
 	}
 	
