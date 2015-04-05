@@ -24,16 +24,16 @@ public abstract class Deplacable extends Objet {
 	 * @param longueur
 	 * @param largeur
 	 * @param nom
-	 * @param collisionArmes
-	 * @param collisionDecor
+	 * @param ofArm
+	 * @param offCol
 	 * @param toDisplay
 	 * @param vvitesse		Vecteur vitesse (unitaire!)
 	 * @param vitd			(Norme du vecteur)
 	 */
-	public Deplacable(int ax, int ay,int longueur,int largeur, String nom, Rectangle collisionArmes, Rectangle collisionDecor, boolean toDisplay,
+	public Deplacable(int ax, int ay,int longueur,int largeur, String nom, Rectangle offArm, Rectangle offCol, boolean toDisplay,
 			Vecteur vvitesse, int vitd) {
 		
-		super(ax, ay, longueur, largeur, nom, collisionArmes, collisionDecor, toDisplay);
+		super(ax, ay, longueur, largeur, nom, offArm, offCol, toDisplay);
 		
 		this.vvitesse = vvitesse;
 		this.vitDeplacement = vitd;
@@ -57,5 +57,9 @@ public abstract class Deplacable extends Objet {
 	abstract public void draw(long t, Graphics g);
 
 	@Override
-	public abstract void update(long t);
+	public void update(long t){
+		//Maj des rectangles pour les objets deplacables
+		collisionArmes.setLocation(image.x + offArm.x, image.y + offArm.y);
+		collisionDecor.setLocation(image.x + offCol.x, image.y + offCol.y);
+	}
 }

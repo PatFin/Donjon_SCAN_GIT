@@ -38,7 +38,7 @@ public class Heros extends Personnage{
 	 */
 	public Heros(int ax, int ay){
 		super(ax, ay, LNG, LRG, src,
-				new Rectangle(ax,ay,LNG,LRG), new Rectangle(ax+offC.y,ay+offC.x,offC.width,offC.height), true,
+				new Rectangle(ax,ay,LNG,LRG), new Rectangle(17,52,30,12), true,
 				Vecteur.vNull, 6, Orientation.SUD, EtatPersonnage.REPOS, 100, 0 , null);
 
 		key = false;
@@ -55,20 +55,16 @@ public class Heros extends Personnage{
 
 
 	public void draw(long t, Graphics g) {
-
-		switch(etat){
-		case ATTAQUE:
-			arme.paint(g, t);
-			break;
-		case DEPLACEMENT:
-			animation.drawAnim(this.image.x, this.image.y, LNG, LRG, g, t);	//Dessin de l'animation
-			break;
-		case REPOS:
-			animation.drawImage(this.image.x, this.image.y, LNG, LRG, g, 0);//Dessin de l'image 0 seulement
-		}
-
+		super.draw(t, g);
 	}
 
+	@Override
+	public void update(long t) {
+		// TODO Auto-generated method stub
+		super.update(t);
+	}
+
+	
 	/**
 	 * Arrete le mouvement du personnage s'il allait dans la direction 'or'
 	 * @param or Orientation de l'arret
@@ -116,31 +112,7 @@ public class Heros extends Personnage{
 	/**
 	 * Permet de mettre a jour le personnage (position, arme...)
 	 */
-	@Override
-	public void update(long t) {
-		// TODO Auto-generated method stub
-		
-		switch(etat){
-
-		case ATTAQUE :
-			arme.update(t);
-			break;
-			
-		case DEPLACEMENT :
-			//A optimiser, eviter de créer un objets ttes le 40ms
-			Vecteur nexPos = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(vitDeplacement)) ;
-			image.setLocation(nexPos.x,nexPos.y);
-			//collisionArmes.setLocation(nexPos.x,nexPos.y);
-			collisionDecor.setLocation(nexPos.x+offC.x,nexPos.y+offC.y);
-			
-			break;
-
-		case REPOS :
-			//Ben on fait rien ^_^
-			break;
-		}
-
-	}
+	
 
 	@Override
 	public boolean enCollision(Rectangle r) {

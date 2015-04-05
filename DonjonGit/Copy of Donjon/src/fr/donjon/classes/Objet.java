@@ -15,6 +15,8 @@ public abstract class Objet {
 	Rectangle image;			//Rectangle contenant l'image
 	Rectangle collisionArmes;	//Rectangle pour collision avec les armes  
 	Rectangle collisionDecor; 	//Rectangle contenant la boite de collision de l'objet
+	Rectangle offCol;			//Offsets du rectangle collisions
+	Rectangle offArm;			//Offsets du rectangle armes
 	Boolean toDisplay; 			//largeur du rectangle
 	
 	
@@ -27,11 +29,13 @@ public abstract class Objet {
 	 * @param collisionArmes Rectangle pour les collisions avec les armes
 	 * @param collisionDecor Rectangle pour les collisions avec le décor
 	 */
-	public Objet(int ax, int ay,int longueur, int largeur, String nom, Rectangle collisionArmes, Rectangle collisionDecor, boolean toDisplay){
+	public Objet(int ax, int ay,int longueur, int largeur, String nom, Rectangle offCol, Rectangle offArm, boolean toDisplay){
 		this.image=new Rectangle(ax,ay,longueur,largeur);
 		this.nom=nom;
-		this.collisionArmes=collisionArmes;
-		this.collisionDecor=collisionDecor;
+		this.offCol = offCol;
+		this.offArm = offArm;
+		this.collisionDecor= new Rectangle(image.x +offCol.x, image.y + offCol.y, offCol.width, offCol.height);
+		this.collisionArmes= new Rectangle(image.x +offArm.x, image.y + offArm.y, offArm.width, offArm.height);
 		this.toDisplay=toDisplay;
 	}
 	
