@@ -72,7 +72,7 @@ public abstract class Personnage extends Deplacable{
 	/**
 	 * Implémentation de la méthode de la classe mère
 	 */
-	public boolean enCollision(Objet o) {
-		return false;
+	public boolean enCollision(Rectangle r) {
+		return super.enCollision(r);
 	}
 }

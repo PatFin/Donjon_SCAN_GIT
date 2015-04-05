@@ -141,7 +141,12 @@ public class Heros extends Personnage{
 
 	}
 
-
+	@Override
+	public boolean enCollision(Rectangle r) {
+		// TODO Auto-generated method stub
+		return super.enCollision(r);
+	}
+	
 	/**
 	 * Methode qui lance l'attaque du héros sur une/des cible(s)
 	 * L'attaque pourra ajouter des projectiles sur le terrain

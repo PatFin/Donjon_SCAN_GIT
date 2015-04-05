@@ -55,10 +55,8 @@ public abstract class Projectile extends Deplacable {
 	abstract public void update(long t);
 
 	//A redéfinir ?
-	@Override
-	public boolean enCollision(Objet o) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean enCollision(Rectangle r) {
+		return super.enCollision(r);
 	}
 
 	//A redéfinir ?
