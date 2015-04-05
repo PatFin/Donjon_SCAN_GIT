@@ -13,7 +13,7 @@ import fr.donjon.utils.Vecteur;
 public class ArmeLance extends Arme {
 
 	final static int DMG = 40;
-	final static int DUR = 500;
+	final static int DUR = 400;
 	final static String src = "C:/SVN/map.png";
 	
 	public ArmeLance(Personnage lanceur) {

@@ -20,8 +20,12 @@ public class Heros extends Personnage{
 
 	final static int LNG = 64;
 	final static int LRG = 64;
+	final static int VIE = 100;
+	final static int DEF = 10;
+	final static int VIT = 6;
 	final static String src = "C:/SVN/map.png";
-
+	final static double COEFF = 2.5;
+	
 	boolean key;
 
 
@@ -32,18 +36,18 @@ public class Heros extends Personnage{
 	 */
 	public Heros(int ax, int ay){
 		super(ax, ay, LNG, LRG, src,
-				new Rectangle(0,0,LNG,LRG), new Rectangle(17,52,30,12), true,
-				Vecteur.vNull, 6, Orientation.SUD, EtatPersonnage.REPOS, 100, 0 , null, Type.HERO);
+				new Rectangle(17,15,30,49), new Rectangle(17,52,30,12), true,
+				Vecteur.vNull, VIT, Orientation.SUD, EtatPersonnage.REPOS, VIE, DEF , null, Type.HERO);
 
 		key = false;
 
-		animationN = new Animation(src, new Vecteur(64, 64),8,9,550); 
-		animationO = new Animation(src, new Vecteur(64, 64),9,9,550);
-		animationS = new Animation(src, new Vecteur(64, 64),10,9,550);
-		animationE = new Animation(src, new Vecteur(64, 64),11,9,500);
+		animationN = new Animation(src, new Vecteur(64, 64),8,9,(long)(VIT/COEFF*100));
+		animationO = new Animation(src, new Vecteur(64, 64),9,9,(long)(VIT/COEFF*100));
+		animationS = new Animation(src, new Vecteur(64, 64),10,9,(long)(VIT/COEFF*100));
+		animationE = new Animation(src, new Vecteur(64, 64),11,9,(long)(VIT/COEFF*100));
 		animation = animationS;
 		
-		this.arme = new ArmeEpee(this);
+		this.arme = new ArmeLance(this);
 
 	}
 
