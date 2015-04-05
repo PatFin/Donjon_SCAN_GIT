@@ -33,8 +33,8 @@ import fr.donjon.utils.Orientation;
 
 public class JeuLineaire extends JFrame implements EcouteurClavier {
 	
-	static final int LARGEUR = 15;
-	static final int HAUTEUR = 10;
+	static final int LARGEUR = 21;
+	static final int HAUTEUR = 11;
 	final static int timerTime = 20;
 	
     BufferedImage arrierePlan;
