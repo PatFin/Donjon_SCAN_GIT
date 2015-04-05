@@ -16,6 +16,10 @@ public class ArmeLance extends Arme {
 	final static int DUR = 400;
 	final static String src = "C:/SVN/map.png";
 	
+	/**
+	 * 
+	 * @param lanceur
+	 */
 	public ArmeLance(Personnage lanceur) {
 		super(lanceur, DMG, DUR);
 
