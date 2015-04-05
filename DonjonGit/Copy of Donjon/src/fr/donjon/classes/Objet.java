@@ -45,5 +45,7 @@ public abstract class Objet {
 		
 	}
 	
+	public abstract void update(long t);
+	
     public abstract void draw( long  t, Graphics g);
 }
