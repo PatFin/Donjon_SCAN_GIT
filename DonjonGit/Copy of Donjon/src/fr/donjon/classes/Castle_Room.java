@@ -20,7 +20,7 @@ public class Castle_Room extends Salle {
 		//Le reste du tableau est rempli aléatoirement de dalles (fendue ou non)
 		for(int y=2;y<casesSalle[0].length;y++){
 			for(int x=0;x<casesSalle.length;x++){
-				int random = (int)Math.round(Math.random());
+				int random = (int)3*Math.round(Math.random());
 				
 				if(random == 0){
 					casesSalle[x][y]=new Case_rocher();	
