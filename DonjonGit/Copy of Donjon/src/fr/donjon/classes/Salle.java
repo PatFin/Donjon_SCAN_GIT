@@ -148,7 +148,16 @@ public class Salle {
 		this.cases = caseSalle;
 		generateImage();
 	}
-	
+
+	public void update(long temps){
+		Objet z;
+		for(int i=0;i<objets.size();i++){
+			z=objets.get(i);
+			if(z!=null){
+				z.update(temps);
+			}
+		}
+	}
 	
 	/**
 	 * Cette méthode génère une image de la salle à partir du tableau 2D de cases.
