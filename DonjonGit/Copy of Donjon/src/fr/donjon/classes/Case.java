@@ -71,7 +71,7 @@ public abstract class Case {
 			
 			break;
 		case SUD:
-			
+			z.setLocation(z.image.x, this.collision.y-z.image.height);
 		
 		}
 	}
