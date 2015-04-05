@@ -15,8 +15,6 @@ import fr.donjon.utils.Orientation;
  */
 public abstract class Arme {
 
-	//MDR
-	
 	Personnage lanceur; //Permet la syncro avec le personnage lanceur 
 	Orientation o;		//Orientation de l'attaque
 	EtatArme etat;		//Etat de l'attaque (finie ou pas)
