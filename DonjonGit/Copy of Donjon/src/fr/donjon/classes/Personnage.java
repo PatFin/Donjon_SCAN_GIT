@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatPersonnage;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Type;
 import fr.donjon.utils.Vecteur;
 
 /**
@@ -20,6 +21,7 @@ public abstract class Personnage extends Deplacable{
 	Orientation o;
 	EtatPersonnage etat;
 	Arme arme;
+	Type type;
 	int vie;
 	int armure;
 	
@@ -49,7 +51,7 @@ public abstract class Personnage extends Deplacable{
 	 */
 	public Personnage(int ax, int ay,int longueur,int largeur,String nom,  Rectangle offArm, Rectangle offCol,boolean toDisplay,
 			Vecteur vvitesse, int  vitd, 										//Attributs de Deplacable
-			Orientation o, EtatPersonnage etat,int vie, int armure, Arme arme){ //Attributs de Personnage
+			Orientation o, EtatPersonnage etat,int vie, int armure, Arme arme,Type t){ //Attributs de Personnage
 		
 		super(ax, ay, longueur, largeur, nom, offArm, offCol, toDisplay, vvitesse, vitd);
 		
@@ -58,6 +60,7 @@ public abstract class Personnage extends Deplacable{
 		this.arme = arme;
 		this.armure = armure;
 		this.vie = vie;
+		this.type = t;
 	}
 	
 	

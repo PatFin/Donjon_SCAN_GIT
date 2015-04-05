@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 import fr.donjon.utils.EtatPersonnage;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Type;
 import fr.donjon.utils.Vecteur;
 
 /**
@@ -25,7 +26,7 @@ public abstract class Ennemis extends Personnage{
 		
 		super(ax, ay, longueur, largeur, nom, collisionArmes, collisionDecor, toDisplay, 
 				vvitesst, vitd, o, etat,
-				vie, armure, arme);
+				vie, armure, arme,Type.ENNEMI);
 		
 		this.cible = cible;
 	}

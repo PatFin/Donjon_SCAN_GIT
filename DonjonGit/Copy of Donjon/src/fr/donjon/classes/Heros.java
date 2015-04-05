@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatPersonnage;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Type;
 import fr.donjon.utils.Vecteur;
 
 
@@ -32,7 +33,7 @@ public class Heros extends Personnage{
 	public Heros(int ax, int ay){
 		super(ax, ay, LNG, LRG, src,
 				new Rectangle(0,0,LNG,LRG), new Rectangle(17,52,30,12), true,
-				Vecteur.vNull, 6, Orientation.SUD, EtatPersonnage.REPOS, 100, 0 , null);
+				Vecteur.vNull, 6, Orientation.SUD, EtatPersonnage.REPOS, 100, 0 , null, Type.HERO);
 
 		key = false;
 
