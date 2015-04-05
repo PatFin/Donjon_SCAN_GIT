@@ -21,8 +21,9 @@ import fr.donjon.classes.Salle;
 /**
  * @author Patrick
  * C'est ma classe dans laquelle je fait mes test personnels. 
- * Donc personne n'y touche pigé!
+ * Donc personne n'y touche pigï¿½!
  * lol vousy voyez quelque chose?
+ * ta gueule Patrick
  */
 public class Patrick extends JFrame {
 	
@@ -39,7 +40,7 @@ public class Patrick extends JFrame {
 	long time;
 	
 	public Patrick(){
-		super("Mon test à moi");
+		super("Mon test ï¿½ moi");
 		
 		monJpanel=new JPanel();
 		monJpanel.setPreferredSize(new Dimension(LARGEUR*Case.TAILLE,HAUTEUR*Case.TAILLE));
