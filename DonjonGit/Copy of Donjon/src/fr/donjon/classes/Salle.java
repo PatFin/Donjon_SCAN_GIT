@@ -38,7 +38,7 @@ public class Salle {
 		//On met les éléments de casesSalle dans cases.
 		//Attention, casesSalle doit être au moins aussi grand que cases qui est adapté à la taille de l'écran
 		//Amelioration si casesSalle<case, centrer la salle?
-		if(cases != null){
+		if(casesSalle != null){
 			for(int i=2;i<cases[0].length;i++){
 				for(int j=0;j<cases.length;j++){
 					if(casesSalle[j][i]!=null){
