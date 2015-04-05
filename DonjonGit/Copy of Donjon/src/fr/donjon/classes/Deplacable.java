@@ -39,12 +39,6 @@ public abstract class Deplacable extends Objet {
 		this.vitDeplacement = vitd;
 	}
 	
-	@Override
-	public boolean enCollision(Rectangle r) {
-		// TODO Auto-generated method stub
-		return super.enCollision(r);
-	}
-	
 	/**
 	 * Mise a jour du personnage et de son arme selon le temps ecoulé
 	 * 
@@ -56,6 +50,13 @@ public abstract class Deplacable extends Objet {
 	 */
 	abstract public void draw(long t, Graphics g);
 
+	public void setLocation(int x, int y){
+		this.image.x = x;
+		this.image.y = y;
+		collisionArmes.setLocation(image.x + offArm.x, image.y + offArm.y);
+		collisionDecor.setLocation(image.x + offCol.x, image.y + offCol.y);
+	}
+	
 	@Override
 	public void update(long t){
 		//Maj des rectangles pour les objets deplacables

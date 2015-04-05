@@ -79,6 +79,8 @@ public abstract class Personnage extends Deplacable{
 	@Override
 	public void update(long t) {
 		// TODO Auto-generated method stub
+		super.update(t);
+		
 		switch(etat){
 
 		case ATTAQUE :
@@ -96,6 +98,11 @@ public abstract class Personnage extends Deplacable{
 			break;
 		}
 
+	}
+
+	public void stop(Orientation or){
+		if(etat==EtatPersonnage.DEPLACEMENT && o==or)
+			this.etat = EtatPersonnage.REPOS;
 	}
 	
 	/**

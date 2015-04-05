@@ -26,8 +26,8 @@ public abstract class Objet {
 	 * @param ay Position sur y
 	 * @param nom Nom de l'objet
 	 * @param image Rectangle de la taille de l'image
-	 * @param collisionArmes Rectangle pour les collisions avec les armes
-	 * @param collisionDecor Rectangle pour les collisions avec le décor
+	 * @param offArm Rectangle pour les collisions avec les armes
+	 * @param offCol Rectangle pour les collisions avec le décor
 	 */
 	public Objet(int ax, int ay,int longueur, int largeur, String nom, Rectangle offCol, Rectangle offArm, boolean toDisplay){
 		this.image=new Rectangle(ax,ay,longueur,largeur);
@@ -45,11 +45,10 @@ public abstract class Objet {
 	 * @return true si en collision, false sinon
 	 */
 	public boolean enCollision(Rectangle r){
-		return r.intersects(this.collisionDecor);
-		
+		return r.intersects(this.collisionDecor);	
 	}
 	
 	public abstract void update(long t);
 	
-    public abstract void draw( long  t, Graphics g);
+    public abstract void draw(long  t, Graphics g);
 }

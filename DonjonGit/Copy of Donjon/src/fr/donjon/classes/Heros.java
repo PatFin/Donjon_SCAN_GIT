@@ -21,15 +21,8 @@ public class Heros extends Personnage{
 	final static int LRG = 64;
 	final static String src = "C:/SVN/map.png";
 
-	final static Rectangle offC = new Rectangle(17,52,30,12); 	//Les offsets du rectangle de collisions
-																//par rapport a celui de l'image
 	boolean key;
 
-	Animation animation;
-	Animation animationN;
-	Animation animationS;
-	Animation animationE;
-	Animation animationO;
 
 	/**
 	 * 
@@ -38,7 +31,7 @@ public class Heros extends Personnage{
 	 */
 	public Heros(int ax, int ay){
 		super(ax, ay, LNG, LRG, src,
-				new Rectangle(ax,ay,LNG,LRG), new Rectangle(17,52,30,12), true,
+				new Rectangle(0,0,LNG,LRG), new Rectangle(17,52,30,12), true,
 				Vecteur.vNull, 6, Orientation.SUD, EtatPersonnage.REPOS, 100, 0 , null);
 
 		key = false;
@@ -48,8 +41,8 @@ public class Heros extends Personnage{
 		animationS = new Animation(src, new Vecteur(64, 64),10,9,550);
 		animationE = new Animation(src, new Vecteur(64, 64),11,9,500);
 		animation = animationS;
-
-		this.arme = new ArmeLance(this);
+		
+		this.arme = new ArmeEpee(this);
 
 	}
 
@@ -62,16 +55,6 @@ public class Heros extends Personnage{
 	public void update(long t) {
 		// TODO Auto-generated method stub
 		super.update(t);
-	}
-
-	
-	/**
-	 * Arrete le mouvement du personnage s'il allait dans la direction 'or'
-	 * @param or Orientation de l'arret
-	 */
-	public void stop(Orientation or){
-		if(etat==EtatPersonnage.DEPLACEMENT && o==or)
-			this.etat = EtatPersonnage.REPOS;
 	}
 
 	/**
@@ -140,8 +123,9 @@ public class Heros extends Personnage{
 	@Override
 	public void utiliserObjet(int reference) {
 		// TODO Auto-generated method stub
-
+		
 	}
+
 
 
 
