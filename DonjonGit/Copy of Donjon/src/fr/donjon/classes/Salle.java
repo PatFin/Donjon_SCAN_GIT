@@ -10,9 +10,11 @@ public class Salle {
 	
 	int difficulte; 						//Pour initialiser les ennemis. Pourra s'avérer utile
 	Case[][] cases; 						//Tableau de cases qui composent la salle
-	LinkedList <Objet> objets; 				//Contient tousles objets de la salle (héros, ennemis et projectiles)
-    Rectangle ecran;						//Contient l'espace de jeu disponible dans la fenêtre.
+	LinkedList <Personnage> personnage; 	//Contient tous les personnages de la salle (héros et ennemis)
+    Heros hero;
+	Rectangle ecran;						//Contient l'espace de jeu disponible dans la fenêtre.
 	
+    
 	BufferedImage imageSalle;  				//Contient l'image de la salle. Les objets n'y sont pas dessinés.
     Graphics2D bufferImageSalle;            	//espace graphique associe a l'arriere plan
 	BufferedImage buffer1;					//buffer utilisé pour générer l'image de la salle avec les personnage dedans.
@@ -29,8 +31,9 @@ public class Salle {
 		
     	//On créé les objets contenus dans la salle
 		this.difficulte=0;
-		this.objets = new LinkedList <Objet> ();
-		this.objets.add(p);
+		this.personnage = new LinkedList <Personnage> ();
+		this.hero = p;
+		this.personnage.add(p);
 		
 		//On créé le tableau de cases contenues de la salle
 		this.ecran=ecran;
@@ -66,7 +69,7 @@ public class Salle {
 		super();
 		//On créé les objets contenus dans la salle
 		this.difficulte=0;
-		this.objets = new LinkedList <Objet> ();
+		this.personnage = new LinkedList <Objet> ();
 		
 		//On créé le tableau de cases contenues de la salle
 		this.ecran=ecran;
@@ -104,8 +107,8 @@ public class Salle {
 		super();
 		//On créé les objets contenus dans la salle
 		this.difficulte=0;
-		this.objets = new LinkedList <Objet> ();
-		objets.add(h);
+		this.personnage = new LinkedList <Objet> ();
+		personnage.add(h);
 		
 		//On créé le tableau de cases contenues de la salle
 		this.ecran=ecran;
@@ -152,13 +155,44 @@ public class Salle {
 	}
 
 	public void update(long temps){
-		Objet z;
-		for(int i=0;i<objets.size();i++){
-			z=objets.get(i);
+		Personnage z;
+		for(int i=0;i<personnage.size();i++){
+			z=personnage.get(i);
 			if(z!=null){
 				z.update(temps);
+				
+				/**
+				 * Now checking that the character just moved isn't somewhere it shouldn't.
+				 */
+				for(int x=0; x<cases.length;x++){
+					for(int y=0; y<cases[0].length; y++){
+						if(z.enCollision(cases[x][y].collision) && !cases[x][y].traversable){
+							System.out.println("Hep t'aspas le droit d'être ici!");
+							/**
+							 * Replace the character to the limit of the collision box
+							 */
+							switch(z.o){
+							case NORD:
+								
+								break;
+							case EST:
+								
+								break;
+							case OUEST:
+								
+								break;
+							case SUD:
+								
+							
+							}
+							
+						}
+					}
+				}
+				
 			}
 		}
+		
 	}
 	
 	/**
@@ -190,8 +224,8 @@ public class Salle {
 		monG.drawImage(imageSalle,0,0,null);
 		
 		//On affiche les objets comme il faut
-		for(int i=0;i<objets.size();i++){
-			Objet z=objets.get(i);
+		for(int i=0;i<personnage.size();i++){
+			Objet z=personnage.get(i);
 			if(z!=null){
 				z.draw(t,monG);
 			}
