@@ -26,7 +26,8 @@ public class Salle {
 	 */
     public Salle(Heros p, Case[][] casesSalle, Rectangle ecran){
     	super();
-		//On créé les objets contenus dans la salle
+		
+    	//On créé les objets contenus dans la salle
 		this.difficulte=0;
 		this.objets = new LinkedList <Objet> ();
 		
@@ -37,11 +38,16 @@ public class Salle {
 		//On met les éléments de casesSalle dans cases.
 		//Attention, casesSalle doit être au moins aussi grand que cases qui est adapté à la taille de l'écran
 		//Amelioration si casesSalle<case, centrer la salle?
-		for(int i=2;i<cases[0].length;i++){
-			for(int j=0;j<cases.length;j++){
-				this.cases[j][i]= casesSalle[j][i];	
+		if(cases != null){
+			for(int i=2;i<cases[0].length;i++){
+				for(int j=0;j<cases.length;j++){
+					if(casesSalle[j][i]!=null){
+						this.cases[j][i]= casesSalle[j][i];	
+					}
+				}
 			}
 		}
+		
 		//On génère une image de la salle qui sera utilisée après dans la méthode draw
 		generateImage();
 		
@@ -133,6 +139,16 @@ public class Salle {
 		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_RGB);
         monG = buffer1.getGraphics();
 	}
+	
+	/**
+	 * This method is used if one needs to modify the cases in the room.  
+	 * @param caseSalle the new arrayof cases.
+	 */
+	protected void refreshRoomCases(Case[][] caseSalle){
+		this.cases = caseSalle;
+		generateImage();
+	}
+	
 	
 	/**
 	 * Cette méthode génère une image de la salle à partir du tableau 2D de cases.

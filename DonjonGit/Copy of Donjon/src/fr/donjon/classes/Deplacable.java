@@ -39,8 +39,11 @@ public abstract class Deplacable extends Objet {
 		this.vitDeplacement = vitd;
 	}
 	
-
-	abstract public boolean enCollision(Objet o);
+	@Override
+	public boolean enCollision(Rectangle r) {
+		// TODO Auto-generated method stub
+		return super.enCollision(r);
+	}
 	
 	/**
 	 * Mise a jour du personnage et de son arme selon le temps ecoulé

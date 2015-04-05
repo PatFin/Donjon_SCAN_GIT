@@ -40,7 +40,10 @@ public abstract class Objet {
 	 * @param o l'autre objet
 	 * @return true si en collision, false sinon
 	 */
-	public abstract boolean enCollision(Objet o);
+	public boolean enCollision(Rectangle r){
+		return r.intersects(this.collisionDecor);
+		
+	}
 	
     public abstract void draw( long  t, Graphics g);
 }
