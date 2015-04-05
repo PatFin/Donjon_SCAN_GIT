@@ -50,7 +50,6 @@ public abstract class Deplacable extends Objet {
 	 * 
 	 * @param t Temps écoule en ms
 	 */
-	public abstract void update(long t);
 	
 	/**
 	 * Dessin du personnege et de son arme

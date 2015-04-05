@@ -1,4 +1,4 @@
-package donjon;
+package fr.donjon.classes;
 
 import java.awt.Rectangle;
 
