@@ -32,4 +32,6 @@ public class Castle_Room extends Salle {
 		refreshRoomCases(casesSalle);
 	}
 	
+	
+	
 }

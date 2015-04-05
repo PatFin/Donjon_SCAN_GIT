@@ -119,7 +119,7 @@ public class Heros extends Personnage{
 	@Override
 	public void update(long t) {
 		// TODO Auto-generated method stub
-
+		
 		switch(etat){
 
 		case ATTAQUE :
@@ -132,6 +132,7 @@ public class Heros extends Personnage{
 			image.setLocation(nexPos.x,nexPos.y);
 			//collisionArmes.setLocation(nexPos.x,nexPos.y);
 			collisionDecor.setLocation(nexPos.x+offC.x,nexPos.y+offC.y);
+			
 			break;
 
 		case REPOS :

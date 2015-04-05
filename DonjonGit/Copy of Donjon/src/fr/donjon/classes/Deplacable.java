@@ -56,4 +56,6 @@ public abstract class Deplacable extends Objet {
 	 */
 	abstract public void draw(long t, Graphics g);
 
+	@Override
+	public abstract void update(long t);
 }

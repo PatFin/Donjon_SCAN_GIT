@@ -75,4 +75,7 @@ public abstract class Personnage extends Deplacable{
 	public boolean enCollision(Rectangle r) {
 		return super.enCollision(r);
 	}
+	
+	@Override
+	public abstract void update(long t);
 }

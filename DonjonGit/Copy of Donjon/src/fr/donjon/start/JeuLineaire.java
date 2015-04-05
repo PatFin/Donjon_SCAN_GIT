@@ -3,7 +3,6 @@
  */
 package fr.donjon.start;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -57,7 +56,7 @@ public class JeuLineaire extends JFrame implements EcouteurClavier {
        //General declarations
        timer = new Timer(timerTime, new TimerAction());
        hero = new Heros(0,0);
-       salle = new Salle(ecran,hero);
+       salle = new Castle_Room(hero,ecran);
        
        //TODO at the END
        this.addKeyListener(new JeuKeyAdapter(this));
@@ -94,21 +93,15 @@ public class JeuLineaire extends JFrame implements EcouteurClavier {
 	 */
  	public void paint(Graphics g){
 		
-        //On dessine sur le buffer
-        //buffer.setColor(Color.RED);
-        //buffer.fillRect(ecran.x,ecran.y,ecran.x+ecran.width,ecran.y+ecran.height);
         
         salle.draw(temps, g);
         
-		
-        //On affiche le buffer à l'écran
-        g.drawImage(arrierePlan, 0, 0, this);
 	}
 	
  	public void update(){
  		
  		//UPDATE
- 		
+ 		salle.update(temps);
  		repaint();
  	}
  	
