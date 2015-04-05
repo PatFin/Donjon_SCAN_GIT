@@ -38,5 +38,5 @@ public abstract class Ennemis extends Personnage{
 
 	@Override
 	abstract public void attaquer(LinkedList<Personnage> cibles,
-			LinkedList<Projectile> projectiles);
+			LinkedList<Projectile> projectiles, Orientation o);
 }
