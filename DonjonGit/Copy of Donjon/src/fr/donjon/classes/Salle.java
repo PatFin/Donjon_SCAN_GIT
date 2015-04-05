@@ -30,6 +30,7 @@ public class Salle {
     	//On créé les objets contenus dans la salle
 		this.difficulte=0;
 		this.objets = new LinkedList <Objet> ();
+		this.objets.add(p);
 		
 		//On créé le tableau de cases contenues de la salle
 		this.ecran=ecran;
