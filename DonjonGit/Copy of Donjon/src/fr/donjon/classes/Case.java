@@ -1,7 +1,9 @@
 package fr.donjon.classes;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.io.File;
+
 
 
 import javax.imageio.ImageIO;
@@ -17,7 +19,7 @@ public abstract class Case {
 	
 	Image image;
 	boolean traversable;
-	
+	Rectangle collision;
 	/**
 	 * Constructeur de la Case 
 	 * @param ImageName le string contenant l'adresse de l'image.
@@ -33,5 +35,15 @@ public abstract class Case {
 			 System.exit(0);
 		}
 		this.traversable=traversable;
+		this.collision=new Rectangle(Case.TAILLE,Case.TAILLE);
+	}
+	
+	/**
+	 * Sets the location of the collision box for the case. It is called in class Salle whenthe array is set. 
+	 * @param vertical 
+	 * @param horizontal
+	 */
+	public void setCollisionBoxLocation(int vertical, int horizontal){
+		this.collision.setLocation(horizontal*Case.TAILLE, vertical*Case.TAILLE);
 	}
 }

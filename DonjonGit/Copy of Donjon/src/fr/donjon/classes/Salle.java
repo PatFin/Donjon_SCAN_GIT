@@ -43,7 +43,8 @@ public class Salle {
 			for(int i=2;i<cases[0].length;i++){
 				for(int j=0;j<cases.length;j++){
 					if(casesSalle[j][i]!=null){
-						this.cases[j][i]= casesSalle[j][i];	
+						this.cases[j][i]= casesSalle[j][i];
+						this.cases[j][i].setCollisionBoxLocation(j, i);
 					}
 				}
 			}
