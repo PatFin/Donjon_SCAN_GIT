@@ -22,8 +22,6 @@ import fr.donjon.classes.Salle;
  * @author Patrick
  * C'est ma classe dans laquelle je fait mes test personnels. 
  * Donc personne n'y touche pig�!
- * lol vousy voyez quelque chose?
- * ta gueule Patrick
  */
 public class Patrick extends JFrame {
 	

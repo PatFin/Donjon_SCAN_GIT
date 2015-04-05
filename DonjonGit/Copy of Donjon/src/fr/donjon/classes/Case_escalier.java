@@ -11,9 +11,8 @@ public class Case_escalier extends Case {
 	 * Constructeur de la classe Case_Escalier
 	 * @param image
 	 */
-	public Case_escalier(String image) {
+	public Case_escalier() {
 		
-		super(image);
-		traversable = false;
+		super(image, false);
 	}
 }
