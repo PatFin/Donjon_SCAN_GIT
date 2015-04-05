@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import fr.donjon.classes.Case;
+import fr.donjon.classes.Castle_Room;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
@@ -56,7 +57,7 @@ public class JeuLineaire extends JFrame implements EcouteurClavier {
        //General declarations
        timer = new Timer(timerTime, new TimerAction());
        hero = new Heros(0,0);
-
+       salle = new Salle(ecran,hero);
        
        //TODO at the END
        this.addKeyListener(new JeuKeyAdapter(this));
@@ -94,10 +95,10 @@ public class JeuLineaire extends JFrame implements EcouteurClavier {
  	public void paint(Graphics g){
 		
         //On dessine sur le buffer
-        buffer.setColor(Color.RED);
-        buffer.fillRect(ecran.x,ecran.y,ecran.x+ecran.width,ecran.y+ecran.height);
+        //buffer.setColor(Color.RED);
+        //buffer.fillRect(ecran.x,ecran.y,ecran.x+ecran.width,ecran.y+ecran.height);
         
-        
+        salle.draw(temps, g);
         
 		
         //On affiche le buffer à l'écran
@@ -113,7 +114,7 @@ public class JeuLineaire extends JFrame implements EcouteurClavier {
  	
 	public static void main(String[] args) {
         
-        JeuTest Monjeu = new JeuTest();
+        JeuLineaire Monjeu = new JeuLineaire();
         
     }
 

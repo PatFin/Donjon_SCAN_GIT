@@ -90,7 +90,7 @@ public class JeuTest extends JFrame implements EcouteurClavier {
  	public void paint(Graphics g){
 		
         //On dessine sur le buffer
-        buffer.setColor(Color.black);
+        buffer.setColor(Color.RED);
         buffer.fillRect(ecran.x,ecran.y,ecran.x+ecran.width,ecran.y+ecran.height);
 		
         hero.draw(temps, buffer);
