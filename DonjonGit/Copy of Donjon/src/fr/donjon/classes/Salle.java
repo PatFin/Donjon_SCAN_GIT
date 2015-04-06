@@ -44,6 +44,9 @@ public class Salle {
 		this.hero = p;
 		this.personnage.add(p);
 		
+		Ennemis squelette = new Squelette(100, 100, "squelette", hero);
+		personnage.add(squelette);
+		
 		//On créé le tableau de cases contenues de la salle
 		this.ecran=ecran;
 		this.cases = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE]; 
