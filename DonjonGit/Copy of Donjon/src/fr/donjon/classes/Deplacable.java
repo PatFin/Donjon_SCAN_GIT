@@ -51,8 +51,7 @@ public abstract class Deplacable extends Objet {
 	abstract public void draw(long t, Graphics g);
 
 	public void setLocation(int x, int y){
-		this.image.x = x;
-		this.image.y = y;
+		image.setLocation(x, y);
 		collisionArmes.setLocation(image.x + offArm.x, image.y + offArm.y);
 		collisionDecor.setLocation(image.x + offCol.x, image.y + offCol.y);
 	}

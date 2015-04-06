@@ -29,7 +29,7 @@ public abstract class Objet {
 	 * @param offArm Rectangle pour les collisions avec les armes
 	 * @param offCol Rectangle pour les collisions avec le décor
 	 */
-	public Objet(int ax, int ay,int longueur, int largeur, String nom, Rectangle offCol, Rectangle offArm, boolean toDisplay){
+	public Objet(int ax, int ay,int longueur, int largeur, String nom, Rectangle offArm, Rectangle offCol, boolean toDisplay){
 		this.image=new Rectangle(ax,ay,longueur,largeur);
 		this.nom=nom;
 		this.offCol = offCol;

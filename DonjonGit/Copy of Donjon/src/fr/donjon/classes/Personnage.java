@@ -1,5 +1,6 @@
 package fr.donjon.classes;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
@@ -66,7 +67,12 @@ public abstract class Personnage extends Deplacable{
 	
 	@Override
 	public void draw(long t, Graphics g) {
-		// TODO Auto-generated method stub
+		/**
+		 * Displays the god damn rectangle associated with the character ... Finally!
+		 */
+		g.setColor(Color.red);
+		g.fillRect(collisionDecor.x, collisionDecor.y, collisionDecor.width, collisionDecor.height);
+		
 		switch(etat){
 		case ATTAQUE:
 			arme.paint(g, t);

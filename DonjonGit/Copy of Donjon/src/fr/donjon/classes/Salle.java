@@ -151,7 +151,7 @@ public class Salle {
 	 */
 	protected void refreshRoomCases(Case[][] caseSalle){
 		this.cases = caseSalle;
-		for(int i=2;i<cases[0].length;i++){
+		for(int i=0;i<cases[0].length;i++){
 			for(int j=0;j<cases.length;j++){
 				this.cases[j][i].setCollisionBoxLocation(i, j);
 			}
@@ -167,7 +167,7 @@ public class Salle {
 				z.update(temps);
 				for(int x=0; x<cases.length;x++){
 					for(int y=0; y<cases[0].length; y++){
-						if(z.enCollision(cases[x][y].collision) && !cases[x][y].traversable){
+						if(z.collisionDecor.intersects(cases[x][y].collision) && !cases[x][y].traversable){
 							cases[x][y].inCollision(z);
 						}
 					}

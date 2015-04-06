@@ -36,7 +36,7 @@ public class Heros extends Personnage{
 	 */
 	public Heros(int ax, int ay){
 		super(ax, ay, LNG, LRG, src,
-				new Rectangle(17,15,30,49), new Rectangle(0,0,64,64), true,
+				new Rectangle(17,15,30,49), new Rectangle(22,48,20,16), true,
 				Vecteur.vNull, VIT, Orientation.SUD, EtatPersonnage.REPOS, VIE, DEF , null, Type.HERO);
 
 		key = false;

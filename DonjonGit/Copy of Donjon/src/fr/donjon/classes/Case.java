@@ -62,13 +62,13 @@ public abstract class Case {
 		switch(z.o){
 		
 		case NORD:
-			z.setLocation(z.image.x, this.collision.y + this.collision.height + z.collisionDecor.height - z.image.height);
+			z.setLocation(z.image.x, this.collision.y+this.collision.height+z.collisionDecor.height-z.image.height);
 			break;
 		case EST:
-			
+			z.setLocation(this.collision.x+z.collisionDecor.width-z.image.width, z.image.y);
 			break;
 		case OUEST:
-			
+			z.setLocation(this.collision.x+this.collision.width-z.image.width+2*z.collisionDecor.width+2, z.image.y);
 			break;
 		case SUD:
 			z.setLocation(z.image.x, this.collision.y-z.image.height);
