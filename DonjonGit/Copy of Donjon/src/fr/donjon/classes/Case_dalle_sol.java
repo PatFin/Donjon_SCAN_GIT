@@ -10,4 +10,16 @@ public class Case_dalle_sol extends Case {
 	public Case_dalle_sol(){
 		super(image,true);
 	}
+
+	@Override
+	public void setCollisionBoxLocation(int vertical, int horizontal) {
+		// TODO Auto-generated method stub
+		return;
+	}
+
+	@Override
+	public void inCollision(Personnage z) {
+		// TODO Auto-generated method stub
+		return;
+	}
 }

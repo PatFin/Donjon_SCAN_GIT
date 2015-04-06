@@ -2,6 +2,8 @@
 
 package fr.donjon.classes;
 
+import java.awt.Rectangle;
+
 
 public class Case_escalier extends Case {
 	
@@ -14,5 +16,19 @@ public class Case_escalier extends Case {
 	 */
 	public Case_escalier() {
 		super(image, false);
+	}
+
+
+	@Override
+	public void setCollisionBoxLocation(int vertical, int horizontal) {
+		// TODO Auto-generated method stub
+		this.collision = new Rectangle(Case.TAILLE*vertical, Case.TAILLE*horizontal, 64, 64);
+	}
+
+
+	@Override
+	public void inCollision(Personnage z) {
+		// TODO Auto-generated method stub
+		System.out.println("Changement de niveau si hero");
 	}
 }
