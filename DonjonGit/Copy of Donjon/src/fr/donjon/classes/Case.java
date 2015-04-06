@@ -7,7 +7,11 @@ import java.io.File;
 
 
 
+
+
 import javax.imageio.ImageIO;
+
+import fr.donjon.utils.Orientation;
 
 /**
  * Classe Case
@@ -54,8 +58,7 @@ public abstract class Case {
 	 * @return
 	 */
 	public void inCollision(Personnage z){
-
-		System.out.println("Hep t'as pas le droit d'être ici!");
+		
 		/**
 		 * Replace the character to the limit of the collision box
 		 */

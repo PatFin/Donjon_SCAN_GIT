@@ -70,8 +70,8 @@ public abstract class Personnage extends Deplacable{
 		/**
 		 * Displays the god damn rectangle associated with the character ... Finally!
 		 */
-		g.setColor(Color.red);
-		g.fillRect(collisionDecor.x, collisionDecor.y, collisionDecor.width, collisionDecor.height);
+		//g.setColor(Color.red);
+		//g.fillRect(collisionDecor.x, collisionDecor.y, collisionDecor.width, collisionDecor.height);
 		
 		switch(etat){
 		case ATTAQUE:
@@ -98,8 +98,8 @@ public abstract class Personnage extends Deplacable{
 			
 		case DEPLACEMENT :
 			//A optimiser, eviter de créer un objets ttes le 40ms
-			Vecteur nexPos = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(vitDeplacement)) ;
-			image.setLocation(nexPos.x,nexPos.y);
+			Vecteur nexPos = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(vitDeplacement));
+			setLocation(nexPos.x, nexPos.y);
 			break;
 
 		case REPOS :
@@ -134,5 +134,17 @@ public abstract class Personnage extends Deplacable{
 	 * Implémentation de la méthode de la classe mère
 	 */
 	
+	public Orientation cloneOrientation(){
+		
+		switch(this.o){
+		case NORD : return Orientation.NORD;
+		case SUD : return Orientation.SUD;
+		case EST : return Orientation.EST;
+		case OUEST : return Orientation.OUEST;
+		default : return Orientation.NORD;
+		
+		}
+		
+	}
 	
 }

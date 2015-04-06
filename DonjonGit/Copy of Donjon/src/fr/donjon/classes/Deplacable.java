@@ -59,7 +59,6 @@ public abstract class Deplacable extends Objet {
 	@Override
 	public void update(long t){
 		//Maj des rectangles pour les objets deplacables
-		collisionArmes.setLocation(image.x + offArm.x, image.y + offArm.y);
-		collisionDecor.setLocation(image.x + offCol.x, image.y + offCol.y);
+
 	}
 }

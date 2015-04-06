@@ -7,6 +7,8 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+import fr.donjon.utils.Orientation;
+
 public class Salle {
 	
 	static int numberOfRooms=0;				//The total number of rooms
@@ -160,15 +162,25 @@ public class Salle {
 	}
 
 	public void update(long temps){
+		
 		Personnage z;
+		
 		for(int i=0;i<personnage.size();i++){
+		
 			z=personnage.get(i);
+			
 			if(z!=null){
+				
 				z.update(temps);
+				
 				for(int x=0; x<cases.length;x++){
+					
 					for(int y=0; y<cases[0].length; y++){
+						
 						if(z.collisionDecor.intersects(cases[x][y].collision) && !cases[x][y].traversable){
+							
 							cases[x][y].inCollision(z);
+							
 						}
 					}
 				}
