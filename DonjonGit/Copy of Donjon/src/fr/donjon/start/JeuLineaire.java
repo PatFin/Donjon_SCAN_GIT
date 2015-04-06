@@ -55,7 +55,7 @@ public class JeuLineaire extends JFrame implements EcouteurClavier {
        
        //General declarations
        timer = new Timer(timerTime, new TimerAction());
-       hero = new Heros(0,0);
+       hero = new Heros(200,300);
        salle = new Castle_Room(hero,ecran);
        
        //TODO at the END
