@@ -17,6 +17,8 @@ public class Castle_Room extends Salle {
 			casesSalle[x][0]=new Case_rocher();
 			casesSalle[x][1]=new Case_mur();
 		}
+		//On ajoute les ennemis
+		personnage.add(new Squelette(300,300,"MonSquelette",p));
 		
 		//Le reste du tableau est rempli aléatoirement de dalles (fendue ou non)
 		for(int y=2;y<casesSalle[0].length;y++){
