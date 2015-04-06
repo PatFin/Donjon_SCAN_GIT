@@ -8,8 +8,9 @@ public class Castle_Room extends Salle {
 
 	
 	public Castle_Room(Heros p, Rectangle ecran) {
-		super(p, null, ecran);
+		super(ecran, p);
 		
+		//On génèrel'apparence de la Salle.
 		Case[][] casesSalle;
 		casesSalle = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE];
 		for(int x=0;x<cases.length;x++){
@@ -29,6 +30,11 @@ public class Castle_Room extends Salle {
 				}
 			}
 		}
+		
+		
+		
+		
+		
 		refreshRoomCases(casesSalle);
 	}
 	

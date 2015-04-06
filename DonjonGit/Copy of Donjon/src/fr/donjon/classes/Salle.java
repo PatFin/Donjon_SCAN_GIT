@@ -115,6 +115,12 @@ public class Salle {
         monG = buffer1.getGraphics();
 	}
 	
+	/**
+	 * Constructor to crreate a room without initializing the cases.
+	 * It requires the use of refreshRoomCases afterwards to make sure the room isn't just empty.
+	 * @param ecran
+	 * @param h
+	 */
 	public Salle(Rectangle ecran, Heros h){
 		super();
 		//On créé les objets contenus dans la salle
@@ -122,35 +128,17 @@ public class Salle {
 		this.personnage = new LinkedList <Personnage> ();
 		personnage.add(h);
 		
+		
 		//On créé le tableau de cases contenues de la salle
 		this.ecran=ecran;
 		this.cases = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE]; 
 		
-		//Les deux premières lignes sont remplie de rocher et de mur
-		for(int x=0;x<cases.length;x++){
-			cases[x][0]=new Case_rocher();
-			cases[x][1]=new Case_mur();
-		}
-		
-		//Le reste du tableau est rempli aléatoirement de dalles (fendue ou non)
-		for(int y=2;y<cases[0].length;y++){
-			for(int x=0;x<cases.length;x++){
-				int random = (int)Math.round(Math.random());
-				
-				if(random == 0){
-					cases[x][y]=new Case_fendue_sol();	
-				}else{
-					cases[x][y]=new Case_dalle_sol();
-				}
-			}
-		}
+		//This bit is to be removed ...
+		/**
 		cases[cases.length/2][0]=new Case_escalier();
 		cases[cases.length/2][1]=new Case_escalier();
 		cases[cases.length/2][cases[0].length-1]=new Case_escalier();
-		
-		
-		//On génère une image de la salle qui sera utilisée après dans la méthode draw
-		generateImage();
+		*/
 		
 		//On créé le buffer qui sera rempli par l'image de la salle et des objets dans la méthode draw
 		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_RGB);
