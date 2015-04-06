@@ -1,5 +1,6 @@
 package fr.donjon.classes;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -7,6 +8,9 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 public class Salle {
+	
+	static int numberOfRooms=0;				//The total number of rooms
+	int roomNumber;							//The unique number associated with a room.
 	
 	int difficulte; 						//Pour initialiser les ennemis. Pourra s'avérer utile
 	Case[][] cases; 						//Tableau de cases qui composent la salle
@@ -29,6 +33,9 @@ public class Salle {
     public Salle(Heros p, Case[][] casesSalle, Rectangle ecran){
     	super();
 		
+    	
+    	
+    	
     	//On créé les objets contenus dans la salle
 		this.difficulte=0;
 		this.personnage = new LinkedList <Personnage> ();
@@ -59,6 +66,11 @@ public class Salle {
 		//On créé le buffer qui sera rempli par l'image de la salle et des objets dans la méthode draw
 		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_RGB);
         monG = buffer1.getGraphics();
+        
+        //On stocke le numéro de la salle et on incrémente le nombre de salle:
+        this.roomNumber=Salle.numberOfRooms;
+        Salle.numberOfRooms++;
+        
 	}
 	
 	/**
@@ -69,7 +81,7 @@ public class Salle {
 		super();
 		//On créé les objets contenus dans la salle
 		this.difficulte=0;
-		this.personnage = new LinkedList <Objet> ();
+		this.personnage = new LinkedList <Personnage> ();
 		
 		//On créé le tableau de cases contenues de la salle
 		this.ecran=ecran;
@@ -107,7 +119,7 @@ public class Salle {
 		super();
 		//On créé les objets contenus dans la salle
 		this.difficulte=0;
-		this.personnage = new LinkedList <Objet> ();
+		this.personnage = new LinkedList <Personnage> ();
 		personnage.add(h);
 		
 		//On créé le tableau de cases contenues de la salle
@@ -207,6 +219,9 @@ public class Salle {
 		
 		//On met l'image de la salle d'abord
 		monG.drawImage(imageSalle,0,0,null);
+		//On ajoute le numéro de salle en haut à gauche
+		monG.setColor(Color.white);
+		monG.drawString("Salle "+this.roomNumber, 20, 20);
 		
 		//On affiche les objets comme il faut
 		for(int i=0;i<personnage.size();i++){
@@ -216,6 +231,7 @@ public class Salle {
 			}
 		}
 		
+		//On envoi tout le buffer dans la fenêtre
 		g.drawImage(buffer1, ecran.x, ecran.y, null);
 	}
 }
