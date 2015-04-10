@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -32,82 +31,38 @@ import fr.donjon.utils.Orientation;
  *
  */
 
-public class JeuLineaireBlac extends JPanel implements EcouteurClavier {
+public class JeuLineaireBlac extends GamePanel implements EcouteurClavier {
 
-	static final int LARGEUR = 15;
-	static final int HAUTEUR = 9;
-	final static int timerTime = 20;
-
-	BufferedImage arrierePlan;
-	Graphics buffer;
-	Rectangle ecran;
-	JPanel monJpanel;
-
-	long temps;
-
-	Timer timer;
-	Heros hero;
-	Salle salle;
+	
+	
 
 
 	public JeuLineaireBlac(){
-
-		initialisationFenetre();
-
-		//General declarations
-		timer = new Timer(timerTime, new TimerAction());
-		hero = new Heros(200,300);
-		salle = new Castle_Room(hero,ecran, salle, new Linear_Castle(hero, ecran));
+		
+		super(null);
+		
 
 		//TODO at the END !
-		this.addKeyListener(new JeuKeyAdapter(this));
-		timer.start();
-
+		this.addKeyListener(new JeuKeyAdapter(this));		
+		
 	}
 
-	private void initialisationFenetre(){
-
-		this.setSize(new Dimension(LARGEUR*Case.TAILLE, HAUTEUR*Case.TAILLE));
-		this.setPreferredSize(new Dimension(LARGEUR*Case.TAILLE, HAUTEUR*Case.TAILLE));
-
-		//Partie utile de la fenetre
-		ecran = new Rectangle(0,0,getWidth(),getHeight());
-
-		//Image buffer pour dessiner dessus
-		arrierePlan = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
-
-		//Récuperation de la partie graphique de de l'image pour dessiner dessus
-		buffer = arrierePlan.getGraphics();
-	}
 
 	/**
 	 * @param g Composant graphique sur lequel dessiner
 	 */
 	public void paint(Graphics g){
 
-
-		salle.draw(temps, g);
+		super.paint(g);
 
 	}
 
 	public void update(){
 
-		//UPDATE
-		salle.update(temps);
-		repaint();
+		super.update();
 	}
 
-
-	private class TimerAction implements ActionListener{
-		// actions listener appelés toutes les 20ms
-		public void actionPerformed(ActionEvent e){
-			update();
-			temps +=timerTime;
-		}
-
-	}
-
-
+	
 	//INTERFACE D'ECOUTE
 
 	@Override
@@ -126,6 +81,7 @@ public class JeuLineaireBlac extends JPanel implements EcouteurClavier {
 	public void deplacement(Orientation o) {
 		// TODO Auto-generated method stub
 		hero.marcher(o);
+		System.out.println("merde");
 	}
 
 	@Override

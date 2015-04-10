@@ -14,21 +14,21 @@ public class Launcher extends JFrame {
 
 	JPanel panActuel;
 	
-	JPanel jeuLineaire;
+	GamePanel game;
 	JPanel menu;
 	
 	public Launcher(){
 		
-		jeuLineaire = new JeuLineaireBlac(); 
-		panActuel = jeuLineaire;
-		
+		game = new JeuLineaireBlac(); 
+		panActuel = game;
 	    add(panActuel);
 		
 		pack();
         setResizable(false);
-        setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+        setVisible(true);
+        game.startGame();
+        
 	}
 	
 	/**
