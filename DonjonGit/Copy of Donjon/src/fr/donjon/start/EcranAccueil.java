@@ -2,6 +2,11 @@ package fr.donjon.start;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -9,8 +14,10 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
-public class EcranAccueil extends JFrame {
+
+public class EcranAccueil extends JFrame implements MouseListener, MouseMotionListener{ 
 	
 	// déclaration de l'image
 	Image im; // IMAGE
@@ -22,7 +29,20 @@ public class EcranAccueil extends JFrame {
 	private JPanel panel = new JPanel();
 	private JButton boutonStart = new JButton("Click to Play !! ");
 	
-		
+	//declaration du timer
+	Timer timer;
+	
+	
+	// classe permettant de faire tourner le timer pour les actionListener
+	class TimerClass implements ActionListener {
+
+		public void actionPerformed (ActionEvent e) {
+			repaint();
+		}
+	}
+	
+		// constructeur de la classe EcranAccueil
+	
 	public EcranAccueil (){
 		
 		// lecture de l'image
@@ -46,6 +66,14 @@ public class EcranAccueil extends JFrame {
 	    panel.add(boutonStart);
 	    this.setContentPane(panel);
 	    
+	    // Actions listener
+	    addMouseListener(this);
+		addMouseMotionListener(this);
+		
+		//timer
+		timer = new Timer (40, new TimerClass());
+		timer.start();
+	    
 	    // setVisible à mettre à la fin
 	    this.setVisible(true);
 	
@@ -59,9 +87,19 @@ public class EcranAccueil extends JFrame {
 			}
 			System.out.println (im);
 			
+			  		
 			
 		}
 	
+		//methodes pour les actions de la souris
+		
+		public void mouseReleased( MouseEvent e ) { }
+	    public void mouseDragged( MouseEvent e ) { }
+	    public void mouseEntered( MouseEvent e ) { }
+	    public void mouseMoved( MouseEvent e ) {}
+	    public void mouseClicked( MouseEvent e )  { }
+	    public void mouseExited( MouseEvent e ) { }        
+	    public void mousePressed( MouseEvent e ) { }
 	
 	
 
