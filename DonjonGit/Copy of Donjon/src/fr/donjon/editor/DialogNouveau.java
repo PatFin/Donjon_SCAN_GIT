@@ -16,38 +16,45 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import fr.donjon.utils.DialogListener;
 import fr.donjon.utils.Vecteur;
 
 
 /**
+ * La boite de dialogue permettant de choisir la taille de grile a creer
+ * 
  * @author Baptiste
  *
  */
 public class DialogNouveau extends JDialog {
 
-	boolean valid = false;
-
 	int dWith;
 	int dHeight;
 
-	Box content;
+	Box content; //Le contenu graphique du JDialog
 
-	JSlider sWidth;
-	JSlider sHeight;
+	JSlider sWidth;	//Slider largeur
+	JSlider sHeight;//Slider hauteur
 
-	JButton BCreer;
+	JButton BCreer;	
 	JButton BAnnuler;
 
-	String titleText = "Grille 15x10";
+	String titleText = "Grille 15x10"; //Texte a afficher dans la fenêtre
 
-	//
+	DialogListener listener;			//La classe attendant un résultat du JDialog (et implementant DialogListener)
 
-	DialogListener listener;
-
+	/**
+	 * 
+	 * Permet de creer la boite de dialogue et de l'afficher
+	 * 
+	 * @param parent	Le panel qui contient le JDialog
+	 * @param title		Le titre a afficher
+	 * @param modal		Modalité de la boite	
+	 * @param l			La classe ecoutant le résultat
+	 */
 	public DialogNouveau(JFrame parent, String title, boolean modal, DialogListener l){
 		super(parent,title,modal);
 
+		//Centrage
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 
@@ -60,7 +67,7 @@ public class DialogNouveau extends JDialog {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				// TODO Auto-generated method stub
+				// MAJ du texte a afficher
 				updateText();
 			}
 		});
@@ -80,7 +87,7 @@ public class DialogNouveau extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				//Boutton valider
 				validateBox();
 			}
 		});
@@ -88,31 +95,32 @@ public class DialogNouveau extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				//Boutton annuler
 				cancelBox();
 			}
 		});
 
 
-		//Add
+		//Les deux slider cote a cote
 		Box box1 = Box.createHorizontalBox();
 		box1.add(sWidth);
 		box1.add(sHeight);
-		box1.add(Box.createVerticalStrut(30));
+		box1.add(Box.createVerticalStrut(30));	//Espace vide
 
+		//Les deux bouttons cote a cote
 		Box box2 = Box.createHorizontalBox();
-		box2.add(Box.createHorizontalStrut(5));
+		box2.add(Box.createHorizontalStrut(5));	//Expace vide
 		box2.add(BAnnuler);
-		box2.add(Box.createHorizontalGlue());
+		box2.add(Box.createHorizontalGlue());	//Boutons ecartés au maximum
 		box2.add(BCreer);
-		box2.add(Box.createHorizontalStrut(5));
+		box2.add(Box.createHorizontalStrut(5)); //Espace vide
 
-
+		//Les deux composants precedents a la verticale
 		content = Box.createVerticalBox();
 		content.add(box1);
 		content.add(box2);
 		content.add(Box.createVerticalStrut(5));
-		content.setBorder(BorderFactory.createTitledBorder(titleText));
+		content.setBorder(BorderFactory.createTitledBorder(titleText)); //Texte a afficher
 		
 		this.getContentPane().add(content, BorderLayout.CENTER);
 		this.pack();
@@ -120,23 +128,28 @@ public class DialogNouveau extends JDialog {
 
 	}
 
+	/**
+	 * Met a jout le texte de la bordure en fonction de la valeur des Sliders
+	 */
 	private void updateText(){
 		titleText = "Grille " + sWidth.getValue() + "x" + sHeight.getValue() ;
 		content.setBorder(BorderFactory.createTitledBorder(titleText));
 
 	}
 
-
+	/**
+	 * Gère l'appui sur le boutton valider
+	 */
 	private void validateBox(){
 		
-		listener.onValidate(new Vecteur(sWidth.getValue(), sHeight.getValue()));
-		setVisible(false);
+		listener.onValidate(new Vecteur(sWidth.getValue(), sHeight.getValue())); 	//On previent l'écouteur
+		setVisible(false);															//On fait disparaitre le JDialog
 	}
 
 	private void cancelBox(){
 		
-		listener.onCancel();
-		setVisible(false);
+		listener.onCancel(); 	//On previent
+		setVisible(false);		//On désaffiche
 	}
 
 }

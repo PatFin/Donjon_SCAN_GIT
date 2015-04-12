@@ -17,6 +17,8 @@ import fr.donjon.classes.Case;
 import fr.donjon.classes.Salle;
 
 /**
+ * La classe mère qui permet de gerer l'affichage et la mise a jour d'une salle
+ * 
  * @author Baptiste
  *
  */
@@ -36,7 +38,10 @@ public abstract class GamePanel extends JPanel {
 
 	Salle salle;
 
-	
+	/**
+	 * Permet de creer un JPanel contenant le jeu
+	 * @param s	La salle a dessiner
+	 */
 	public GamePanel(Salle s){
 		
 		initialisationFenetre();
@@ -62,18 +67,28 @@ public abstract class GamePanel extends JPanel {
 		buffer = arrierePlan.getGraphics();
 	}
 	
+	/**
+	 * Dessin de la salle dans le JPanel
+	 */
 	public void paint(Graphics g){
 
 		salle.draw(temps, g);
 
 	}
 
+	/**
+	 * Permet de mettre a jour et de dessiner la salle
+	 */
 	public void update(){
 
 		salle.update(temps);
 		repaint();
 	}
 
+	/**
+	 * Permet de changer la salle active 
+	 * @param nSalle La nouvelle salle a dessiner
+	 */
 	public void changeSalle(Salle nSalle){
 		
 		timer.stop();
@@ -82,8 +97,18 @@ public abstract class GamePanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Permet de démarrer l'actualisation du jeu (par défaut en pause)
+	 */
 	public void startGame(){
 		this.timer.start();
+	}
+	
+	/**
+	 * Met en pause le jeu
+	 */
+	public void stopGame(){
+		this.timer.stop();
 	}
 	
 	public class TimerAction implements ActionListener{

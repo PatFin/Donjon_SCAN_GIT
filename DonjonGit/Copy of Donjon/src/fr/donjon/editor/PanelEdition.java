@@ -19,6 +19,8 @@ import fr.donjon.utils.Vecteur;
  */
 
 /**
+ * JPanel personnalisé permettant l'affichage de la zone de dessin de l'éditeur 
+ * 
  * @author Baptiste
  *
  */
@@ -27,29 +29,32 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 	final static int panelWidth = 900;
 	final static int panelHeight = 600;
 
-	int width;
-	int height;
-	int thickness;
+	int width;	//Nombre de cases en largeur
+	int height;	//Nombre de cases en hauteur
+	int thickness;	//Epaisseur de la brosse 
 
-	boolean initialized = false;
-	int dim;
+	boolean initialized = false;	//Fenetre initiaisée ou pas
+	int dim;						//Dimension d'affichage d'une case en pixels
 
-	Case caseT;
-	Case[][] cases;
-	BufferedImage imageGrid;
-	BufferedImage imageBrosse;
-	BufferedImage image;
+	Case caseT;						//La case actuellement desinée
+	Case[][] cases;					//La matrice contenant le dessin
+	BufferedImage imageGrid;		//Image de la grille
+	BufferedImage imageBrosse;		//Image de la brosse
+	BufferedImage image;			//Image principale
 	Graphics bufferGrid;
 	Graphics bufferBrosse;
 	Graphics buffer;
 
-	private Vecteur mouse = new Vecteur(0,0);
+	private Vecteur mouse = new Vecteur(0,0);	//Position de la souris
 
+	/**
+	 * Initialise un panel d'edition
+	 */
 	public PanelEdition(){
 		this.setPreferredSize(new Dimension(panelWidth,panelHeight));
 		this.thickness = 1;
 		this.initialized = false;
-		this.caseT = new Case_dalle_sol();
+		this.caseT = new Case_dalle_sol(); //Case par defaut
 
 		image = new BufferedImage(panelWidth, panelHeight, BufferedImage.TYPE_INT_ARGB);
 		imageGrid = new BufferedImage(panelWidth, panelHeight, BufferedImage.TYPE_INT_ARGB);
@@ -59,28 +64,41 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 
 	}
 
+	/**
+	 * Initialisation complète
+	 * 
+	 * @param width		Nombre de cases en largeur
+	 * @param height	Nombre de cases en hauteur
+	 */
 	public PanelEdition(int width, int height){
 		this();
 		this.width = width;
 		this.height = height;
 		this.initialized = true;
 		this.cases = new Case[width][height];
-		this.fill(new Case_void());
+		this.fill(new Case_void());				//Remplissage par défaut
 		
-		int espX = panelWidth / this.width ;
-		int espY = panelHeight / this.height;
-		dim = espX >= espY ? espY : espX;
+		int espX = panelWidth / this.width ;	//Taille d'une case sur X
+		int espY = panelHeight / this.height;	//Taille d'une case sur Y
+		dim = espX >= espY ? espY : espX;		//Calcul taille de la case carrée( min(expX,expY) )
 		
 		imageBrosse = new BufferedImage(6*dim, 6*dim, BufferedImage.TYPE_INT_ARGB);
 		bufferBrosse = imageBrosse.createGraphics();
 
-		setThickness(1); //To modify
+		setThickness(1);
 
 		generateGrid();
 		this.addMouseMotionListener(this);
 		this.addMouseListener(this);
 	}
 
+	/**
+	 * 
+	 * Remet a zéro la fenêtre
+	 * 
+	 * @param w	Taille x
+	 * @param h	Taille y
+	 */
 	public void reinitialize(int w, int h){
 		
 		this.caseT = new Case_dalle_sol();
@@ -114,7 +132,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 		// TODO Auto-generated method stub
 		super.paint(g);
 		
-		//Drawing the background of the Panel in blue
+		//Draw the background of the Panel in gray
 		buffer.setColor(Color.LIGHT_GRAY);
 		buffer.fillRect(0, 0, panelWidth, panelHeight);
 		
@@ -125,7 +143,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 		//Draw the grid on the buffer
 		buffer.drawImage(imageGrid, 0, 0, this);
 		
-		//Draw the image on the screen
+		//Draw the total image on the screen
 		g.drawImage(image, 0, 0, this);
 
 	}
@@ -137,7 +155,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 	private void paintCases(Graphics g){
 		for(int y = 0 ; y < height ; y++){
 			for(int x = 0 ; x < width ;  x++){
-				if(cases[x][y] != null)g.drawImage(cases[x][y].image, x*dim, y*dim,dim,dim, null);
+				if(cases[x][y] != null)g.drawImage(cases[x][y].image, x*dim, y*dim, dim, dim, null);
 			}
 		}
 
@@ -156,7 +174,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 	}
 
 	/**
-	 * Generates the image of the grid
+	 * Generates the image of the grid (needs to do this just once)
 	 */
 	private void generateGrid(){
 		
@@ -179,6 +197,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 	public void setThickness(int t){
 
 		this.thickness = t;
+		
 		imageBrosse = new BufferedImage(dim*6, dim*6, BufferedImage.TYPE_INT_ARGB);
 		bufferBrosse = imageBrosse.createGraphics();
 		
@@ -191,14 +210,14 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 	}
 
 	/**
-	 * Returns the coordinates of the grid cooresponding to that of the mouse
+	 * Returns the coordinates on the grid cooresponding to that of the mouse on the screen
 	 */
 	private Vecteur getCoordinates(int x, int y){
 		return new Vecteur(x/dim, y/dim);
 	}
 
 	/**
-	 * Ajoute des cases en prenant en compte la brosse
+	 * Ajoute des cases en prenant en compte la taille de la brosse
 	 */
 	private void addCases(){
 		
@@ -207,7 +226,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 
 		for(int y = (mouse.y-offset)+dim/2 ; y < (mouse.y+offset) ; y+=dim){
 			for(int x = (mouse.x-offset)+dim/2 ; x < (mouse.x+offset) ; x+=dim){
-				c = getCoordinates(x, y);
+				c = getCoordinates(x, y); //On simule le déplacement de la souris
 				if( c.x >= 0 && c.x < width && c.y >= 0 && c.y < height){
 					cases[c.x][c.y] = caseT;
 				}
@@ -223,6 +242,10 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 		repaint();
 	}
 
+	/**
+	 * Permet de remplir la grille avec une case
+	 * @param c	Case de remplissage
+	 */
 	public void fill(Case c){
 		
 		for(int y = 0 ; y < height ; y++){
@@ -233,25 +256,24 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 		
 	}
 
-	//INTERFACE//////////////////////
+	////////INTERFACE DE SUIVI DE LA SOURIS//////////////////////
 	@Override
-	public void mouseDragged(MouseEvent e) {
+	public void mouseDragged(MouseEvent e) { //Souris cliquée et déplace en meme temps -> ajout de cases
 		// TODO Auto-generated method stub
-
 		mouse.setLocation(e.getX(), e.getY());	
 		addCases();
 		repaint();
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent e) {
+	public void mouseMoved(MouseEvent e) {	//On suit juste la souris pour que la brosse se déplace
 		// TODO Auto-generated method stub
 		mouse.setLocation(e.getX(), e.getY());
 		repaint();
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) { //On ajoute des cases si la souris est cliquée
 		// TODO Auto-generated method stub
 		mouse.setLocation(e.getX(), e.getY());	
 		addCases();

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,11 +24,13 @@ import fr.donjon.classes.Case_herbe;
 import fr.donjon.classes.Case_mur;
 import fr.donjon.classes.Case_rocher;
 import fr.donjon.classes.Case_void;
-import fr.donjon.utils.DialogListener;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
 /**
+ * 
+ * Fenêtre principale de l'éditeur
+ * 
  * @author Baptiste
  *
  */
@@ -44,7 +47,7 @@ public class EditorWindow extends JFrame{
 	JButton BDelete;
 	JButton BFill;
 
-	//Panel Interactions
+	//Panel Interactions (boutons)
 	JPanel panInteractions;
 
 	JSlider sliderThickness;
@@ -57,10 +60,15 @@ public class EditorWindow extends JFrame{
 	//Panel dessin
 	PanelEdition panDessin;
 
+	/**
+	 * Permet de creer la fenetre
+	 * 
+	 * @param nom	Titre fenetre
+	 */
 	public EditorWindow(String nom){
 		super(nom);
 		
-		//Init cases
+		//Remplissage des cases disponibles
 		listCases = new LinkedList<Case>();
 		LCButtons = new LinkedList<CaseButton>();
 
@@ -72,7 +80,7 @@ public class EditorWindow extends JFrame{
 		listCases.add(new Case_rocher());
 		listCases.add(new Case_void());
 
-		//CADRE
+		//CADRE PRINCIPAL
 		cadre = new JPanel();
 		cadre.setLayout(new BorderLayout());
 
@@ -90,10 +98,9 @@ public class EditorWindow extends JFrame{
 		panMenu.add(BFill);
 		panMenu.add(BDelete);
 
-
 		cadre.add(panMenu,BorderLayout.NORTH);
 
-		//DESSIN
+		//PANEL DESSIN
 		panDessin = new PanelEdition(15,10);
 		cadre.add(panDessin, BorderLayout.EAST);
 
@@ -101,20 +108,20 @@ public class EditorWindow extends JFrame{
 		panInteractions = new JPanel();
 		panInteractions.setLayout(new BoxLayout(panInteractions, BoxLayout.Y_AXIS));
 		panInteractions.setPreferredSize(new Dimension(170,600));
-
+		
+		
 		panCases = new JPanel();
 		panCases.setLayout(new FlowLayout(FlowLayout.CENTER, 10,10));
-
+		panCases.setBorder(BorderFactory.createTitledBorder("Cases disponibles :"));
+		
 		sliderThickness = new JSlider(1,6,1);
-
+		sliderThickness.setBorder(BorderFactory.createTitledBorder("Taille : 1"));
+		
 		for(int i = 0 ; i < listCases.size() ; i++){
-			CaseButton bt = new CaseButton(listCases.get(i));
-			LCButtons.add(bt);
+			LCButtons.add(new CaseButton(listCases.get(i))); //Creation des CaseButton grace a la liste de cases
 		}
 
-		//REMPLISSAGE INTER
-
-
+		//REMPLISSAGE INTERACTIONS
 		for(int i = 0 ; i < LCButtons.size() ; i++){
 			panCases.add(LCButtons.get(i));
 		}
@@ -124,7 +131,7 @@ public class EditorWindow extends JFrame{
 
 		cadre.add(panInteractions, BorderLayout.WEST);
 
-		//FIN
+		//FINALISATION
 		this.addListeners();
 		this.setContentPane(cadre);
 		this.pack();
@@ -133,6 +140,9 @@ public class EditorWindow extends JFrame{
 		this.setVisible(true);
 	}
 
+	/**
+	 * Ajoute tous les listeners des bouttons
+	 */
 	private void addListeners(){
 
 
@@ -150,6 +160,7 @@ public class EditorWindow extends JFrame{
 			public void stateChanged(ChangeEvent e) {
 				// TODO Auto-generated method stub
 				panDessin.setThickness(sliderThickness.getValue());
+				sliderThickness.setBorder(BorderFactory.createTitledBorder("Taille: "+sliderThickness.getValue()));
 			}
 		});
 
@@ -180,20 +191,23 @@ public class EditorWindow extends JFrame{
 			}
 		});
 
-		for( CaseButton bt : LCButtons){
+		for(CaseButton bt : LCButtons){
 			bt.addActionListener(new CaseButtonListener(bt, panDessin));
 		}
 
 	}
 
+	/**
+	 * Permet d'afficher le JDialog pour créer un nouveau terrain
+	 */
 	private void showDialogNew(){
 
+		//Interface d'écoute sur le résultat du JDialog
 		DialogListener dl = new DialogListener() {
 
 			@Override
 			public void onValidate(Vecteur v) {
-				//cadre.remove(panDessin);
-				panDessin.reinitialize(v.x, v.y);
+				panDessin.reinitialize(v.x, v.y); //Reinitialisation avec la nouvelle taille
 			}
 
 			@Override
