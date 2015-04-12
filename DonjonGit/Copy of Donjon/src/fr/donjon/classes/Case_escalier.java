@@ -9,7 +9,7 @@ import fr.donjon.utils.Orientation;
 
 public class Case_escalier extends Case {
 	
-	final static String image="C:/SVN/Case_escalier.png";
+	final static String image="Ressources/Images/Case_escalier.png";
 	
 	Orientation o; 	//Describes if the case is at top (north) of the room or the bottom (south)
 	Salle destination;		//Salle vers lasuelle l'escalier va pointer.

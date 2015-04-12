@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 public class Case_rocher extends Case_Obstacle {
 
-	final static String image="C:/SVN/Case_rocher.png";
+	final static String image="Ressources/Images/Case_rocher.png";
 
 
 	/**

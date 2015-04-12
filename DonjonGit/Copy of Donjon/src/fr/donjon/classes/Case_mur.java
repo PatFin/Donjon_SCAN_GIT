@@ -11,7 +11,7 @@ import java.awt.Rectangle;
 
 public class Case_mur extends Case_Obstacle{
 	
-	final static String image="C:/SVN/Case_mur.png";
+	final static String image="Ressources/Images/Case_mur.png";
 	
 	
 	/**

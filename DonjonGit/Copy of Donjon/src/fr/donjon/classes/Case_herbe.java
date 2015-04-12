@@ -10,7 +10,7 @@ package fr.donjon.classes;
 public class Case_herbe extends Case{
 
 
-	final static String image="C:/SVN/Case_herbe.png";
+	final static String image="Ressources/Images/Case_herbe.png";
 
 	/**
 	 * Constructeur
