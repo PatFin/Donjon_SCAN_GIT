@@ -29,17 +29,6 @@ public class EcranAccueil extends JFrame implements MouseListener, MouseMotionLi
 	private JPanel panel = new JPanel();
 	private JButton boutonStart = new JButton("Click to Play !! ");
 	
-	//declaration du timer
-	Timer timer;
-	
-	
-	// classe permettant de faire tourner le timer pour les actionListener
-	class TimerClass implements ActionListener {
-
-		public void actionPerformed (ActionEvent e) {
-			repaint();
-		}
-	}
 	
 		// constructeur de la classe EcranAccueil
 	
@@ -67,13 +56,10 @@ public class EcranAccueil extends JFrame implements MouseListener, MouseMotionLi
 	    this.setContentPane(panel);
 	    
 	    // Actions listener
-	    addMouseListener(this);
-		addMouseMotionListener(this);
+	    this.addMouseListener(this);
+		this.addMouseMotionListener(this);
 		
-		//timer
-		timer = new Timer (40, new TimerClass());
-		timer.start();
-	    
+	
 	    // setVisible à mettre à la fin
 	    this.setVisible(true);
 	
@@ -94,10 +80,14 @@ public class EcranAccueil extends JFrame implements MouseListener, MouseMotionLi
 		//methodes pour les actions de la souris
 		
 		public void mouseReleased( MouseEvent e ) { }
-	    public void mouseDragged( MouseEvent e ) { }
+	    public void mouseDragged( MouseEvent e ) {
+	    }
 	    public void mouseEntered( MouseEvent e ) { }
 	    public void mouseMoved( MouseEvent e ) {}
-	    public void mouseClicked( MouseEvent e )  { }
+	    public void mouseClicked( MouseEvent e )  {
+	    	System.out.println("clique");
+	    	
+	    }
 	    public void mouseExited( MouseEvent e ) { }        
 	    public void mousePressed( MouseEvent e ) { }
 	

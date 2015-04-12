@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -18,6 +19,7 @@ import javax.swing.Timer;
 import fr.donjon.classes.Case;
 import fr.donjon.classes.Castle_Room;
 import fr.donjon.classes.Heros;
+import fr.donjon.classes.Linear_Castle;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
 import fr.donjon.classes.Salle;
@@ -46,7 +48,7 @@ public class JeuLineaireVincent extends JFrame implements EcouteurClavier {
     
     Timer timer;
     Heros hero;
-    Salle salle;
+    public Linear_Castle castle;
     
 
 	public JeuLineaireVincent(){
@@ -56,7 +58,8 @@ public class JeuLineaireVincent extends JFrame implements EcouteurClavier {
        //General declarations
        timer = new Timer(timerTime, new TimerAction());
        hero = new Heros(200,300);
-       salle = new Castle_Room(hero,ecran);
+       castle = new Linear_Castle(hero,ecran);
+       
        
        //TODO at the END !
        this.addKeyListener(new JeuKeyAdapter(this));
@@ -94,14 +97,14 @@ public class JeuLineaireVincent extends JFrame implements EcouteurClavier {
  	public void paint(Graphics g){
 		
         
-        salle.draw(temps, g);
+        castle.draw(temps, g);
         
 	}
 	
  	public void update(){
  		
  		//UPDATE
- 		salle.update(temps);
+ 		castle.update(temps);
  		repaint();
  	}
  	
