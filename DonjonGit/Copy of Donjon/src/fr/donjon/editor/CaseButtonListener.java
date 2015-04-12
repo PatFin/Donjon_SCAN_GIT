@@ -6,8 +6,6 @@ package fr.donjon.editor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import fr.donjon.classes.Case;
-
 /**
  * @author Baptiste
  *
@@ -30,6 +28,10 @@ public class CaseButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		pan.changeCase(button.c);
+	}
+	
+	public void setListener(PanelEdition e){
+		this.pan = e;
 	}
 
 }

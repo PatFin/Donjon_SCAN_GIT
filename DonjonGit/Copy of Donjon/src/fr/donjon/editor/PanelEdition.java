@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import fr.donjon.classes.Case;
 import fr.donjon.classes.Case_dalle_sol;
+import fr.donjon.classes.Case_void;
 import fr.donjon.utils.Vecteur;
 
 /**
@@ -30,8 +31,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 	int height;
 	int thickness;
 
-	boolean initialized;
-	boolean mouseDown;
+	boolean initialized = false;
 	int dim;
 
 	Case caseT;
@@ -65,11 +65,12 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 		this.height = height;
 		this.initialized = true;
 		this.cases = new Case[width][height];
-
+		this.fill(new Case_void());
+		
 		int espX = panelWidth / this.width ;
 		int espY = panelHeight / this.height;
 		dim = espX >= espY ? espY : espX;
-
+		
 		imageBrosse = new BufferedImage(6*dim, 6*dim, BufferedImage.TYPE_INT_ARGB);
 		bufferBrosse = imageBrosse.createGraphics();
 
@@ -80,16 +81,42 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 		this.addMouseListener(this);
 	}
 
+	public void reinitialize(int w, int h){
+		
+		this.caseT = new Case_dalle_sol();
+
+		image = new BufferedImage(panelWidth, panelHeight, BufferedImage.TYPE_INT_ARGB);
+		imageGrid = new BufferedImage(panelWidth, panelHeight, BufferedImage.TYPE_INT_ARGB);
+
+		bufferGrid = imageGrid.createGraphics();
+		buffer = image.getGraphics();
+		
+		this.width = w;
+		this.height = h;
+		this.initialized = true;
+		this.cases = new Case[width][height];
+		this.fill(new Case_void());
+		
+		int espX = panelWidth / this.width ;
+		int espY = panelHeight / this.height;
+		dim = espX >= espY ? espY : espX;
+		
+		imageBrosse = new BufferedImage(6*dim, 6*dim, BufferedImage.TYPE_INT_ARGB);
+		bufferBrosse = imageBrosse.createGraphics();
+
+		setThickness(1);
+		
+		generateGrid();
+	}
 
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paint(g);
-
+		
 		//Drawing the background of the Panel in blue
-		buffer.setColor(Color.BLUE);
+		buffer.setColor(Color.LIGHT_GRAY);
 		buffer.fillRect(0, 0, panelWidth, panelHeight);
-
 		
 		//Draw the cases on the buffer
 		paintCases(buffer);
@@ -98,11 +125,10 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 		//Draw the grid on the buffer
 		buffer.drawImage(imageGrid, 0, 0, this);
 		
-		//Draw th eimage on the screen
+		//Draw the image on the screen
 		g.drawImage(image, 0, 0, this);
 
 	}
-
 
 	/**
 	 * Draw the cases on the buffer
@@ -134,7 +160,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 	 */
 	private void generateGrid(){
 		
-		bufferGrid.setColor(Color.GREEN);
+		bufferGrid.setColor(Color.cyan);
 
 		for(int y = 0 ; y <= height ; y++){
 			bufferGrid.drawLine(0, y*dim, width*dim, y*dim);
@@ -152,10 +178,10 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 	 */
 	public void setThickness(int t){
 
+		this.thickness = t;
 		imageBrosse = new BufferedImage(dim*6, dim*6, BufferedImage.TYPE_INT_ARGB);
 		bufferBrosse = imageBrosse.createGraphics();
-		this.thickness = t;
-
+		
 		for(int j = 0 ; j < thickness ; j++){
 			for(int i = 0 ; i < thickness ; i++){
 				bufferBrosse.drawImage(caseT.image, i*dim, j*dim, dim,dim, this);
@@ -181,11 +207,8 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 
 		for(int y = (mouse.y-offset)+dim/2 ; y < (mouse.y+offset) ; y+=dim){
 			for(int x = (mouse.x-offset)+dim/2 ; x < (mouse.x+offset) ; x+=dim){
-				
-				c = getCoordinates(x+dim/2, y+dim/2);
-
+				c = getCoordinates(x, y);
 				if( c.x >= 0 && c.x < width && c.y >= 0 && c.y < height){
-					c = getCoordinates(x, y);
 					cases[c.x][c.y] = caseT;
 				}
 				
@@ -197,8 +220,18 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 	public void changeCase(Case c){
 		this.caseT = c;
 		setThickness(this.thickness);
+		repaint();
 	}
 
+	public void fill(Case c){
+		
+		for(int y = 0 ; y < height ; y++){
+			for(int x = 0 ; x < width ; x++){
+				cases[x][y] = c;
+			}
+		}
+		
+	}
 
 	//INTERFACE//////////////////////
 	@Override
@@ -209,7 +242,6 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 		addCases();
 		repaint();
 	}
-
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
@@ -250,7 +282,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 
 	}
 
-	//Listeners//////////////
+
 
 
 }

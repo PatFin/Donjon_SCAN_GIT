@@ -3,10 +3,10 @@
  */
 package fr.donjon.editor;
 
+import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -18,13 +18,20 @@ import fr.donjon.classes.Case;
  */
 public class CaseButton extends JButton {
 
+	final static int size = 70;
 	Case c;
-	
-	public CaseButton(Case c, final PanelEdition editionPanel){
+
+	public CaseButton(Case c){
 		super();
 		this.c = c;
-		this.setSize(20, 20);
-		this.setIcon(new ImageIcon(c.image));
+
+		this.setPreferredSize(new Dimension(size,size));
+	
+		Image newimg = c.image.getScaledInstance( size, size,  java.awt.Image.SCALE_SMOOTH ) ;  
+		Icon icon = new ImageIcon( newimg );
+
+		this.setIcon(icon);
+		
 		
 	}
 
@@ -35,7 +42,7 @@ public class CaseButton extends JButton {
 	public void setC(Case c) {
 		this.c = c;
 	}
-	
-	
-	
+
+
+
 }
