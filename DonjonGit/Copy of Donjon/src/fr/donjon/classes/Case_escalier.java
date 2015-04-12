@@ -53,6 +53,6 @@ public class Case_escalier extends Case {
 			System.out.println("On crée une salle");
 		}
 		
-		appartient.castle.changeRoom(destination);
+		appartient.castle.changeRoom(this.destination);
 	}
 }
