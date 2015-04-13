@@ -16,8 +16,11 @@ public class Squelette extends Ennemis {
 	final static String src = "Ressources/Images/skeleton_sprites.png";
 	final static double COEFF = 2.5;
 	
-	public Squelette(int ax, int ay, String aNom, Personnage p){
-		super(ax, ay, LNG, LRG, aNom,new Rectangle(LRG,LNG), new Rectangle(17,15,30,49), new Rectangle(22,48,20,16), true, Orientation.SUD, EtatPersonnage.REPOS, Vecteur.vNull, VIT, VIE, DEF, null, p);
+	public Squelette(int ax, int ay, Personnage cible){
+		super(ax, ay, LNG, LRG, src,
+				new Rectangle(17,15,30,49), new Rectangle(22,48,20,16), true,
+				Orientation.SUD, EtatPersonnage.REPOS, Vecteur.vNull,VIT,
+				VIE, DEF , null, cible);
 		
 		animationN = new Animation(src, new Vecteur(64, 64),1,9,(long)(VIT/COEFF*100));
 		animationO = new Animation(src, new Vecteur(64, 64),2,9,(long)(VIT/COEFF*100));
