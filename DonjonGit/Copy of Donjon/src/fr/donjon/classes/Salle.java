@@ -9,21 +9,21 @@ import java.util.LinkedList;
 
 public class Salle {
 	
-	static int numberOfRooms=0;				//The total number of rooms
-	int roomNumber;							//The unique number associated with a room.
-	Linear_Castle castle;
+	public static int numberOfRooms=0;				//The total number of rooms
+	public int roomNumber;							//The unique number associated with a room.
+	public Linear_Castle castle;
 	
-	int difficulte; 						//Pour initialiser les ennemis. Pourra s'avérer utile
-	Case[][] cases; 						//Tableau de cases qui composent la salle
-	LinkedList <Personnage> personnage; 	//Contient tous les personnages de la salle (héros et ennemis)
-    Heros hero;
-	Rectangle ecran;						//Contient l'espace de jeu disponible dans la fenêtre.
+	public int difficulte; 						//Pour initialiser les ennemis. Pourra s'avérer utile
+	public Case[][] cases; 						//Tableau de cases qui composent la salle
+	public LinkedList <Personnage> personnage; 	//Contient tous les personnages de la salle (héros et ennemis)
+	public Heros hero;
+	public Rectangle ecran;						//Contient l'espace de jeu disponible dans la fenêtre.
 	
     
-	BufferedImage imageSalle;  				//Contient l'image de la salle. Les objets n'y sont pas dessinés.
-    Graphics bufferImageSalle;            	//espace graphique associe a l'arriere plan
-	BufferedImage buffer1;					//buffer utilisé pour générer l'image de la salle avec les personnage dedans.
-	Graphics monG;								//espace graphique associé à buffer1
+	public BufferedImage imageSalle;  				//Contient l'image de la salle. Les objets n'y sont pas dessinés.
+	public Graphics bufferImageSalle;            	//espace graphique associe a l'arriere plan
+	public BufferedImage buffer1;					//buffer utilisé pour générer l'image de la salle avec les personnage dedans.
+	public Graphics monG;								//espace graphique associé à buffer1
     
     /**
      * Constructeur de la salle
@@ -232,7 +232,12 @@ public class Salle {
 			}
 		}
 		
-		//On envoi tout le buffer dans la fenêtre
+		//On envoie tout le buffer dans la fenêtre
 		g.drawImage(buffer1, ecran.x, ecran.y, null);
+	}
+	
+	public void ajouterEnnemi(Ennemis e) {
+		
+		personnage.add(e);
 	}
 }

@@ -18,9 +18,11 @@ import javax.swing.Timer;
 import fr.donjon.classes.Case;
 import fr.donjon.classes.Castle_Room;
 import fr.donjon.classes.Heros;
+import fr.donjon.classes.Linear_Castle;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
 import fr.donjon.classes.Salle;
+import fr.donjon.classes.Squelette;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
@@ -37,16 +39,16 @@ public class JeuLineaireAlex extends JFrame implements EcouteurClavier {
 	static final int HAUTEUR = 9;
 	final static int timerTime = 20;
 	
-    BufferedImage arrierePlan;
-    Graphics buffer;
-    Rectangle ecran;
-    JPanel monJpanel;
+    public BufferedImage arrierePlan;
+    public Graphics buffer;
+    public Rectangle ecran;
+    public JPanel monJpanel;
 
-    long temps;
+    public long temps;
     
-    Timer timer;
-    Heros hero;
-    Salle salle;
+    public Timer timer;
+    public Heros hero;
+    public Linear_Castle castle;
     
 
 	public JeuLineaireAlex(){
@@ -55,8 +57,12 @@ public class JeuLineaireAlex extends JFrame implements EcouteurClavier {
        
        //General declarations
        timer = new Timer(timerTime, new TimerAction());
-       hero = new Heros(200,300);
-       salle = new Castle_Room(hero,ecran);
+       hero = new Heros(447,430);
+       castle = new Linear_Castle(hero, ecran);
+       
+       //Ajout d'un squelette
+       
+       castle.currentRoom.ajouterEnnemi(new Squelette(200, 300, hero));
        
        //TODO at the END !
        this.addKeyListener(new JeuKeyAdapter(this));
@@ -94,14 +100,14 @@ public class JeuLineaireAlex extends JFrame implements EcouteurClavier {
  	public void paint(Graphics g){
 		
         
-        salle.draw(temps, g);
-        
+        castle.draw(temps, g);
+        setTitle(String.valueOf(hero.image.x) + ", " + String.valueOf(hero.image.y) + ", " + castle.currentRoom.personnage.size());
 	}
 	
  	public void update(){
  		
  		//UPDATE
- 		salle.update(temps);
+ 		castle.update(temps);
  		repaint();
  	}
  	

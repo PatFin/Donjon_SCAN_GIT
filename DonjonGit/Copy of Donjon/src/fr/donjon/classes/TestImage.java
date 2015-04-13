@@ -61,4 +61,10 @@ public class TestImage extends Objet {
 
 	}
 
+	@Override
+	public void update(long t) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

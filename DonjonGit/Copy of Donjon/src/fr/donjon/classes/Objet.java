@@ -12,7 +12,7 @@ public abstract class Objet {
 	
 	
 	String nom;					//Nom de l'objet
-	Rectangle image;			//Rectangle contenant l'image
+	public Rectangle image;			//Rectangle contenant l'image
 	Rectangle collisionArmes;	//Rectangle pour collision avec les armes  
 	Rectangle collisionDecor; 	//Rectangle contenant la boite de collision de l'objet
 	Rectangle offCol;			//Offsets du rectangle collisions
