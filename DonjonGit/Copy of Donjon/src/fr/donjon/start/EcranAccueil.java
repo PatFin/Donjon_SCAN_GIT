@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,13 +23,17 @@ public class EcranAccueil extends JFrame implements MouseListener, MouseMotionLi
 	
 	// déclaration de l'image
 	Image im; // IMAGE
-	final static String src="C:/SVN/Background.jpg"; // FICHIER SOURCE POUR CHARGER L'IMAGE
-	final int SCREENX=600; // LONGUEUR FENETRE
-	final int SCREENY=480; // LARGEUR FENETRE
+	final static String srcImage="Ressources/Images/BackgroundMenu.jpg"; // FICHIER SOURCE POUR CHARGER L'IMAGE
+	final int SCREENX=800; // LONGUEUR FENETRE
+	final int SCREENY=600; // LARGEUR FENETRE
 	
-	// déclaration des boutons et du panel
+	
+	
+	// déclaration des boutons et du panel et de l'icone pour le bouton
 	private JPanel panel = new JPanel();
-	private JButton boutonStart = new JButton("Click to Play !! ");
+	ImageIcon icone= new ImageIcon("Ressources/Images/Player.png"); // icone de l'image
+	private JButton boutonStart = new JButton("Click to Play !! ",icone);
+	
 	
 	
 		// constructeur de la classe EcranAccueil
@@ -36,11 +42,13 @@ public class EcranAccueil extends JFrame implements MouseListener, MouseMotionLi
 		
 		// lecture de l'image
 		try {
-			this.im=ImageIO.read (new File (src));
+			this.im=ImageIO.read (new File (srcImage));
 		}
 		catch (IOException e){
 			System.out.println ("Could not load image file.");
 		}
+		
+		
 	
 		
 		
@@ -56,8 +64,8 @@ public class EcranAccueil extends JFrame implements MouseListener, MouseMotionLi
 	    this.setContentPane(panel);
 	    
 	    // Actions listener
-	    this.addMouseListener(this);
-		this.addMouseMotionListener(this);
+	    boutonStart.addMouseListener(this);
+		boutonStart.addMouseMotionListener(this);
 		
 	
 	    // setVisible à mettre à la fin
@@ -85,7 +93,10 @@ public class EcranAccueil extends JFrame implements MouseListener, MouseMotionLi
 	    public void mouseEntered( MouseEvent e ) { }
 	    public void mouseMoved( MouseEvent e ) {}
 	    public void mouseClicked( MouseEvent e )  {
+	    	if(boutonStart!=null){
 	    	System.out.println("clique");
+	    	JeuLineaireVincent lanceJeu= new JeuLineaireVincent();
+	    	}
 	    	
 	    }
 	    public void mouseExited( MouseEvent e ) { }        
