@@ -2,8 +2,6 @@ package fr.donjon.start;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -11,12 +9,10 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 
 public class EcranAccueil extends JFrame implements MouseListener, MouseMotionListener{ 
@@ -57,7 +53,6 @@ public class EcranAccueil extends JFrame implements MouseListener, MouseMotionLi
 		this.setSize(SCREENX,SCREENY);
 		this.setTitle ("SCAN DONJON 72");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		// JPANEL ET BOUTONS
 		//Ajout du bouton à notre content pane
 	    panel.add(boutonStart);

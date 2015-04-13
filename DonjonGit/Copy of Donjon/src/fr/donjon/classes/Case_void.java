@@ -8,4 +8,11 @@ public class Case_void extends Case_Obstacle {
 		super(ImageName);
 	}
 	
+	@Override
+	public Case clone() {
+		// TODO Auto-generated method stub
+		return new Case_void();
+	}
+	
+	
 }

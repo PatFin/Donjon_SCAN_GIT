@@ -3,9 +3,12 @@
  */
 package fr.donjon.start;
 
+import java.awt.Rectangle;
+
+import fr.donjon.classes.Case;
+import fr.donjon.classes.Heros;
 import fr.donjon.classes.Salle;
 import fr.donjon.utils.EcouteurClavier;
-import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
 
 
@@ -16,6 +19,7 @@ import fr.donjon.utils.Orientation;
 
 public class JeuLineaireBlac extends GamePanel implements EcouteurClavier {
 
+	
 	/**
 	 * Permet de creer un jeu de type linéaire
 	 * Le chateau (castle) genère les salles a afficher (TODO)
@@ -23,13 +27,19 @@ public class JeuLineaireBlac extends GamePanel implements EcouteurClavier {
 	public JeuLineaireBlac(){
 		super(null); //MDRRR
 		this.changeSalle(new Salle(ecran));
-
-		//A faire : gestion deplacements
-		this.addKeyListener(new JeuKeyAdapter(this));		
+	
 		
 	}
+	
+	public JeuLineaireBlac(Case[][] cases){
+		super(null);
+		Salle s  =  new Salle(new Heros(100,100), cases, new Rectangle(0,0,64*15,64*10), null);
+		this.changeSalle(s);
+	}
 
-
+	public void update() {
+		super.update();
+	}
 	
 	
 	//INTERFACE D'ECOUTE

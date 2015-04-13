@@ -228,7 +228,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 			for(int x = (mouse.x-offset)+dim/2 ; x < (mouse.x+offset) ; x+=dim){
 				c = getCoordinates(x, y); //On simule le déplacement de la souris
 				if( c.x >= 0 && c.x < width && c.y >= 0 && c.y < height){
-					cases[c.x][c.y] = caseT;
+					cases[c.x][c.y] = caseT.clone();
 				}
 				
 			}
@@ -250,7 +250,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 		
 		for(int y = 0 ; y < height ; y++){
 			for(int x = 0 ; x < width ; x++){
-				cases[x][y] = c;
+				cases[x][y] = c.clone();
 			}
 		}
 		

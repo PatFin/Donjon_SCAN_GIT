@@ -16,6 +16,13 @@ public class Case_rocher extends Case_Obstacle {
 	}
 
 	@Override
+	public Case clone() {
+		// TODO Auto-generated method stub
+		return new Case_rocher();
+	}
+	
+	
+	@Override
 	/**
 	 * Positionne le rectangle de collision associé à la case.
 	 */

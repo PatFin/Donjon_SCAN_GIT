@@ -20,6 +20,8 @@ public interface DialogListener {
 	 */
 	public void onValidate(Vecteur v);
 	
+	public void onValidate(String name, int index);
+	
 	public void onCancel();
 	
 }

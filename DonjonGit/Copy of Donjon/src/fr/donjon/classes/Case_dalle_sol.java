@@ -11,4 +11,11 @@ public class Case_dalle_sol extends Case {
 	public Case_dalle_sol(){
 		super(image);
 	}
+	
+	@Override
+	public Case clone() {
+		// TODO Auto-generated method stub
+		return new Case_dalle_sol();
+	}
+	
 }

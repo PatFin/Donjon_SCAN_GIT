@@ -7,7 +7,10 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
-public class Salle {
+import fr.donjon.utils.EcouteurClavier;
+import fr.donjon.utils.Orientation;
+
+public class Salle implements EcouteurClavier{
 	
 	public static int numberOfRooms=0;				//The total number of rooms
 	public int roomNumber;							//The unique number associated with a room.
@@ -44,12 +47,15 @@ public class Salle {
 		
 		//On créé le tableau de cases contenues de la salle
 		this.ecran=ecran;
-		this.cases = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE]; 
+		this.cases = casesSalle; 
+				
+				//new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE]; 
 		
 		//On met les éléments de casesSalle dans cases.
 		//Attention, casesSalle doit être au moins aussi grand que cases qui est adapté à la taille de l'écran
 		//Amelioration si casesSalle<case, centrer la salle?
-		if(casesSalle != null){
+		
+		/*if(casesSalle != null){
 			for(int i=2;i<cases[0].length;i++){
 				for(int j=0;j<cases.length;j++){
 					if(casesSalle[j][i]!=null){
@@ -59,6 +65,7 @@ public class Salle {
 				}
 			}
 		}
+		*/
 		
 		//On génère une image de la salle qui sera utilisée après dans la méthode draw
 		generateImage();
@@ -239,5 +246,41 @@ public class Salle {
 	public void ajouterEnnemi(Ennemis e) {
 		
 		personnage.add(e);
+	}
+
+	@Override
+	public void attaque(Orientation o) {
+		// TODO Auto-generated method stub
+		this.hero.attaquer(null, null, o);
+	}
+
+	@Override
+	public void stopAttaque(Orientation o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deplacement(Orientation o) {
+		// TODO Auto-generated method stub
+		this.hero.marcher(o);
+	}
+
+	@Override
+	public void utiliseObjet(int reference) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void togglePause() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void stopDeplacement(Orientation o) {
+		// TODO Auto-generated method stub
+		this.hero.stop(o);
 	}
 }

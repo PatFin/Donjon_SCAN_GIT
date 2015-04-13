@@ -22,6 +22,13 @@ public class Case_mur extends Case_Obstacle{
 	}
 	
 	@Override
+	public Case clone() {
+		// TODO Auto-generated method stub
+		return new Case_mur();
+	}
+	
+	
+	@Override
 	public void setCollisionBoxLocation(int vertical, int horizontal) {
 		// TODO Auto-generated method stub
 		this.collision = new Rectangle(Case.TAILLE*horizontal, Case.TAILLE*vertical, 64, 64);

@@ -27,9 +27,6 @@ import fr.donjon.utils.Vecteur;
  */
 public class DialogNouveau extends JDialog {
 
-	int dWith;
-	int dHeight;
-
 	Box content; //Le contenu graphique du JDialog
 
 	JSlider sWidth;	//Slider largeur

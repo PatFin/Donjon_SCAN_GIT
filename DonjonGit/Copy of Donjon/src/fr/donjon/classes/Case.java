@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 public class Case {
 
 	public final static int TAILLE=64;
-
+	
 	public Image image;
 	Rectangle collision;
 	/**
@@ -50,5 +50,9 @@ public class Case {
 	 */
 	public void inCollision(Personnage z) {
 	}
-
+	
+	public Case clone(){
+		return null;
+	}
+	
 }

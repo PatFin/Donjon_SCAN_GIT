@@ -10,5 +10,12 @@ public class Case_fendue_sol extends Case {
 	public Case_fendue_sol(){
 		super(image);
 	}
+	
+	@Override
+	public Case clone() {
+		// TODO Auto-generated method stub
+		return new Case_fendue_sol();
+	}
+	
 
 }

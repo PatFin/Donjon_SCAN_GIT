@@ -27,6 +27,13 @@ public class Case_escalier extends Case {
 		this.destination=destination;
 		this.appartient=appartient;
 	}
+	
+	@Override
+	public Case clone() {
+		// TODO Auto-generated method stub
+		return new Case_escalier(o, destination, appartient);
+	}
+	
 
 	/**
 	 * Overrides the generic Case method.

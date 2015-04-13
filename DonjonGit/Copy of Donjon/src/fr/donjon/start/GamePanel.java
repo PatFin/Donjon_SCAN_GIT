@@ -27,7 +27,7 @@ public abstract class GamePanel extends JPanel {
 	
 	static final int LARGEUR = 15;
 	static final int HAUTEUR = 9;
-	final static int timerTime = 20;
+	final static int timerTime = 10;
 
 	BufferedImage arrierePlan;
 	Graphics buffer;
@@ -36,7 +36,7 @@ public abstract class GamePanel extends JPanel {
 	
 	long temps;
 
-	Salle salle;
+	public Salle salle;
 
 	/**
 	 * Permet de creer un JPanel contenant le jeu

@@ -18,5 +18,12 @@ public class Case_herbe extends Case{
 	public Case_herbe(){
 		super(image);
 	}
+	
+	@Override
+	public Case clone() {
+		// TODO Auto-generated method stub
+		return new Case_herbe();
+	}
+	
 
 }

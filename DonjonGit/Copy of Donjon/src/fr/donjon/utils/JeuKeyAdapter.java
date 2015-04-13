@@ -28,7 +28,6 @@ public class JeuKeyAdapter extends KeyAdapter {
 	//Elles doivent appeler les methodes de l'ecouteur
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
-
 		switch (code) {
 
 		case KeyEvent.VK_Q   : 

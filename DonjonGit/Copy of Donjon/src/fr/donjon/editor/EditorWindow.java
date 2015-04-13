@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
@@ -24,6 +25,8 @@ import fr.donjon.classes.Case_herbe;
 import fr.donjon.classes.Case_mur;
 import fr.donjon.classes.Case_rocher;
 import fr.donjon.classes.Case_void;
+import fr.donjon.start.JeuLineaireBlac;
+import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
@@ -46,7 +49,9 @@ public class EditorWindow extends JFrame{
 	JButton BSauvegarder;
 	JButton BDelete;
 	JButton BFill;
-
+	JButton BOuvrir;
+	JButton BEssayer;
+	
 	//Panel Interactions (boutons)
 	JPanel panInteractions;
 
@@ -90,13 +95,17 @@ public class EditorWindow extends JFrame{
 
 		BNouveau = new JButton("Nouveau");
 		BSauvegarder = new JButton("Sauvegarder");
-		BDelete = new JButton("Delete");
+		BDelete = new JButton("Supprimer");
 		BFill = new JButton("Remplir");
+		BOuvrir = new JButton("Ouvrir");
+		BEssayer = new JButton("Essayer");
 
 		panMenu.add(BNouveau);
+		panMenu.add(BOuvrir);
 		panMenu.add(BSauvegarder);
 		panMenu.add(BFill);
 		panMenu.add(BDelete);
+		panMenu.add(BEssayer);
 
 		cadre.add(panMenu,BorderLayout.NORTH);
 
@@ -168,9 +177,29 @@ public class EditorWindow extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				BNouveau.setEnabled(false);
-				showDialogNew();
-				BNouveau.setEnabled(true);
+				//Interface d'écoute sur le résultat du JDialog
+				DialogListener dl = new DialogListener() {
+
+					@Override
+					public void onValidate(Vecteur v) {
+						panDessin.reinitialize(v.x, v.y); //Reinitialisation avec la nouvelle taille
+					}
+
+					@Override
+					public void onCancel() {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					public void onValidate(String name, int index) {
+						// TODO Auto-generated method stub
+						
+					}
+				};
+
+				DialogNouveau d = new DialogNouveau(null, "Taille de la grille :", true,dl);
+
 			}
 		});
 
@@ -178,7 +207,30 @@ public class EditorWindow extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				
+				DialogListener l = new DialogListener() {
+					
+					@Override
+					public void onValidate(Vecteur v) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void onCancel() {
+						// TODO Auto-generated method stub
+						
+					}
 
+					@Override
+					public void onValidate(String name, int index) {
+						// TODO Auto-generated method stub
+						SalleDescription sd = new SalleDescription(panDessin.cases, panDessin.width, panDessin.height, index, name);
+						MapFileHandler.createMapFile(sd, true);
+					}
+				};
+				
+				DialogSauvegarder dl = new DialogSauvegarder(null, "Sauvegarde de carte", true, l);
 			}
 		});
 
@@ -191,35 +243,40 @@ public class EditorWindow extends JFrame{
 			}
 		});
 
+		BOuvrir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		BEssayer.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				for(int y = 0 ; y < panDessin.height ; y++){
+					for(int x = 0 ; x < panDessin.width ; x++){
+						panDessin.cases[x][y].setCollisionBoxLocation(y, x);
+					}
+				}
+				
+				JeuLineaireBlac bl = new JeuLineaireBlac(panDessin.cases);
+				
+				JFrame frame = new JFrame();
+				frame.getContentPane().add(bl);
+				frame.addKeyListener(new JeuKeyAdapter(bl.salle));
+				frame.pack();
+				frame.setVisible(true);
+			}
+		});
+		
 		for(CaseButton bt : LCButtons){
 			bt.addActionListener(new CaseButtonListener(bt, panDessin));
 		}
-
-	}
-
-	/**
-	 * Permet d'afficher le JDialog pour créer un nouveau terrain
-	 */
-	private void showDialogNew(){
-
-		//Interface d'écoute sur le résultat du JDialog
-		DialogListener dl = new DialogListener() {
-
-			@Override
-			public void onValidate(Vecteur v) {
-				panDessin.reinitialize(v.x, v.y); //Reinitialisation avec la nouvelle taille
-			}
-
-			@Override
-			public void onCancel() {
-				// TODO Auto-generated method stub
-
-			}
-		};
-
-		DialogNouveau d = new DialogNouveau(null, "Taille de la grille :", true,dl);
-
-
 
 	}
 
