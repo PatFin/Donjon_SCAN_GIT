@@ -93,7 +93,7 @@ public class EcranAccueil extends JFrame implements MouseListener, MouseMotionLi
 	    public void mouseEntered( MouseEvent e ) { }
 	    public void mouseMoved( MouseEvent e ) {}
 	    public void mouseClicked( MouseEvent e )  {
-	    	if(boutonStart!=null){
+	    	if(e.getSource()==boutonStart){
 	    	System.out.println("clique");
 	    	JeuLineaireVincent lanceJeu= new JeuLineaireVincent();
 	    	}
