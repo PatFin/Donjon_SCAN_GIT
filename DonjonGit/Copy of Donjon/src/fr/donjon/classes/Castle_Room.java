@@ -7,22 +7,16 @@ import fr.donjon.utils.Orientation;
 
 public class Castle_Room extends Salle {
 	
-	Salle nextNorth;
-	Salle previousSouth;
 	Linear_Castle castle;
 	
 	/**
 	 * @param p Le hero controlé par le joueur.
 	 * @param ecran L'écran de jeu.
-	 * @param s La salle précédente.
+	 * @param lien le lien de lasalle précédente vers celle-ci.
 	 */
-	public Castle_Room(Heros p, Rectangle ecran, Salle s, Linear_Castle castle) {
+	public Castle_Room(Heros p, Rectangle ecran, Link lien) {
 		super(ecran, p);
 		
-		this.previousSouth=s;
-		this.castle=castle;
-		//On ajoute les ennemis
-
 		
 		//On génèrel'apparence de la Salle.
 		Case[][] casesSalle;
@@ -33,8 +27,6 @@ public class Castle_Room extends Salle {
 				casesSalle[x][y]  = new Case_void();
 			}
 		}
-		
-		
 		
 		for(int x=1;x<cases.length-1;x++){
 			casesSalle[x][1]=new Case_mur();
@@ -54,20 +46,38 @@ public class Castle_Room extends Salle {
 				}
 			}
 		}
-		//On ajoute des escaliers vers une autre salle. On s'assure qu'il est possible d'y rentrer en plaçant une dalle normale 
-		if(this.roomNumber>=0){
-			casesSalle[cases.length/2][cases[0].length-1]= new Case_escalier(Orientation.SUD, previousSouth, this);
-			casesSalle[cases.length/2][cases[0].length-2]= new Case_fendue_sol();
-			casesSalle[cases.length/2][cases[0].length-3]= new Case_dalle_sol();
-		}
-		if(this.roomNumber<42){
-			casesSalle[cases.length/2][0]= new Case_escalier(Orientation.NORD, null, this);
-			casesSalle[cases.length/2][1]= new Case_fendue_sol();
-		}
+		
+		/**
+		 * On ajoute des escaliers vers une autre salle. On s'assure qu'il est possible d'y rentrer en plaçant une dalle normale 
+		 */
 		
 		
-		
-		refreshRoomCases(casesSalle);
 	}
+	/**
+	 * Methode utilisée juste après l'initialisation de la salle.
+	 * Elle crée les lien vers la salle précédente s'il y a lieu
+	 * elle en créé un vers une prochaine salle pas encore définie.
+	 * @param lien
+	 */
+	public void initializeLlinks(Link lien){
+		//Si on a une salle précédente
+				if(lien != null){
+					switch(lien.orientation){
+					case NORD:
+					cases[cases.length/2][cases[0].length-1] = new Case_escalier();
+					cases[cases.length/2][cases[0].length-2] = new Case_dalle_sol();
+					this.liens.add(new Link(lien.destination, lien.x, lien.y+1, this, cases.length/2, cases[0].length-1, Orientation.SUD, true));
+						break;
+					default:	
+					}
+				}
+				//L'escalier vers une autre future salle
+				cases[cases.length/2][0] = new Case_escalier();
+				cases[cases.length/2][1] = new Case_dalle_sol();
+				this.liens.add(new Link(lien.destination, cases.length/2, 0,Orientation.NORD, true));
+				
+				refreshRoomCases(cases);
+	}
+	
 	
 }

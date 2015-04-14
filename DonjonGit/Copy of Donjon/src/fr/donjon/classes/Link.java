@@ -12,10 +12,14 @@ import fr.donjon.utils.Orientation;
  */
 public class Link {
 
-	private Salle destination;				//la destination du lien, l'autre salle.
-	private int dx, dy;						//coordonnées de la case de destination.
+	public Salle destination;				//la destination du lien, l'autre salle.
+	public int dx, dy;						//coordonnées de la case de destination.
 	
-	private Rectangle rectangleCollision;	//Si le héro marche sur ce rectangle et que enables vaut true, alors on change de salle.
+	public Salle origine;
+	public int x,y;
+	
+	public Orientation orientation;
+	private Rectangle rectangleCollision;	//Si le héro marche sur ce rectangle et que enabled vaut true, alors on change de salle.
 	public boolean enabled;				//autorise ou pas le changement de salle.
 	
 	/**
@@ -29,11 +33,16 @@ public class Link {
 	 * Ce paramètre sert uniquement à placerle rectangle de collision sur la bonne partie de la case. 
 	 * @param enabled booléen qui autorise ou pas le changlement de salle.
 	 */
-	public Link(Salle destination, int dx,int dy, int x,int y, Orientation o, boolean enabled) {
+	public Link(Salle destination, int dx,int dy, Salle origine, int x,int y, Orientation o, boolean enabled) {
 		this.destination = destination;
 		this.dx = dx;
 		this.dy = dy;
 		
+		this.origine = origine;
+		this.x=x;
+		this.y=y;
+		
+		this.orientation = o;
 		this.enabled = enabled;
 		
 		
@@ -54,8 +63,13 @@ public class Link {
 	 * @param o orientation du lien
 	 * @param enabled passge autorisé -> enabled vaut true. Sinon false.
 	 */
-	public Link(int x, int y, Orientation o, boolean enabled){
+	public Link(Salle origine, int x, int y, Orientation o, boolean enabled){
 		this.enabled = enabled;
+		this.destination=null;
+		
+		this.origine = origine;
+		this.x=x;
+		this.y=y;
 		
 		switch(o){
 		default:

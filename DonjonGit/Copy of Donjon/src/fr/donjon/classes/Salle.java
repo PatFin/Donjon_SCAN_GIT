@@ -14,11 +14,11 @@ public class Salle implements EcouteurClavier{
 	
 	public static int numberOfRooms=0;				//The total number of rooms
 	public int roomNumber;							//The unique number associated with a room.
-	public Linear_Castle castle;
+	public LinkedList <Link> liens;
 	
 	public int difficulte; 						//Pour initialiser les ennemis. Pourra s'avérer utile
 	public Case[][] cases; 						//Tableau de cases qui composent la salle
-	public LinkedList <Personnage> personnage; 	//Contient tous les personnages de la salle (héros et ennemis)
+	public LinkedList <Personnage> personnage; 	//Contient les personnages de la salle (ennemis et héros)
 	public Heros hero;
 	public Rectangle ecran;						//Contient l'espace de jeu disponible dans la fenêtre.
 	
@@ -34,9 +34,8 @@ public class Salle implements EcouteurClavier{
 	 * @param casesSalle contient un tableau de cases préfait, au cas ou on définit des salle prédéfinies.
 	 * @param ecran contient l'espace de jeu disponible dans la fenêtre
 	 */
-    public Salle(Heros p, Case[][] casesSalle, Rectangle ecran, Linear_Castle castle){
+    public Salle(Heros p, Case[][] casesSalle, Rectangle ecran){
     	super();
-    	this.castle = castle;
     	
     	
     	//On créé les objets contenus dans la salle
@@ -80,50 +79,9 @@ public class Salle implements EcouteurClavier{
         
 	}
 	
-	/**
-	 * Constructeur pour mes tests personnels
-	 * @param ecran
-	 */
-	public Salle(Rectangle ecran){
-		super();
-		//On créé les objets contenus dans la salle
-		this.difficulte=0;
-		this.personnage = new LinkedList <Personnage> ();
-		
-		//On créé le tableau de cases contenues de la salle
-		this.ecran=ecran;
-		this.cases = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE]; 
-		
-		//Les deux premières lignes sont remplie de rocher et de mur
-		for(int x=0;x<cases.length;x++){
-			cases[x][0]=new Case_rocher();
-			cases[x][1]=new Case_mur();
-		}
-		
-		//Le reste du tableau est rempli aléatoirement de dalles (fendue ou non)
-		for(int y=2;y<cases[0].length;y++){
-			for(int x=0;x<cases.length;x++){
-				int random = (int)Math.round(Math.random());
-				
-				if(random == 0){
-					cases[x][y]=new Case_fendue_sol();	
-				}else{
-					cases[x][y]=new Case_dalle_sol();
-				}
-				
-				
-			}
-		}
-		//On génère une image de la salle qui sera utilisée après dans la méthode draw
-		generateImage();
-		
-		//On créé le buffer qui sera rempli par l'image de la salle et des objets dans la méthode draw
-		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_RGB);
-        monG = buffer1.getGraphics();
-	}
 	
 	/**
-	 * Constructor to crreate a room without initializing the cases.
+	 * Constructor to create a room without initializing the cases.
 	 * It requires the use of refreshRoomCases afterwards to make sure the room isn't just empty.
 	 * @param ecran L'ecran de jeu.
 	 * @param h le hero controlé par le joueur.
@@ -153,7 +111,7 @@ public class Salle implements EcouteurClavier{
 	
 	/**
 	 * This method is used if one needs to modify the tyles in the room.  
-	 * @param caseSalle the new arrayof cases.
+	 * @param caseSalle the new array of cases.
 	 */
 	protected void refreshRoomCases(Case[][] caseSalle){
 		this.cases = caseSalle;
@@ -243,8 +201,28 @@ public class Salle implements EcouteurClavier{
 		g.drawImage(buffer1, ecran.x, ecran.y, null);
 	}
 	
+	/**
+	 * Créé un lien vers une autre salle et l'ajoute à la liste des liens de la salle.
+	 * @param destination la salle de destination. null si non déja créé.
+	 * @param dx case destination horizontale
+	 * @param dy case destination verticale
+	 * @param x position dans la salle horizontale du téléporteur
+	 * @param y position verticale dans la salle du téléporteur
+	 * @param o orientation dans la salle du téléporteur
+	 * @param enabled boolean qui autorise ou pas le passage
+	 */
+	public void ajouterLien(Salle destination, int dx, int dy, int x, int y, Orientation o, boolean enabled){
+		Link l;
+		if(destination == null){
+			l = new Link(this, x,y,o,enabled);
+		}else{
+			l = new Link(destination, dx,dy, this, x,y, o, true);
+		}
+		this.liens.add(l);
+	}
+	
+	
 	public void ajouterEnnemi(Ennemis e) {
-		
 		personnage.add(e);
 	}
 

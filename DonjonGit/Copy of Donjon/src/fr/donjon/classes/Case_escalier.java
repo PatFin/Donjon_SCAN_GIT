@@ -1,5 +1,3 @@
-// /!\ Classe à compléter
-
 package fr.donjon.classes;
 
 import java.awt.Rectangle;
