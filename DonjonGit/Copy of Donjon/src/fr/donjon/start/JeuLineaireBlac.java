@@ -26,14 +26,14 @@ public class JeuLineaireBlac extends GamePanel implements EcouteurClavier {
 	 */
 	public JeuLineaireBlac(){
 		super(null); //MDRRR
-		this.changeSalle(new Salle(ecran));
+		this.changeSalle(new Salle(ecran, new Heros(200,200)));
 	
 		
 	}
 	
 	public JeuLineaireBlac(Case[][] cases){
 		super(null);
-		Salle s  =  new Salle(new Heros(100,100), cases, new Rectangle(0,0,64*15,64*10), null);
+		Salle s  =  new Salle(new Heros(100,100), cases, new Rectangle(0,0,64*15,64*10));
 		this.changeSalle(s);
 	}
 

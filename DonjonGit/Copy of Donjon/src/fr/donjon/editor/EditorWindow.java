@@ -1,6 +1,5 @@
 package fr.donjon.editor;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -11,7 +10,6 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
@@ -27,7 +25,6 @@ import fr.donjon.classes.Case_rocher;
 import fr.donjon.classes.Case_void;
 import fr.donjon.start.JeuLineaireBlac;
 import fr.donjon.utils.JeuKeyAdapter;
-import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
 /**
@@ -78,7 +75,7 @@ public class EditorWindow extends JFrame{
 		LCButtons = new LinkedList<CaseButton>();
 
 		listCases.add(new Case_dalle_sol());
-		listCases.add(new Case_escalier(Orientation.NORD, null, null));
+		listCases.add(new Case_escalier());
 		listCases.add(new Case_fendue_sol());
 		listCases.add(new Case_herbe());
 		listCases.add(new Case_mur());
@@ -256,7 +253,6 @@ public class EditorWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
 				for(int y = 0 ; y < panDessin.height ; y++){
 					for(int x = 0 ; x < panDessin.width ; x++){

@@ -47,7 +47,7 @@ public class Salle implements EcouteurClavier{
 		//On créé le tableau de cases contenues de la salle
 		this.ecran=ecran;
 		this.cases = casesSalle; 
-				
+		refreshRoomCases(cases);
 				//new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE]; 
 		
 		//On met les éléments de casesSalle dans cases.

@@ -175,7 +175,7 @@ public class MapFileHandler {
 		LinkedList<Case> listCases = new LinkedList<Case>();
 
 		listCases.add(new Case_dalle_sol());
-		listCases.add(new Case_escalier(Orientation.NORD, null, null));
+		listCases.add(new Case_escalier());
 		listCases.add(new Case_fendue_sol());
 		listCases.add(new Case_herbe());
 		listCases.add(new Case_mur());

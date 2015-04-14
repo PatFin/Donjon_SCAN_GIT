@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import fr.donjon.classes.Case;
+import fr.donjon.classes.Heros;
 import fr.donjon.classes.Salle;
 
 /**
@@ -48,7 +49,7 @@ public abstract class GamePanel extends JPanel {
 		
 		timer = new Timer(timerTime, new TimerAction());
 		
-		this.salle =  new Salle(ecran);
+		this.salle =  s;
 		
 	}
 	
