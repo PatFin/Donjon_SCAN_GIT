@@ -36,7 +36,7 @@ public class Salle implements EcouteurClavier{
 	 */
     public Salle(Heros p, Case[][] casesSalle, Rectangle ecran){
     	super();
-    	
+    	this.liens = new LinkedList<Link>();
     	
     	//On créé les objets contenus dans la salle
 		this.difficulte=0;
@@ -92,6 +92,7 @@ public class Salle implements EcouteurClavier{
 		//On indique le numéro de salle et on incrément le nombre de salle.
 		this.roomNumber=Salle.numberOfRooms;
 		Salle.numberOfRooms++;
+		this.liens = new LinkedList<Link>();
 		
 		//On créé les objets contenus dans la salle
 		this.difficulte=0;
@@ -117,7 +118,12 @@ public class Salle implements EcouteurClavier{
 		this.cases = caseSalle;
 		for(int i=0;i<cases[0].length;i++){
 			for(int j=0;j<cases.length;j++){
-				this.cases[j][i].setCollisionBoxLocation(i, j);
+				try{
+					this.cases[j][i].setCollisionBoxLocation(i, j);
+				}catch(Exception e){
+					System.out.println("Case ["+i+","+j+"] non définie.");
+				}
+				
 			}
 		}
 		generateImage();

@@ -68,10 +68,14 @@ public class Link {
 		this.destination=null;
 		
 		this.origine = origine;
+		this.orientation =o;
+		
 		this.x=x;
 		this.y=y;
 		
-		switch(o){
+		switch(orientation){
+		case NORD:
+			
 		default:
 			this.rectangleCollision = new Rectangle(x*Case.TAILLE,y*Case.TAILLE,Case.TAILLE,Case.TAILLE);
 		}
@@ -105,5 +109,14 @@ public class Link {
 		this.destination = des;
 		this.dx = dx;
 		this.dy = dy;
+	}
+	
+	
+	public String toString(){
+		if(destination!=null){
+			return ("Lien desalle "+origine.roomNumber+" vers salle "+destination.roomNumber);
+		}else{
+			return ("Lien de salle "+origine.roomNumber+" vers null");
+		}
 	}
 }

@@ -16,7 +16,6 @@ public class Linear_Castle {
 	 */
 	public Linear_Castle(Heros p, Rectangle ecran) {
 		this.firstRoom = new  Castle_Room(p, ecran,null);	
-		firstRoom.initializeLlinks(null);
 		this.currentRoom=firstRoom;
 	}
 	
