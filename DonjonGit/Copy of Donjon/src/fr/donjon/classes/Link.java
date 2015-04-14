@@ -94,7 +94,15 @@ public class Link {
 		return z;
 	}
 	
-	
+	/**
+	 * Methode qui vérifie si le héros a le droit de changer de salle
+	 * ie, il marche sur le téléporteur et le téléporteur est "enabled".
+	 * @param p le hero à faire (ou pas) changer de salle
+	 * @return true si p est à changer de salle, false sinon.
+	 */
+	public boolean mustChangeRoom(Heros p){
+		return this.enabled && p.collisionDecor.intersects(this.rectangleCollision);
+	}
 	
 	
 	

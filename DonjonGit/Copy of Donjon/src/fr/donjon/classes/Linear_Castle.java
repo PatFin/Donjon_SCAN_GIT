@@ -6,8 +6,9 @@ import fr.donjon.utils.Orientation;
 
 public class Linear_Castle {
 	
-	public Castle_Room firstRoom;
-	public Castle_Room currentRoom;
+	public Salle firstRoom;
+	public Salle currentRoom;
+	public Heros hero;
 	
 	/**
 	 * We start the castle with a hero and the size of the screen.
@@ -17,6 +18,7 @@ public class Linear_Castle {
 	public Linear_Castle(Heros p, Rectangle ecran) {
 		this.firstRoom = new  Castle_Room(p, ecran,null);	
 		this.currentRoom=firstRoom;
+		this.hero = p;
 	}
 	
 	/**
@@ -24,8 +26,11 @@ public class Linear_Castle {
 	 * The new current room will be the room s.
 	 * @param s The new current room.
 	 */
-	public void changeRoom(Castle_Room s){
-		currentRoom=s;
+	public void changeRoom(Link l){
+		hero.setLocation(l.dx*Case.TAILLE, l.dy*Case.TAILLE);
+		this.currentRoom = l.destination;
+		System.out.println("You are now in room number: "+this.currentRoom.roomNumber);
+		System.out.println("Your character coordinates are: "+hero.collisionDecor.x/Case.TAILLE+","+hero.collisionDecor.y/Case.TAILLE);
 	}
 	
 	/**
@@ -33,9 +38,27 @@ public class Linear_Castle {
 	 * @param temps
 	 */
 	public void update(long temps){
+		//On update la salle.
 		currentRoom.update(temps);
 		
-		
+		//On vérifie si le héro doit être changé de salle ou pas
+		for(int i=0; i<currentRoom.liens.size(); i++){
+			Link z = currentRoom.liens.get(i);
+			if(z.mustChangeRoom(hero)){
+				System.out.println("Some fancy stuff happens.");
+				//Send the hero to the next room ...
+				
+				//Create a new room and send the hero to it!
+				if(!z.hasDestination()){
+					System.out.println("Creation of a new room!");
+					z.setDestination(new Castle_Room(hero, currentRoom.ecran, z), z.x, z.y+1);
+				}
+				
+				//Send the hero
+				this.changeRoom(z);
+				break;
+			}
+		}
 	}
 	
 	/**
