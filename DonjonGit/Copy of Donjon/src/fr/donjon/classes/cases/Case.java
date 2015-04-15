@@ -19,7 +19,7 @@ public class Case {
 	
 	
 	public Image image;
-	Rectangle collision;
+	public Rectangle collision;
 	/**
 	 * Constructeur de la Case 
 	 * @param ImageName le string contenant l'adresse de l'image.

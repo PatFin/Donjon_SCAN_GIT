@@ -18,7 +18,7 @@ import fr.donjon.utils.Vecteur;
 
 public abstract class Personnage extends Deplacable{
 
-	Orientation o;
+	public Orientation o;
 	EtatPersonnage etat;
 	Arme arme;
 	Type type;
