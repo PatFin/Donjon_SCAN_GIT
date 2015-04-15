@@ -6,11 +6,9 @@ package fr.donjon.start;
 import java.awt.Rectangle;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.Linear_Castle;
 import fr.donjon.classes.Salle;
 import fr.donjon.classes.cases.Case;
-import fr.donjon.utils.EcouteurClavier;
-import fr.donjon.utils.Orientation;
+import fr.donjon.test.GestionnaireJeuInfini;
 
 
 /**
@@ -18,9 +16,9 @@ import fr.donjon.utils.Orientation;
  *
  */
 
-public class JeuLineaireBlac extends GamePanel implements EcouteurClavier {
+public class JeuLineaireBlac extends GamePanel {
 
-	Linear_Castle castle; //The objet that manage the rooms
+	public GestionnaireJeuInfini gestionnaire;
 	
 	/**
 	 * Permet de creer un jeu de type linéaire
@@ -28,8 +26,9 @@ public class JeuLineaireBlac extends GamePanel implements EcouteurClavier {
 	 */
 	public JeuLineaireBlac(){
 		super(null);
-		this.castle = new Linear_Castle(new Heros(200,200), ecran);
-		this.changeSalle(castle.currentRoom);
+		gestionnaire = new GestionnaireJeuInfini(this);
+		this.changeSalle(gestionnaire.getCurrentRoom());
+		
 		
 	}
 	
@@ -44,42 +43,5 @@ public class JeuLineaireBlac extends GamePanel implements EcouteurClavier {
 	}
 	
 	
-	//INTERFACE D'ECOUTE
-
-	@Override
-	public void attaque(Orientation o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void stopAttaque(Orientation o) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deplacement(Orientation o) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void utiliseObjet(int reference) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void togglePause() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void stopDeplacement(Orientation o) {
-		// TODO Auto-generated method stub
-	}
-
-
-
 }
 

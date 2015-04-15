@@ -13,8 +13,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import fr.donjon.classes.Heros;
-import fr.donjon.classes.Linear_Castle;
 import fr.donjon.classes.Salle;
 import fr.donjon.classes.cases.Case;
 
@@ -34,7 +32,7 @@ public abstract class GamePanel extends JPanel {
 	BufferedImage arrierePlan;
 	Graphics buffer;
 	
-	Rectangle ecran;
+	public Rectangle ecran;
 	Timer timer;
 	
 	long temps;

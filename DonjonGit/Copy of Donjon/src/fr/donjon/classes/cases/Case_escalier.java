@@ -1,11 +1,14 @@
 package fr.donjon.classes.cases;
 
+import fr.donjon.utils.Orientation;
+
 
 
 public class Case_escalier extends Case {
 	
 	final static String image="Ressources/Images/Case_escalier.png";
 	
+	public Orientation o;
 	
 	/**
 	 * Constructeur de la classe Case_Escalier
@@ -15,6 +18,11 @@ public class Case_escalier extends Case {
 	 */
 	public Case_escalier() {
 		super(image);
+	}
+	
+	public Case_escalier(Orientation o){
+		super(image);
+		this.o = o;
 	}
 	
 	@Override

@@ -18,7 +18,7 @@ import fr.donjon.utils.Vecteur;
  */
 public class Heros extends Personnage{
 
-	final static int LNG = 64;
+	public final static int LNG = 64;
 	final static int LRG = 64;
 	final static int VIE = 100;
 	final static int DEF = 10;

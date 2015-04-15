@@ -9,6 +9,11 @@ import java.util.EnumMap;
 import java.util.LinkedList;
 
 import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.Case_dalle_sol;
+import fr.donjon.classes.cases.Case_fendue_sol;
+import fr.donjon.classes.cases.Case_mur;
+import fr.donjon.classes.cases.Case_rocher;
+import fr.donjon.classes.cases.Case_void;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -68,6 +73,62 @@ public class Salle implements EcouteurClavier{
         Salle.numberOfRooms++;
         
 	}
+    
+    public Salle(Heros hero, Rectangle ecran){
+    	super();
+    	this.liens = new LinkedList<Link>();
+    	
+    	//On créé les objets contenus dans la salle
+		this.difficulte=0;
+		this.personnage = new LinkedList <Personnage> ();
+		this.hero = hero;
+		this.personnage.add(hero);
+		
+		//On créé le tableau de cases contenues de la salle
+		this.ecran=ecran;
+		
+		//On créé le buffer qui sera rempli par l'image de la salle et des objets dans la méthode draw
+		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_ARGB);
+        monG = buffer1.getGraphics();
+        
+        //GEN SALLE
+        
+        Case[][] casesSalle;
+		casesSalle = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE];
+
+		for(int x=0; x<casesSalle.length;x++){					
+			for(int y=0; y<casesSalle[0].length; y++){
+				casesSalle[x][y]  = new Case_void();
+			}
+		}
+
+		for(int x=1;x<casesSalle.length-1;x++){
+			casesSalle[x][1]=new Case_mur();
+		}
+
+		//Le reste du tableau est rempli aléatoirement de dalles (fendue / rocher / normale)
+		for(int y=2;y<casesSalle[0].length-1;y++){
+			for(int x=1;x<casesSalle.length-1;x++){
+				int random = (int)(Math.round(6*Math.random()));
+
+				if(random == 0){
+					casesSalle[x][y]=new Case_rocher();	
+				}else if(random == 1){
+					casesSalle[x][y]=new Case_fendue_sol();
+				}else {						
+					casesSalle[x][y]=new Case_dalle_sol();
+				}
+			}
+		}
+		
+		refreshRoomCases(casesSalle);
+        
+        
+        //On stocke le numéro de la salle et on incrémente le nombre de salle:
+        this.roomNumber=Salle.numberOfRooms;
+        Salle.numberOfRooms++;
+    	
+    }
 	
     /**
      * Empty constructor.
