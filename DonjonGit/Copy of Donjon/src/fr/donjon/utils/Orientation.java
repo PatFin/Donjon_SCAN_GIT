@@ -7,5 +7,4 @@ package fr.donjon.utils;
 public enum Orientation {
 	NORD,SUD,OUEST,EST;
 
-	
 }

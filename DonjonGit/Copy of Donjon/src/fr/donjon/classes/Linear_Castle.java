@@ -2,7 +2,9 @@ package fr.donjon.classes;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
 
 public class Linear_Castle {
 	
@@ -44,6 +46,7 @@ public class Linear_Castle {
 		//On vérifie si le héro doit être changé de salle ou pas
 		for(int i=0; i<currentRoom.liens.size(); i++){
 			Link z = currentRoom.liens.get(i);
+			
 			if(z.mustChangeRoom(hero)){
 				System.out.println("Some fancy stuff happens.");
 				//Send the hero to the next room ...
@@ -51,7 +54,11 @@ public class Linear_Castle {
 				//Create a new room and send the hero to it!
 				if(!z.hasDestination()){
 					System.out.println("Creation of a new room!");
-					z.setDestination(new Castle_Room(hero, currentRoom.ecran, z), z.x, z.y+1);
+					
+					Salle s = new Castle_Room(hero, currentRoom.ecran, z);
+					Vecteur v = s.portes.get(Orientation.SUD);
+					
+					z.setDestination(s, v.x, v.y-1);
 				}
 				
 				//Send the hero

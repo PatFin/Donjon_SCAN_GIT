@@ -5,28 +5,31 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.EnumMap;
 import java.util.LinkedList;
 
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
 
 public class Salle implements EcouteurClavier{
 	
-	public static int numberOfRooms=0;				//The total number of rooms
+	public static int numberOfRooms=0;				//The total number of rooms.
 	public int roomNumber;							//The unique number associated with a room.
-	public LinkedList <Link> liens;
+	public LinkedList <Link> liens;					//The list of links to other rooms.
+	public EnumMap<Orientation,Vecteur> portes;		//The list of the potential doors to other rooms.
 	
-	public int difficulte; 						//Pour initialiser les ennemis. Pourra s'avérer utile
-	public Case[][] cases; 						//Tableau de cases qui composent la salle
-	public LinkedList <Personnage> personnage; 	//Contient les personnages de la salle (ennemis et héros)
-	public Heros hero;
-	public Rectangle ecran;						//Contient l'espace de jeu disponible dans la fenêtre.
 	
-    
+	public int difficulte; 							//Pour initialiser les ennemis. Pourra s'avérer utile.
+	public Case[][] cases; 							//Tableau de cases qui composent la salle.
+	public LinkedList <Personnage> personnage; 		//Contient les personnages de la salle (ennemis et héros).
+	public Heros hero;								//Le héros que le joueur contrôle.
+	public Rectangle ecran;							//Contient l'espace de jeu disponible dans la fenêtre.
+	
 	public BufferedImage imageSalle;  				//Contient l'image de la salle. Les objets n'y sont pas dessinés.
-	public Graphics bufferImageSalle;            	//espace graphique associe a l'arriere plan
+	public Graphics bufferImageSalle;            	//espace graphique associe a l'arriere plan.
 	public BufferedImage buffer1;					//buffer utilisé pour générer l'image de la salle avec les personnage dedans.
-	public Graphics monG;								//espace graphique associé à buffer1
+	public Graphics monG;							//espace graphique associé à buffer1.
     
     /**
      * Constructeur de la salle
@@ -34,7 +37,7 @@ public class Salle implements EcouteurClavier{
 	 * @param casesSalle contient un tableau de cases préfait, au cas ou on définit des salle prédéfinies.
 	 * @param ecran contient l'espace de jeu disponible dans la fenêtre
 	 */
-    public Salle(Heros p, Case[][] casesSalle, Rectangle ecran){
+    public Salle(Heros p, Case[][] casesSalle, Rectangle ecran, EnumMap<Orientation,Vecteur> portes){
     	super();
     	this.liens = new LinkedList<Link>();
     	
@@ -48,23 +51,9 @@ public class Salle implements EcouteurClavier{
 		this.ecran=ecran;
 		this.cases = casesSalle; 
 		refreshRoomCases(cases);
-				//new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE]; 
 		
-		//On met les éléments de casesSalle dans cases.
-		//Attention, casesSalle doit être au moins aussi grand que cases qui est adapté à la taille de l'écran
-		//Amelioration si casesSalle<case, centrer la salle?
-		
-		/*if(casesSalle != null){
-			for(int i=2;i<cases[0].length;i++){
-				for(int j=0;j<cases.length;j++){
-					if(casesSalle[j][i]!=null){
-						this.cases[j][i]= casesSalle[j][i];
-						this.cases[j][i].setCollisionBoxLocation(i, j);
-					}
-				}
-			}
-		}
-		*/
+		//On initialise la position des téléporteurs potentiels de la salle
+		this.portes = portes;
 		
 		//On génère une image de la salle qui sera utilisée après dans la méthode draw
 		generateImage();
@@ -79,14 +68,20 @@ public class Salle implements EcouteurClavier{
         
 	}
 	
-	
+    /**
+     * Empty constructor.
+     */
+	public Salle(){
+		
+	}
+    
 	/**
 	 * Constructor to create a room without initializing the cases.
 	 * It requires the use of refreshRoomCases afterwards to make sure the room isn't just empty.
 	 * @param ecran L'ecran de jeu.
 	 * @param h le hero controlé par le joueur.
 	 */
-	public Salle(Rectangle ecran, Heros h){
+	public Salle(Rectangle ecran, Heros h, EnumMap<Orientation,Vecteur> portes){
 		super();
 		
 		//On indique le numéro de salle et on incrément le nombre de salle.
@@ -104,6 +99,8 @@ public class Salle implements EcouteurClavier{
 		this.ecran=ecran;
 		this.cases = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE]; 
 		
+		//On initialise la position des téléporteurs potentiels de la salle
+		this.portes = portes;
 		
 		//On créé le buffer qui sera rempli par l'image de la salle et des objets dans la méthode draw
 		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_RGB);

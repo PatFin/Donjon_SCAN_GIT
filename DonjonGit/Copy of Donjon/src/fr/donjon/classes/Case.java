@@ -15,6 +15,7 @@ public class Case {
 
 	public final static int TAILLE=64;
 	
+	
 	public Image image;
 	Rectangle collision;
 	/**
