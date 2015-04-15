@@ -16,13 +16,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import fr.donjon.classes.Case;
-import fr.donjon.classes.Castle_Room;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Linear_Castle;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
 import fr.donjon.classes.Salle;
+import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.Castle_Room;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;

@@ -1,7 +1,9 @@
 /**
  * 
  */
-package fr.donjon.classes;
+package fr.donjon.classes.cases;
+
+import fr.donjon.classes.Personnage;
 
 /**
  * @author Patrick

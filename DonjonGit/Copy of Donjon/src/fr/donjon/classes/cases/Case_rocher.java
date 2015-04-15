@@ -1,6 +1,8 @@
-package fr.donjon.classes;
+package fr.donjon.classes.cases;
 
 import java.awt.Rectangle;
+
+import fr.donjon.classes.Personnage;
 
 
 public class Case_rocher extends Case_Obstacle {

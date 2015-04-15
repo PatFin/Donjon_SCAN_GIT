@@ -9,9 +9,9 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import fr.donjon.classes.Case;
-import fr.donjon.classes.Case_dalle_sol;
-import fr.donjon.classes.Case_void;
+import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.Case_dalle_sol;
+import fr.donjon.classes.cases.Case_void;
 import fr.donjon.utils.Vecteur;
 
 /**

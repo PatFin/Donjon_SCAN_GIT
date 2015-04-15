@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.EnumMap;
 import java.util.LinkedList;
 
+import fr.donjon.classes.cases.Case;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -59,7 +60,7 @@ public class Salle implements EcouteurClavier{
 		generateImage();
 		
 		//On créé le buffer qui sera rempli par l'image de la salle et des objets dans la méthode draw
-		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_RGB);
+		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_ARGB);
         monG = buffer1.getGraphics();
         
         //On stocke le numéro de la salle et on incrémente le nombre de salle:

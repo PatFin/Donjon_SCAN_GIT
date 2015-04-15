@@ -13,9 +13,10 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import fr.donjon.classes.Case;
 import fr.donjon.classes.Heros;
+import fr.donjon.classes.Linear_Castle;
 import fr.donjon.classes.Salle;
+import fr.donjon.classes.cases.Case;
 
 /**
  * La classe mère qui permet de gerer l'affichage et la mise a jour d'une salle
@@ -32,13 +33,14 @@ public abstract class GamePanel extends JPanel {
 
 	BufferedImage arrierePlan;
 	Graphics buffer;
+	
 	Rectangle ecran;
 	Timer timer;
 	
 	long temps;
 
-	public Salle salle;
-
+	public Salle salle; 	//The room to update and draw
+	
 	/**
 	 * Permet de creer un JPanel contenant le jeu
 	 * @param s	La salle a dessiner
@@ -49,7 +51,7 @@ public abstract class GamePanel extends JPanel {
 		
 		timer = new Timer(timerTime, new TimerAction());
 		
-		this.salle =  s;
+		this.salle = s;
 		
 	}
 	
@@ -62,7 +64,7 @@ public abstract class GamePanel extends JPanel {
 		ecran = new Rectangle(0,0,getWidth(),getHeight());
 
 		//Image buffer pour dessiner dessus
-		arrierePlan = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
+		arrierePlan = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_ARGB);
 
 		//Récuperation de la partie graphique de de l'image pour dessiner dessus
 		buffer = arrierePlan.getGraphics();

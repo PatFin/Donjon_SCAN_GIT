@@ -1,4 +1,4 @@
-package fr.donjon.classes;
+package fr.donjon.classes.cases;
 
 public class Case_void extends Case_Obstacle {
 

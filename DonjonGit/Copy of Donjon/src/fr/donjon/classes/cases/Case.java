@@ -1,10 +1,12 @@
-package fr.donjon.classes;
+package fr.donjon.classes.cases;
 
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.File;
 
 import javax.imageio.ImageIO;
+
+import fr.donjon.classes.Personnage;
 
 /**
  * Classe Case

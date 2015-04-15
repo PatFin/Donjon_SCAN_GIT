@@ -10,14 +10,14 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import fr.donjon.classes.Case;
-import fr.donjon.classes.Case_dalle_sol;
-import fr.donjon.classes.Case_escalier;
-import fr.donjon.classes.Case_fendue_sol;
-import fr.donjon.classes.Case_herbe;
-import fr.donjon.classes.Case_mur;
-import fr.donjon.classes.Case_rocher;
-import fr.donjon.classes.Case_void;
+import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.Case_dalle_sol;
+import fr.donjon.classes.cases.Case_escalier;
+import fr.donjon.classes.cases.Case_fendue_sol;
+import fr.donjon.classes.cases.Case_herbe;
+import fr.donjon.classes.cases.Case_mur;
+import fr.donjon.classes.cases.Case_rocher;
+import fr.donjon.classes.cases.Case_void;
 import fr.donjon.utils.Orientation;
 
 /**

@@ -1,4 +1,4 @@
-package fr.donjon.classes;
+package fr.donjon.classes.cases;
 
 
 /**

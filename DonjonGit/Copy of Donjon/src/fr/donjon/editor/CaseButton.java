@@ -10,7 +10,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import fr.donjon.classes.Case;
+import fr.donjon.classes.cases.Case;
 
 /**
  * 

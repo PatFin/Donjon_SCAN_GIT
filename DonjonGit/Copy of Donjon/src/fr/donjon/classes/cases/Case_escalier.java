@@ -1,8 +1,5 @@
-package fr.donjon.classes;
+package fr.donjon.classes.cases;
 
-import java.awt.Rectangle;
-
-import fr.donjon.utils.Orientation;
 
 
 public class Case_escalier extends Case {

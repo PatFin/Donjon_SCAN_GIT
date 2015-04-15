@@ -6,8 +6,6 @@ package fr.donjon.start;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import fr.donjon.utils.JeuKeyAdapter;
-
 /**
  * 
  * Permet demarrer le menu principal du jeu avec le joi du jeu, etc...
