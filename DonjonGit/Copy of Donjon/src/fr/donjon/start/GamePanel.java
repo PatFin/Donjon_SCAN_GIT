@@ -15,6 +15,7 @@ import javax.swing.Timer;
 
 import fr.donjon.classes.Salle;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.test.Gestionnaire;
 
 /**
  * La classe mère qui permet de gerer l'affichage et la mise a jour d'une salle
@@ -31,6 +32,7 @@ public abstract class GamePanel extends JPanel {
 
 	BufferedImage arrierePlan;
 	Graphics buffer;
+	Gestionnaire gestionnaire;
 	
 	public Rectangle ecran;
 	Timer timer;
@@ -43,13 +45,11 @@ public abstract class GamePanel extends JPanel {
 	 * Permet de creer un JPanel contenant le jeu
 	 * @param s	La salle a dessiner
 	 */
-	public GamePanel(Salle s){
+	public GamePanel(){
 		
 		initialisationFenetre();
-		
 		timer = new Timer(timerTime, new TimerAction());
 		
-		this.salle = s;
 		
 	}
 	

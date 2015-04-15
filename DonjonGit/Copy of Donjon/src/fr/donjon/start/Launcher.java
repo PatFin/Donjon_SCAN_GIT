@@ -20,7 +20,7 @@ public class Launcher extends JFrame implements EcouteurClavier{
 
 	JPanel panActuel;
 	
-	JeuLineaireBlac game;	//LE JPanel dessinant le jeu (GamePanel)
+	GamePanel game;	//LE JPanel dessinant le jeu (GamePanel)
 	JPanel menu;	//Le JPanel dessinant le menu
 	
 	/**

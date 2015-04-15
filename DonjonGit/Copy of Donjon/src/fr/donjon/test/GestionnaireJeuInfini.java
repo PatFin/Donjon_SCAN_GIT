@@ -5,20 +5,11 @@ import fr.donjon.classes.Salle;
 import fr.donjon.start.GamePanel;
 import fr.donjon.utils.Orientation;
 
-public class GestionnaireJeuInfini implements EcouteurChangementSalle{
+public class GestionnaireJeuInfini extends Gestionnaire implements EcouteurChangementSalle{
 
-	GamePanel game;
-	public ListeSalle listeSalles;
-	
 	
 	public GestionnaireJeuInfini(GamePanel game) {
-		
-		this.game = game;
-		
-		SalleInteractive firstRoom = new SalleInteractive(new Heros(200,200), game.ecran, this);
-		
-		this.listeSalles = new ListeSalle(firstRoom);
-		
+		super(game);
 	}
 
 
@@ -36,11 +27,7 @@ public class GestionnaireJeuInfini implements EcouteurChangementSalle{
 
 	}
 	
-	public Salle getCurrentRoom(){
-		return this.listeSalles.getCurrent().getSalle();
-		
-	}
-
+	
 
 	
 

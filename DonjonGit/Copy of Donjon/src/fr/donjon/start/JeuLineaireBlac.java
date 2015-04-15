@@ -18,14 +18,13 @@ import fr.donjon.test.GestionnaireJeuInfini;
 
 public class JeuLineaireBlac extends GamePanel {
 
-	public GestionnaireJeuInfini gestionnaire;
 	
 	/**
 	 * Permet de creer un jeu de type linéaire
 	 * Le chateau (castle) genère les salles a afficher (TODO)
 	 */
 	public JeuLineaireBlac(){
-		super(null);
+		super();
 		gestionnaire = new GestionnaireJeuInfini(this);
 		this.changeSalle(gestionnaire.getCurrentRoom());
 		
@@ -33,7 +32,7 @@ public class JeuLineaireBlac extends GamePanel {
 	}
 	
 	public JeuLineaireBlac(Case[][] cases){
-		super(null);
+		super();
 		Salle s  =  new Salle(new Heros(100,100), cases, new Rectangle(0,0,64*15,64*10), null);
 		this.changeSalle(s);
 	}
