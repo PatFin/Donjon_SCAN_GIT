@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import fr.donjon.classes.cases.Case;
-import fr.donjon.classes.cases.Castle_Room;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 

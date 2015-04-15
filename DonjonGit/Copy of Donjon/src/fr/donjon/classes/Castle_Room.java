@@ -1,11 +1,15 @@
-package fr.donjon.classes.cases;
+package fr.donjon.classes;
 
 import java.awt.Rectangle;
 import java.util.EnumMap;
 
-import fr.donjon.classes.Heros;
-import fr.donjon.classes.Link;
-import fr.donjon.classes.Salle;
+import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.Case_dalle_sol;
+import fr.donjon.classes.cases.Case_escalier;
+import fr.donjon.classes.cases.Case_fendue_sol;
+import fr.donjon.classes.cases.Case_mur;
+import fr.donjon.classes.cases.Case_rocher;
+import fr.donjon.classes.cases.Case_void;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
