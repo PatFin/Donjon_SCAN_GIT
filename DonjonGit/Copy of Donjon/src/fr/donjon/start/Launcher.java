@@ -28,12 +28,14 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 */
 	public Launcher(){
 		
-		game = new JeuLineaireBlac(); 
-		startGame();
+		game = new JeuLineaireBlac();
+		menu = new EcranAccueil(this);
+		
+		panActuel = menu;
 		
 	    add(panActuel);
 		
-	    this.addKeyListener(new JeuKeyAdapter(this));
+	    
 		pack();
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -46,8 +48,10 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 * Affiche le jeu
 	 */
 	public void startGame(){
+		this.game.stopGame();
+		this.remove(panActuel);
 		this.panActuel = game;
-		game.startGame();
+		this.add(panActuel);
 		this.pack();
 	}
 	
@@ -56,7 +60,9 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 */
 	public void goToMenu(){
 		this.game.stopGame();
+		this.remove(panActuel);
 		this.panActuel = menu;
+		this.add(panActuel);
 		this.pack();
 		
 	}

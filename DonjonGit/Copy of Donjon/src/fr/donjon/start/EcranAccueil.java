@@ -1,6 +1,7 @@
 package fr.donjon.start;
 
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -24,25 +25,27 @@ import fr.donjon.utils.Vecteur;
 
 
 public class EcranAccueil extends JPanel{ 
-	
+
 	// déclaration de l'image
 	Image im; // IMAGE
 	final static String srcImage="Ressources/Images/BackgroundMenu.jpg"; // FICHIER SOURCE POUR CHARGER L'IMAGE
 	final int SCREENX=800; // LONGUEUR FENETRE
 	final int SCREENY=600; // LARGEUR FENETRE
-	
-	
-	
+
+
+
 	// déclaration des boutons et du panel et de l'icone pour le bouton
 	private JPanel panel = new JPanel();
 	ImageIcon icone= new ImageIcon("Ressources/Images/Player.png"); // icone de l'image
 	private JButton boutonStart = new JButton("Click to Play !! ",icone);
-	
-	
-	
-		// constructeur de la classe EcranAccueil
-	
-	public EcranAccueil (){
+
+	private Launcher launcher;
+
+	// constructeur de la classe EcranAccueil
+
+	public EcranAccueil (Launcher l){
+
+		this.setPreferredSize(new Dimension(SCREENX,SCREENY));
 		
 		// lecture de l'image
 		try {
@@ -51,64 +54,45 @@ public class EcranAccueil extends JPanel{
 		catch (IOException e){
 			System.out.println ("Could not load image file.");
 		}
-		
-		
-	
-		
-		
-		
-		// definition de la fenetre
-		this.setSize(SCREENX,SCREENY);
-		this.setTitle ("SCAN DONJON 72");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		this.launcher = l;
 		// JPANEL ET BOUTONS
 		//Ajout du bouton à notre content pane
-	    panel.add(boutonStart);
-	    this.setContentPane(panel);
-	    
-	    // Actions listener
-	    this.addListeners();
-		
-	
-	    // setVisible à mettre à la fin
-	    this.setVisible(true);
-	   
-	
+		panel.add(boutonStart);
+		this.add(panel);
+		// Actions listener
+		this.addListeners();
+
+
+
 	}
-		
-		// méthode pour peindre la fenetre 
-		
-		public void paint(Graphics g){
-			if (im!=null) {
-				g.drawImage (im, 0, 0, this);	
-			}
-			System.out.println (im);
-			
-			  		
-			
+
+	// méthode pour peindre la fenetre 
+
+	public void paint(Graphics g){
+		if (im!=null) {
+			g.drawImage (im, 0, 0, this);	
 		}
-	
-		//les actions de la souris
-	
-		private void addListeners(){
-	    
+		System.out.println (im);
+
+
+
+	}
+
+	//les actions de la souris
+
+	private void addListeners(){
+
 		boutonStart.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("clique");
-		    	Launcher lanceJeu= new Launcher();
-				
-					}
-				});
+				launcher.startGame();
 
-		}
-			
-	
-	
+			}
+		});
 
-public static void main (String [] args){
-	EcranAccueil depart= new EcranAccueil();
-}
+	}
+
 
 
 
