@@ -3,6 +3,9 @@
  */
 package fr.donjon.start;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,7 +19,7 @@ import fr.donjon.utils.Orientation;
  * @author Baptiste
  *
  */
-public class Launcher extends JFrame implements EcouteurClavier{
+public class Launcher extends JFrame implements KeyListener{
 
 	JPanel panActuel;
 
@@ -30,14 +33,12 @@ public class Launcher extends JFrame implements EcouteurClavier{
 
 		game = new JeuLineaireBlac();
 		menu = new EcranAccueil(this);
-
+		
 		goToMenu();
-
-		pack();
+		
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-
 
 	}
 
@@ -54,6 +55,9 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		}
 		this.panActuel = game;
 		this.add(panActuel);
+		panActuel.setFocusable(true);
+		panActuel.requestFocusInWindow();
+		panActuel.addKeyListener(this);
 		this.pack();
 	}
 
@@ -85,7 +89,7 @@ public class Launcher extends JFrame implements EcouteurClavier{
 
 
 	///////////////////////////////////////////////////////////////
-
+	/*
 	@Override
 	public void attaque(Orientation o) {
 		// TODO Auto-generated method stub
@@ -121,6 +125,24 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	public void stopDeplacement(Orientation o) {
 		// TODO Auto-generated method stub
 		game.gestionnaire.listeSalles.getCurrent().getSalle().stopDeplacement(o);
+	}
+	*/
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("kaka");
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

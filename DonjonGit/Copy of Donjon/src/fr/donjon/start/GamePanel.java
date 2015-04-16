@@ -8,6 +8,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
@@ -23,9 +25,9 @@ import fr.donjon.test.Gestionnaire;
  * @author Baptiste
  *
  */
-public abstract class GamePanel extends JPanel {
+public abstract class GamePanel extends JPanel{
 
-	
+
 	static final int LARGEUR = 15;
 	static final int HAUTEUR = 9;
 	final static int timerTime = 10;
@@ -33,26 +35,25 @@ public abstract class GamePanel extends JPanel {
 	BufferedImage arrierePlan;
 	Graphics buffer;
 	Gestionnaire gestionnaire;
-	
+
 	public Rectangle ecran;
 	Timer timer;
-	
+
 	long temps;
 
 	public Salle salle; 	//The room to update and draw
-	
+
 	/**
 	 * Permet de creer un JPanel contenant le jeu
 	 * @param s	La salle a dessiner
 	 */
 	public GamePanel(){
-		
+
 		initialisationFenetre();
 		timer = new Timer(timerTime, new TimerAction());
-		
-		
+
 	}
-	
+
 	private void initialisationFenetre(){
 
 		this.setSize(new Dimension(LARGEUR*Case.TAILLE, HAUTEUR*Case.TAILLE));
@@ -67,7 +68,7 @@ public abstract class GamePanel extends JPanel {
 		//Récuperation de la partie graphique de de l'image pour dessiner dessus
 		buffer = arrierePlan.getGraphics();
 	}
-	
+
 	/**
 	 * Dessin de la salle dans le JPanel
 	 */
@@ -91,27 +92,27 @@ public abstract class GamePanel extends JPanel {
 	 * @param nSalle La nouvelle salle a dessiner
 	 */
 	public void changeSalle(Salle nSalle){
-		
+
 		timer.stop();
 		this.salle = nSalle;
 		timer.start();
-		
+
 	}
-	
+
 	/**
 	 * Permet de démarrer l'actualisation du jeu (par défaut en pause)
 	 */
 	public void startGame(){
 		this.timer.start();
 	}
-	
+
 	/**
 	 * Met en pause le jeu
 	 */
 	public void stopGame(){
 		this.timer.stop();
 	}
-	
+
 	public class TimerAction implements ActionListener{
 		// actions listener appelés toutes les 20ms
 		public void actionPerformed(ActionEvent e){
@@ -120,6 +121,7 @@ public abstract class GamePanel extends JPanel {
 		}
 
 	}
+
 	
-	
+
 }

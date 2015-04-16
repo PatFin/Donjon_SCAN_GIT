@@ -4,11 +4,14 @@
 package fr.donjon.start;
 
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Salle;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.test.GestionnaireJeuInfini;
+import fr.donjon.utils.Orientation;
 
 
 /**
@@ -16,7 +19,7 @@ import fr.donjon.test.GestionnaireJeuInfini;
  *
  */
 
-public class JeuLineaireBlac extends GamePanel {
+public class JeuLineaireBlac extends GamePanel{
 
 	
 	/**
@@ -27,7 +30,6 @@ public class JeuLineaireBlac extends GamePanel {
 		super();
 		gestionnaire = new GestionnaireJeuInfini(this);
 		this.changeSalle(gestionnaire.getCurrentRoom());
-		
 		
 	}
 	
@@ -40,6 +42,26 @@ public class JeuLineaireBlac extends GamePanel {
 	public void update() {
 		super.update();
 	}
+
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }
