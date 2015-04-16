@@ -1,7 +1,11 @@
 package fr.donjon.start;
 
+import java.awt.Cursor;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -14,8 +18,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import fr.donjon.editor.DialogListener;
+import fr.donjon.editor.DialogNouveau;
+import fr.donjon.utils.Vecteur;
 
-public class EcranAccueil extends JFrame implements MouseListener, MouseMotionListener{ 
+
+public class EcranAccueil extends JPanel{ 
 	
 	// déclaration de l'image
 	Image im; // IMAGE
@@ -59,12 +67,12 @@ public class EcranAccueil extends JFrame implements MouseListener, MouseMotionLi
 	    this.setContentPane(panel);
 	    
 	    // Actions listener
-	    boutonStart.addMouseListener(this);
-		boutonStart.addMouseMotionListener(this);
+	    this.addListeners();
 		
 	
 	    // setVisible à mettre à la fin
 	    this.setVisible(true);
+	   
 	
 	}
 		
@@ -80,27 +88,26 @@ public class EcranAccueil extends JFrame implements MouseListener, MouseMotionLi
 			
 		}
 	
-		//methodes pour les actions de la souris
-		
-		public void mouseReleased( MouseEvent e ) { }
-	    public void mouseDragged( MouseEvent e ) {
-	    }
-	    public void mouseEntered( MouseEvent e ) { }
-	    public void mouseMoved( MouseEvent e ) {}
-	    public void mouseClicked( MouseEvent e )  {
-	    	if(e.getSource()==boutonStart){
-	    	System.out.println("clique");
-	    	JeuLineaireVincent lanceJeu= new JeuLineaireVincent();
-	    	}
-	    	
-	    }
-	    public void mouseExited( MouseEvent e ) { }        
-	    public void mousePressed( MouseEvent e ) { }
+		//les actions de la souris
+	
+		private void addListeners(){
+	    
+		boutonStart.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("clique");
+		    	Launcher lanceJeu= new Launcher();
+				
+					}
+				});
+
+		}
+			
 	
 	
 
 public static void main (String [] args){
-	EcranAccueil start= new EcranAccueil();
+	EcranAccueil depart= new EcranAccueil();
 }
 
 
