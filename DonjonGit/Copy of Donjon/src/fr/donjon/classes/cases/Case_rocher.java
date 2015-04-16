@@ -30,7 +30,7 @@ public class Case_rocher extends Case_Obstacle {
 	 */
 	public void setCollisionBoxLocation(int vertical, int horizontal) {
 		
-		this.collision = new Rectangle(Case.TAILLE*horizontal+15, Case.TAILLE*vertical+15, Case.TAILLE/2, Case.TAILLE/2);
+		this.collision = new Rectangle(Case.TAILLE*horizontal+16, Case.TAILLE*vertical+16, Case.TAILLE/2, Case.TAILLE/2);
 	}
 
 	@Override
