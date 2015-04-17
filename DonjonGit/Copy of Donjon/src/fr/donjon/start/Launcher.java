@@ -12,7 +12,7 @@ import fr.donjon.utils.Orientation;
 
 /**
  * 
- * Permet demarrer le menu principal du jeu avec le joi du jeu, etc...
+ * Permet demarrer le menu principal du jeu avec le choix du jeu, etc...
  * 
  * @author Baptiste
  *

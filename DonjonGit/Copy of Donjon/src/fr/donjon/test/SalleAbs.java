@@ -77,11 +77,16 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 		//The room will be created later when the player steps on the door.
 		this.link.put(o, new Link(this, this.porte.get(o), o, enabled));
 	}
+	
+	/**
+	 * This method creates a link to the previous room
+	 * @param l the link from the previous room to the current one
+	 */
 	public void addDoorToPrevRoom(Link l){
 		//We create the link.
 		Orientation a = Orientation.opposite(l.orientation);
 		
-		this.link.put(a, new Link(l.origineSalle, l.origineSalle.destination.get(l.orientation), this, this.porte.get(a), a, true));
+		this.link.put(a, new Link(l.origineSalle, l.origineSalle.destination.get(l.orientation), this, this.porte.get(a), a, true)); //crer une methode reciprocal dans la classe Link.
 	}
 	
 	

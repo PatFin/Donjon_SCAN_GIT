@@ -62,6 +62,12 @@ public class Salle_foret extends SalleAbs {
 		super.addDoor(o, enabled);
 	}
 	
+	
+	/**
+	 * Overrides the SalleAbs method.
+	 * It also modifies the tiles that are concerned by this door.
+	 * Then calls the mother class method to create the link
+	 */
 	public void addDoorToPrevRoom(Link l){
 		//We change the tiles of the door
 		Vecteur v = porte.get(Orientation.opposite(l.orientation));
