@@ -4,7 +4,9 @@ import java.awt.Rectangle;
 import java.util.EnumMap;
 
 import fr.donjon.classes.Heros;
+import fr.donjon.classes.Link;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.Case_dalle_sol;
 import fr.donjon.classes.cases.Case_herbe;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -12,8 +14,7 @@ import fr.donjon.utils.Vecteur;
 public class Salle_foret extends SalleAbs {
 	
 	/**
-	 * Constructor called when this is the first room
-	 * of the dungeon
+	 * Constructor called when this is the first room of the dungeon
 	 * @param ecran contains the space available to the room
 	 * @param h the hero controlled by the player
 	 * @param o the orientation of the door to be placed
@@ -21,16 +22,30 @@ public class Salle_foret extends SalleAbs {
 	public Salle_foret(Rectangle ecran, Heros h, Orientation o) {
 		super(ecran,h);
 		
-		//Standard room creation
-		generateRoomImage();
-		setDestinationPlaces();
-		setDoorPlaces();
+		//Adding the doors to the next room
+		this.addDoor(o,true);
 		
-		//Setting up the door
+		//generating the image of the room after all the tiles have been set
+		this.generateImage();
+	}
+	
+	
+	/**
+	 * Constructor called when the character comes from another room
+	 * @param h the hero controlled by the player
+	 * @param l the link from the previous room to this one
+	 * @param o the orientation of the door to the next room
+	 */
+	public Salle_foret(Heros h, Link l, Orientation o){
+		super(SalleAbs.ecran, h);
 		
+		//Creating the link to the previous room
+		this.addDoorToPrevRoom(l);
 		
+		//Adding a door to the next room
+		this.addDoor(o, true);
 		
-		
+		this.generateImage();
 	}
 	
 	/**
@@ -38,16 +53,30 @@ public class Salle_foret extends SalleAbs {
 	 * It also modifies the tiles that are concerned by this door.
 	 * Then calls the mother class method to create the link
 	 */
-	protected void addDoor(Orientation o){
-		// TODO taper cette classe.
+	public void addDoor(Orientation o, boolean enabled){
+		//We change the tiles of the door
+		Vecteur v = porte.get(o);
+		this.cases[v.x][v.y] = new Case_herbe();
+		
+		//The link is created in the mother class
+		super.addDoor(o, enabled);
 	}
 	
+	public void addDoorToPrevRoom(Link l){
+		//We change the tiles of the door
+		Vecteur v = porte.get(Orientation.opposite(l.orientation));
+		this.cases[v.x][v.y] = new Case_dalle_sol();
+		
+		//The link is created in the mother class
+		super.addDoorToPrevRoom(l);
+	}
 	
+		
 	/**
 	 * This method sets the different places where the character
 	 * will be placed when it comes from another room to this one
 	 */
-	private void setDestinationPlaces(){
+	protected void setDestinationPlaces(){
 		this.destination= new EnumMap<Orientation, Vecteur>(Orientation.class);
 		
 		this.destination.put(Orientation.NORD, new Vecteur(cases.length/2,1));
@@ -55,12 +84,11 @@ public class Salle_foret extends SalleAbs {
 		this.destination.put(Orientation.OUEST, new Vecteur(1,cases[0].length/2));
 		this.destination.put(Orientation.EST, new Vecteur(cases.length-2,cases[0].length/2));
 	}
-	
-	
+
 	/**
 	 * This method sets the positions of the potential doors of the room.
 	 */
-	private void setDoorPlaces(){
+	protected void setDoorPlaces(){
 		this.porte=new EnumMap<Orientation, Vecteur>(Orientation.class);
 		
 		this.porte.put(Orientation.NORD, new Vecteur(cases.length/2,0));
@@ -75,7 +103,7 @@ public class Salle_foret extends SalleAbs {
 	 * It does not add the links to other rooms
 	 * nor does it modify the tiles accordingly.
 	 */
-	private void generateRoomImage(){
+	protected void generateRoom(){
 		this.cases = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE];
 		
 		//We fill the array with grass tiles

@@ -43,6 +43,12 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 	public BufferedImage buffer1;							//Buffer used in the draw method.
 	public Graphics monG;									//Graphical space associated to buffer1.
 	
+	
+	/**
+	 * Constructor
+	 * @param ecran the space available for the game
+	 * @param h the character the player can control
+	 */
 	public SalleAbs(Rectangle ecran, Heros h) {
 		this.roomNumber=numberOfRooms;
 		SalleAbs.numberOfRooms++;
@@ -52,16 +58,32 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 		this.personnage = new LinkedList <Personnage> ();
 		this.personnage.add(hero);
 		
+		setDestinationPlaces();
+		setDoorPlaces();
 	}
 	
+	
+	protected abstract void generateRoom();
+	protected abstract void setDestinationPlaces();
+	protected abstract void setDoorPlaces();
+
 	/**
 	 * This method creates a link to another room in the
 	 * direction required by the parameter.
 	 * @param o the position of the door to be created in the room
 	 */
-	protected void addDoor(Orientation o){
-		// TODO à remplir
+	public void addDoor(Orientation o,boolean enabled){
+		//We create a link to a future room.
+		//The room will be created later when the player steps on the door.
+		this.link.put(o, new Link(this, this.porte.get(o), o, enabled));
 	}
+	public void addDoorToPrevRoom(Link l){
+		//We create the link.
+		Orientation a = Orientation.opposite(l.orientation);
+		
+		this.link.put(a, new Link(l.origineSalle, l.origineSalle.destination.get(l.orientation), this, this.porte.get(a), a, true));
+	}
+	
 	
 	
 	/**
@@ -115,7 +137,7 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 	 * It takes the image of each tyle contained in the 
 	 * cases[][] array and stiches them together.
 	 */
-	private void generateImage(){
+	protected void generateImage(){
 
 		//Initialysing the graphic tools 
 		imageSalle = new BufferedImage(ecran.width,ecran.height, BufferedImage.TYPE_INT_RGB);

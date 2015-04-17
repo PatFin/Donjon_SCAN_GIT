@@ -2,84 +2,69 @@ package fr.donjon.classes;
 
 import java.awt.Rectangle;
 
-import fr.donjon.classes.cases.Case;
+import fr.donjon.test.SalleAbs;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
 
 /**
  * Cette class contient la description d'un téléporteur d'une
  * salle à une autre. Chaque salle ontient une LinkedList de link 
  * @author Patrick
- *
+ *		Il pourrait être possible de la faire fonctionner avec des vecteurs. Une "amélioration" future?
  */
 public class Link {
 
-	public Salle destination;				//la destination du lien, l'autre salle.
-	public int dx, dy;						//coordonnées de la case de destination.
+	public SalleAbs destinationSalle;				//la destination du lien, l'autre salle.
+	public Vecteur 	destinationCase;				//coordonnées de la case de destination.
 	
-	public Salle origine;
-	public int x,y;
+	public SalleAbs origineSalle;
+	public Vecteur origineCase;
 	
 	public Orientation orientation;
 	private Rectangle rectangleCollision;	//Si le héro marche sur ce rectangle et que enabled vaut true, alors on change de salle.
-	public boolean enabled;				//autorise ou pas le changement de salle.
+	public boolean enabled;					//autorise ou pas le changement de salle.
 	
 	/**
 	 * Constructeur de link lorsque tous les éléments sont connus d'avance.
 	 * @param destination la salle de destination
-	 * @param dx coordonnée horizontale qui indique la case de destination.
-	 * @param dy coordonnée verticale qui indique le case de destination.
-	 * @param x coordonnée horizontale de la case qui contient le téléporteur. utilisé pour placer le rectangle de collision
-	 * @param y coordonnée verticale. idem.
-	 * @param o l'orientation du lien. Si dans la salle qui contient le lien l'endroit est en haut de la salle, o vaut NORD etc
-	 * Ce paramètre sert uniquement à placerle rectangle de collision sur la bonne partie de la case. 
-	 * @param enabled booléen qui autorise ou pas le changlement de salle.
+	 * @param desVecteur le vecteur qui indique la case de destination
+	 * @param origine la salle d'origine
+	 * @param origVecteur le vecteur qui pointe vers la case qui sert de porte
+	 * @param o l'orientation du lien. ie la position de la porte dans la salle origine
+	 * @param enabled
 	 */
-	public Link(Salle destination, int dx,int dy, Salle origine, int x,int y, Orientation o, boolean enabled) {
-		this.destination = destination;
-		this.dx = dx;
-		this.dy = dy;
+	public Link(SalleAbs destination, Vecteur desVecteur, SalleAbs origine,Vecteur origVecteur, Orientation o, boolean enabled) {
+		this.destinationSalle = destination;
+		this.destinationCase = desVecteur;
 		
-		this.origine = origine;
-		this.x=x;
-		this.y=y;
+		this.origineSalle = origine;
+		this.origineCase = origVecteur;
 		
 		this.orientation = o;
 		this.enabled = enabled;
 		
-		
-		
-		/**
-		 * On pourra implémenter un meilleur positionnement du rectangle.
-		 */
-		switch(o){
-		default:
-			this.rectangleCollision = new Rectangle(x*Case.TAILLE,y*Case.TAILLE,Case.TAILLE,Case.TAILLE);
-		}
+		this.rectangleCollision=origine.cases[origineCase.x][origineCase.y].collision;
 	}
 	
 	/**
-	 * Constructeur utilisé quand on ne connait pas la destination du lien
-	 * @param x coordonnée horizontale de la case de transport
-	 * @param y coordonnée verticale de la case de transport
-	 * @param o orientation du lien
-	 * @param enabled passge autorisé -> enabled vaut true. Sinon false.
+	 * Constructeur utilisé quand on ne connait pas la salle de destination
+	 * @param origine la salle d'origine
+	 * @param origVecteur le vecteur qui pointe vers la case qui sert de porte
+	 * @param o l'orientation du lien. ie la position de la porte dans la salle origine
+	 * @param enabled
 	 */
-	public Link(Salle origine, int x, int y, Orientation o, boolean enabled){
+	public Link(SalleAbs origine,Vecteur origVecteur, Orientation o, boolean enabled){
 		this.enabled = enabled;
-		this.destination=null;
 		
-		this.origine = origine;
+		this.destinationSalle=null;
+		
+		this.origineSalle = origine;
 		this.orientation =o;
 		
-		this.x=x;
-		this.y=y;
+		this.origineCase=origVecteur;
 		
-		switch(orientation){
-		case NORD:
-			
-		default:
-			this.rectangleCollision = new Rectangle(x*Case.TAILLE,y*Case.TAILLE,Case.TAILLE,Case.TAILLE);
-		}
+		
+		this.rectangleCollision=origine.cases[origineCase.x][origineCase.y].collision;
 	}
 	
 	
@@ -89,7 +74,7 @@ public class Link {
 	 */
 	public boolean hasDestination(){
 		boolean z = true;
-		if(this.destination == null){
+		if(this.destinationSalle == null){
 			z=false;
 		}
 		return z;
@@ -102,7 +87,7 @@ public class Link {
 	 * @return true si p est à changer de salle, false sinon.
 	 */
 	public boolean mustChangeRoom(Heros p){
-		return this.enabled && p.collisionDecor.intersects(this.rectangleCollision);
+		return this.enabled && p.enCollision(rectangleCollision);
 	}
 	
 	
@@ -111,21 +96,19 @@ public class Link {
 	 * Méthode utilisée quand une salle de destination n'a pas été définie dans le constructeur
 	 * ou que l'on veut chager la destination d'une salle.
 	 * @param des salle de destination
-	 * @param dx Coordonnée horizontale de la case de destination
-	 * @param dy Coordonnée verticale
+	 * @param desVecteur vecteur vers la case de destination dans la salle destination
 	 */
-	public void setDestination(Salle des,int dx,int dy){
-		this.destination = des;
-		this.dx = dx;
-		this.dy = dy;
+	public void setDestination(SalleAbs des, Vecteur desVecteur){
+		this.destinationSalle = des;
+		this.destinationCase = desVecteur;
 	}
 	
 	
 	public String toString(){
-		if(destination!=null){
-			return ("Lien desalle "+origine.roomNumber+" vers salle "+destination.roomNumber);
+		if(destinationSalle!=null){
+			return ("Lien desalle "+origineSalle.roomNumber+" vers salle "+destinationSalle.roomNumber);
 		}else{
-			return ("Lien de salle "+origine.roomNumber+" vers null");
+			return ("Lien de salle "+origineSalle.roomNumber+" vers null");
 		}
 	}
 }
