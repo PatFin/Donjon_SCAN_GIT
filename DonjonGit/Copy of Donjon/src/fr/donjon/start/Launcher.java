@@ -83,7 +83,6 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		this.panActuel = menu;
 		this.add(panActuel);
 		this.pack();
-
 	}
 
 	/**

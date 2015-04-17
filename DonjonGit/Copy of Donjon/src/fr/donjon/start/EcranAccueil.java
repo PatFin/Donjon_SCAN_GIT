@@ -63,8 +63,6 @@ public class EcranAccueil extends JPanel{
 		// Actions listener
 		this.addListeners();
 
-
-
 	}
 
 	// méthode pour peindre la fenetre 
