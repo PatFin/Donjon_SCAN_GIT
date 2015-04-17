@@ -67,6 +67,7 @@ public class Heros extends Personnage{
 	 * @param dir Direction de deplacement du personnage
 	 */
 	public void marcher(Orientation dir){
+		
 		//Si le personnage attaque, ne pas le faire se deplacer
 		if(this.etat == EtatPersonnage.ATTAQUE)return;
 		//Le personnage passe en mode deplacement

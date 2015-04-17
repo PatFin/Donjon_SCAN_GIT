@@ -3,22 +3,38 @@ package fr.donjon.test;
 import fr.donjon.classes.Salle;
 import fr.donjon.utils.Orientation;
 
+/**
+ * 
+ * Permet la gestion d'une liste de SalleElement qui représente une Salle
+ * ainsi que le liens avec les autres Salles
+ * 
+ * @author Baptiste
+ *
+ */
 public class ListeSalle {
 
-	private SalleElement root;
-	private SalleElement current;
+	private SalleElement root;		//La première salle crée
+	private SalleElement current;	//La salle actuelle 
 
+	/**
+	 * Initialisation avec un SalleElement
+	 * @param salleE
+	 */
 	public ListeSalle(SalleElement salleE) {
 		this.root = salleE;
 		this.current = root;
 	}
 
+	/**
+	 * Initialisation avec une Salle
+	 * @param s
+	 */
 	public ListeSalle(Salle s){
 		this(new SalleElement(s));
 	}
 
 	/**
-	 * Ajoute une Salle dans une direction et bouge vers cette salle;
+	 * Ajoute une Salle dans une direction et bouge vers cette salle getCurrent() renvoie la nouvelle Salle
 	 * 
 	 * @param se	L'élément a ajouter
 	 * @param o		La direction de la nouvelle salle

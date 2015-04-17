@@ -5,6 +5,12 @@ import fr.donjon.classes.Salle;
 import fr.donjon.start.GamePanel;
 import fr.donjon.utils.Orientation;
 
+/**
+ * Permet de gérer la suite des Salles dans un jeu de type infini
+ * 
+ * @author Baptiste
+ *
+ */
 public class GestionnaireJeuInfini extends Gestionnaire implements EcouteurChangementSalle{
 
 	
@@ -12,18 +18,22 @@ public class GestionnaireJeuInfini extends Gestionnaire implements EcouteurChang
 		super(game);
 	}
 
-
+	
+	/**
+	 * 
+	 * Methode utilisée lorsque la Salle prévient qu'il faut changer de Salle
+	 * 
+	 */
 	@Override
 	public void changerDeSalle(Orientation o, Heros h) {
 		
-		SalleInteractive newRoom = new SalleInteractive(h, game.ecran, this);
+		SalleInteractive newRoom = new SalleInteractive(h, game.ecran, this); //On crée une nouvelle salle
 		
+		if(!listeSalles.addElement(new SalleElement(newRoom), o)){	//Si une Salle existe deja a l'emplacement demandé
+			Salle.numberOfRooms--;									//on ajoute pas de nouvelle salle 
+		}															//La methode addElement gere le déplacement (voir ListeSalle)
 		
-		if(!listeSalles.addElement(new SalleElement(newRoom), o)){
-			Salle.numberOfRooms--;
-		}
-		
-		game.changeSalle(listeSalles.getCurrent().getSalle());
+		game.changeSalle(listeSalles.getCurrent().getSalle());		//On demande le changement de Salle
 
 	}
 	

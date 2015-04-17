@@ -5,10 +5,20 @@ import java.awt.Rectangle;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Salle;
 import fr.donjon.classes.cases.Case_escalier;
+import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 
-public class SalleInteractive extends Salle{
+/**
+ * 
+ * Cette classe est une Salle qui possède un ecouteur de changement de salle, lorsque le joueur marche
+ * sur une case escalier l'ecouteur (Gestionnaire) est prévenu qu'il faut changer de salle
+ * 
+ * @author Baptiste
+ *
+ */
+public class SalleInteractive extends Salle implements EcouteurClavier{
 
+	
 	public EcouteurChangementSalle ecouteur; 
 	
 	
@@ -18,6 +28,9 @@ public class SalleInteractive extends Salle{
 		this.ajoutDeuxEscalier();
 	}
 	
+	/**
+	 * Ajoute deux escaliers, un au NORD et un au SUD et rafraichit les cases du jeu
+	 */
 	public void ajoutDeuxEscalier(){
 		
 		this.cases[cases.length/2][1] = new Case_escalier(Orientation.NORD);
@@ -30,6 +43,9 @@ public class SalleInteractive extends Salle{
 		// TODO Auto-generated method stub
 		super.update(temps);
 		
+		//Gère les collisions avec les escaliers
+		//A amélieorer !
+		
 		if(this.hero.collisionDecor.intersects(cases[cases.length/2][1].collision)){
 			ecouteur.changerDeSalle(Orientation.NORD, this.hero);
 			hero.setLocation(64*cases.length/2 - 32, 64*7 - 3);
@@ -38,6 +54,49 @@ public class SalleInteractive extends Salle{
 			hero.setLocation(64*cases.length/2 - 32, 64*2 - (Heros.LNG - hero.collisionDecor.height) +3  );
 		}
 		
+	}
+	
+	
+
+	/////////////////////////////////////
+	//INTERFACE D'ECOUTE/////////////////
+	/////////////////////////////////////
+
+
+	@Override
+	public void attaque(Orientation o) {
+		// TODO Auto-generated method stub
+		hero.attaquer(null, null, o);
+	}
+
+	@Override
+	public void stopAttaque(Orientation o) {
+		// TODO Auto-generated method stub
+		//Stoper attk du héro ici
+	}
+
+	@Override
+	public void deplacement(Orientation o) {
+		// TODO Auto-generated method stub
+		hero.marcher(o);
+	}
+
+	@Override
+	public void utiliseObjet(int reference) {
+		// TODO Auto-generated method stub
+		hero.utiliserObjet(reference);
+	}
+
+	@Override
+	public void togglePause() {
+		// TODO Auto-generated method stub
+		//Nothing to do, its done in game panel
+	}
+
+	@Override
+	public void stopDeplacement(Orientation o) {
+		// TODO Auto-generated method stub
+		hero.stop(o);
 	}
 	
 	

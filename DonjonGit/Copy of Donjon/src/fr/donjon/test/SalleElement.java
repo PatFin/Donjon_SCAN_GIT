@@ -2,19 +2,24 @@ package fr.donjon.test;
 
 import fr.donjon.classes.Salle;
 
+/**
+ * Cette classe représente une Salle est ses liens vers les autres Salles
+ * 
+ * @author Baptiste
+ *
+ */
 public class SalleElement {
 
-	private SalleElement gauche;
-	private SalleElement droite;
-	private SalleElement bas;
-	private SalleElement haut;
-	private Salle salle;
+	private SalleElement gauche;	//L'élément a gauche
+	private SalleElement droite;	//			  droite
+	private SalleElement bas;		//
+	private SalleElement haut;		//
+	
+	private Salle salle;			//Salle contenue dans le SalleElement
 
 	public SalleElement(Salle s) {
 		this.salle = s;
 	}
-
-	
 
 	//GETTERS SETTERS
 	
@@ -22,6 +27,11 @@ public class SalleElement {
 		return gauche;
 	}
 
+	/**
+	 * Met a jour le SalleElement a gauche et met a jour le lien
+	 * 
+	 * @param gauche
+	 */
 	public void setGauche(SalleElement gauche) {
 		this.gauche = gauche;
 		gauche.droite = this;
@@ -62,6 +72,10 @@ public class SalleElement {
 		this.salle = salle;
 	}
 
+	/**
+	 * Permet de vérifier s'il y a une salle au dessus de la salle actuelle
+	 * @return
+	 */
 	public boolean hasHaut(){
 		return ( this.getHaut() == null ? false : true );
 	}

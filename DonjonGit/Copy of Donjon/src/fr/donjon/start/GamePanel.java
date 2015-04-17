@@ -8,8 +8,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
@@ -18,14 +16,17 @@ import javax.swing.Timer;
 import fr.donjon.classes.Salle;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.test.Gestionnaire;
+import fr.donjon.utils.EcouteurClavier;
+import fr.donjon.utils.Orientation;
 
 /**
  * La classe mère qui permet de gerer l'affichage et la mise a jour d'une salle
+ * cette classe ne se charge que de l'affichage
  * 
  * @author Baptiste
  *
  */
-public abstract class GamePanel extends JPanel{
+public abstract class GamePanel extends JPanel implements EcouteurClavier{
 
 
 	static final int LARGEUR = 15;
@@ -41,7 +42,7 @@ public abstract class GamePanel extends JPanel{
 
 	long temps;
 
-	public Salle salle; 	//The room to update and draw
+	public Salle salle; 	//LA salle a afficher
 
 	/**
 	 * Permet de creer un JPanel contenant le jeu
@@ -52,6 +53,7 @@ public abstract class GamePanel extends JPanel{
 		initialisationFenetre();
 		timer = new Timer(timerTime, new TimerAction());
 
+		//Le timer sera démarré plus tard grace a la méthode startGame()
 	}
 
 	private void initialisationFenetre(){
@@ -89,6 +91,7 @@ public abstract class GamePanel extends JPanel{
 
 	/**
 	 * Permet de changer la salle active 
+	 * 
 	 * @param nSalle La nouvelle salle a dessiner
 	 */
 	public void changeSalle(Salle nSalle){
@@ -120,6 +123,49 @@ public abstract class GamePanel extends JPanel{
 			temps +=timerTime;
 		}
 
+	}
+	
+	///////////////////////////////////////////////////////
+	//INTERFACE D'ECOUTE///////////////////////////////////
+	///////////////////////////////////////////////////////
+	
+	//On fait passer les ordres au Gestionnaire et on intercept celui pour stopper le Timer
+	
+	@Override
+	public void attaque(Orientation o) {
+		// TODO Auto-generated method stub
+		gestionnaire.attaque(o);
+	}
+
+	@Override
+	public void stopAttaque(Orientation o) {
+		// TODO Auto-generated method stub
+		gestionnaire.stopAttaque(o);
+	}
+
+	@Override
+	public void deplacement(Orientation o) {
+		// TODO Auto-generated method stub
+		gestionnaire.deplacement(o);
+	}
+
+	@Override
+	public void utiliseObjet(int reference) {
+		// TODO Auto-generated method stub
+		gestionnaire.utiliseObjet(reference);
+	}
+
+	@Override
+	public void togglePause() {
+		// TODO Auto-generated method stub
+		if(timer.isRunning())timer.stop();
+		else timer.start();
+	}
+	
+	@Override
+	public void stopDeplacement(Orientation o) {
+		// TODO Auto-generated method stub
+		gestionnaire.stopDeplacement(o);
 	}
 
 	

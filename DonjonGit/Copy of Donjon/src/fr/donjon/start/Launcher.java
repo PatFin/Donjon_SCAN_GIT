@@ -3,9 +3,6 @@
  */
 package fr.donjon.start;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,25 +13,27 @@ import fr.donjon.utils.Orientation;
 /**
  * 
  * Permet demarrer le menu principal du jeu avec le joi du jeu, etc...
+ * 
  * @author Baptiste
  *
  */
-public class Launcher extends JFrame implements KeyListener{
+public class Launcher extends JFrame implements EcouteurClavier{
 
-	JPanel panActuel;
+	JPanel panActuel; //LE JPanel a utiliser 
 
-	GamePanel game;	//LE JPanel dessinant le jeu (GamePanel)
-	JPanel menu;	//Le JPanel dessinant le menu
+	GamePanel game;	//Le JPanel dessinant le jeu (GamePanel)
+	JPanel menu;	//Le JPanel dessinant le menu (EcranAcceuil)
 
 	/**
-	 * 
+	 * Lanceur du jeu
 	 */
 	public Launcher(){
 
-		game = new JeuLineaireBlac();
-		menu = new EcranAccueil(this);
+		game = new JeuLineaireBlac(); 	//Ajouter par la suite un gameLin et gameHistoire
 		
-		goToMenu();
+		menu = new EcranAccueil(this);	//
+		
+		goToMenu();						//On affiche le menu
 		
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -43,29 +42,38 @@ public class Launcher extends JFrame implements KeyListener{
 	}
 
 	/**
-	 * Affiche le jeu
+	 * Permet de démarrer le jeu (en linéaire pour le moment)
 	 */
 	public void startGame(){
-		this.game.stopGame();
+		
+		this.game.stopGame();		//On arrete le jeu en cours 
+		
 		try{
-			this.remove(panActuel);
+			this.remove(panActuel);	//On enleve le JPanel du menu s'il existe
 		}
 		catch (NullPointerException e){
 
 		}
-		this.panActuel = game;
-		this.add(panActuel);
-		panActuel.setFocusable(true);
-		panActuel.requestFocusInWindow();
-		panActuel.addKeyListener(this);
-		this.pack();
+		this.panActuel = game;		//On change de JPanel d'affichage
+		this.add(panActuel);		//Et on l'affiche
+		
+		panActuel.setFocusable(true);	//Permet la réception des evenements du clavier
+		panActuel.requestFocusInWindow(); //Pareil
+		
+		panActuel.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier
+		
+		this.game.startGame();								//On demarre le jeu
+		
+		this.pack();										//On met a jour la taille de la fenetre
 	}
 
 	/**
 	 * Affiche le menu
 	 */
 	public void goToMenu(){
+		//Voir fonctionnement de startGame()
 		this.game.stopGame();
+		
 		try{
 			this.remove(panActuel);
 		}
@@ -78,7 +86,6 @@ public class Launcher extends JFrame implements KeyListener{
 
 	}
 
-
 	/**
 	 * @param args
 	 */
@@ -89,61 +96,48 @@ public class Launcher extends JFrame implements KeyListener{
 
 
 	///////////////////////////////////////////////////////////////
-	/*
+	///INTERFACE D'ECOUTE//////////////////////////////////////////
+	///////////////////////////////////////////////////////////////
+	
+	//On fait passer les evenements au jeu
+	
 	@Override
 	public void attaque(Orientation o) {
 		// TODO Auto-generated method stub
-		game.gestionnaire.listeSalles.getCurrent().getSalle().attaque(o);
+		game.attaque(o);
 	}
 
 	@Override
 	public void stopAttaque(Orientation o) {
 		// TODO Auto-generated method stub
-		game.gestionnaire.listeSalles.getCurrent().getSalle().stopAttaque(o);
+		game.stopAttaque(o);
 	}
 
 	@Override
 	public void deplacement(Orientation o) {
 		// TODO Auto-generated method stub
-
-		game.gestionnaire.listeSalles.getCurrent().getSalle().deplacement(o);
+		game.deplacement(o);
 	}
 
 	@Override
 	public void utiliseObjet(int reference) {
 		// TODO Auto-generated method stub
-
+		game.utiliseObjet(reference);
 	}
 
 	@Override
 	public void togglePause() {
 		// TODO Auto-generated method stub
-
+		game.togglePause();
 	}
 
 	@Override
 	public void stopDeplacement(Orientation o) {
 		// TODO Auto-generated method stub
-		game.gestionnaire.listeSalles.getCurrent().getSalle().stopDeplacement(o);
+		game.stopDeplacement(o);
 	}
-	*/
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("kaka");
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	
 
 
 

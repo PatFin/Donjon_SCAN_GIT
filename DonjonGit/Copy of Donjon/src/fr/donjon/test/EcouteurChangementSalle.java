@@ -6,11 +6,11 @@ import fr.donjon.utils.Orientation;
 public interface EcouteurChangementSalle {
 
 	/**
-	 * Permet de prevenir l'écouteur que l'on veut changer de Salle dans une certaine direction
-	 * La salle renvoie son héros pour le placer dans la nouvelle Salle
+	 * Permet de prevenir l'écouteur que l'on veut changer de Salle, on connait la direction
+	 * de changement de Salle et le héro a utiliser dans la nouvelle Salle
 	 * 
 	 * @param o Orientation du changement
-	 * @return	Renvoie le Heros de la Salle
+	 * @param h	Heros de la Salle précédente
 	 * 
 	 */
 	public void changerDeSalle(Orientation o, Heros h);

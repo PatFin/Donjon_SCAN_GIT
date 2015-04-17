@@ -7,12 +7,16 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
+ * 
+ * Cette classe permet d'adapter les evenements du clavier au jeu
+ * On retranscrit les touches en methodes attaquer, marcher, etc... 
+ * 
  * @author Baptiste
  *
  */
 public class JeuKeyAdapter extends KeyAdapter {
 
-	private EcouteurClavier ecouteur;	
+	private EcouteurClavier ecouteur;	//La classe qui attend un retour sur evenement
 
 
 	/**
@@ -27,6 +31,7 @@ public class JeuKeyAdapter extends KeyAdapter {
 	//METHODES HERITEES DE KeyAdapter
 	//Elles doivent appeler les methodes de l'ecouteur
 	public void keyPressed(KeyEvent e) {
+		
 		int code = e.getKeyCode();
 		switch (code) {
 
