@@ -68,9 +68,9 @@ public class Castle_Room extends Salle {
 				//we need to create a link from the south of this room to 
 				//the north of the previous room
 				Vecteur z= portes.get(Orientation.SUD);
-				casesSalle[z.x][z.y] = new Case_escalier();
-				casesSalle[z.x][z.y-1] = new Case_dalle_sol();
-				this.liens.add(new Link(lien.origine, lien.x, lien.y+1, this, z.x, z.y, Orientation.SUD, true));
+				casesSalle[(int) z.x][(int) z.y] = new Case_escalier();
+				casesSalle[(int) z.x][(int) (z.y-1)] = new Case_dalle_sol();
+				this.liens.add(new Link(lien.origine, (int)lien.x,(int) (lien.y+1), this,(int) z.x, (int)z.y, Orientation.SUD, true));
 				break;
 			default:
 					
@@ -78,9 +78,9 @@ public class Castle_Room extends Salle {
 		}
 		//L'escalier vers une autre future salle
 		Vecteur z = portes.get(Orientation.NORD);
-		casesSalle[z.x][z.y] = new Case_escalier();
-		casesSalle[z.x][z.y+1] = new Case_dalle_sol();
-		casesSalle[z.x][z.y+2] = new Case_dalle_sol();
+		casesSalle[(int) z.x][(int) z.y] = new Case_escalier();
+		casesSalle[(int) z.x][(int) (z.y+1)] = new Case_dalle_sol();
+		casesSalle[(int) z.x][(int) (z.y+2)] = new Case_dalle_sol();
 		this.liens.add(new Link(this, casesSalle.length/2, 0,Orientation.NORD, true));
 
 		refreshRoomCases(casesSalle);

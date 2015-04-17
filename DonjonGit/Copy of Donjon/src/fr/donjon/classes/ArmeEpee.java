@@ -42,9 +42,11 @@ public class ArmeEpee extends Arme{
 	public void update(long t) {
 		// TODO Auto-generated method stub
 		super.update(t);
-		
-		
-		
 	}
 
+	@Override
+	public void stopAttaquer() {
+		// TODO Auto-generated method stub
+		
+	}
 }

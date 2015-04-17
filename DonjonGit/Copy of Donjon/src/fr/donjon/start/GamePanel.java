@@ -18,6 +18,7 @@ import fr.donjon.classes.cases.Case;
 import fr.donjon.test.Gestionnaire;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
 
 /**
  * La classe mère qui permet de gerer l'affichage et la mise a jour d'une salle
@@ -138,15 +139,15 @@ public abstract class GamePanel extends JPanel implements EcouteurClavier{
 	}
 
 	@Override
-	public void stopAttaque(Orientation o) {
+	public void stopAttaque() {
 		// TODO Auto-generated method stub
-		gestionnaire.stopAttaque(o);
+		gestionnaire.stopAttaque();
 	}
 
 	@Override
-	public void deplacement(Orientation o) {
+	public void deplacement(Vecteur v) {
 		// TODO Auto-generated method stub
-		gestionnaire.deplacement(o);
+		gestionnaire.deplacement(v);
 	}
 
 	@Override
@@ -163,9 +164,9 @@ public abstract class GamePanel extends JPanel implements EcouteurClavier{
 	}
 	
 	@Override
-	public void stopDeplacement(Orientation o) {
+	public void stopDeplacement() {
 		// TODO Auto-generated method stub
-		gestionnaire.stopDeplacement(o);
+		gestionnaire.stopDeplacement();
 	}
 
 	

@@ -56,7 +56,7 @@ public class Salle_foret extends SalleAbs {
 	public void addDoor(Orientation o, boolean enabled){
 		//We change the tiles of the door
 		Vecteur v = porte.get(o);
-		this.cases[v.x][v.y] = new Case_herbe();
+		this.cases[(int)v.x][(int)v.y] = new Case_herbe();
 		
 		//The link is created in the mother class
 		super.addDoor(o, enabled);
@@ -71,7 +71,7 @@ public class Salle_foret extends SalleAbs {
 	public void addDoorToPrevRoom(Link l){
 		//We change the tiles of the door
 		Vecteur v = porte.get(Orientation.opposite(l.orientation));
-		this.cases[v.x][v.y] = new Case_dalle_sol();
+		this.cases[(int)v.x][(int)v.y] = new Case_dalle_sol();
 		
 		//The link is created in the mother class
 		super.addDoorToPrevRoom(l);

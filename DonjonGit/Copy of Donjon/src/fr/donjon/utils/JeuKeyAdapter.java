@@ -3,8 +3,9 @@
  */
 package fr.donjon.utils;
 
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.LinkedList;
 
 /**
  * 
@@ -14,10 +15,18 @@ import java.awt.event.KeyEvent;
  * @author Baptiste
  *
  */
-public class JeuKeyAdapter extends KeyAdapter {
+public class JeuKeyAdapter implements KeyListener {
 
 	private EcouteurClavier ecouteur;	//La classe qui attend un retour sur evenement
 
+	boolean attaque;
+	boolean deplacement;
+
+	LinkedList<Integer> tattk;
+	LinkedList<Integer> tdepl;
+	LinkedList<Integer> tobj;
+	LinkedList<Integer> pressed;
+	
 
 	/**
 	 * @param ecouteur La classe implementant l'ecouteur
@@ -25,107 +34,82 @@ public class JeuKeyAdapter extends KeyAdapter {
 	public JeuKeyAdapter(EcouteurClavier ecouteur) {
 		// TODO Auto-generated constructor stub
 		this.ecouteur = ecouteur;
-	}
+		this.attaque = false;
+		this.deplacement = false;
 
-
-	//METHODES HERITEES DE KeyAdapter
-	//Elles doivent appeler les methodes de l'ecouteur
-	public void keyPressed(KeyEvent e) {
+		this.tattk = new LinkedList<Integer>();
+		this.tdepl = new LinkedList<Integer>();
+		this.tobj = new LinkedList<Integer>();
+		this.pressed  = new LinkedList<Integer>();
 		
-		int code = e.getKeyCode();
-		switch (code) {
+		tattk.add(38);
+		tattk.add(40);
+		tattk.add(39);
+		tattk.add(37);
 
-		case KeyEvent.VK_Q   : 
-			ecouteur.deplacement(Orientation.OUEST);
-			break;
-
-		case KeyEvent.VK_D  : 
-			ecouteur.deplacement(Orientation.EST);
-			break;    
-
-		case KeyEvent.VK_Z   : 
-			ecouteur.deplacement(Orientation.NORD);
-			break;
-
-		case KeyEvent.VK_S  : 
-			ecouteur.deplacement(Orientation.SUD);
-			break; 
-
-		case KeyEvent.VK_LEFT   : 
-			ecouteur.attaque(Orientation.OUEST);
-			break;
-
-		case KeyEvent.VK_RIGHT  : 
-			ecouteur.attaque(Orientation.EST);
-			break;    
-
-		case KeyEvent.VK_UP   : 
-			ecouteur.attaque(Orientation.NORD);
-			break;
-
-		case KeyEvent.VK_DOWN  : 
-			ecouteur.attaque(Orientation.SUD);
-			break; 
-
-		case KeyEvent.VK_ESCAPE : 
-			System.exit(0);
-			break;
-
-		case KeyEvent.VK_ENTER   : 
-			ecouteur.togglePause();
-			break;       
-		}
-
-
+		tdepl.add(90);
+		tdepl.add(83);
+		tdepl.add(68);
+		tdepl.add(81);
 	}
 
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		int code = e.getKeyCode();
+		if(!pressed.contains(code))pressed.add(code);
+		handleEvent();
+	}
+
+	@Override
 	public void keyReleased(KeyEvent e) {
-
-		int code = e.getKeyCode();
-
-		switch (code) {
-
-		case KeyEvent.VK_Q   : 
-			ecouteur.stopDeplacement(Orientation.OUEST);
-			break;
-                                        
-		case KeyEvent.VK_D  : 
-			ecouteur.stopDeplacement(Orientation.EST);
-			break;    
-
-		case KeyEvent.VK_Z   : 
-			ecouteur.stopDeplacement(Orientation.NORD);
-			break;
-                                     
-		case KeyEvent.VK_S  : 
-			ecouteur.stopDeplacement(Orientation.SUD);
-			break; 
-			
-		case KeyEvent.VK_LEFT   : 
-			ecouteur.stopAttaque(Orientation.OUEST);
-			break;
-                                       
-		case KeyEvent.VK_RIGHT  : 
-			ecouteur.stopAttaque(Orientation.EST);
-			break;    
-
-		case KeyEvent.VK_UP   : 
-			ecouteur.stopAttaque(Orientation.NORD);
-			break;
-                                      
-		case KeyEvent.VK_DOWN  : 
-			ecouteur.stopAttaque(Orientation.SUD);
-			break; 
-                                   
-		case KeyEvent.VK_ESCAPE : 
-			System.exit(0);
-			break;
-
-		case KeyEvent.VK_ENTER   : 
-			//Nothing to do here !
-			break;       
-		}
-	
+		// TODO Auto-generated method stub
+		Integer code = e.getKeyCode();
+		if(pressed.contains(code))pressed.remove(code);
+		handleEvent();
 	}
+	
+	private void handleEvent(){
+		
+		Vecteur vit = new Vecteur(0,0);
+		boolean arret = true;
+		
+		for( Integer i : pressed ){
+			
+			if(tattk.contains(i)){
+				if(tattk.get(0) == i)ecouteur.attaque(Orientation.NORD);
+				else if(tattk.get(1) == i)ecouteur.attaque(Orientation.SUD);
+				else if(tattk.get(2) == i)ecouteur.attaque(Orientation.EST);
+				else if(tattk.get(3) == i)ecouteur.attaque(Orientation.OUEST);
+			}
+			
+			else if(tdepl.contains(i)){
+				
+				if(tdepl.get(0) == i)vit = vit.ajoute(Vecteur.vNord);
+				if(tdepl.get(1) == i)vit = vit.ajoute(Vecteur.vSud);
+				if(tdepl.get(2) == i)vit = vit.ajoute(Vecteur.vEst);
+				if(tdepl.get(3) == i)vit = vit.ajoute(Vecteur.vOuest);
+				arret = false;
+				ecouteur.deplacement(vit.normalise());
+			}
+			
+			else if (tobj.contains(i)){
+				
+			}
+			
+		}
+		
+		if(arret)ecouteur.stopDeplacement();
+		
+	}
+	
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		
+	}
+
+
+
 
 }

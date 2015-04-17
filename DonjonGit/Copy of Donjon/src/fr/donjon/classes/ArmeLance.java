@@ -29,5 +29,11 @@ public class ArmeLance extends Arme {
 		animationE = new Animation(src, new Vecteur(64, 64),7,6,DUR);
 		animation = animationS;
 	}
+	
+	@Override
+	public void stopAttaquer() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

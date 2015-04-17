@@ -9,9 +9,6 @@ import fr.donjon.classes.Heros;
 import fr.donjon.classes.Salle;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.test.GestionnaireJeuInfini;
-import fr.donjon.test.SalleAbs;
-import fr.donjon.test.Salle_foret;
-import fr.donjon.utils.Orientation;
 
 
 /**

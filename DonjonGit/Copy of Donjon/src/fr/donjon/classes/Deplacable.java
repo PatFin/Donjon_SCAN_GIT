@@ -14,8 +14,8 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class Deplacable extends Objet {
 	
-	Vecteur vvitesse;
-	int vitDeplacement;
+	public Vecteur vvitesse;
+	public int vitDeplacement;
 	
 	/**
 	 * 

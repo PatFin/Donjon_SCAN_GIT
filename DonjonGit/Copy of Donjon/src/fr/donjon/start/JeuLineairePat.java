@@ -23,6 +23,7 @@ import fr.donjon.classes.cases.Case;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
 
 
 /**
@@ -130,15 +131,15 @@ public class JeuLineairePat extends JFrame implements EcouteurClavier {
 	}
 
 	@Override
-	public void stopAttaque(Orientation o) {
+	public void stopAttaque() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deplacement(Orientation o) {
+	public void deplacement(Vecteur v) {
 		// TODO Auto-generated method stub
-		hero.marcher(o);
+		hero.marcher(v);
 	}
 
 	@Override
@@ -155,9 +156,9 @@ public class JeuLineairePat extends JFrame implements EcouteurClavier {
 	}
 
 	@Override
-	public void stopDeplacement(Orientation o) {
+	public void stopDeplacement() {
 		// TODO Auto-generated method stub
-		hero.stop(o);
+		hero.stop();
 	}
 	
 	  

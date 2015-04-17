@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
 
 /**
  * 
@@ -107,15 +108,15 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	}
 
 	@Override
-	public void stopAttaque(Orientation o) {
+	public void stopAttaque() {
 		// TODO Auto-generated method stub
-		game.stopAttaque(o);
+		game.stopAttaque();
 	}
 
 	@Override
-	public void deplacement(Orientation o) {
+	public void deplacement(Vecteur v) {
 		// TODO Auto-generated method stub
-		game.deplacement(o);
+		game.deplacement(v);
 	}
 
 	@Override
@@ -131,9 +132,9 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	}
 
 	@Override
-	public void stopDeplacement(Orientation o) {
+	public void stopDeplacement() {
 		// TODO Auto-generated method stub
-		game.stopDeplacement(o);
+		game.stopDeplacement();
 	}
 	
 	

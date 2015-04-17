@@ -8,6 +8,7 @@ import fr.donjon.classes.Salle;
 import fr.donjon.start.GamePanel;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
 
 /**
  * Permet la gestion des salles
@@ -52,15 +53,15 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 	}
 
 	@Override
-	public void stopAttaque(Orientation o) {
+	public void stopAttaque() {
 		// TODO Auto-generated method stub
-		this.listeSalles.getCurrent().getSalle().stopAttaque(o);
+		this.listeSalles.getCurrent().getSalle().stopAttaque();
 	}
 
 	@Override
-	public void deplacement(Orientation o) {
+	public void deplacement(Vecteur v) {
 		// TODO Auto-generated method stub
-		this.listeSalles.getCurrent().getSalle().deplacement(o);
+		this.listeSalles.getCurrent().getSalle().deplacement(v);
 	}
 
 	@Override
@@ -76,9 +77,9 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 	}
 
 	@Override
-	public void stopDeplacement(Orientation o) {
+	public void stopDeplacement() {
 		// TODO Auto-generated method stub
-		this.listeSalles.getCurrent().getSalle().stopDeplacement(o);
+		this.listeSalles.getCurrent().getSalle().stopDeplacement();
 	}
 	
 	

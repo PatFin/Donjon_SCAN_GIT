@@ -223,7 +223,7 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 	 * Method inherited from EcouteurClavier
 	 */
 	@Override
-	public void stopAttaque(Orientation o) {
+	public void stopAttaque() {
 		
 	}
 	
@@ -231,8 +231,8 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 	 * Method inherited from EcouteurClavier
 	 */
 	@Override
-	public void deplacement(Orientation o) {
-		this.hero.marcher(o);
+	public void deplacement(Vecteur v) {
+		this.hero.marcher(v);
 	}
 
 	/**
@@ -255,8 +255,8 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 	 * Method inherited from EcouteurClavier
 	 */
 	@Override
-	public void stopDeplacement(Orientation o) {
-		this.hero.stop(o);
+	public void stopDeplacement() {
+		this.hero.stop();
 	}
 
 }

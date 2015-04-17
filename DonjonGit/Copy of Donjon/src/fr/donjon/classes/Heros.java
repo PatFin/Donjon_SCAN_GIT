@@ -13,7 +13,7 @@ import fr.donjon.utils.Vecteur;
 
 /**
  * 
- * @author Vincent
+ * @author Baptiste
  *
  */
 public class Heros extends Personnage{
@@ -22,11 +22,10 @@ public class Heros extends Personnage{
 	final static int LRG = 64;
 	final static int VIE = 100;
 	final static int DEF = 10;
-	final static int VIT = 6;
+	final static int VIT = 2;
 	final static String src = "Ressources/Images/hero_map.png";
 	final static double COEFF = 2.5;
 	
-	boolean key;
 
 
 	/**
@@ -39,7 +38,6 @@ public class Heros extends Personnage{
 				new Rectangle(17,15,30,49), new Rectangle(22,48,20,16), true,
 				Vecteur.vNull, VIT, Orientation.SUD, EtatPersonnage.REPOS, VIE, DEF , null, Type.HERO);
 
-		key = false;
 
 		animationN = new Animation(src, new Vecteur(64, 64),8,9,(long)(VIT/COEFF*100));
 		animationO = new Animation(src, new Vecteur(64, 64),9,9,(long)(VIT/COEFF*100));
@@ -66,36 +64,34 @@ public class Heros extends Personnage{
 	 * Demarre le deplacement du personnage dans une direction
 	 * @param dir Direction de deplacement du personnage
 	 */
-	public void marcher(Orientation dir){
+	public void marcher(Vecteur v){
 		
-		//Si le personnage attaque, ne pas le faire se deplacer
-		if(this.etat == EtatPersonnage.ATTAQUE)return;
-		//Le personnage passe en mode deplacement
-		this.etat = EtatPersonnage.DEPLACEMENT;
-		this.o = dir;
-		//Reglage du vecteur vitesse et de l'animation selon la direction de deplacement
-		switch (dir){
-		case NORD:
-			this.vvitesse = Vecteur.vNord;
-			this.animation = animationN;
-			break;
-		case SUD:
-			this.vvitesse = Vecteur.vSud;
-			this.animation = animationS;
-			break;
-		case EST:
-			this.vvitesse = Vecteur.vEst;
-			this.animation = animationE;
-			break;
-		case OUEST:
-			this.vvitesse = Vecteur.vOuest;
-			this.animation = animationO;
-			break;
-		default :
-			this.vvitesse = Vecteur.vNull;
-			this.animation = animationS;
+		
+		if(this.etat == EtatPersonnage.ATTAQUE){
+			this.vvitesse = v;
 		}
+		
+		else if(this.etat == EtatPersonnage.REPOS){
+			this.etat = EtatPersonnage.DEPLACEMENT;
+			this.vvitesse = v;
 
+			if(v.y > 0)			this.animation = animationS;
+			else if ( v.y < 0)	this.animation = animationN;
+			else if ( v.x < 0)	this.animation = animationO;
+			else if ( v.x > 0 ) this.animation = animationE;
+			else				this.animation = animationS;
+			
+		}
+		
+		else if (this.etat == EtatPersonnage.DEPLACEMENT){
+			this.vvitesse = v;
+			if(v.y > 0)			this.animation = animationS;
+			else if ( v.y < 0)	this.animation = animationN;
+			else if ( v.x < 0)	this.animation = animationO;
+			else if ( v.x > 0 ) this.animation = animationE;
+			else				this.animation = animationS;
+		}
+		
 	}
 
 	/**

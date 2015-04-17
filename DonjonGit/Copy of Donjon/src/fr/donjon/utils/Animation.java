@@ -86,7 +86,10 @@ public class Animation{
 		temp.x = (int) (((t-timeStart)/(double)duration )*nb)*taille.x ;
 
 		//Dessin image
-		g.drawImage(im, x, y, x+w, y+h, temp.x, temp.y, temp.x+taille.x, temp.y+taille.y, null);
+		g.drawImage(im, (int) x, (int) y,
+				(int) x+w,(int) y+h, 
+				(int) temp.x,(int) temp.y,
+				(int) (temp.x+taille.x), (int) (temp.y+taille.y), null);
 
 
 	}
@@ -121,7 +124,10 @@ public class Animation{
 		temp.x = (int) (((t-timeStart)/(double)duration )*nb)*taille.x ;
 
 		//Dessin image
-		g.drawImage(im, x, y, x+w, y+h, temp.x, temp.y, temp.x+taille.x, temp.y+taille.y, null);
+		g.drawImage(im, (int) x, (int) y,
+				(int) x+w,(int) y+h, 
+				(int) temp.x,(int) temp.y,
+				(int) (temp.x+taille.x), (int) (temp.y+taille.y), null);
 
 		//Renvoi par defaut
 		return false;
@@ -153,7 +159,10 @@ public class Animation{
 		temp.x = ima*taille.x;
 
 		//Dessin image
-		g.drawImage(im, x, y, x+w, y+h, temp.x, temp.y, temp.x+taille.x, temp.y+taille.y, null);
+		g.drawImage(im, (int) x, (int) y,
+				(int) x+w,(int) y+h, 
+				(int) temp.x,(int) temp.y,
+				(int) (temp.x+taille.x), (int) (temp.y+taille.y), null);
 
 	}
 

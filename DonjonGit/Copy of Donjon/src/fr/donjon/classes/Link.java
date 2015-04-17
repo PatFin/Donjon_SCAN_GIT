@@ -43,7 +43,7 @@ public class Link {
 		this.orientation = o;
 		this.enabled = enabled;
 		
-		this.rectangleCollision=origine.cases[origineCase.x][origineCase.y].collision;
+		this.rectangleCollision=origine.cases[(int)origineCase.x][(int)origineCase.y].collision;
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class Link {
 		this.origineCase=origVecteur;
 		
 		
-		this.rectangleCollision=origine.cases[origineCase.x][origineCase.y].collision;
+		this.rectangleCollision=origine.cases[(int)origineCase.x][(int)origineCase.y].collision;
 	}
 	
 	

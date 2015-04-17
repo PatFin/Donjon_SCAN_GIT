@@ -7,6 +7,7 @@ import fr.donjon.classes.Salle;
 import fr.donjon.classes.cases.Case_escalier;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
 
 /**
  * 
@@ -70,15 +71,14 @@ public class SalleInteractive extends Salle implements EcouteurClavier{
 	}
 
 	@Override
-	public void stopAttaque(Orientation o) {
-		// TODO Auto-generated method stub
-		//Stoper attk du héro ici
+	public void stopAttaque() {
+		hero.stopAttaque();
 	}
 
 	@Override
-	public void deplacement(Orientation o) {
+	public void deplacement(Vecteur v) {
 		// TODO Auto-generated method stub
-		hero.marcher(o);
+		hero.marcher(v);
 	}
 
 	@Override
@@ -94,9 +94,9 @@ public class SalleInteractive extends Salle implements EcouteurClavier{
 	}
 
 	@Override
-	public void stopDeplacement(Orientation o) {
+	public void stopDeplacement() {
 		// TODO Auto-generated method stub
-		hero.stop(o);
+		hero.stop();
 	}
 	
 	

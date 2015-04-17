@@ -12,14 +12,14 @@ public class Vecteur {
 	public static final Vecteur vOuest  = new Vecteur(-1,0);
 	public static final Vecteur vNull  = new Vecteur(0,0);
 	
-	public int x, y;
+	public double x, y;
 	
 	/**
 	 * Constructeur de Vecteur
 	 * @param ax coordonnées horizontales
 	 * @param ay coordonnées verticales
 	 */
-	public Vecteur (int ax, int ay){
+	public Vecteur (double ax, double ay){
 		x=ax;
 		y=ay;
 	}
@@ -29,8 +29,8 @@ public class Vecteur {
 	 * @param a
 	 * @return u
 	 */
-	public Vecteur multiplie (float a){
-		return new Vecteur((int)a*x, (int)a*y);
+	public Vecteur multiplie (double a){
+		return new Vecteur(a*x, a*y);
 	}
 	
 	/**
@@ -42,16 +42,20 @@ public class Vecteur {
 		return new Vecteur(this.x+w.x, this.y+w.y);
 	}
 	
-	public Vecteur normalise(Vecteur v){
-		int module = (int) Math.sqrt( Math.pow(v.x, 2) + Math.pow(v.y, 2) );
-		return v.multiplie(1/module);
+	public Vecteur normalise(){
+		if(getNorm() == 0)return this;
+		return this.multiplie(1/getNorm());
 	
 	}
 	
-	public Vecteur setLocation(int x, int y){
+	public Vecteur setLocation(double x, double y){
 		this.x = x;
 		this.y = y;
 		return this;
+	}
+	
+	public double getNorm(){
+		return Math.sqrt( Math.pow(this.x, 2) + Math.pow(this.y, 2) );
 	}
 	
 	@Override

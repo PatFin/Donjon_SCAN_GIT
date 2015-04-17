@@ -298,15 +298,15 @@ public class Salle implements EcouteurClavier{
 	}
 
 	@Override
-	public void stopAttaque(Orientation o) {
+	public void stopAttaque() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deplacement(Orientation o) {
+	public void deplacement(Vecteur v) {
 		// TODO Auto-generated method stub
-		this.hero.marcher(o);
+		this.hero.marcher(v);
 	}
 
 	@Override
@@ -322,8 +322,8 @@ public class Salle implements EcouteurClavier{
 	}
 
 	@Override
-	public void stopDeplacement(Orientation o) {
+	public void stopDeplacement() {
 		// TODO Auto-generated method stub
-		this.hero.stop(o);
+		this.hero.stop();
 	}
 }

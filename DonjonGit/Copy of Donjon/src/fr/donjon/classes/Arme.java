@@ -5,12 +5,11 @@ import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatArme;
-import fr.donjon.utils.EtatPersonnage;
 import fr.donjon.utils.Orientation;
 
 /**
  * 
- * @author Alexandre
+ * @author Baptiste
  *
  */
 public abstract class Arme {
@@ -76,7 +75,7 @@ public abstract class Arme {
 		switch(etat){
 
 		case FINISHED: 
-			lanceur.etat = EtatPersonnage.REPOS;
+			lanceur.stopAttaque();
 			break;
 		case FINISHING : 
 			
@@ -123,7 +122,6 @@ public abstract class Arme {
 
 	public void stopAttaquer(){
 		this.etat = EtatArme.FINISHING;
-
 	}
 
 }

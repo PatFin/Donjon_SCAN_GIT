@@ -1,27 +1,17 @@
 package fr.donjon.start;
 
-import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import fr.donjon.editor.DialogListener;
-import fr.donjon.editor.DialogNouveau;
-import fr.donjon.utils.Vecteur;
 
 
 public class EcranAccueil extends JPanel{ 
@@ -47,6 +37,8 @@ public class EcranAccueil extends JPanel{
 
 		this.setPreferredSize(new Dimension(SCREENX,SCREENY));
 		
+		this.launcher = l;
+		
 		// lecture de l'image
 		try {
 			this.im=ImageIO.read (new File (srcImage));
@@ -55,7 +47,7 @@ public class EcranAccueil extends JPanel{
 			System.out.println ("Could not load image file.");
 		}
 
-		this.launcher = l;
+
 		// JPANEL ET BOUTONS
 		//Ajout du bouton à notre content pane
 		panel.add(boutonStart);
@@ -65,18 +57,16 @@ public class EcranAccueil extends JPanel{
 
 	}
 
-	// méthode pour peindre la fenetre 
-
-	public void paint(Graphics g){
+	// méthode pour peindre l'image de fond
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paintComponent(g);
+		
 		if (im!=null) {
 			g.drawImage (im, 0, 0, this);	
 		}
-		System.out.println (im);
-
-
-
 	}
-
 	//les actions de la souris
 
 	private void addListeners(){

@@ -66,11 +66,6 @@ public abstract class Personnage extends Deplacable{
 	
 	@Override
 	public void draw(long t, Graphics g) {
-		/**
-		 * Displays the god damn rectangle associated with the character ... Finally!
-		 */
-		//g.setColor(Color.red);
-		//g.fillRect(collisionDecor.x, collisionDecor.y, collisionDecor.width, collisionDecor.height);
 		
 		switch(etat){
 		case ATTAQUE:
@@ -92,13 +87,15 @@ public abstract class Personnage extends Deplacable{
 		switch(etat){
 
 		case ATTAQUE :
-			arme.update(t);
+			if(arme != null)arme.update(t);
+			Vecteur nexPos = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(vitDeplacement));
+			setLocation( (int) nexPos.x, (int) nexPos.y);
 			break;
 			
 		case DEPLACEMENT :
 			//A optimiser, eviter de créer un objets ttes le 40ms
-			Vecteur nexPos = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(vitDeplacement));
-			setLocation(nexPos.x, nexPos.y);
+			Vecteur nexPos1 = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(vitDeplacement));
+			setLocation((int) nexPos1.x, (int) nexPos1.y);
 			break;
 
 		case REPOS :
@@ -108,9 +105,23 @@ public abstract class Personnage extends Deplacable{
 
 	}
 
-	public void stop(Orientation or){
-		if(etat==EtatPersonnage.DEPLACEMENT && o==or)
+	public void stop(){
+		if(etat==EtatPersonnage.DEPLACEMENT){
 			this.etat = EtatPersonnage.REPOS;
+			this.vvitesse = Vecteur.vNull;
+		}
+		else if( etat == EtatPersonnage.ATTAQUE){
+			this.vvitesse = Vecteur.vNull;
+		}
+	}
+	
+	public void stopAttaque(){
+		if(this.vvitesse == Vecteur.vNull){
+			this.etat = EtatPersonnage.REPOS;
+		}
+		else this.etat = EtatPersonnage.DEPLACEMENT;
+		
+		if(arme != null)arme.stopAttaquer();
 	}
 	
 	/**
