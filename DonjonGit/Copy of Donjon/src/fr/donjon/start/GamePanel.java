@@ -23,9 +23,7 @@ import fr.donjon.utils.Vecteur;
 /**
  * La classe mère qui permet de gerer l'affichage et la mise a jour d'une salle
  * cette classe ne se charge que de l'affichage
- * 
  * @author Baptiste
- *
  */
 public abstract class GamePanel extends JPanel implements EcouteurClavier{
 
@@ -43,7 +41,6 @@ public abstract class GamePanel extends JPanel implements EcouteurClavier{
 
 	long temps;
 
-	public Salle salle; 	//LA salle a afficher
 
 	/**
 	 * Permet de creer un JPanel contenant le jeu
@@ -77,8 +74,7 @@ public abstract class GamePanel extends JPanel implements EcouteurClavier{
 	 */
 	public void paint(Graphics g){
 
-		salle.draw(temps, g);
-
+		this.gestionnaire.currentRoom.draw(temps, g);
 	}
 
 	/**
@@ -86,22 +82,10 @@ public abstract class GamePanel extends JPanel implements EcouteurClavier{
 	 */
 	public void update(){
 
-		salle.update(temps);
+		this.gestionnaire.currentRoom.update(temps);
 		repaint();
 	}
 
-	/**
-	 * Permet de changer la salle active 
-	 * 
-	 * @param nSalle La nouvelle salle a dessiner
-	 */
-	public void changeSalle(Salle nSalle){
-
-		timer.stop();
-		this.salle = nSalle;
-		timer.start();
-
-	}
 
 	/**
 	 * Permet de démarrer l'actualisation du jeu (par défaut en pause)

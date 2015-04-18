@@ -131,7 +131,7 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 	 * Makes the hero change of room.
 	 */
 	@Override
-	public void changerDeSalle(Orientation o, Heros h) {
+	public void changerDeSalle(Link l, Heros h) {
 		// TODO Auto-generated method stub
 
 	}

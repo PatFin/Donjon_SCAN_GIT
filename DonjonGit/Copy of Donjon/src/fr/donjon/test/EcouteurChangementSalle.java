@@ -1,18 +1,17 @@
 package fr.donjon.test;
 
-import fr.donjon.classes.Heros;
-import fr.donjon.utils.Orientation;
+import fr.donjon.classes.Link;
 
 public interface EcouteurChangementSalle {
 
 	/**
 	 * Permet de prevenir l'écouteur que l'on veut changer de Salle, on connait la direction
 	 * de changement de Salle et le héro a utiliser dans la nouvelle Salle
-	 * 
-	 * @param o Orientation du changement
-	 * @param h	Heros de la Salle précédente
-	 * 
+	 * @param l le lien de la salle actuelle vers la prochaine salle
 	 */
-	public void changerDeSalle(Orientation o, Heros h);
+
+	public void changerDeSalle(Link l);
 	
+	
+	public boolean mustChange(SalleAbs s);
 }

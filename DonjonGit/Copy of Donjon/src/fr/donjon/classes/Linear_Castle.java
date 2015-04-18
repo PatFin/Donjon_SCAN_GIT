@@ -19,7 +19,7 @@ public class Linear_Castle {
 	 * @param ecran
 	 */
 	public Linear_Castle(Heros p, Rectangle ecran) {
-		this.firstRoom = new  Castle_Room(p, ecran,null);	
+		this.firstRoom = new  Castle_Room(p, ecran,null, 1, Orientation.OUEST);	
 		this.currentRoom=firstRoom;
 		this.hero = p;
 	}
@@ -55,7 +55,7 @@ public class Linear_Castle {
 				if(!z.hasDestination()){
 					System.out.println("Creation of a new room!");
 					
-					Salle s = new Castle_Room(hero, currentRoom.ecran, z);
+					Salle s = new Castle_Room(hero, currentRoom.ecran, z, 1, Orientation.NORD);
 					Vecteur v = s.portes.get(Orientation.SUD);
 					
 					z.setDestination(s, v.x, v.y-1);
