@@ -5,7 +5,6 @@ package fr.donjon.test;
 
 import java.util.LinkedList;
 
-import fr.donjon.classes.Heros;
 import fr.donjon.classes.Link;
 import fr.donjon.start.GamePanel;
 import fr.donjon.utils.EcouteurClavier;
@@ -25,9 +24,7 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 	public SalleAbs currentRoom;						//La salle actuelle
 	
 	public Gestionnaire(GamePanel game) {
-		
 		this.game = game;
-		
 		
 	}
 

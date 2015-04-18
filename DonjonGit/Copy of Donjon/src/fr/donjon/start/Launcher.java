@@ -6,6 +6,7 @@ package fr.donjon.start;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import fr.donjon.test.JeuLineaire;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
@@ -30,7 +31,7 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 */
 	public Launcher(){
 
-		game = new JeuLineaireBlac(); 	//Ajouter par la suite un gameLin et gameHistoire
+		game = new JeuLineaire(); 	//Ajouter par la suite un gameLin et gameHistoire
 		
 		menu = new EcranAccueil(this);	//
 		

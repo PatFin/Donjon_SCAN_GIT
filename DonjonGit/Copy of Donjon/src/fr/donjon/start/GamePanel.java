@@ -33,7 +33,7 @@ public abstract class GamePanel extends JPanel implements EcouteurClavier{
 
 	BufferedImage arrierePlan;
 	Graphics buffer;
-	Gestionnaire gestionnaire;
+	protected Gestionnaire gestionnaire;
 
 	public Rectangle ecran;
 	Timer timer;
@@ -49,8 +49,8 @@ public abstract class GamePanel extends JPanel implements EcouteurClavier{
 
 		initialisationFenetre();
 		timer = new Timer(timerTime, new TimerAction());
-
 		//Le timer sera démarré plus tard grace a la méthode startGame()
+			
 	}
 
 	private void initialisationFenetre(){

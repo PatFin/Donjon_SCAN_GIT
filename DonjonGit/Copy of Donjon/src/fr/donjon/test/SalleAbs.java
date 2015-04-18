@@ -58,6 +58,9 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 		this.personnage = new LinkedList <Personnage> ();
 		this.personnage.add(hero);
 		
+		this.link = new EnumMap<Orientation, Link>(Orientation.class);
+		
+		generateRoom();
 		setDestinationPlaces();
 		setDoorPlaces();
 	}

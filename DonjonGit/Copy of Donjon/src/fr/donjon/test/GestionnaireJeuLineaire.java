@@ -12,7 +12,9 @@ import fr.donjon.utils.Vecteur;
 public class GestionnaireJeuLineaire extends Gestionnaire {
 
 	public GestionnaireJeuLineaire(GamePanel game) {
+		
 		super(game);
+		
 		
 		SalleAbs firstRoom = new Salle_foret(game.ecran, new Heros(200,200), Orientation.NORD); //On crée une premiere Salle 
 		
@@ -20,7 +22,7 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 		//comment creer le lien adapté ?
 		//
 		currentRoom = firstRoom;
-		this.listeSalles = new LinkedList<SalleAbs>(); 											//On initialise la liste avec la première salle
+		this.listeSalles = new LinkedList<SalleAbs>(); 			//On initialise la liste avec la première salle
 		this.listeSalles.add(firstRoom);
 		
 	}
