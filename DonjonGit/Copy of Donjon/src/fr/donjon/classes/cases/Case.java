@@ -43,7 +43,7 @@ public class Case {
 	 * @param vertical index de l'array 2D de la salle.
 	 * @param horizontal index de l'array 2D de la salle.
 	 */
-	public void setCollisionBoxLocation(int vertical, int horizontal){
+	public void setCollisionBoxLocation(int horizontal, int vertical){
 		this.collision.setLocation(Case.TAILLE*horizontal, Case.TAILLE*vertical);
 	}
 

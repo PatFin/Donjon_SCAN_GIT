@@ -120,8 +120,6 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 				for(int x=0; x<cases.length;x++){
 
 					for(int y=0; y<cases[0].length; y++){
-						System.out.println(x+" "+y);
-						System.out.println(z);
 						//If the character is in collision with a tile, apply method inCollision of the corresponding tile. 
 
 						if(z.collisionDecor.intersects(cases[x][y].collision)){	
