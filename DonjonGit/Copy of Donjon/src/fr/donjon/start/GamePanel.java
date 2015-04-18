@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import fr.donjon.classes.Salle;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.test.Gestionnaire;
 import fr.donjon.utils.EcouteurClavier;
@@ -114,42 +113,36 @@ public abstract class GamePanel extends JPanel implements EcouteurClavier{
 	//INTERFACE D'ECOUTE///////////////////////////////////
 	///////////////////////////////////////////////////////
 	
-	//On fait passer les ordres au Gestionnaire et on intercept celui pour stopper le Timer
+	//On fait passer les ordres au Gestionnaire et on intercepte celui pour stopper le Timer
 	
 	@Override
 	public void attaque(Orientation o) {
-		// TODO Auto-generated method stub
 		gestionnaire.attaque(o);
 	}
 
 	@Override
 	public void stopAttaque() {
-		// TODO Auto-generated method stub
 		gestionnaire.stopAttaque();
 	}
 
 	@Override
 	public void deplacement(Vecteur v) {
-		// TODO Auto-generated method stub
 		gestionnaire.deplacement(v);
 	}
 
 	@Override
 	public void utiliseObjet(int reference) {
-		// TODO Auto-generated method stub
 		gestionnaire.utiliseObjet(reference);
 	}
 
 	@Override
 	public void togglePause() {
-		// TODO Auto-generated method stub
 		if(timer.isRunning())timer.stop();
 		else timer.start();
 	}
 	
 	@Override
 	public void stopDeplacement() {
-		// TODO Auto-generated method stub
 		gestionnaire.stopDeplacement();
 	}
 

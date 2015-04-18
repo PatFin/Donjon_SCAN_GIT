@@ -16,6 +16,8 @@ public class GestionnaireJeuInfini extends Gestionnaire implements EcouteurChang
 	
 	public GestionnaireJeuInfini(GamePanel game) {
 		super(game);
+		
+		
 	}
 
 	

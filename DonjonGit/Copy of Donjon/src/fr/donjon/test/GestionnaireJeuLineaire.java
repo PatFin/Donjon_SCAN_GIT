@@ -1,5 +1,7 @@
 package fr.donjon.test;
 
+import java.util.LinkedList;
+
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Link;
 import fr.donjon.classes.cases.Case;
@@ -11,12 +13,21 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 
 	public GestionnaireJeuLineaire(GamePanel game) {
 		super(game);
+		
+		SalleAbs firstRoom = new Salle_foret(game.ecran, new Heros(200,200), Orientation.NORD); //On crée une premiere Salle 
+		
+		// TODO: On devrait utiliser la methode changerSale(?) ici
+		//comment creer le lien adapté ?
+		//
+		currentRoom = firstRoom;
+		this.listeSalles = new LinkedList<SalleAbs>(); 											//On initialise la liste avec la première salle
+		this.listeSalles.add(firstRoom);
+		
 	}
 
 
 	@Override
 	public void changerDeSalle(Link l) {
-		// TODO Auto-generated method stub
 		if(!l.hasDestination()){
 			createNextRoom(l);
 		}
@@ -30,7 +41,6 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 
 	@Override
 	public void createNextRoom(Link l) {
-		// TODO Auto-generated method stub
 		Orientation a = Orientation.opposite(l.orientation);
 		SalleAbs s = new Salle_foret(l.origineSalle.hero, l, Orientation.opposite(l.orientation));
 		l.setDestination(l.origineSalle, s.destination.get(a));

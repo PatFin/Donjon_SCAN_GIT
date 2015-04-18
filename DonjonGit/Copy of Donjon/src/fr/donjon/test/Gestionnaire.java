@@ -28,11 +28,7 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 		
 		this.game = game;
 		
-		SalleAbs firstRoom = new Salle_foret(game.ecran, new Heros(200,200), Orientation.NORD); //On crée une premiere Salle 
-		currentRoom = firstRoom;
 		
-		this.listeSalles = new LinkedList<SalleAbs>(); //On initialise la liste avec la première salle
-		this.listeSalles.add(firstRoom);
 	}
 
 	/**
