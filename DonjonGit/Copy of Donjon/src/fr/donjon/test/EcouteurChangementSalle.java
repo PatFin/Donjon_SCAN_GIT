@@ -1,6 +1,7 @@
 package fr.donjon.test;
 
 import fr.donjon.classes.Link;
+import fr.donjon.utils.Orientation;
 
 public interface EcouteurChangementSalle {
 
@@ -17,5 +18,5 @@ public interface EcouteurChangementSalle {
 	 * de Gestionnaire selon les besoins.
 	 * @return true si on doit changer de salle, false sinon.
 	 */
-	public boolean mustChange();
+	public Orientation mustChange();
 }

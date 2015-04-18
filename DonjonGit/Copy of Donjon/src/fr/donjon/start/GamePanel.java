@@ -81,7 +81,7 @@ public abstract class GamePanel extends JPanel implements EcouteurClavier{
 	 */
 	public void update(){
 
-		this.gestionnaire.currentRoom.update(temps);
+		this.gestionnaire.update(temps);
 		repaint();
 	}
 

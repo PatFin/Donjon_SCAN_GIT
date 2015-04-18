@@ -33,20 +33,21 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 		}
 		Vecteur v = l.destinationSalle.destination.get(Orientation.opposite(l.orientation));
 		l.destinationSalle.hero.setLocation((int)(v.x*Case.TAILLE), (int)(v.y*Case.TAILLE));
+		this.currentRoom = l.destinationSalle;
 	}
 
 
 	@Override
 	public void createNextRoom(Link l) {
 		Orientation a = Orientation.opposite(l.orientation);
-		SalleAbs s = new Salle_foret(l.origineSalle.hero, l, Orientation.opposite(l.orientation));
-		l.setDestination(l.origineSalle, s.destination.get(a));
+		SalleAbs s = new Salle_foret(l.origineSalle.hero, l, l.orientation);
+		l.setDestination(s, s.destination.get(a));
 	}
 
 
 
 	@Override
-	public boolean mustChange() {
+	public Orientation mustChange() {
 		return super.mustChange();
 	}
 

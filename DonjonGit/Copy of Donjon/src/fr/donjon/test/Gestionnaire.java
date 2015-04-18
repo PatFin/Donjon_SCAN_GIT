@@ -21,7 +21,7 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 
 	GamePanel game;								//Le jeu qui gère l'affichage de la Salle
 	public LinkedList<SalleAbs> listeSalles;	//La liste des salles du donjon
-	public SalleAbs currentRoom;						//La salle actuelle
+	public SalleAbs currentRoom;				//La salle actuelle
 	
 	public Gestionnaire(GamePanel game) {
 		this.game = game;
@@ -54,9 +54,7 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 	
 	
 	@Override
-	public boolean mustChange() {
-		boolean b=false;
-		
+	public Orientation mustChange() {
 		
 		Link[] l=new Link[4];
 		l[0]=currentRoom.link.get(Orientation.NORD);
@@ -64,18 +62,47 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 		l[2]=currentRoom.link.get(Orientation.EST);
 		l[3]=currentRoom.link.get(Orientation.OUEST);
 		
-		for(int i=0; i<l.length;i++){
+		int i;
+		for(i=0; i<l.length;i++){
 			if(l[i]!=null){
 				if(currentRoom.hero.enCollision(l[i].rectangleCollision) && l[i].enabled){
-					b=true;
 					break;
 				}
 			}
 		}
 		
-		return b;
+		switch(i){
+		case 0:
+			return Orientation.NORD;
+		case 1:
+			return Orientation.SUD;
+		case 2:
+			return Orientation.EST;
+		case 3:
+			return Orientation.OUEST;
+		default:
+			return null;
+		}
+		
+		
 	} 
 	
+	
+	/**
+	 * Updates the current room and checks the need for change of Room
+	 * @param temps parameter used for the objects in the room.
+	 */
+	public void update(long temps) {
+		this.currentRoom.update(temps);
+		
+		//TODO écrire le test "si doit changer de salle alors changer de salle".
+		
+		Orientation o = this.mustChange();
+		if(o != null){
+			changerDeSalle(currentRoom.link.get(o));
+		}
+		
+	}
 	
 	
 	
@@ -86,31 +113,26 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 
 	@Override
 	public void attaque(Orientation o) {
-		// TODO Auto-generated method stub
 		this.currentRoom.attaque(o);
 	}
 
 	@Override
 	public void stopAttaque() {
-		// TODO Auto-generated method stub
 		this.currentRoom.stopAttaque();
 	}
 
 	@Override
 	public void deplacement(Vecteur v) {
-		// TODO Auto-generated method stub
 		this.currentRoom.deplacement(v);
 	}
 
 	@Override
 	public void utiliseObjet(int reference) {
-		// TODO Auto-generated method stub
 		this.currentRoom.utiliseObjet(reference);
 	}
 
 	@Override
 	public void togglePause() {
-		// TODO Auto-generated method stub
 		//Nothing to do, its done in game panel
 	}
 
@@ -119,5 +141,11 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 		// TODO Auto-generated method stub
 		this.currentRoom.stopDeplacement();
 	}
+
+
+
+
+
+
 	
 }

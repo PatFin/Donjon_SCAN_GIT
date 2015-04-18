@@ -105,7 +105,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		Personnage z;
 
 		for(int i=0;i<personnage.size();i++){
-
 			z=personnage.get(i);
 
 			if(z!=null){
