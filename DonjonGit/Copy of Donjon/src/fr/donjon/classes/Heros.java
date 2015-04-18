@@ -22,11 +22,11 @@ public class Heros extends Personnage{
 	final static int LRG = 64;
 	final static int VIE = 100;
 	final static int DEF = 10;
-	final static int VIT = 2;
+	final static int VIT = 4;
 	final static String src = "Ressources/Images/hero_map.png";
 	final static double COEFF = 2.5;
 	
-
+	
 
 	/**
 	 * 
@@ -46,6 +46,8 @@ public class Heros extends Personnage{
 		animation = animationS;
 		
 		this.arme = new ArmeLance(this);
+		
+		
 
 	}
 
@@ -56,7 +58,6 @@ public class Heros extends Personnage{
 
 	@Override
 	public void update(long t) {
-		// TODO Auto-generated method stub
 		super.update(t);
 	}
 
@@ -92,6 +93,7 @@ public class Heros extends Personnage{
 			else				this.animation = animationS;
 		}
 		
+		
 	}
 
 	/**
@@ -101,7 +103,6 @@ public class Heros extends Personnage{
 
 	@Override
 	public boolean enCollision(Rectangle r) {
-		// TODO Auto-generated method stub
 		return super.enCollision(r);
 	}
 	
@@ -124,7 +125,6 @@ public class Heros extends Personnage{
 
 	@Override
 	public void utiliserObjet(int reference) {
-		// TODO Auto-generated method stub
 		
 	}
 

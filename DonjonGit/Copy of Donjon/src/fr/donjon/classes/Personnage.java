@@ -31,6 +31,8 @@ public abstract class Personnage extends Deplacable{
 	Animation animationE;
 	Animation animationO;
 	
+	public Vecteur lPos;	//Permet la gestion des collisions
+	
 	/**
 	 * 
 	 * @param ax			Position x
@@ -61,6 +63,8 @@ public abstract class Personnage extends Deplacable{
 		this.armure = armure;
 		this.vie = vie;
 		this.type = t;
+		
+		this.lPos = new Vecteur(ax, ay);
 	}
 	
 	
@@ -83,6 +87,8 @@ public abstract class Personnage extends Deplacable{
 	public void update(long t) {
 		// TODO Auto-generated method stub
 		super.update(t);
+		
+		this.lPos.setLocation(image.x, image.y); //On met a jour la position précédente
 		
 		switch(etat){
 
@@ -140,21 +146,6 @@ public abstract class Personnage extends Deplacable{
 	 */
 	public abstract void utiliserObjet(int reference);
 	
-	/**
-	 * Implémentation de la méthode de la classe mère
-	 */
 	
-	public Orientation cloneOrientation(){
-		
-		switch(this.o){
-		case NORD : return Orientation.NORD;
-		case SUD : return Orientation.SUD;
-		case EST : return Orientation.EST;
-		case OUEST : return Orientation.OUEST;
-		default : return Orientation.NORD;
-		
-		}
-		
-	}
 	
 }

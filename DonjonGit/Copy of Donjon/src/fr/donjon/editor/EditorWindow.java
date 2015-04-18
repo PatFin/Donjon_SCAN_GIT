@@ -179,7 +179,7 @@ public class EditorWindow extends JFrame{
 
 					@Override
 					public void onValidate(Vecteur v) {
-						panDessin.reinitialize(v.x, v.y); //Reinitialisation avec la nouvelle taille
+						panDessin.reinitialize((int)v.x, (int)v.y); //Reinitialisation avec la nouvelle taille
 					}
 
 					@Override

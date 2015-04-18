@@ -169,7 +169,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 
 		int offSet = (dim*thickness)/2;
 	
-		g.drawImage(imageBrosse, mouse.x-offSet, mouse.y-offSet, this);
+		g.drawImage(imageBrosse, (int)(mouse.x-offSet), (int)(mouse.y-offSet), this);
 
 	}
 
@@ -224,11 +224,11 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 		Vecteur c = new Vecteur(0,0);
 		int offset = (dim*thickness/2);
 
-		for(int y = (mouse.y-offset)+dim/2 ; y < (mouse.y+offset) ; y+=dim){
-			for(int x = (mouse.x-offset)+dim/2 ; x < (mouse.x+offset) ; x+=dim){
+		for(int y = (int) ((mouse.y-offset)+dim/2) ; y < (mouse.y+offset) ; y+=dim){
+			for(int x = (int) ((mouse.x-offset)+dim/2) ; x < (mouse.x+offset) ; x+=dim){
 				c = getCoordinates(x, y); //On simule le déplacement de la souris
 				if( c.x >= 0 && c.x < width && c.y >= 0 && c.y < height){
-					cases[c.x][c.y] = caseT.clone();
+					cases[(int) c.x][(int) c.y] = caseT.clone();
 				}
 				
 			}
