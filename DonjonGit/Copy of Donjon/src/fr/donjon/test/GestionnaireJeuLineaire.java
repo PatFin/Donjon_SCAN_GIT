@@ -16,7 +16,7 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 		super(game);
 		
 		
-		SalleAbs firstRoom = new Salle_foret(game.ecran, new Heros(200,200), Orientation.NORD); //On crée une premiere Salle 
+		SalleAbs firstRoom = new Salle_foret(game.ecran, new Heros(200,200), Orientation.random()); //On crée une premiere Salle 
 		
 		
 		currentRoom = firstRoom;
@@ -40,7 +40,7 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 	@Override
 	public void createNextRoom(Link l) {
 		Orientation a = Orientation.opposite(l.orientation);
-		SalleAbs s = new Salle_foret(l.origineSalle.hero, l, l.orientation);
+		SalleAbs s = new Salle_foret(l.origineSalle.hero, l, Orientation.random(a));
 		l.setDestination(s, s.destination.get(a));
 	}
 
