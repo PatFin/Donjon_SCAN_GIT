@@ -21,7 +21,7 @@ public class Link {
 	public Vecteur origineCase;
 	
 	public Orientation orientation;
-	private Rectangle rectangleCollision;	//Si le héro marche sur ce rectangle et que enabled vaut true, alors on change de salle.
+	public Rectangle rectangleCollision;	//Si le héro marche sur ce rectangle et que enabled vaut true, alors on change de salle.
 	public boolean enabled;					//autorise ou pas le changement de salle.
 	
 	/**

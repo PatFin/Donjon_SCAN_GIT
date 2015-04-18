@@ -19,7 +19,7 @@ import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
-public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavier {
+public abstract class SalleAbs implements EcouteurClavier {
 
 	/**
 	 * Attributes
@@ -131,24 +131,6 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 		}
 	}
 
-
-	/**
-	 * Makes the hero change of room.
-	 */
-	@Override
-	public void changerDeSalle(Link l) {
-		// TODO Auto-generated method stub
-
-	}
-	/**
-	 * 
-	 * @param s
-	 * @return
-	 */
-	public boolean mustChange(SalleAbs s) {
-		// TODO implement the damn thing.
-		return false;
-	}
 
 	/**
 	 * This method generates the image of the room.

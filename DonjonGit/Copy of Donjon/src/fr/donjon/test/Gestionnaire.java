@@ -27,14 +27,10 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 		this.game = game;
 		
 	}
-
-	/**
-	 * Methode appelée quand la salle prévient qu'il faut changer de salle.
-	 * @param l Le lien de la salle actuelle vers la prochaine salle
-	 * @param h le hero controlé par le joueur.
-	 */
-	@Override
-	public abstract void changerDeSalle(Link l);
+	
+	
+	
+	
 	
 	/**
 	 * Method called when the link has no destination set yet.
@@ -51,8 +47,40 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 		return currentRoom;
 	}
 	
+	
 	/////////////////////////////////////
-	//INTERFACE D'ECOUTE/////////////////
+	//INTERFACE CHANGEMENT SALLE/////////
+	/////////////////////////////////////
+	
+	
+	@Override
+	public boolean mustChange() {
+		boolean b=false;
+		
+		
+		Link[] l=new Link[4];
+		l[0]=currentRoom.link.get(Orientation.NORD);
+		l[1]=currentRoom.link.get(Orientation.SUD);
+		l[2]=currentRoom.link.get(Orientation.EST);
+		l[3]=currentRoom.link.get(Orientation.OUEST);
+		
+		for(int i=0; i<l.length;i++){
+			if(l[i]!=null){
+				if(currentRoom.hero.enCollision(l[i].rectangleCollision) && l[i].enabled){
+					b=true;
+					break;
+				}
+			}
+		}
+		
+		return b;
+	} 
+	
+	
+	
+	
+	/////////////////////////////////////
+	//INTERFACE ECOUTEUR CLAVIER/////////
 	/////////////////////////////////////
 
 

@@ -18,9 +18,7 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 		
 		SalleAbs firstRoom = new Salle_foret(game.ecran, new Heros(200,200), Orientation.NORD); //On crée une premiere Salle 
 		
-		// TODO: On devrait utiliser la methode changerSale(?) ici
-		//comment creer le lien adapté ?
-		//
+		
 		currentRoom = firstRoom;
 		this.listeSalles = new LinkedList<SalleAbs>(); 			//On initialise la liste avec la première salle
 		this.listeSalles.add(firstRoom);
@@ -35,9 +33,6 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 		}
 		Vecteur v = l.destinationSalle.destination.get(Orientation.opposite(l.orientation));
 		l.destinationSalle.hero.setLocation((int)(v.x*Case.TAILLE), (int)(v.y*Case.TAILLE));
-		
-		
-		
 	}
 
 
@@ -49,13 +44,10 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 	}
 
 
+
 	@Override
-	public boolean mustChange(SalleAbs s) {
-		
-		
-		
-		
-		return false;
+	public boolean mustChange() {
+		return super.mustChange();
 	}
 
 }

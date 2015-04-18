@@ -9,9 +9,13 @@ public interface EcouteurChangementSalle {
 	 * de changement de Salle et le héro a utiliser dans la nouvelle Salle
 	 * @param l le lien de la salle actuelle vers la prochaine salle
 	 */
-
 	public void changerDeSalle(Link l);
 	
-	
-	public boolean mustChange(SalleAbs s);
+	/**
+	 * Methode à implémenter dans le Gestionnaire abstrait.
+	 * Il sera possible de la redéfinir dans les gestionnaires dérivant
+	 * de Gestionnaire selon les besoins.
+	 * @return true si on doit changer de salle, false sinon.
+	 */
+	public boolean mustChange();
 }
