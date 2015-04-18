@@ -116,11 +116,25 @@ public class Salle_foret extends SalleAbs {
 		for(int x=1; x<cases.length-1;x++){
 			for(int y=1;y<cases[0].length-1;y++){
 				cases[x][y]=new Case_herbe();
+				cases[x][y].setCollisionBoxLocation(y, x);
 			}
 		}
 		
 		//The sides are filled with black tiles.
-		fillEmptyWithVoid();
+		super.fillEmptyWithVoid();
 		
+	}
+
+
+	@Override
+	public void changerDeSalle(Link l) {
+		// TODO Auto-generated method stub
+		super.changerDeSalle(l);
+	}
+
+
+	@Override
+	public boolean mustChange(SalleAbs s) {
+		return super.mustChange(s);
 	}
 }

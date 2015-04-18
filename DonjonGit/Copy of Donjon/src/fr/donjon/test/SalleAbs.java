@@ -117,9 +117,12 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 				for(int x=0; x<cases.length;x++){
 					
 					for(int y=0; y<cases[0].length; y++){
+						System.out.println(x+" "+y);
+						System.out.println(z);
+						//If the character is in collision with a tile, apply method inCollision of the corresponding tile. 
 						
-						if(z.collisionDecor.intersects(cases[x][y].collision)){
-							
+						//TODO there is yet a bug to be corrected. I suspect the cases[x][y].collision rectangle is null. 
+						if(z.collisionDecor.intersects(cases[x][y].collision)){	
 							cases[x][y].inCollision(z);
 							
 						}
@@ -134,11 +137,19 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 	 * Makes the hero change of room.
 	 */
 	@Override
-	public void changerDeSalle(Link l, Heros h) {
+	public void changerDeSalle(Link l) {
 		// TODO Auto-generated method stub
-
+		
 	}
-	
+	/**
+	 * 
+	 * @param s
+	 * @return
+	 */
+	public boolean mustChange(SalleAbs s) {
+		// TODO implement the damn thing.
+		return false;
+	}
 	
 	/**
 	 * This method generates the image of the room.
@@ -155,7 +166,15 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 		for(int y=0;y<cases[0].length;y++){
 			for(int x=0;x<cases.length;x++){
 				if(cases[x][y] !=null){
+					//The image is being created
 					bufferImageSalle.drawImage(cases[x][y].image, x*Case.TAILLE,y*Case.TAILLE, Case.TAILLE, Case.TAILLE, null);
+					
+					//One places the collision box of the Case at the correct position
+					try{
+						this.cases[x][y].setCollisionBoxLocation(x, y);
+					}catch(Exception e){
+						System.out.println("Case ["+x+","+y+"] non définie.");
+					}
 				}
 			}
 		}
@@ -208,6 +227,7 @@ public abstract class SalleAbs implements EcouteurChangementSalle,EcouteurClavie
 				
 				if(cases[x][y]==null){
 					cases[x][y]=new Case_void();
+					cases[x][y].setCollisionBoxLocation(y, x);
 				}
 			}
 		}
