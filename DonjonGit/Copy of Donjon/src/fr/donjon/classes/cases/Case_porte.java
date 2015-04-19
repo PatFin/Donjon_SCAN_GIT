@@ -17,7 +17,7 @@ public abstract class Case_porte extends Case_Obstacle {
 	}
 	
 	/**
-	 * This method makes it impossible for Ennemis 
+	 * This method makes it impossible for Enemies 
 	 * to walk on the door.
 	 * @param p
 	 */

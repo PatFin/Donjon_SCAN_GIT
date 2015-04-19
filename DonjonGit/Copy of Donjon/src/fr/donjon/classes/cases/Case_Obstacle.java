@@ -19,10 +19,14 @@ public abstract class Case_Obstacle extends Case {
 		super(ImageName);
 	}
 	
+	/////////////////////////////////////////////////////////////////////////
+	//Surcharge de méthode nécessaire pour faire fonctionner la Case_porte //
+	/////////////////////////////////////////////////////////////////////////
+	
 	/**
 	 * Cette méthode est générique à toutes les cases de type obstacle.
 	 * Le personnage z est repoussé à le limite du rectangle de collision. 
-	 * @param z Le personnage en collisionavec la case
+	 * @param z Le personnage en collision avec la case
 	 */
 	public void inCollision(Ennemis z) {
 		System.out.println("En collision avec :"+z);
