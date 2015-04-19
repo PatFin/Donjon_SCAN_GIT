@@ -6,8 +6,8 @@ import java.util.EnumMap;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Link;
 import fr.donjon.classes.cases.Case;
-import fr.donjon.classes.cases.Case_dalle_sol;
 import fr.donjon.classes.cases.Case_herbe;
+import fr.donjon.classes.cases.Porte_Dalle_Sol;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
@@ -57,7 +57,7 @@ public class Salle_foret extends SalleAbs {
 	public void addDoor(Orientation o, boolean enabled){
 		//We change the tiles of the door
 		Vecteur v = porte.get(o);
-		this.cases[(int)v.x][(int)v.y] = new Case_herbe();
+		this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(enabled);
 		
 		//The link is created in the mother class
 		super.addDoor(o, enabled);
@@ -72,7 +72,8 @@ public class Salle_foret extends SalleAbs {
 	public void addDoorToPrevRoom(Link l){
 		//We change the tiles of the door
 		Vecteur v = porte.get(Orientation.opposite(l.orientation));
-		this.cases[(int)v.x][(int)v.y] = new Case_dalle_sol();
+		this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(true);
+		
 		
 		//The link is created in the mother class
 		super.addDoorToPrevRoom(l);

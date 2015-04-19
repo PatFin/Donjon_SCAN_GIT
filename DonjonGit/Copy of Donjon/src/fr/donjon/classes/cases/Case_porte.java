@@ -21,6 +21,7 @@ public abstract class Case_porte extends Case_Obstacle {
 	 * to walk on the door.
 	 * @param p
 	 */
+	@Override
 	public void inCollision(Ennemis p){
 		super.inCollision(p);
 	}
@@ -30,7 +31,9 @@ public abstract class Case_porte extends Case_Obstacle {
 	 * if the associated link is enabled.
 	 * @param h
 	 */
+	@Override
 	public void inCollision(Heros h){
+		System.out.println("Hero in collision "+enabled);
 		if(!enabled){
 			super.inCollision(h);
 		}

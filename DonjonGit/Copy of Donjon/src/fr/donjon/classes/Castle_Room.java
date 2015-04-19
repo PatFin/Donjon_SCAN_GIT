@@ -5,10 +5,11 @@ import java.util.EnumMap;
 
 import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.Case_dalle_sol;
-import fr.donjon.classes.cases.Case_escalier;
 import fr.donjon.classes.cases.Case_fendue_sol;
 import fr.donjon.classes.cases.Case_mur;
 import fr.donjon.classes.cases.Case_rocher;
+import fr.donjon.classes.cases.Porte_Dalle_Sol;
+import fr.donjon.classes.cases.Porte_escalier;
 import fr.donjon.test.SalleAbs;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -50,20 +51,20 @@ public class Castle_Room extends SalleAbs {
 		//We change the tiles depending on the orientation of the door.
 		switch(o){
 		case NORD:
-			this.cases[(int)v.x][(int)v.y] = new Case_escalier();
+			this.cases[(int)v.x][(int)v.y] = new Porte_escalier(enabled);
 			this.cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
 			this.cases[(int)v.x][(int)v.y+2] = new Case_dalle_sol();
 			break;
 		case SUD:
-			this.cases[(int)v.x][(int)v.y] = new Case_escalier();
+			this.cases[(int)v.x][(int)v.y] = new Porte_escalier(enabled);
 			this.cases[(int)v.x][(int)v.y-1] = new Case_dalle_sol();
 			break;
 		case OUEST:
-			this.cases[(int)v.x][(int)v.y] = new Case_fendue_sol();
+			this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(enabled);
 			this.cases[(int)v.x+1][(int)v.y] = new Case_dalle_sol();
 			break;
 		case EST:
-			this.cases[(int)v.x][(int)v.y] = new Case_fendue_sol();
+			this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(enabled);
 			this.cases[(int)v.x-1][(int)v.y] = new Case_dalle_sol();
 		}
 		
@@ -78,19 +79,20 @@ public class Castle_Room extends SalleAbs {
 		
 		switch(Orientation.opposite(l.orientation)){
 		case NORD:
-			this.cases[(int)v.x][(int)v.y] = new Case_escalier();
+			this.cases[(int)v.x][(int)v.y] = new Porte_escalier(true);
 			this.cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
+			this.cases[(int)v.x][(int)v.y+2] = new Case_dalle_sol();
 			break;
 		case SUD:
-			this.cases[(int)v.x][(int)v.y] = new Case_escalier();
+			this.cases[(int)v.x][(int)v.y] = new Porte_escalier(true);
 			this.cases[(int)v.x][(int)v.y-1] = new Case_dalle_sol();
 			break;
 		case OUEST:
-			this.cases[(int)v.x][(int)v.y] = new Case_fendue_sol();
+			this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(true);
 			this.cases[(int)v.x+1][(int)v.y] = new Case_dalle_sol();
 			break;
 		case EST:
-			this.cases[(int)v.x][(int)v.y] = new Case_fendue_sol();
+			this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(true);
 			this.cases[(int)v.x-1][(int)v.y] = new Case_dalle_sol();
 		}
 		
