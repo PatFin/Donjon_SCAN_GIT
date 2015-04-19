@@ -72,7 +72,7 @@ public class Castle_Room extends SalleAbs {
 	}
 	
 	@Override
-	public void addDoorToPrevRoom(Link l) {
+	protected void addDoorToPrevRoom(Link l) {
 		//We change the tiles of the door.
 		Vecteur v = porte.get(Orientation.opposite(l.orientation));
 		

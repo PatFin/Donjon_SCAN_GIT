@@ -89,7 +89,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 * This method creates a link to the previous room
 	 * @param l the link from the previous room to the current one
 	 */
-	public void addDoorToPrevRoom(Link l){
+	protected void addDoorToPrevRoom(Link l){
 		//We create the link.
 		Orientation a = Orientation.opposite(l.orientation);
 
@@ -174,7 +174,10 @@ public abstract class SalleAbs implements EcouteurClavier {
 		//This is not necessary for the game to work properly
 		monG.setColor(Color.white);
 		monG.drawString("Salle "+this.roomNumber, 20, 20);
-
+		
+		//We sort the list of characters such that they superimpose correctly in the room
+		sortCharacters();
+		
 		//We display the characters
 		for(int i=0;i<personnage.size();i++){
 			Objet z=personnage.get(i);
@@ -186,7 +189,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		//Finally send everything at the destination
 		g.drawImage(buffer1, ecran.x, ecran.y, null);
 	}
-
+	
 	/**
 	 * Adds the enemy given as a parameter to the room.
 	 * @param e the enemy to be added.
@@ -194,7 +197,42 @@ public abstract class SalleAbs implements EcouteurClavier {
 	public void addEnemy(Ennemis e) {
 		personnage.add(e);
 	}
-
+	
+	
+	/**
+	 * This method sorts the characters in increasing y coordinate.
+	 * It is used in the paint method such that the characters at 
+	 * the bottom of the room are painted on top of those which are 
+	 * above them and not the contrary.
+	 */
+	private void sortCharacters(){
+		Personnage [] a = new Personnage[personnage.size()];
+		for(int i=0; i<a.length;i++){
+			a[i] = personnage.get(i);
+		}
+		
+		//Bubble sort algorithm
+        for(int j=0; j<a.length-1;j++){
+            for(int i=0;i<a.length-j-1;i++){
+                if(a[i].collisionDecor.y>a[i+1].collisionDecor.y){
+                    Personnage temp = a[i];
+                    a[i]=a[i+1];
+                    a[i+1]=temp;
+                }
+            }
+        }
+		
+		
+		this.personnage = new LinkedList<Personnage>();
+		for(int i=0;i<a.length;i++){
+			this.personnage.add(a[i]);
+		}
+		
+	}
+	
+	
+	
+	
 	/**
 	 * This method fills the empty parts of the cases
 	 * array with Case_voi(). It comes in handy when
