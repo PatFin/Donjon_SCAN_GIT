@@ -14,7 +14,6 @@ import fr.donjon.classes.Objet;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.Case_void;
-import fr.donjon.test.EcouteurChangementSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -66,7 +65,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		setDestinationPlaces();
 		setDoorPlaces();
 	}
-
+	
 
 	protected abstract void generateRoom();
 	protected abstract void setDestinationPlaces();

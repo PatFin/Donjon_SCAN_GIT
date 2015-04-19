@@ -53,6 +53,7 @@ public class Salle_foret extends SalleAbs {
 	 * It also modifies the tiles that are concerned by this door.
 	 * Then calls the mother class method to create the link
 	 */
+	@Override
 	public void addDoor(Orientation o, boolean enabled){
 		//We change the tiles of the door
 		Vecteur v = porte.get(o);
@@ -102,7 +103,7 @@ public class Salle_foret extends SalleAbs {
 		this.porte.put(Orientation.EST, new Vecteur(cases.length-1,cases[0].length/2));
 		this.porte.put(Orientation.OUEST, new Vecteur(0,cases[0].length/2));
 	}
-
+ 
 	/**
 	 * This method fills the room with the standards
 	 * tiles of the room.
@@ -125,16 +126,4 @@ public class Salle_foret extends SalleAbs {
 		
 	}
 
-
-	@Override
-	public void changerDeSalle(Link l) {
-		// TODO Auto-generated method stub
-		super.changerDeSalle(l);
-	}
-
-
-	@Override
-	public boolean mustChange(SalleAbs s) {
-		return super.mustChange(s);
-	}
 }

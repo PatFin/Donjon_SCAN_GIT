@@ -9,12 +9,12 @@ import fr.donjon.classes.cases.Case_escalier;
 import fr.donjon.classes.cases.Case_fendue_sol;
 import fr.donjon.classes.cases.Case_mur;
 import fr.donjon.classes.cases.Case_rocher;
-import fr.donjon.classes.cases.Case_void;
+import fr.donjon.test.SalleAbs;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
 
-public class Castle_Room extends Salle {
+public class Castle_Room extends SalleAbs {
 
 
 	/**
@@ -22,68 +22,118 @@ public class Castle_Room extends Salle {
 	 * @param ecran L'écran de jeu.
 	 * @param lien le lien de lasalle précédente vers celle-ci.
 	 */
-	public Castle_Room(Heros p, Rectangle ecran, Link lien) {
-		super(ecran, p, null);
-
-		//On génèrel'apparence de la Salle.
-		Case[][] casesSalle;
-		casesSalle = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE];
-
-		for(int x=0; x<casesSalle.length;x++){					
-			for(int y=0; y<casesSalle[0].length; y++){
-				casesSalle[x][y]  = new Case_void();
-			}
+	public Castle_Room(Rectangle ecran, Heros h, Orientation o) {
+		super(ecran, h);
+		
+		this.addDoor(o, true);
+		
+		this.generateImage();
+		
+	}
+	
+	
+	public Castle_Room(Heros h, Link l, Orientation o){
+		super(SalleAbs.ecran, h);
+		
+		this.addDoorToPrevRoom(l);
+		
+		this.addDoor(o, true);
+		
+		this.generateImage();
+	}
+	
+	
+	@Override
+	public void addDoor(Orientation o, boolean enabled){
+		Vecteur v = porte.get(o);
+		
+		//We change the tiles depending on the orientation of the door.
+		switch(o){
+		case NORD:
+			this.cases[(int)v.x][(int)v.y] = new Case_escalier();
+			this.cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
+			break;
+		case SUD:
+			this.cases[(int)v.x][(int)v.y] = new Case_escalier();
+			break;
+		default:
+			this.cases[(int)v.x][(int)v.y] = new Case_fendue_sol();
 		}
+		
+		//The link is created in the superclass (SalleAbs)
+		super.addDoor(o, enabled);
+	}
+	
+	@Override
+	public void addDoorToPrevRoom(Link l) {
+		//We change the tiles of the door.
+		Vecteur v = porte.get(Orientation.opposite(l.orientation));
+		
+		switch(Orientation.opposite(l.orientation)){
+		case NORD:
+			this.cases[(int)v.x][(int)v.y] = new Case_escalier();
+			this.cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
+			break;
+		case SUD:
+			this.cases[(int)v.x][(int)v.y] = new Case_escalier();
+			break;
+		default:
+			this.cases[(int)v.x][(int)v.y] = new Case_fendue_sol();
+		}
+		
+		//Link created in the mother class.
+		super.addDoorToPrevRoom(l);
+	}
+	
 
+	@Override
+	protected void generateRoom() {
+		
+		//Creating the array
+		Case[][] cases = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE];
+		
 		for(int x=1;x<cases.length-1;x++){
-			casesSalle[x][1]=new Case_mur();
+			cases[x][1]=new Case_mur();
 		}
 
-		//Le reste du tableau est rempli aléatoirement de dalles (fendue / rocher / normale)
-		for(int y=2;y<casesSalle[0].length-1;y++){
-			for(int x=1;x<casesSalle.length-1;x++){
+		//Filling the room randomly with dalle_fendue / rocher / normale
+		for(int y=2;y<cases[0].length-1;y++){
+			for(int x=1;x<cases.length-1;x++){
 				int random = (int)(Math.round(6*Math.random()));
 
 				if(random == 0){
-					casesSalle[x][y]=new Case_rocher();	
+					cases[x][y]=new Case_rocher();	
 				}else if(random == 1){
-					casesSalle[x][y]=new Case_fendue_sol();
+					cases[x][y]=new Case_fendue_sol();
 				}else {						
-					casesSalle[x][y]=new Case_dalle_sol();
+					cases[x][y]=new Case_dalle_sol();
 				}
 			}
 		}
+		
+		//Filling the sides with black tiles.
+		super.fillEmptyWithVoid();
+	}
 
-		/**
-		 * On ajoute des escaliers vers une autre salle. On s'assure qu'il est possible d'y rentrer en plaçant une dalle normale 
-		 */
-		this.portes = new EnumMap<Orientation, Vecteur>(Orientation.class);
-		portes.put(Orientation.NORD,new Vecteur(casesSalle.length/2, 0));
-		portes.put(Orientation.SUD,new Vecteur(casesSalle.length/2, cases[0].length-1));
+	@Override
+	protected void setDestinationPlaces() {
+		// TODO Auto-generated method stub
+		this.destination = new EnumMap<Orientation, Vecteur>(Orientation.class);
+		
+		destination.put(Orientation.NORD, new Vecteur(cases.length/2-2,1));
+		destination.put(Orientation.SUD, new Vecteur(cases.length/2+3, cases[0].length-2));
+		destination.put(Orientation.OUEST, new Vecteur(1,cases[0].length/2+2));
+		destination.put(Orientation.EST, new Vecteur(cases.length-2,cases[0].length/2-1));
+	}
 
-		//Si on a une salle précédente
-		if(lien != null){
-			switch(lien.orientation){
-			case NORD:										//If the character hit the north door of the previous room, 
-				//we need to create a link from the south of this room to 
-				//the north of the previous room
-				Vecteur z= portes.get(Orientation.SUD);
-				casesSalle[(int) z.x][(int) z.y] = new Case_escalier();
-				casesSalle[(int) z.x][(int) (z.y-1)] = new Case_dalle_sol();
-				this.liens.add(new Link(lien.origine, (int)lien.x,(int) (lien.y+1), this,(int) z.x, (int)z.y, Orientation.SUD, true));
-				break;
-			default:
-					
-			}
-		}
-		//L'escalier vers une autre future salle
-		Vecteur z = portes.get(Orientation.NORD);
-		casesSalle[(int) z.x][(int) z.y] = new Case_escalier();
-		casesSalle[(int) z.x][(int) (z.y+1)] = new Case_dalle_sol();
-		casesSalle[(int) z.x][(int) (z.y+2)] = new Case_dalle_sol();
-		this.liens.add(new Link(this, casesSalle.length/2, 0,Orientation.NORD, true));
-
-		refreshRoomCases(casesSalle);
+	@Override
+	protected void setDoorPlaces() {
+		this.porte = new EnumMap<Orientation, Vecteur>(Orientation.class);
+		
+		porte.put(Orientation.NORD,new Vecteur(cases.length/2-2, 0));
+		porte.put(Orientation.SUD,new Vecteur(cases.length/2+3, cases[0].length-1));
+		porte.put(Orientation.EST, new Vecteur(cases.length-1,cases[0].length/2-1));
+		porte.put(Orientation.OUEST, new Vecteur(0,cases[0].length/2+2));
 	}
 
 }
