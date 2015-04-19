@@ -56,7 +56,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		this.hero=h;
 		this.personnage = new LinkedList <Personnage> ();
 		this.personnage.add(hero);
-		addEnemy(new Squelette(ecran.x/2, ecran.y/2, h));
+		addEnemy(new Squelette(ecran.width/2, ecran.height/2, h));
 		
 		
 		this.link = new EnumMap<Orientation, Link>(Orientation.class);
