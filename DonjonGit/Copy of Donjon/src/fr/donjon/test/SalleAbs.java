@@ -12,6 +12,7 @@ import fr.donjon.classes.Heros;
 import fr.donjon.classes.Link;
 import fr.donjon.classes.Objet;
 import fr.donjon.classes.Personnage;
+import fr.donjon.classes.Squelette;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.Case_void;
 import fr.donjon.utils.EcouteurClavier;
@@ -55,7 +56,9 @@ public abstract class SalleAbs implements EcouteurClavier {
 		this.hero=h;
 		this.personnage = new LinkedList <Personnage> ();
 		this.personnage.add(hero);
-
+		addEnemy(new Squelette(ecran.x/2, ecran.y/2, h));
+		
+		
 		this.link = new EnumMap<Orientation, Link>(Orientation.class);
 
 		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_ARGB);

@@ -28,7 +28,7 @@ public class Case_rocher extends Case_Obstacle {
 	/**
 	 * Positionne le rectangle de collision associé à la case.
 	 */
-	public void setCollisionBoxLocation(int vertical, int horizontal) {
+	public void setCollisionBoxLocation(int horizontal, int vertical) {
 		
 		this.collision = new Rectangle(Case.TAILLE*horizontal+16, Case.TAILLE*vertical+16, Case.TAILLE/2, Case.TAILLE/2);
 	}

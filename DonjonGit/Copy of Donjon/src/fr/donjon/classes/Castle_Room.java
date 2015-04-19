@@ -55,9 +55,15 @@ public class Castle_Room extends SalleAbs {
 			break;
 		case SUD:
 			this.cases[(int)v.x][(int)v.y] = new Case_escalier();
+			this.cases[(int)v.x][(int)v.y-1] = new Case_dalle_sol();
 			break;
-		default:
+		case OUEST:
 			this.cases[(int)v.x][(int)v.y] = new Case_fendue_sol();
+			this.cases[(int)v.x+1][(int)v.y] = new Case_dalle_sol();
+			break;
+		case EST:
+			this.cases[(int)v.x][(int)v.y] = new Case_fendue_sol();
+			this.cases[(int)v.x-1][(int)v.y] = new Case_dalle_sol();
 		}
 		
 		//The link is created in the superclass (SalleAbs)
@@ -76,9 +82,15 @@ public class Castle_Room extends SalleAbs {
 			break;
 		case SUD:
 			this.cases[(int)v.x][(int)v.y] = new Case_escalier();
+			this.cases[(int)v.x][(int)v.y-1] = new Case_dalle_sol();
 			break;
-		default:
+		case OUEST:
 			this.cases[(int)v.x][(int)v.y] = new Case_fendue_sol();
+			this.cases[(int)v.x+1][(int)v.y] = new Case_dalle_sol();
+			break;
+		case EST:
+			this.cases[(int)v.x][(int)v.y] = new Case_fendue_sol();
+			this.cases[(int)v.x-1][(int)v.y] = new Case_dalle_sol();
 		}
 		
 		//Link created in the mother class.
@@ -90,7 +102,7 @@ public class Castle_Room extends SalleAbs {
 	protected void generateRoom() {
 		
 		//Creating the array
-		Case[][] cases = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE];
+		this.cases = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE];
 		
 		for(int x=1;x<cases.length-1;x++){
 			cases[x][1]=new Case_mur();

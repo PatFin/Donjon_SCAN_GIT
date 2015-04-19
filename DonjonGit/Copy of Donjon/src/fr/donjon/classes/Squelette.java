@@ -86,11 +86,6 @@ public class Squelette extends Ennemis {
 		marcher(dir);
 	}
 
-	@Override
-	public void draw(long t, Graphics g) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void update(long t) {

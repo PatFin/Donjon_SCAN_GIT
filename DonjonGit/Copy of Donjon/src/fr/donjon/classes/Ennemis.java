@@ -32,7 +32,9 @@ public abstract class Ennemis extends Personnage{
 	}
 
 	@Override
-	abstract public void draw(long t, Graphics g);
+	public void draw(long t, Graphics g){
+		super.draw(t, g);
+	}
 
 	@Override
 	abstract public void update(long t);
