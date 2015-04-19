@@ -21,10 +21,14 @@ public abstract class Case_porte extends Case_Obstacle {
 	public void inCollision(Personnage p) {
 		switch(p.type){
 		case HERO:
-			//On laisse passer sur la case
+			if(!enabled){
+				super.inCollision(p);
+			}
 			break;
 		case ALIE:
-			//aussi
+			if(!enabled){
+				super.inCollision(p);
+			}
 			break;
 		case ENNEMI:
 			super.inCollision(p);	 //on laisse pas passer !

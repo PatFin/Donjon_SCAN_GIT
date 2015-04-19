@@ -22,7 +22,7 @@ public class Link {
 	
 	public Orientation orientation;
 	public Rectangle rectangleCollision;	//Si le héro marche sur ce rectangle et que enabled vaut true, alors on change de salle.
-	public boolean enabled;					//autorise ou pas le changement de salle.
+	public Boolean enabled;					//autorise ou pas le changement de salle. Attribut commun à celui de la case porte associée.
 	
 	/**
 	 * Constructeur de link lorsque tous les éléments sont connus d'avance.
@@ -33,7 +33,7 @@ public class Link {
 	 * @param o l'orientation du lien. ie la position de la porte dans la salle origine
 	 * @param enabled
 	 */
-	public Link(SalleAbs destination, Vecteur desVecteur, SalleAbs origine,Vecteur origVecteur, Orientation o, boolean enabled) {
+	public Link(SalleAbs destination, Vecteur desVecteur, SalleAbs origine,Vecteur origVecteur, Orientation o, Boolean enabled) {
 		this.destinationSalle = destination;
 		this.destinationCase = desVecteur;
 		
@@ -53,7 +53,7 @@ public class Link {
 	 * @param o l'orientation du lien. ie la position de la porte dans la salle origine
 	 * @param enabled
 	 */
-	public Link(SalleAbs origine,Vecteur origVecteur, Orientation o, boolean enabled){
+	public Link(SalleAbs origine,Vecteur origVecteur, Orientation o, Boolean enabled){
 		this.enabled = enabled;
 		
 		this.destinationSalle=null;
