@@ -123,7 +123,16 @@ public abstract class SalleAbs implements EcouteurClavier {
 						//If the character is in collision with a tile, apply method inCollision of the corresponding tile. 
 
 						if(z.collisionDecor.intersects(cases[x][y].collision)){	
-							cases[x][y].inCollision(z);
+							
+							
+							//TODO find a cleaner way to write it. This is quite silly.
+							if(z instanceof Ennemis){
+								cases[x][y].inCollision((Ennemis)z);
+							}
+							if(z instanceof Heros){
+								cases[x][y].inCollision((Heros) z);
+							}
+							
 						}
 
 					}

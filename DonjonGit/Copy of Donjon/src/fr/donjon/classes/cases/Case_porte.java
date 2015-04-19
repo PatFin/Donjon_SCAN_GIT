@@ -2,6 +2,7 @@ package fr.donjon.classes.cases;
 
 import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
+import fr.donjon.classes.Personnage;
 
 public abstract class Case_porte extends Case_Obstacle {
 
@@ -14,31 +15,29 @@ public abstract class Case_porte extends Case_Obstacle {
 	 */
 	public Case_porte(String ImageName, boolean enabled) {
 		super(ImageName);
+		this.enabled = enabled;
 	}
 	
 	/**
-	 * This method makes it impossible for Enemies 
+	 * This method overrides the super class method.
+	 * It allows the hero to walk on the tile if it is enbled. 
 	 * to walk on the door.
 	 * @param p
 	 */
 	@Override
-	public void inCollision(Ennemis p){
-		super.inCollision(p);
+	public void inCollision(Heros p){
+		if(!this.enabled){
+			super.inCollision(p);
+		}
 	}
 	
 	/**
-	 * This method allows the hero to walk on the tile
-	 * if the associated link is enabled.
-	 * @param h
+	 * Ennemis aren't allowed to step on doors.
 	 */
-	@Override
-	public void inCollision(Heros h){
-		System.out.println("Hero in collision "+enabled);
-		if(!enabled){
-			super.inCollision(h);
-		}
-		//else do nothing.
+	public void inCollision(Ennemis z) {
+		super.inCollision(z);
 	}
+	
 	
 	
 }
