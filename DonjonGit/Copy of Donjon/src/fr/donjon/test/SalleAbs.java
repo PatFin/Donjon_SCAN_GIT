@@ -140,7 +140,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 */
 	protected void generateImage(){
 
-		//Initialysing the graphic tools 
+		//Initializing the graphic tools 
 		imageSalle = new BufferedImage(ecran.width,ecran.height, BufferedImage.TYPE_INT_RGB);
 		bufferImageSalle = imageSalle.createGraphics();
 
@@ -206,6 +206,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 * above them and not the contrary.
 	 */
 	private void sortCharacters(){
+		//Putting the elements in an array
 		Personnage [] a = new Personnage[personnage.size()];
 		for(int i=0; i<a.length;i++){
 			a[i] = personnage.get(i);
@@ -222,7 +223,7 @@ public abstract class SalleAbs implements EcouteurClavier {
             }
         }
 		
-		
+		//Putting the element back into the list.
 		this.personnage = new LinkedList<Personnage>();
 		for(int i=0;i<a.length;i++){
 			this.personnage.add(a[i]);

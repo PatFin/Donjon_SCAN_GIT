@@ -4,8 +4,6 @@
 package fr.donjon.classes.cases;
 
 import fr.donjon.classes.Personnage;
-import fr.donjon.utils.Orientation;
-import fr.donjon.utils.Vecteur;
 
 /**
  * @author Patrick
