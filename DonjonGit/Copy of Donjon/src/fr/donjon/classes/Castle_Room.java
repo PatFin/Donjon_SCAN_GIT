@@ -52,6 +52,7 @@ public class Castle_Room extends SalleAbs {
 		case NORD:
 			this.cases[(int)v.x][(int)v.y] = new Case_escalier();
 			this.cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
+			this.cases[(int)v.x][(int)v.y+2] = new Case_dalle_sol();
 			break;
 		case SUD:
 			this.cases[(int)v.x][(int)v.y] = new Case_escalier();
