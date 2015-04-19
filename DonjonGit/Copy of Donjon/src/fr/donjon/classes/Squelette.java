@@ -1,10 +1,12 @@
 package fr.donjon.classes;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
-import fr.donjon.utils.*;
+import fr.donjon.utils.Animation;
+import fr.donjon.utils.EtatPersonnage;
+import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
 
 public class Squelette extends Ennemis {
 	
@@ -29,7 +31,10 @@ public class Squelette extends Ennemis {
 		animation = animationS;
 	}
 	
+	//TODO utiliser un vecteur plutot qu'une orientation
+	//calculer le vecteur Squellette Personnage (voir methode marche de heros)
 	public void marcher(Orientation dir){
+		
 		//Si le personnage attaque, ne pas le faire se deplacer
 		if(this.etat == EtatPersonnage.ATTAQUE)return;
 		//Le personnage passe en mode deplacement
@@ -89,20 +94,17 @@ public class Squelette extends Ennemis {
 
 	@Override
 	public void update(long t) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void attaquer(LinkedList<Personnage> cibles,
 			LinkedList<Projectile> projectiles, Orientation o) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void utiliserObjet(int reference) {
-		// TODO Auto-generated method stub
 		
 	}
 }

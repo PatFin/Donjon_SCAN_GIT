@@ -21,7 +21,7 @@ public abstract class Personnage extends Deplacable{
 	public Orientation o;
 	EtatPersonnage etat;
 	Arme arme;
-	Type type;
+	public Type type;
 	int vie;
 	int armure;
 	

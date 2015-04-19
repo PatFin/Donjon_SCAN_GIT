@@ -7,7 +7,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 import fr.donjon.classes.Ennemis;
-import fr.donjon.classes.Heros;
+import fr.donjon.classes.Personnage;
 
 /**
  * Classe Case
@@ -52,9 +52,7 @@ public class Case {
 	 * Methode vide. Les cases qui dérivent de Case peuvent l'override selon leur besoin.
 	 * @param z Le personnage qui marche sur la case.
 	 */
-	public void inCollision(Ennemis z) {
-	}
-	public void inCollision(Heros z){
+	public void inCollision(Personnage p) {
 	}
 	
 	public Case clone(){

@@ -63,7 +63,7 @@ public class Heros extends Personnage{
 
 	/**
 	 * Demarre le deplacement du personnage dans une direction
-	 * @param dir Direction de deplacement du personnage
+	 * @param v Direction de deplacement du personnage
 	 */
 	public void marcher(Vecteur v){
 		

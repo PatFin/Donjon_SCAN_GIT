@@ -3,8 +3,7 @@
  */
 package fr.donjon.classes.cases;
 
-import fr.donjon.classes.Ennemis;
-import fr.donjon.classes.Heros;
+import fr.donjon.classes.Personnage;
 
 /**
  * @author Patrick
@@ -25,12 +24,9 @@ public abstract class Case_Obstacle extends Case {
 	 * Le personnage z est repoussé à le limite du rectangle de collision. 
 	 * @param z Le personnage en collision avec la case
 	 */
-	public void inCollision(Heros z) {
-		z.setLocation((int)z.lPos.x, (int) z.lPos.y);	
+	public void inCollision(Personnage p) {
+		p.setLocation((int)p.lPos.x, (int) p.lPos.y);	
 	}
 	
-	public void inCollision(Ennemis z) {
-		z.setLocation((int)z.lPos.x, (int) z.lPos.y);
-	}
 
 }
