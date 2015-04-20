@@ -69,6 +69,7 @@ public class Salle_foret extends SalleAbs {
 	 * It also modifies the tiles that are concerned by this door.
 	 * Then calls the mother class method to create the link
 	 */
+	@Override
 	public void addDoorToPrevRoom(Link l){
 		//We change the tiles of the door
 		Vecteur v = porte.get(Orientation.opposite(l.orientation));
@@ -84,6 +85,7 @@ public class Salle_foret extends SalleAbs {
 	 * This method sets the different places where the character
 	 * will be placed when it comes from another room to this one
 	 */
+	@Override
 	protected void setDestinationPlaces(){
 		this.destination= new EnumMap<Orientation, Vecteur>(Orientation.class);
 		
@@ -96,6 +98,7 @@ public class Salle_foret extends SalleAbs {
 	/**
 	 * This method sets the positions of the potential doors of the room.
 	 */
+	@Override
 	protected void setDoorPlaces(){
 		this.porte=new EnumMap<Orientation, Vecteur>(Orientation.class);
 		
@@ -111,6 +114,7 @@ public class Salle_foret extends SalleAbs {
 	 * It does not add the links to other rooms
 	 * nor does it modify the tiles accordingly.
 	 */
+	@Override
 	protected void generateRoom(){
 		this.cases = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE];
 		
