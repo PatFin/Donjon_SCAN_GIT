@@ -2,7 +2,7 @@ package fr.donjon.classes;
 
 import java.awt.Rectangle;
 
-import fr.donjon.test.SalleAbs;
+import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 

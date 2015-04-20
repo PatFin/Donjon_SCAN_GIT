@@ -1,4 +1,4 @@
-package fr.donjon.test;
+package fr.donjon.classes.salles;
 
 import java.awt.Rectangle;
 import java.util.EnumMap;

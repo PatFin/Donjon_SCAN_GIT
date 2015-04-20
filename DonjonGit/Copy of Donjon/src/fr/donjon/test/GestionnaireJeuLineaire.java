@@ -2,7 +2,8 @@ package fr.donjon.test;
 
 import java.util.LinkedList;
 
-import fr.donjon.classes.Castle_Room;
+import fr.donjon.classes.salles.Castle_Room;
+import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Link;
 import fr.donjon.classes.cases.Case;
