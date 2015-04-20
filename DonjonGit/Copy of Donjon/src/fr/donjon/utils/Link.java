@@ -1,10 +1,9 @@
-package fr.donjon.classes;
+package fr.donjon.utils;
 
 import java.awt.Rectangle;
 
+import fr.donjon.classes.Heros;
 import fr.donjon.classes.salles.SalleAbs;
-import fr.donjon.utils.Orientation;
-import fr.donjon.utils.Vecteur;
 
 /**
  * Cette class contient la description d'un téléporteur d'une

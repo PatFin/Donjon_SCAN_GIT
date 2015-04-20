@@ -9,13 +9,13 @@ import java.util.LinkedList;
 
 import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.Link;
 import fr.donjon.classes.Objet;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Squelette;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.Case_void;
 import fr.donjon.utils.EcouteurClavier;
+import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 

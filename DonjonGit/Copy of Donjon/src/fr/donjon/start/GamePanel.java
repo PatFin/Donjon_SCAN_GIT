@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import fr.donjon.classes.cases.Case;
-import fr.donjon.test.Gestionnaire;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;

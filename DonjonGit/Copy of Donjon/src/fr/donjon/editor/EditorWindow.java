@@ -23,9 +23,9 @@ import fr.donjon.classes.cases.Case_herbe;
 import fr.donjon.classes.cases.Case_mur;
 import fr.donjon.classes.cases.Case_rocher;
 import fr.donjon.classes.cases.Case_void;
-import fr.donjon.start.JeuLineaireBlac;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.JeuLineaireBlac;
 
 /**
  * 

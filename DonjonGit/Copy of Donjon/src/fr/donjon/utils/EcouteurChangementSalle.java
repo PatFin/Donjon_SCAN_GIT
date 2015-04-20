@@ -1,7 +1,5 @@
-package fr.donjon.test;
+package fr.donjon.utils;
 
-import fr.donjon.classes.Link;
-import fr.donjon.utils.Orientation;
 
 public interface EcouteurChangementSalle {
 

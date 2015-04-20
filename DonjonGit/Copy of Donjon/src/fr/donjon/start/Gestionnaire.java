@@ -1,14 +1,14 @@
 /**
  * 
  */
-package fr.donjon.test;
+package fr.donjon.start;
 
 import java.util.LinkedList;
 
-import fr.donjon.classes.Link;
 import fr.donjon.classes.salles.SalleAbs;
-import fr.donjon.start.GamePanel;
+import fr.donjon.utils.EcouteurChangementSalle;
 import fr.donjon.utils.EcouteurClavier;
+import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 

@@ -4,12 +4,12 @@ import java.awt.Rectangle;
 import java.util.EnumMap;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.Link;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.Case_dalle_sol;
 import fr.donjon.classes.cases.Case_mur;
 import fr.donjon.classes.cases.Case_void;
 import fr.donjon.classes.cases.Porte_Dalle_Sol;
+import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 

@@ -1,6 +1,5 @@
-package fr.donjon.test;
+package fr.donjon.zpoubelle;
 
-import fr.donjon.classes.Salle;
 import fr.donjon.utils.Orientation;
 
 /**
