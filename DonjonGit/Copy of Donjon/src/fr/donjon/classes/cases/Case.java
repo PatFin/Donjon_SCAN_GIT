@@ -5,8 +5,6 @@ import java.awt.Rectangle;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-
-import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Personnage;
 
 /**

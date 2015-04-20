@@ -71,39 +71,12 @@ public class Salle_croix extends SalleAbs {
 	@Override
 	public void addDoor(Orientation o, boolean enabled){
 		Vecteur v = porte.get(o);
-		
-		int x = cases.length;
-		int height = cases[0].length;
-		int i;
-		
-		//We change the tiles accordingly.
+		int xIntersect = (int) porte.get(Orientation.NORD).x;
+		int yIntersect = (int) porte.get(Orientation.EST).y;
 		switch(o){
 		case NORD:
-			for(i=(int)v.y;i<height/2;i++){
-				cases[(int)v.x][i] = new Case_dalle_sol();
-			}
-			if(cases[(int)v.x][i] instanceof Case_void){
-				cases[(int)v.x][i]=new Case_mur();
-			}
-			break;
-		case SUD:
-			for(i=(int)v.y;i>height/2;i--){
-				cases[width][i] = new Case_dalle_sol();
-			}
-			break;
-		case OUEST:
-			for(i=(int)v.x;i<width/2;i++){
-				cases[i][height] = new Case_dalle_sol();
-				cases[i][height+1] = new Case_mur();
-			}
-			break;
-		case EST:
-			for(i=(int)v.x;i>width/2;i++){
-				cases[i][height] = new Case_dalle_sol();
-				cases[i][height+1] = new Case_mur();
-			}
+			for(int i=0; i)
 		}
-		cases[(int)v.x][(int)v.y]=new Porte_Dalle_Sol(enabled);
 		super.addDoor(o, enabled);
 	}
 	

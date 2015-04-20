@@ -2,8 +2,6 @@ package fr.donjon.classes.cases;
 
 import java.awt.Rectangle;
 
-import fr.donjon.classes.Heros;
-
 
 /**
  * 
