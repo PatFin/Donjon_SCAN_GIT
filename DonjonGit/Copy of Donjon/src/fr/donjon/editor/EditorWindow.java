@@ -155,7 +155,6 @@ public class EditorWindow extends JFrame{
 		BDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				panDessin.fill(new Case_void());
 			}
 		});
@@ -164,7 +163,6 @@ public class EditorWindow extends JFrame{
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				// TODO Auto-generated method stub
 				panDessin.setThickness(sliderThickness.getValue());
 				sliderThickness.setBorder(BorderFactory.createTitledBorder("Taille: "+sliderThickness.getValue()));
 			}
@@ -173,7 +171,6 @@ public class EditorWindow extends JFrame{
 		BNouveau.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				//Interface d'écoute sur le résultat du JDialog
 				DialogListener dl = new DialogListener() {
 
@@ -184,13 +181,10 @@ public class EditorWindow extends JFrame{
 
 					@Override
 					public void onCancel() {
-						// TODO Auto-generated method stub
-
 					}
 
 					@Override
 					public void onValidate(String name, int index) {
-						// TODO Auto-generated method stub
 						
 					}
 				};
@@ -203,25 +197,21 @@ public class EditorWindow extends JFrame{
 		BSauvegarder.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
 				DialogListener l = new DialogListener() {
 					
 					@Override
 					public void onValidate(Vecteur v) {
-						// TODO Auto-generated method stub
 						
 					}
 					
 					@Override
 					public void onCancel() {
-						// TODO Auto-generated method stub
 						
 					}
 
 					@Override
 					public void onValidate(String name, int index) {
-						// TODO Auto-generated method stub
 						SalleDescription sd = new SalleDescription(panDessin.cases, panDessin.width, panDessin.height, index, name);
 						MapFileHandler.createMapFile(sd, true);
 					}
@@ -235,7 +225,6 @@ public class EditorWindow extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				panDessin.fill(panDessin.caseT);
 			}
 		});
@@ -244,7 +233,6 @@ public class EditorWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -260,13 +248,7 @@ public class EditorWindow extends JFrame{
 					}
 				}
 				
-				JeuLineaireBlac bl = new JeuLineaireBlac(panDessin.cases);
-				
-				JFrame frame = new JFrame();
-				frame.getContentPane().add(bl);
-				frame.addKeyListener(new JeuKeyAdapter(bl.salle));
-				frame.pack();
-				frame.setVisible(true);
+				//TODO creer un jeu lancable a partir de ca
 			}
 		});
 		
