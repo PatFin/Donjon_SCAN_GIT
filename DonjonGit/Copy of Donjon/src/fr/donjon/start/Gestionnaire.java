@@ -6,7 +6,6 @@ package fr.donjon.start;
 import java.util.LinkedList;
 
 import fr.donjon.classes.salles.SalleAbs;
-import fr.donjon.utils.EcouteurChangementSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
@@ -18,7 +17,7 @@ import fr.donjon.utils.Vecteur;
  * @author Baptiste
  *
  */
-public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurClavier {
+public abstract class Gestionnaire implements EcouteurClavier {
 
 	GamePanel game;								//Le jeu qui gère l'affichage de la Salle
 	public LinkedList<SalleAbs> listeSalles;	//La liste des salles du donjon
@@ -26,11 +25,7 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 	
 	public Gestionnaire(GamePanel game) {
 		this.game = game;
-		
 	}
-	
-	
-	
 	
 	
 	/**
@@ -49,12 +44,8 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 	}
 	
 	
-	/////////////////////////////////////
-	//INTERFACE CHANGEMENT SALLE/////////
-	/////////////////////////////////////
+	public abstract void changerDeSalle(Link l);
 	
-	
-	@Override
 	public Orientation mustChange() {
 		
 		Link[] l=new Link[4];

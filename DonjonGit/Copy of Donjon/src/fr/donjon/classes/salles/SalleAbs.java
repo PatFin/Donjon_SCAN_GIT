@@ -130,6 +130,9 @@ public abstract class SalleAbs implements EcouteurClavier {
 				}
 			}
 		}
+		
+		//We sort the list of characters such that they superimpose correctly in the room
+		sortCharacters();
 	}
 
 
@@ -175,8 +178,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		monG.setColor(Color.white);
 		monG.drawString("Salle "+this.roomNumber, 20, 20);
 		
-		//We sort the list of characters such that they superimpose correctly in the room
-		sortCharacters();
+		
 		
 		//We display the characters
 		for(int i=0;i<personnage.size();i++){
@@ -232,11 +234,9 @@ public abstract class SalleAbs implements EcouteurClavier {
 	}
 	
 	
-	
-	
 	/**
 	 * This method fills the empty parts of the cases
-	 * array with Case_voi(). It comes in handy when
+	 * array with Case_void(). It comes in handy when
 	 * declaring the array of the room.
 	 */
 	protected void fillEmptyWithVoid(){

@@ -4,7 +4,6 @@ import java.awt.Rectangle;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case_escalier;
-import fr.donjon.utils.EcouteurChangementSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;

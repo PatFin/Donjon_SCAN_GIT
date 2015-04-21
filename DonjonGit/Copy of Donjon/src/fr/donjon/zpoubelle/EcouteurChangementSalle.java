@@ -1,4 +1,7 @@
-package fr.donjon.utils;
+package fr.donjon.zpoubelle;
+
+import fr.donjon.utils.Link;
+import fr.donjon.utils.Orientation;
 
 
 public interface EcouteurChangementSalle {

@@ -85,10 +85,11 @@ public abstract class Personnage extends Deplacable{
 	
 	@Override
 	public void update(long t) {
-		// TODO Auto-generated method stub
 		super.update(t);
 		
 		this.lPos.setLocation(image.x, image.y); //On met a jour la position précédente
+		
+		
 		
 		switch(etat){
 
@@ -99,7 +100,7 @@ public abstract class Personnage extends Deplacable{
 			break;
 			
 		case DEPLACEMENT :
-			//A optimiser, eviter de créer un objets ttes le 40ms
+			//TODO : A optimiser, eviter de créer un objets ttes le 40ms
 			Vecteur nexPos1 = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(vitDeplacement));
 			setLocation((int) nexPos1.x, (int) nexPos1.y);
 			break;

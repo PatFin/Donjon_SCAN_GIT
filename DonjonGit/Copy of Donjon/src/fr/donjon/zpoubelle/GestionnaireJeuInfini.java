@@ -3,7 +3,6 @@ package fr.donjon.zpoubelle;
 import fr.donjon.classes.Heros;
 import fr.donjon.start.GamePanel;
 import fr.donjon.start.Gestionnaire;
-import fr.donjon.utils.EcouteurChangementSalle;
 import fr.donjon.utils.Orientation;
 
 /**

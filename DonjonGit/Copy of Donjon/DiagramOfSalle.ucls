@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="3" language="java" name="fr.donjon.utils.EcouteurChangementSalle" project="Copy of Donjon" 
-    file="/Copy of Donjon/src/fr/donjon/utils/EcouteurChangementSalle.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="3" language="java" name="fr.donjon.zpoubelle.EcouteurChangementSalle" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/zpoubelle/EcouteurChangementSalle.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="674" y="-68"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -163,11 +163,6 @@
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="34">    
-    <bendpoint x="646" y="36"/>    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

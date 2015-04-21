@@ -2,6 +2,7 @@ package fr.donjon.editor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -15,6 +16,7 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.Case_dalle_sol;
 import fr.donjon.classes.cases.Case_escalier;
@@ -23,9 +25,11 @@ import fr.donjon.classes.cases.Case_herbe;
 import fr.donjon.classes.cases.Case_mur;
 import fr.donjon.classes.cases.Case_rocher;
 import fr.donjon.classes.cases.Case_void;
+import fr.donjon.classes.salles.SalleEssai;
+import fr.donjon.start.GamePanel;
+import fr.donjon.start.SimplePanel;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Vecteur;
-import fr.donjon.zpoubelle.JeuLineaireBlac;
 
 /**
  * 
@@ -247,6 +251,23 @@ public class EditorWindow extends JFrame{
 						panDessin.cases[x][y].setCollisionBoxLocation(y, x);
 					}
 				}
+				
+				JFrame frame = new JFrame("Essai de carte");
+				
+				SalleEssai essai = new SalleEssai(new Rectangle(WIDTH*Case.TAILLE, HEIGHT*Case.TAILLE), new Heros(200,200)
+				, panDessin.cases);
+				
+				SimplePanel gpanel = new SimplePanel(essai);
+				//gpanel.addKeyListener(new JeuKeyAdapter(gpanel));
+				
+				frame.setContentPane(gpanel);
+				frame.pack();
+				frame.setResizable(false);
+				frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+				frame.setVisible(true);
+				gpanel.startGame();
+				
+				
 				
 				//TODO creer un jeu lancable a partir de ca
 			}

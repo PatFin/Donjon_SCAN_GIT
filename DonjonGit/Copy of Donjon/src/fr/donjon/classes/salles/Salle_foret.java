@@ -5,7 +5,10 @@ import java.util.EnumMap;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.Case_dalle_sol;
+import fr.donjon.classes.cases.Case_fendue_sol;
 import fr.donjon.classes.cases.Case_herbe;
+import fr.donjon.classes.cases.Case_rocher;
 import fr.donjon.classes.cases.Porte_Dalle_Sol;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
@@ -118,11 +121,18 @@ public class Salle_foret extends SalleAbs {
 	protected void generateRoom(){
 		this.cases = new Case[ecran.width/Case.TAILLE][ecran.height/Case.TAILLE];
 		
+		
+		
 		//We fill the array with grass tiles
 		for(int x=1; x<cases.length-1;x++){
 			for(int y=1;y<cases[0].length-1;y++){
-				cases[x][y]=new Case_herbe();
-				cases[x][y].setCollisionBoxLocation(y, x);
+				int random = (int)(Math.round(100*Math.random()));
+
+				if(random >= 5){
+					cases[x][y]=new Case_herbe();	
+				}else {
+					cases[x][y]=new Case_fendue_sol();
+				}
 			}
 		}
 		
