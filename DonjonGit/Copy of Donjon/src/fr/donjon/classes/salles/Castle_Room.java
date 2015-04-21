@@ -151,17 +151,6 @@ public class Castle_Room extends SalleAbs {
 	}
 
 	@Override
-	protected void setDestinationPlaces() {
-		// TODO Auto-generated method stub
-		this.destination = new EnumMap<Orientation, Vecteur>(Orientation.class);
-		
-		destination.put(Orientation.NORD, new Vecteur(cases.length/2-2,1));
-		destination.put(Orientation.SUD, new Vecteur(cases.length/2+3, cases[0].length-2));
-		destination.put(Orientation.OUEST, new Vecteur(1,cases[0].length/2+2));
-		destination.put(Orientation.EST, new Vecteur(cases.length-2,cases[0].length/2-1));
-	}
-
-	@Override
 	protected void setDoorPlaces() {
 		this.porte = new EnumMap<Orientation, Vecteur>(Orientation.class);
 		
@@ -169,6 +158,13 @@ public class Castle_Room extends SalleAbs {
 		porte.put(Orientation.SUD,new Vecteur(cases.length/2+3, cases[0].length-1));
 		porte.put(Orientation.EST, new Vecteur(cases.length-1,cases[0].length/2-1));
 		porte.put(Orientation.OUEST, new Vecteur(0,cases[0].length/2+2));
+		
+		this.destination = new EnumMap<Orientation, Vecteur>(Orientation.class);
+		
+		destination.put(Orientation.NORD, new Vecteur(cases.length/2-2,1));
+		destination.put(Orientation.SUD, new Vecteur(cases.length/2+3, cases[0].length-2));
+		destination.put(Orientation.OUEST, new Vecteur(1,cases[0].length/2+2));
+		destination.put(Orientation.EST, new Vecteur(cases.length-2,cases[0].length/2-1));
 	}
 
 

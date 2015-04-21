@@ -123,22 +123,30 @@ public class Salle_croix extends SalleAbs {
 		super.addDoorToPrevRoom(l);
 	}
 	
-	
-	
+
 	/**
-	 * This method sets the different places where the character
-	 * will be placed when it comes from another room to this one
+	 * This method sets the positions of the potential doors of the room.
 	 */
 	@Override
-	protected void setDestinationPlaces() {
+	protected void setDoorPlaces() {
+		this.porte=new EnumMap<Orientation, Vecteur>(Orientation.class);
+		
+		int x = 1+(int)(Math.random()*(cases.length-2));
+		int y = 1+(int)(Math.random()*(cases[0].length-2));
+		
+		this.porte.put(Orientation.NORD, new Vecteur(x,0));
+		this.porte.put(Orientation.SUD, new Vecteur(x,cases[0].length-1));
+		this.porte.put(Orientation.EST, new Vecteur(cases.length-1,y));
+		this.porte.put(Orientation.OUEST, new Vecteur(0,y));
+		
 		this.destination= new EnumMap<Orientation, Vecteur>(Orientation.class);
 		
-		this.destination.put(Orientation.NORD, new Vecteur(cases.length/2,1));
-		this.destination.put(Orientation.SUD, new Vecteur(cases.length/2,cases[0].length-2));
-		this.destination.put(Orientation.OUEST, new Vecteur(1,cases[0].length/2));
-		this.destination.put(Orientation.EST, new Vecteur(cases.length-2,cases[0].length/2));
+		this.destination.put(Orientation.NORD, new Vecteur(x,1));
+		this.destination.put(Orientation.SUD, new Vecteur(x,cases[0].length-2));
+		this.destination.put(Orientation.OUEST, new Vecteur(1,y));
+		this.destination.put(Orientation.EST, new Vecteur(cases.length-2,y));
 	}
-
+	
 	
 	/**
 	 * This method changes the tiles to the northern door.
@@ -201,21 +209,6 @@ public class Salle_croix extends SalleAbs {
 		if(cases[i][(int)c.y+1] instanceof Case_void){
 			cases[i][(int)c.y+1] = new Case_mur();
 		}
-	}
-	
-	
-	
-	/**
-	 * This method sets the positions of the potential doors of the room.
-	 */
-	@Override
-	protected void setDoorPlaces() {
-		this.porte=new EnumMap<Orientation, Vecteur>(Orientation.class);
-		
-		this.porte.put(Orientation.NORD, new Vecteur(cases.length/2,0));
-		this.porte.put(Orientation.SUD, new Vecteur(cases.length/2,cases[0].length-1));
-		this.porte.put(Orientation.EST, new Vecteur(cases.length-1,cases[0].length/2));
-		this.porte.put(Orientation.OUEST, new Vecteur(0,cases[0].length/2));
 	}
 
 	@Override

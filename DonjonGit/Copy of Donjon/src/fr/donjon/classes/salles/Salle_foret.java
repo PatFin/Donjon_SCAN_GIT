@@ -94,20 +94,6 @@ public class Salle_foret extends SalleAbs {
 	
 		
 	/**
-	 * This method sets the different places where the character
-	 * will be placed when it comes from another room to this one
-	 */
-	@Override
-	protected void setDestinationPlaces(){
-		this.destination= new EnumMap<Orientation, Vecteur>(Orientation.class);
-		
-		this.destination.put(Orientation.NORD, new Vecteur(cases.length/2,1));
-		this.destination.put(Orientation.SUD, new Vecteur(cases.length/2,cases[0].length-2));
-		this.destination.put(Orientation.OUEST, new Vecteur(1,cases[0].length/2));
-		this.destination.put(Orientation.EST, new Vecteur(cases.length-2,cases[0].length/2));
-	}
-
-	/**
 	 * This method sets the positions of the potential doors of the room.
 	 */
 	@Override
@@ -118,6 +104,13 @@ public class Salle_foret extends SalleAbs {
 		this.porte.put(Orientation.SUD, new Vecteur(cases.length/2,cases[0].length-1));
 		this.porte.put(Orientation.EST, new Vecteur(cases.length-1,cases[0].length/2));
 		this.porte.put(Orientation.OUEST, new Vecteur(0,cases[0].length/2));
+		
+		this.destination= new EnumMap<Orientation, Vecteur>(Orientation.class);
+		
+		this.destination.put(Orientation.NORD, new Vecteur(cases.length/2,1));
+		this.destination.put(Orientation.SUD, new Vecteur(cases.length/2,cases[0].length-2));
+		this.destination.put(Orientation.OUEST, new Vecteur(1,cases[0].length/2));
+		this.destination.put(Orientation.EST, new Vecteur(cases.length-2,cases[0].length/2));
 	}
  
 	/**

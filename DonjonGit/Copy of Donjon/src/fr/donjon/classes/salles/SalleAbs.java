@@ -66,7 +66,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		monG = buffer1.getGraphics();
 
 		generateRoom();
-		setDestinationPlaces();
 		setDoorPlaces();
 	}
 	
@@ -79,7 +78,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 	
 
 	protected abstract void generateRoom();
-	protected abstract void setDestinationPlaces();
 	protected abstract void setDoorPlaces();
 
 	/**
