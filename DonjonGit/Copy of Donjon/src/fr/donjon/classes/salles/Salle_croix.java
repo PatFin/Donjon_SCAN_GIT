@@ -70,54 +70,49 @@ public class Salle_croix extends SalleAbs {
 	 */
 	@Override
 	public void addDoor(Orientation o, boolean enabled){
-		Vecteur v = porte.get(o);
-		int xIntersect = (int) porte.get(Orientation.NORD).x;
-		int yIntersect = (int) porte.get(Orientation.EST).y;
-		switch(o){
-		case NORD:
-			for(int i=0; i)
-		}
+		changeTilesTo(o);
+		
+		Vecteur v = this.porte.get(o);
+		cases[(int)v.x][(int)v.y]=new Porte_Dalle_Sol(true);
 		super.addDoor(o, enabled);
 	}
+	
+	/**
+	 * Intermediate method which makes it easier to call in the addDoor
+	 * and addDoorToPrevRoom methods.
+	 * @param o The orientation of the door to be created.
+	 */
+	private void changeTilesTo(Orientation o){
+		switch(o){
+		case NORD:
+			this.doorNORD();
+			break;
+		case SUD:
+			this.doorSUD();
+			break;
+		case EST:
+			this.doorEST();
+			break;
+		case OUEST:
+			this.doorOUEST();
+		}
+	}
+	
+	
+	
+	
+	
 	
 	/**
 	 * Adds the door to the prev room and a bridge
 	 * to the center of the room.
 	 */
 	protected void addDoorToPrevRoom(Link l){
-		Vecteur v = porte.get(Orientation.opposite(l.orientation));
-		int width = (int)v.x;
-		int height = (int)v.y;
-		int i;
+		changeTilesTo(Orientation.opposite(l.orientation));
 		
-		//We change the tiles accordingly.
-		switch(Orientation.opposite(l.orientation)){
-		case NORD:
-			for(i=(int)v.y;i<height;i++){
-				cases[width][i] = new Case_dalle_sol();
-			}
-			if(cases[width][i] instanceof Case_void){
-				cases[width][i]=new Case_mur();
-			}
-			break;
-		case SUD:
-			for(i=(int)v.y;i>height;i--){
-				cases[width][i] = new Case_dalle_sol();
-			}
-			break;
-		case OUEST:
-			for(i=(int)v.x;i<width;i++){
-				cases[i][height] = new Case_dalle_sol();
-				cases[i][height+1] = new Case_mur();
-			}
-			break;
-		case EST:
-			for(i=(int)v.x;i>width;i++){
-				cases[i][height] = new Case_dalle_sol();
-				cases[i][height+1] = new Case_mur();
-			}
-		}
+		Vecteur v = this.porte.get(Orientation.opposite(l.orientation));
 		cases[(int)v.x][(int)v.y]=new Porte_Dalle_Sol(true);
+		super.addDoorToPrevRoom(l);
 	}
 	
 	
@@ -136,6 +131,80 @@ public class Salle_croix extends SalleAbs {
 		this.destination.put(Orientation.EST, new Vecteur(cases.length-2,cases[0].length/2));
 	}
 
+	/**
+	 * This method gives the intersection point of the doors.
+	 * @return Vecteur where the paths should intersect.
+	 */
+	private Vecteur getCenter(){
+		double xIntersect = porte.get(Orientation.NORD).x;
+		double yIntersect = porte.get(Orientation.EST).y;
+		return new Vecteur(xIntersect, yIntersect);
+	}
+	
+	/**
+	 * This method changes the tiles to the northern door.
+	 */
+	private void doorNORD(){
+		Vecteur c = getCenter();
+		int i;
+		for(i=(int)c.y; i>porte.get(Orientation.NORD).y; i--){
+			cases[(int)c.x][i] = new Case_dalle_sol();
+		}
+		if(cases[(int)c.x][i] instanceof Case_void){
+			cases[(int)c.x][i] = new Case_mur();
+		}
+	}
+	
+	/**
+	 * This method changes the tiles to the southern door.
+	 */
+	private void doorSUD(){
+		Vecteur c = getCenter();
+		
+		for(int i=(int)c.y; i<porte.get(Orientation.SUD).y; i++){
+			cases[(int)c.x][i] = new Case_dalle_sol();
+		}
+	}
+	
+	
+	/**
+	 * This method changes the tiles to the eastern door.
+	 */
+	private void doorEST(){
+		Vecteur c = getCenter();
+		int i;
+		for(i=(int)c.x; i<porte.get(Orientation.EST).x; i++){
+			cases[i][(int)c.y] = new Case_dalle_sol();
+			
+			if(cases[i][(int)c.y+1] instanceof Case_void){
+				cases[i][(int)c.y+1] = new Case_mur();
+			}
+		}
+		if(cases[i][(int)c.y+1] instanceof Case_void){
+			cases[i][(int)c.y+1] = new Case_mur();
+		}
+	}
+	
+	/**
+	 * This method changes the tiles to the western door.
+	 */
+	private void doorOUEST(){
+		Vecteur c = getCenter();
+		
+		int i;
+		for(i= (int)c.x; i>porte.get(Orientation.OUEST).x; i--){
+			cases[i][(int)c.y] = new Case_dalle_sol();
+			
+			if(cases[i][(int)c.y+1] instanceof Case_void){
+				cases[i][(int)c.y+1] = new Case_mur();
+			}
+		}
+		if(cases[i][(int)c.y+1] instanceof Case_void){
+			cases[i][(int)c.y+1] = new Case_mur();
+		}
+	}
+	
+	
 	
 	/**
 	 * This method sets the positions of the potential doors of the room.
