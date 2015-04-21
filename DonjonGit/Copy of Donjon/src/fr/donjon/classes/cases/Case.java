@@ -5,7 +5,9 @@ import java.awt.Rectangle;
 import java.io.File;
 
 import javax.imageio.ImageIO;
+
 import fr.donjon.classes.Personnage;
+import fr.donjon.utils.ImageManager;
 
 /**
  * Classe Case
@@ -25,14 +27,9 @@ public class Case {
 	 * @param traversable true si la case peut être traversée, false sinon.
 	 */
 	public Case(String ImageName){
-		try {
-			image= ImageIO.read(new File(ImageName));
-		}
-		catch(Exception err) {
-			System.out.println("Failed to read the image "+ImageName);
-			System.out.println(err);
-			System.exit(0);
-		}
+		
+		image = ImageManager.getImage(ImageName,this.getClass().getSimpleName());
+		
 		this.collision=new Rectangle(Case.TAILLE,Case.TAILLE);
 	}
 

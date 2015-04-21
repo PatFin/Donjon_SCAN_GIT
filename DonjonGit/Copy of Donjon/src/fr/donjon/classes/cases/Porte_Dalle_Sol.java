@@ -2,7 +2,7 @@ package fr.donjon.classes.cases;
 
 public class Porte_Dalle_Sol extends Case_porte {
 
-	final static String ImageName = "Ressources/Images/Case_dalle.png";
+	final static String ImageName = "Case_dalle.png";
 	
 	
 	public Porte_Dalle_Sol( boolean enabled) {

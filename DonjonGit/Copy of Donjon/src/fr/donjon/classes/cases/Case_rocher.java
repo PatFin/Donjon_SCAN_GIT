@@ -7,7 +7,7 @@ import fr.donjon.classes.Personnage;
 
 public class Case_rocher extends Case_Obstacle {
 
-	final static String image="Ressources/Images/Case_rocher.png";
+	final static String image="Case_rocher.png";
 
 
 	/**

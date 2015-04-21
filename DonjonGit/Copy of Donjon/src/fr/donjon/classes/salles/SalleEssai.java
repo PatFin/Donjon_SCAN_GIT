@@ -7,6 +7,8 @@ import java.awt.Rectangle;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.utils.Link;
+import fr.donjon.utils.Orientation;
 
 /**
  * 
@@ -44,6 +46,20 @@ public class SalleEssai extends SalleAbs {
 	@Override
 	protected void setDoorPlaces() {
 
+	}
+
+
+	@Override
+	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public SalleAbs clone(Heros h, Link l, Orientation o) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

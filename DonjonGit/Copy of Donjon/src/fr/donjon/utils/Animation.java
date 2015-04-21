@@ -5,10 +5,6 @@ package fr.donjon.utils;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 /**
  * @author Baptiste
@@ -42,12 +38,7 @@ public class Animation{
 	public Animation(String source, Vecteur taille, int line, int nb, long duration){
 
 		//Lecture image globale
-		try {
-			im =ImageIO.read(new File(source));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Error reading image to create animation:"+source);
-		}
+		im = ImageManager.getImage(source, this.getClass().getSimpleName());
 
 		this.taille = taille;
 		this.line = line;
