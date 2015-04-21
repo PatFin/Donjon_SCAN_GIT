@@ -21,9 +21,10 @@ public class Castle_Room extends SalleAbs {
 
 
 	/**
-	 * @param p Le hero controlé par le joueur.
-	 * @param ecran L'écran de jeu.
-	 * @param lien le lien de lasalle précédente vers celle-ci.
+	 * Constructor called when this is the first room of the dungeon
+	 * @param ecran contains the space available to the room
+	 * @param h the hero controlled by the player
+	 * @param o the orientation of the door to be placed
 	 */
 	public Castle_Room(Rectangle ecran, Heros h, Orientation o) {
 		super(ecran, h);
@@ -32,9 +33,16 @@ public class Castle_Room extends SalleAbs {
 		
 		this.generateImage();
 		
+		//Placing the character in the middle of the room.
+		Vecteur v = this.getCenter();
+		hero.setLocation((int)v.x*Case.TAILLE, (int)v.y*Case.TAILLE);
 	}
 	
-	
+	/**
+	 * @param p Le hero controlé par le joueur.
+	 * @param ecran L'écran de jeu.
+	 * @param lien le lien de lasalle précédente vers celle-ci.
+	 */
 	public Castle_Room(Heros h, Link l, Orientation o){
 		super(SalleAbs.ecran, h);
 		

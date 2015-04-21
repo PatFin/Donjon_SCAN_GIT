@@ -58,7 +58,7 @@ public abstract class Gestionnaire implements EcouteurClavier {
 	 * @return
 	 */
 	protected SalleAbs createRandomNewRoom(Heros h, Link l,Orientation o){
-		int r = (int) (3*Math.random()*sallesDisponibles.size())%sallesDisponibles.size();
+		int r = (int) (42*Math.random()*sallesDisponibles.size())%sallesDisponibles.size();
 		return sallesDisponibles.get(r).clone(h, l, o);
 	}
 	
@@ -98,6 +98,8 @@ public abstract class Gestionnaire implements EcouteurClavier {
 		
 		
 	} 
+	
+	
 	
 	
 	/**

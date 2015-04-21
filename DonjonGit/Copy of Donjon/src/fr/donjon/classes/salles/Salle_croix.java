@@ -26,9 +26,14 @@ public class Salle_croix extends SalleAbs {
 		
 		//Adding the doors to the next room
 		this.addDoor(o, true);
-		
+				
 		//Generating the image of the room after all the tiles have been set.
 		this.generateImage();
+		
+		//Placing the character in the middle of the room.
+		Vecteur v = this.getCenter();
+		hero.setLocation((int)v.x*Case.TAILLE, (int)v.y*Case.TAILLE);
+
 	}
 	
 	/**
@@ -106,10 +111,6 @@ public class Salle_croix extends SalleAbs {
 	}
 	
 	
-	
-	
-	
-	
 	/**
 	 * Adds the door to the prev room and a bridge
 	 * to the center of the room.
@@ -138,15 +139,6 @@ public class Salle_croix extends SalleAbs {
 		this.destination.put(Orientation.EST, new Vecteur(cases.length-2,cases[0].length/2));
 	}
 
-	/**
-	 * This method gives the intersection point of the doors.
-	 * @return Vecteur where the paths should intersect.
-	 */
-	private Vecteur getCenter(){
-		double xIntersect = porte.get(Orientation.NORD).x;
-		double yIntersect = porte.get(Orientation.EST).y;
-		return new Vecteur(xIntersect, yIntersect);
-	}
 	
 	/**
 	 * This method changes the tiles to the northern door.

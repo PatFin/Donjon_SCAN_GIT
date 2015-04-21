@@ -28,6 +28,10 @@ public class Salle_foret extends SalleAbs {
 		
 		//generating the image of the room after all the tiles have been set
 		this.generateImage();
+		
+		//Placing the character in the middle of the room.
+		Vecteur v = this.getCenter();
+		hero.setLocation((int)v.x*Case.TAILLE, (int)v.y*Case.TAILLE);
 	}
 	
 	

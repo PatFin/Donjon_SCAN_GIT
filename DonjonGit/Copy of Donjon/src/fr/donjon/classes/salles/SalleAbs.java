@@ -56,6 +56,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		this.hero=h;
 		this.personnage = new LinkedList <Personnage> ();
 		this.personnage.add(hero);
+		
 		addEnemy(new Squelette(ecran.width/2, ecran.height/2, h));
 		
 		
@@ -269,6 +270,17 @@ public abstract class SalleAbs implements EcouteurClavier {
 			}
 		}
 	}
+	
+	/**
+	 * This method gives the intersection point of the doors.
+	 * @return Vecteur where the paths should intersect.
+	 */
+	protected Vecteur getCenter(){
+		double xIntersect = porte.get(Orientation.NORD).x;
+		double yIntersect = porte.get(Orientation.EST).y;
+		return new Vecteur(xIntersect, yIntersect);
+	}
+	
 
 
 	/**
