@@ -69,11 +69,30 @@ public abstract class SalleAbs implements EcouteurClavier {
 		setDoorPlaces();
 	}
 	
+	/**
+	 * Empty constructor
+	 */
+	public SalleAbs(){
+		
+	}
+	
 
 	protected abstract void generateRoom();
 	protected abstract void setDestinationPlaces();
 	protected abstract void setDoorPlaces();
 
+	/**
+	 * Returns a new Room 
+	 * @param ecran the space available for the game.
+	 * @param h the hero the player controls.
+	 * @param o the orientation of the door to the next room.
+	 * @return
+	 */
+	public abstract SalleAbs clone(Rectangle ecran, Heros h, Orientation o);
+	
+	
+	public abstract SalleAbs clone(Heros h, Link l, Orientation o);
+	
 	/**
 	 * This method creates a link to another room in the
 	 * direction required by the parameter.

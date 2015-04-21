@@ -5,10 +5,8 @@ import java.util.EnumMap;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
-import fr.donjon.classes.cases.Case_dalle_sol;
 import fr.donjon.classes.cases.Case_fendue_sol;
 import fr.donjon.classes.cases.Case_herbe;
-import fr.donjon.classes.cases.Case_rocher;
 import fr.donjon.classes.cases.Porte_Dalle_Sol;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
@@ -49,6 +47,13 @@ public class Salle_foret extends SalleAbs {
 		this.addDoor(o, true);
 		
 		this.generateImage();
+	}
+	
+	/**
+	 * Empty constructor
+	 */
+	public Salle_foret(){
+		super();
 	}
 	
 	/**
@@ -128,7 +133,7 @@ public class Salle_foret extends SalleAbs {
 			for(int y=1;y<cases[0].length-1;y++){
 				int random = (int)(Math.round(100*Math.random()));
 
-				if(random >= 5){
+				if(random >= 10){
 					cases[x][y]=new Case_herbe();	
 				}else {
 					cases[x][y]=new Case_fendue_sol();
@@ -139,6 +144,18 @@ public class Salle_foret extends SalleAbs {
 		//The sides are filled with black tiles.
 		super.fillEmptyWithVoid();
 		
+	}
+
+
+	@Override
+	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) {
+		return new Salle_foret(ecran, h, o);
+	}
+
+
+	@Override
+	public SalleAbs clone(Heros h, Link l, Orientation o) {
+		return new Salle_foret(h, l, o);
 	}
 
 }

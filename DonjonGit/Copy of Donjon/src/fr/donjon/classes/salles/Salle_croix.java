@@ -48,6 +48,13 @@ public class Salle_croix extends SalleAbs {
 		
 		this.generateImage();
 	}
+	
+	/**
+	 * Empty constructor
+	 */
+	public Salle_croix(){
+		super();
+	}
 
 	/**
 	 * This method fills the room with the standards
@@ -217,6 +224,16 @@ public class Salle_croix extends SalleAbs {
 		this.porte.put(Orientation.SUD, new Vecteur(cases.length/2,cases[0].length-1));
 		this.porte.put(Orientation.EST, new Vecteur(cases.length-1,cases[0].length/2));
 		this.porte.put(Orientation.OUEST, new Vecteur(0,cases[0].length/2));
+	}
+
+	@Override
+	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) {
+		return new Salle_croix(ecran, h, o);
+	}
+
+	@Override
+	public SalleAbs clone(Heros h, Link l, Orientation o) {
+		return new Salle_croix(h, l, o);
 	}
 
 }

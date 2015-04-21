@@ -45,6 +45,12 @@ public class Castle_Room extends SalleAbs {
 		this.generateImage();
 	}
 	
+	/**
+	 * Empty constructor
+	 */
+	public Castle_Room(){
+		super();
+	}
 	
 	@Override
 	public void addDoor(Orientation o, boolean enabled){
@@ -155,6 +161,18 @@ public class Castle_Room extends SalleAbs {
 		porte.put(Orientation.SUD,new Vecteur(cases.length/2+3, cases[0].length-1));
 		porte.put(Orientation.EST, new Vecteur(cases.length-1,cases[0].length/2-1));
 		porte.put(Orientation.OUEST, new Vecteur(0,cases[0].length/2+2));
+	}
+
+
+	@Override
+	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) {
+		return new Castle_Room(ecran, h, o);
+	}
+
+
+	@Override
+	public SalleAbs clone(Heros h, Link l, Orientation o) {
+		return new Castle_Room(h, l, o);
 	}
 
 }

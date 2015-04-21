@@ -7,6 +7,7 @@ import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.salles.Castle_Room;
 import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.classes.salles.Salle_croix;
+import fr.donjon.classes.salles.Salle_foret;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -16,9 +17,14 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 	public GestionnaireJeuLineaire(GamePanel game) {
 		
 		super(game);
+		this.sallesDisponibles = new LinkedList<SalleAbs>();
+		sallesDisponibles.add(new Salle_foret());
+		sallesDisponibles.add(new Castle_Room());
+		sallesDisponibles.add(new Salle_croix());
 		
 		
-		SalleAbs firstRoom = new Castle_Room(game.ecran, new Heros(200,200), Orientation.random()); //On crée une premiere Salle 
+		
+		SalleAbs firstRoom = new Castle_Room(game.ecran, new Heros(200,200), Orientation.random()); //On crée la premiere Salle 
 		
 		
 		currentRoom = firstRoom;
@@ -41,9 +47,7 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 
 	@Override
 	public void createNextRoom(Link l) {
-		Orientation a = Orientation.opposite(l.orientation);
-		SalleAbs s = new Salle_croix(l.origineSalle.hero, l, Orientation.random(a));
-		l.setDestination(s, s.destination.get(a));
+		super.createNextRoom(l);
 	}
 
 	@Override
