@@ -49,7 +49,7 @@ public class Castle_Room extends SalleAbs {
 		this.addDoorToPrevRoom(l);
 		
 		this.addDoor(o, true);
-		
+		this.generateEnnemis();
 		this.generateImage();
 	}
 	
