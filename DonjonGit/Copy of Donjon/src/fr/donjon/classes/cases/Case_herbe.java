@@ -21,7 +21,6 @@ public class Case_herbe extends Case{
 	
 	@Override
 	public Case clone() {
-		// TODO Auto-generated method stub
 		return new Case_herbe();
 	}
 	

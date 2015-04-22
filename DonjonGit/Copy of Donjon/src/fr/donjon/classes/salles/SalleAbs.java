@@ -125,7 +125,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		
 	}
 	
-	
 	/**
 	 * Returns a new Room 
 	 * @param ecran the space available for the game.
@@ -166,8 +165,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		this.link.put(a, new Link(l.origineSalle, l.origineSalle.destination.get(l.orientation), this, this.porte.get(a), a, true)); //crer une methode reciprocal dans la classe Link.
 	}
 
-
-
 	/**
 	 * Updates all the objects.
 	 * @param temps
@@ -205,7 +202,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		sortCharacters();
 	}
 
-
 	/**
 	 * This method generates the image of the room.
 	 * It takes the image of each tyle contained in the 
@@ -231,7 +227,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 			}
 		}
 	}
-
 
 	/**
 	 * This method draws the room.
@@ -270,7 +265,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		personnage.add(e);
 	}
 	
-	
 	/**
 	 * This method sorts the characters in increasing y coordinate.
 	 * It is used in the paint method such that the characters at 
@@ -303,7 +297,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		
 	}
 	
-	
 	/**
 	 * This method fills the empty parts of the cases
 	 * array with Case_void(). It comes in handy when
@@ -331,8 +324,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		return new Vecteur(xIntersect, yIntersect);
 	}
 	
-
-
 	/**
 	 * Method inherited from EcouteurClavier
 	 */
