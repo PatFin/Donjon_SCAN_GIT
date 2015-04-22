@@ -3,6 +3,7 @@ package fr.donjon.classes;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
@@ -23,10 +24,12 @@ public abstract class Personnage extends Deplacable{
 	EtatPersonnage etat;
 	Arme arme;
 	Inventaire inventaire;
-	int vie;
-	int armure;
+	ArrayList<Effet> effets; //Liste des effets du personnage
+	
+	Effet stats;		//les stats du personnage (vie, atk,...)
+	
 	public Type type;
-	public boolean living;
+	public boolean living;	//Etat vivant/mort du perso
 	
 	Animation animation;
 	Animation animationN;
@@ -62,9 +65,13 @@ public abstract class Personnage extends Deplacable{
 		
 		this.o=o;
 		this.etat=etat;
+		
+		this.effets = new ArrayList<Effet>();
+		effets.add(new Effet(vie,armure,vitd,0));		//Effet de base, stats de base
+		
+		sumEffects();
+		
 		this.arme = arme;
-		this.armure = armure;
-		this.vie = vie;
 		this.type = t;
 		this.living = true;
 		
@@ -109,7 +116,7 @@ public abstract class Personnage extends Deplacable{
 			
 		}
 		
-		g.fillRect( (int)getCentre().x - vie/2, (int)getCentre().y - image.height/2 - 15, vie, 10);
+		g.fillRect( (int)getCentre().x - stats.vie/2, (int)getCentre().y - image.height/2 - 15, stats.vie, 10);
 		
 	}
 	
@@ -123,18 +130,18 @@ public abstract class Personnage extends Deplacable{
 		this.lPos.setLocation(image.x, image.y); //On met a jour la position pr�c�dente
 		
 		
-		
+		//Deplacement
 		switch(etat){
 
 		case ATTAQUE :
 			if(arme != null)arme.update(t);
-			Vecteur nexPos = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(vitDeplacement));
+			Vecteur nexPos = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(stats.vit));
 			setLocation( (int) nexPos.x, (int) nexPos.y);
 			break;
 			
 		case DEPLACEMENT :
 			//TODO : A optimiser, eviter de cr�er un objets ttes le 40ms
-			Vecteur nexPos1 = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(vitDeplacement));
+			Vecteur nexPos1 = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(stats.vit));
 			setLocation((int) nexPos1.x, (int) nexPos1.y);
 			break;
 
@@ -180,10 +187,53 @@ public abstract class Personnage extends Deplacable{
 	 */
 	public abstract void utiliserObjet(int reference);
 	
+	/**
+	 * Permet au perso de recevoir un certain nombre de dommage,
+	 * calcule les dommages subits en fonction de l'armure et met a jour
+	 * l'état du personnage.
+	 * 
+	 * @param amount Nombre de dommages a distribuer
+	 */
 	public void receiveDammages(int amount){
-		this.vie -= (amount - armure);
-		if(this.vie<=0)this.living = false;
+		effets.get(0).vie -= amount <= stats.def ? 0 : amount - stats.def ; //Aucun dmg subit si armure >= dmg
+		sumEffects();
+		if(stats.vie<=0)this.living = false;
 	}
 	
+	/**
+	 * Permet de mettre a jour les stats du perso
+	 * @return La somme
+	 */
+	public Effet sumEffects(){
+		
+		Effet e1 = new Effet(0, 0, 0, 0);
+		
+		for(Effet e : effets){
+			e1 = e1.sum(e);
+		}
+		
+		stats = e1;
+		
+		return e1;
+	}
 	
+	/**
+	 * Retire un effet a la liste s'il y est et recalcule la somme
+	 * 
+	 * @param e
+	 */
+	public void removeEffect(Effet e){
+		if(effets.contains(e))effets.remove(e);
+		sumEffects();
+	}
+	
+	/**
+	 * Ajoute un effet a la liste s'il n'y est pas et recalcule la somme
+	 * 
+	 * @param e
+	 */
+	public void addEffect(Effet e){
+		if(!effets.contains(e))effets.add(e);
+		sumEffects();
+	}
 }

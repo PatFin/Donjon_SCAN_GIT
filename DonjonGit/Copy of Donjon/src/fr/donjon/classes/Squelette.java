@@ -105,7 +105,7 @@ public class Squelette extends Ennemis {
 		
 		super.update(t);
 		
-		if (this.vie > 0) {
+		if (stats.vie > 0) {
 			
 			pattern();
 		}

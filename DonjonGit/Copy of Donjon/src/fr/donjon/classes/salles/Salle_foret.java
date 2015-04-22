@@ -6,7 +6,6 @@ import java.util.EnumMap;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.CaseWater;
-import fr.donjon.classes.cases.Case_fendue_sol;
 import fr.donjon.classes.cases.Case_herbe;
 import fr.donjon.classes.cases.Porte_Dalle_Sol;
 import fr.donjon.utils.Link;
