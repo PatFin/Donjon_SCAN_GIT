@@ -39,12 +39,6 @@ public abstract class Deplacable extends Objet {
 	}
 	
 	/**
-	 * Mise a jour du personnage et de son arme selon le temps ecoulé
-	 * 
-	 * @param t Temps écoule en ms
-	 */
-	
-	/**
 	 * Dessin du personnege et de son arme
 	 */
 	abstract public void draw(long t, Graphics g);

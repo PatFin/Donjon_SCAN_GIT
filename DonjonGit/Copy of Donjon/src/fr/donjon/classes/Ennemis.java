@@ -38,7 +38,6 @@ public abstract class Ennemis extends Personnage{
 
 	@Override
 	public void update(long t) {
-		
 		super.update(t);
 	}
 

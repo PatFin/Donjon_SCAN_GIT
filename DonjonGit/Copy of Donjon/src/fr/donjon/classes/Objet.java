@@ -4,6 +4,8 @@
 package fr.donjon.classes;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import fr.donjon.utils.Vecteur;
 /**
  * @author Patrick
  *
@@ -51,4 +53,9 @@ public abstract class Objet {
 	public abstract void update(long t);
 	
     public abstract void draw(long  t, Graphics g);
+    
+    public Vecteur getCentre(){
+    	return new Vecteur(this.image.x + this.image.width/2, this.image.y + this.image.height/2);
+    }
+    
 }

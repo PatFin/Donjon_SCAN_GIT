@@ -1,5 +1,6 @@
 package fr.donjon.classes;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
@@ -24,6 +25,7 @@ public abstract class Personnage extends Deplacable{
 	public Type type;
 	int vie;
 	int armure;
+	public boolean living;
 	
 	Animation animation;
 	Animation animationN;
@@ -39,7 +41,7 @@ public abstract class Personnage extends Deplacable{
 	 * @param ay			Position y
 	 * @param longueur		Longueur image
 	 * @param largeur		Largeur image
-	 * @param nom			Nom de l'entité
+	 * @param nom			Nom de l'entitï¿½
 	 * @param offArm			Offsets rectangle armes
 	 * @param offCol			Offsets rectangle collisions
 	 * @param toDisplay			Affichage de l'objet
@@ -63,6 +65,7 @@ public abstract class Personnage extends Deplacable{
 		this.armure = armure;
 		this.vie = vie;
 		this.type = t;
+		this.living = true;
 		
 		this.lPos = new Vecteur(ax, ay);
 	}
@@ -70,6 +73,8 @@ public abstract class Personnage extends Deplacable{
 	
 	@Override
 	public void draw(long t, Graphics g) {
+		
+		if(!living)return;
 		
 		switch(etat){
 		case ATTAQUE:
@@ -81,13 +86,37 @@ public abstract class Personnage extends Deplacable{
 		case REPOS:
 			animation.drawImage(image.x, image.y, image.width, image.height, g, 0);//Dessin de l'image 0 seulement
 		}
+		
+		
+		switch(type){
+		case ALIE:
+			g.setColor(new Color(0, 255, 0, 120));
+			break;
+		case ENNEMI:
+			g.setColor(new Color(255, 0, 0, 120));
+			break;
+		case HERO:
+			g.setColor(new Color(0, 0, 255, 120));
+			break;
+		case UNDEFINED:
+			break;
+		default:
+			break;
+			
+		}
+		
+		g.fillRect( (int)getCentre().x - vie/2, (int)getCentre().y - image.height/2 - 15, vie, 10);
+		
 	}
 	
 	@Override
 	public void update(long t) {
+		
+		if(!living)return;
+		
 		super.update(t);
 		
-		this.lPos.setLocation(image.x, image.y); //On met a jour la position précédente
+		this.lPos.setLocation(image.x, image.y); //On met a jour la position prï¿½cï¿½dente
 		
 		
 		
@@ -100,7 +129,7 @@ public abstract class Personnage extends Deplacable{
 			break;
 			
 		case DEPLACEMENT :
-			//TODO : A optimiser, eviter de créer un objets ttes le 40ms
+			//TODO : A optimiser, eviter de crï¿½er un objets ttes le 40ms
 			Vecteur nexPos1 = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(vitDeplacement));
 			setLocation((int) nexPos1.x, (int) nexPos1.y);
 			break;
@@ -133,7 +162,7 @@ public abstract class Personnage extends Deplacable{
 	
 	/**
 	 * 
-	 * 	Methode permettant à un personnage d'attaquer
+	 * 	Methode permettant ï¿½ un personnage d'attaquer
 	 * 
 	 * @param cibles		Cibles potentielles de l'attaque
 	 * @param projectiles	Tableau de projectiles de la salle 
@@ -147,6 +176,10 @@ public abstract class Personnage extends Deplacable{
 	 */
 	public abstract void utiliserObjet(int reference);
 	
+	public void receiveDammages(int amount){
+		this.vie -= (amount - armure);
+		if(this.vie<=0)this.living = false;
+	}
 	
 	
 }

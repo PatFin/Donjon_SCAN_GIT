@@ -14,7 +14,7 @@ public class Squelette extends Ennemis {
 	final static int LRG = 64;
 	final static int VIE = 50;
 	final static int DEF = 5;
-	final static int VIT = 4;
+	final static int VIT = 2;
 	final static String src = "skeleton_map.png";
 	final static double COEFF = 2.5;
 	public Personnage target;
@@ -105,7 +105,7 @@ public class Squelette extends Ennemis {
 		
 		super.update(t);
 		
-		if (this.VIE > 0) {
+		if (this.vie > 0) {
 			
 			pattern();
 		}

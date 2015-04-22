@@ -109,7 +109,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		
 		//TODO remove this r=1 instruction. 
 		//It is used for tests purposes.
-		r=1;
+		//r=1;
 		
 		System.out.println("This room (Room "+roomNumber+") will have "+r+" ennemis !");
 		//We create the enemies and place each of them at an available tile chosen randomly.
@@ -185,7 +185,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 				z.update(temps);	//Le personnage agit.
 
 				/**
-				 * On applique les comportements à effectuer en fonction des cases 
+				 * On applique les comportements ï¿½ effectuer en fonction des cases 
 				 * sur lesquelles le personnage marche.
 				 */
 				for(int x=0; x<cases.length;x++){
@@ -199,7 +199,10 @@ public abstract class SalleAbs implements EcouteurClavier {
 
 					}
 				}
+				
 			}
+			
+			if(!z.living)personnage.remove(z); //(on enterre les morts)
 		}
 		
 		//We sort the list of characters such that they superimpose correctly in the room
@@ -333,7 +336,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 */
 	@Override
 	public void attaque(Orientation o) {
-		this.hero.attaquer(null, null, o);
+		this.hero.attaquer(personnage, null, o);
 	}
 
 	/**

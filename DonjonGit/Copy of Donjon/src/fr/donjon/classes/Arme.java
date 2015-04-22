@@ -27,8 +27,8 @@ public abstract class Arme {
 	int degats;			//Degats bruts ou par seconde selon le type d'attaque
 	long duree;			//Duree de l'attaque
 
-	private LinkedList<Personnage> cibles; //Liste des cibles potentielles
-	private LinkedList<Projectile> projectiles;	//Listes des projectiles
+	protected LinkedList<Personnage> cibles; //Liste des cibles potentielles
+	protected LinkedList<Projectile> projectiles;	//Listes des projectiles
 
 	/**
 	 * 
@@ -42,8 +42,6 @@ public abstract class Arme {
 		this.degats = degats;
 		this.etat = EtatArme.FINISHED; //On cree juste l'arme sans attaquer
 		this.duree = duree;
-
-
 	}
 
 	/**
@@ -58,7 +56,7 @@ public abstract class Arme {
 		//Si l'annimation est terminee le personnage passe au repos et on redemarre l'anim de l'arme
 		if(animation.drawOnce(this.lanceur.image.x, this.lanceur.image.y, Heros.LNG, Heros.LRG, g, t)){
 			animation.drawImage(this.lanceur.image.x, this.lanceur.image.y, Heros.LNG, Heros.LRG, g, 0);
-			this.etat = EtatArme.FINISHED;
+			this.stopAttaquer();
 			animation.restart();
 		}
 		
@@ -78,15 +76,22 @@ public abstract class Arme {
 			lanceur.stopAttaque();
 			break;
 		case FINISHING : 
-			
+			updateBounds();
+			giveDammages();
 			break;
 		case RUNNING :
-			
+			updateBounds();
+			giveDammages();
 			break;
 
 		}
 
+		
 	}
+	
+	protected abstract void giveDammages();
+	
+	protected abstract void updateBounds();
 
 	/**
 	 * 

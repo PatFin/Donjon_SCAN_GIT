@@ -179,7 +179,7 @@ public class EditorWindow extends JFrame{
 		BNouveau.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Interface d'�coute sur le r�sultat du JDialog
+				//Interface d'écoute sur le résultat du JDialog
 				DialogListener dl = new DialogListener() {
 
 					@Override
