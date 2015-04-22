@@ -15,12 +15,15 @@ public class Squelette extends Ennemis {
 	final static int VIT = 4;
 	final static String src = "Ressources/Images/skeleton_map.png";
 	final static double COEFF = 2.5;
+	public Personnage target;
 	
 	public Squelette(int ax, int ay, Personnage cible){
 		super(ax, ay, LNG, LRG, src,
 				new Rectangle(17,15,30,49), new Rectangle(22,48,20,16), true,
 				Orientation.SUD, EtatPersonnage.REPOS, Vecteur.vNull,VIT,
 				VIE, DEF , null, cible);
+		
+		target = cible;
 		
 		animationN = new Animation(src, new Vecteur(64, 64),1,9,(long)(VIT/COEFF*100));
 		animationO = new Animation(src, new Vecteur(64, 64),2,9,(long)(VIT/COEFF*100));
@@ -59,28 +62,33 @@ public class Squelette extends Ennemis {
 		}
 	}
 	
-	public void pattern(Personnage p) { // Le squelette se dirige vers le personnage p
+	public void pattern() { // Le squelette se dirige vers le personnage p
 		
 		Orientation dir = Orientation.SUD;
 		
-		if (this.image.x > p.image.x) {
-			
-			dir = Orientation.EST;
-		}
-		
-		if (this.image.x < p.image.x) {
-			
-			dir = Orientation.OUEST;
-		}
-		
-		if (this.image.y > p.image.y) {
+		if (this.image.y < target.image.y) {
 			
 			dir = Orientation.SUD;
 		}
-		
-		if (this.image.y < p.image.y) {
+		else {
 			
 			dir = Orientation.NORD;
+		}
+		
+		if (this.image.y == target.image.y) {
+			
+			if (this.image.x < target.image.x) {
+				
+				dir = Orientation.EST;
+			}
+			else if (this.image.x > target.image.x) {
+				
+				dir = Orientation.OUEST;
+			}
+			else {
+				
+				dir = Orientation.SUD;
+			}
 		}
 		
 		marcher(dir);
@@ -91,6 +99,10 @@ public class Squelette extends Ennemis {
 	public void update(long t) {
 		// TODO Auto-generated method stub
 		
+		if (this.VIE > 0) {
+			
+			pattern();
+		}
 	}
 
 	@Override
