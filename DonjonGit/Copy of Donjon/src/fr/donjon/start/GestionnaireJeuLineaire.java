@@ -40,7 +40,7 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 			createNextRoom(l);
 		}
 		Vecteur v = l.destinationSalle.destination.get(Orientation.opposite(l.orientation));
-		l.destinationSalle.hero.setLocation((int)(v.x*Case.TAILLE), (int)(v.y*Case.TAILLE));
+		l.destinationSalle.hero.setLocation(v);
 		this.currentRoom = l.destinationSalle;
 	}
 

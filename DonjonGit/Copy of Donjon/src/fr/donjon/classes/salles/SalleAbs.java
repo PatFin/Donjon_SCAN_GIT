@@ -88,6 +88,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 */
 	protected void generateEnnemis(){
 		//First we get a list of the tiles that can welcome an enemy.
+		//The loop excludes the sides of the room since the hero can be at these locations.
 		LinkedList<Vecteur> l = new LinkedList<Vecteur>();
 		
 		for(int x=2; x<cases.length-2; x++){
@@ -102,17 +103,19 @@ public abstract class SalleAbs implements EcouteurClavier {
 		//It shouldn't exceed 1/8 of the available tiles.
 		//It should be at least 1.
 		int r=(int)(Math.random()*l.size()/8);
-		if(r<1){
+		if(r<1 && l.size()!=0){
 			r=1;
 		}
+		
 		
 		//We create the enemies and place each of them at an available tile chosen randomly.
 		int a;
 		Vecteur v;
 		
 		for(int i=0;i<r;i++){
-			a=(int)(Math.random()*l.size());
+			a=(int)(Math.random()*l.size());			//selecting a random index in the list of available tiles.
 			v = l.get(a);
+			
 			Ennemis e = new Squelette(0,0, hero);
 			e.setLocation(v);
 			addEnemy(e);
