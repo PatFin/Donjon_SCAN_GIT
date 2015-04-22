@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 public class ImageManager {
 
-	final static String path = "Images/";
+	final static String path = "Ressources/Images/";
 	static HashMap<String,Image> map = new HashMap<String, Image>();
 
 
