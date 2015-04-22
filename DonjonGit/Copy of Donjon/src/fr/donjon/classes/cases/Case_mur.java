@@ -11,7 +11,7 @@ import java.awt.Rectangle;
 
 public class Case_mur extends Case_Obstacle{
 	
-	final static String image="Ressources/Images/Case_mur.png";
+	final static String image="Case_mur.png";
 	
 	
 	/**
@@ -33,5 +33,7 @@ public class Case_mur extends Case_Obstacle{
 		// TODO Auto-generated method stub
 		this.collision = new Rectangle(Case.TAILLE*horizontal, Case.TAILLE*vertical, 64, 64);
 	}
+	
+	
 
 }

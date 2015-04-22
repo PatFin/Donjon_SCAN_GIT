@@ -1,5 +1,3 @@
-// /!\ Classe à compléter
-
 package fr.donjon.classes;
 
 import java.awt.Graphics;
@@ -58,7 +56,6 @@ public abstract class Deplacable extends Objet {
 	
 	@Override
 	public void update(long t){
-		//Maj des rectangles pour les objets deplacables
 
 	}
 }

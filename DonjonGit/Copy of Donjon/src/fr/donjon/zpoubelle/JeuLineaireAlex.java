@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.donjon.start;
+package fr.donjon.zpoubelle;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -15,15 +15,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import fr.donjon.classes.Castle_Room;
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.Linear_Castle;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
+import fr.donjon.classes.Squelette;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
-import fr.donjon.utils.Vecteur;
 
 
 /**
@@ -31,33 +31,36 @@ import fr.donjon.utils.Vecteur;
  *
  */
 
-public class JeuLineairePat extends JFrame implements EcouteurClavier {
+public class JeuLineaireAlex extends JFrame implements EcouteurClavier {
 	
 	static final int LARGEUR = 15;
 	static final int HAUTEUR = 9;
 	final static int timerTime = 20;
 	
-    BufferedImage arrierePlan;
-    Graphics buffer;
-    Rectangle ecran;
-    JPanel monJpanel;
+    public BufferedImage arrierePlan;
+    public Graphics buffer;
+    public Rectangle ecran;
+    public JPanel monJpanel;
 
-    long temps;
+    public long temps;
     
-    Timer timer;
-    Heros hero;
+    public Timer timer;
+    public Heros hero;
     public Linear_Castle castle;
     
 
-	public JeuLineairePat(){
+	public JeuLineaireAlex(){
 		
        initialisationFenetre();
        
        //General declarations
        timer = new Timer(timerTime, new TimerAction());
-       hero = new Heros(200,300);
-       castle = new Linear_Castle(hero,ecran);
+       hero = new Heros(447,430);
+       castle = new Linear_Castle(hero, ecran);
        
+       //Ajout d'un squelette
+       
+       castle.currentRoom.ajouterEnnemi(new Squelette(200, 300, hero));
        
        //TODO at the END !
        this.addKeyListener(new JeuKeyAdapter(this));
@@ -96,7 +99,7 @@ public class JeuLineairePat extends JFrame implements EcouteurClavier {
 		
         
         castle.draw(temps, g);
-        
+        setTitle(String.valueOf(hero.image.x) + ", " + String.valueOf(hero.image.y) + ", " + castle.currentRoom.personnage.size());
 	}
 	
  	public void update(){
@@ -108,7 +111,7 @@ public class JeuLineairePat extends JFrame implements EcouteurClavier {
  	
 	public static void main(String[] args) {
         
-        JeuLineairePat Monjeu = new JeuLineairePat();
+        JeuLineaireAlex Monjeu = new JeuLineaireAlex();
         
     }
 
@@ -131,15 +134,15 @@ public class JeuLineairePat extends JFrame implements EcouteurClavier {
 	}
 
 	@Override
-	public void stopAttaque() {
+	public void stopAttaque(Orientation o) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deplacement(Vecteur v) {
+	public void deplacement(Orientation o) {
 		// TODO Auto-generated method stub
-		hero.marcher(v);
+		hero.marcher(o);
 	}
 
 	@Override
@@ -156,9 +159,9 @@ public class JeuLineairePat extends JFrame implements EcouteurClavier {
 	}
 
 	@Override
-	public void stopDeplacement() {
+	public void stopDeplacement(Orientation o) {
 		// TODO Auto-generated method stub
-		hero.stop();
+		hero.stop(o);
 	}
 	
 	  

@@ -3,7 +3,7 @@ package fr.donjon.classes.cases;
 
 public class Case_fendue_sol extends Case {
 	
-	final static String image="Ressources/Images/Case_fendue_sol.png";
+	final static String image="Case_fendue_sol.png";
 	/**
 	 * Constructeur
 	 */

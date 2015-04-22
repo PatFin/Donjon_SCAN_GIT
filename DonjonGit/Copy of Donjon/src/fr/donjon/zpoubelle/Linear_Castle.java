@@ -1,9 +1,11 @@
-package fr.donjon.classes;
+package fr.donjon.zpoubelle;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.donjon.classes;
+package fr.donjon.zpoubelle;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import fr.donjon.classes.Objet;
 
 /**
  * @author Baptiste

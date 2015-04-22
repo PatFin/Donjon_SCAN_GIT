@@ -1,4 +1,4 @@
-package fr.donjon.test;
+package fr.donjon.classes.salles;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,13 +9,13 @@ import java.util.LinkedList;
 
 import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.Link;
 import fr.donjon.classes.Objet;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Squelette;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.Case_void;
 import fr.donjon.utils.EcouteurClavier;
+import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
@@ -56,6 +56,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		this.hero=h;
 		this.personnage = new LinkedList <Personnage> ();
 		this.personnage.add(hero);
+		
 		addEnemy(new Squelette(ecran.width/2, ecran.height/2, h));
 		
 		
@@ -65,15 +66,32 @@ public abstract class SalleAbs implements EcouteurClavier {
 		monG = buffer1.getGraphics();
 
 		generateRoom();
-		setDestinationPlaces();
 		setDoorPlaces();
+	}
+	
+	/**
+	 * Empty constructor
+	 */
+	public SalleAbs(){
+		
 	}
 	
 
 	protected abstract void generateRoom();
-	protected abstract void setDestinationPlaces();
 	protected abstract void setDoorPlaces();
 
+	/**
+	 * Returns a new Room 
+	 * @param ecran the space available for the game.
+	 * @param h the hero the player controls.
+	 * @param o the orientation of the door to the next room.
+	 * @return
+	 */
+	public abstract SalleAbs clone(Rectangle ecran, Heros h, Orientation o);
+	
+	
+	public abstract SalleAbs clone(Heros h, Link l, Orientation o);
+	
 	/**
 	 * This method creates a link to another room in the
 	 * direction required by the parameter.
@@ -89,7 +107,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 * This method creates a link to the previous room
 	 * @param l the link from the previous room to the current one
 	 */
-	public void addDoorToPrevRoom(Link l){
+	protected void addDoorToPrevRoom(Link l){
 		//We create the link.
 		Orientation a = Orientation.opposite(l.orientation);
 
@@ -123,13 +141,16 @@ public abstract class SalleAbs implements EcouteurClavier {
 						//If the character is in collision with a tile, apply method inCollision of the corresponding tile. 
 
 						if(z.collisionDecor.intersects(cases[x][y].collision)){	
-							cases[x][y].inCollision(z);
+								cases[x][y].inCollision(z);
 						}
 
 					}
 				}
 			}
 		}
+		
+		//We sort the list of characters such that they superimpose correctly in the room
+		sortCharacters();
 	}
 
 
@@ -140,7 +161,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 */
 	protected void generateImage(){
 
-		//Initialysing the graphic tools 
+		//Initializing the graphic tools 
 		imageSalle = new BufferedImage(ecran.width,ecran.height, BufferedImage.TYPE_INT_RGB);
 		bufferImageSalle = imageSalle.createGraphics();
 
@@ -174,7 +195,9 @@ public abstract class SalleAbs implements EcouteurClavier {
 		//This is not necessary for the game to work properly
 		monG.setColor(Color.white);
 		monG.drawString("Salle "+this.roomNumber, 20, 20);
-
+		
+		
+		
 		//We display the characters
 		for(int i=0;i<personnage.size();i++){
 			Objet z=personnage.get(i);
@@ -186,7 +209,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		//Finally send everything at the destination
 		g.drawImage(buffer1, ecran.x, ecran.y, null);
 	}
-
+	
 	/**
 	 * Adds the enemy given as a parameter to the room.
 	 * @param e the enemy to be added.
@@ -194,10 +217,44 @@ public abstract class SalleAbs implements EcouteurClavier {
 	public void addEnemy(Ennemis e) {
 		personnage.add(e);
 	}
-
+	
+	
+	/**
+	 * This method sorts the characters in increasing y coordinate.
+	 * It is used in the paint method such that the characters at 
+	 * the bottom of the room are painted on top of those which are 
+	 * above them and not the contrary.
+	 */
+	private void sortCharacters(){
+		//Putting the elements in an array
+		Personnage [] a = new Personnage[personnage.size()];
+		for(int i=0; i<a.length;i++){
+			a[i] = personnage.get(i);
+		}
+		
+		//Bubble sort algorithm
+        for(int j=0; j<a.length-1;j++){
+            for(int i=0;i<a.length-j-1;i++){
+                if(a[i].collisionDecor.y>a[i+1].collisionDecor.y){
+                    Personnage temp = a[i];
+                    a[i]=a[i+1];
+                    a[i+1]=temp;
+                }
+            }
+        }
+		
+		//Putting the element back into the list.
+		this.personnage = new LinkedList<Personnage>();
+		for(int i=0;i<a.length;i++){
+			this.personnage.add(a[i]);
+		}
+		
+	}
+	
+	
 	/**
 	 * This method fills the empty parts of the cases
-	 * array with Case_voi(). It comes in handy when
+	 * array with Case_void(). It comes in handy when
 	 * declaring the array of the room.
 	 */
 	protected void fillEmptyWithVoid(){
@@ -211,6 +268,17 @@ public abstract class SalleAbs implements EcouteurClavier {
 			}
 		}
 	}
+	
+	/**
+	 * This method gives the intersection point of the doors.
+	 * @return Vecteur where the paths should intersect.
+	 */
+	protected Vecteur getCenter(){
+		double xIntersect = porte.get(Orientation.NORD).x;
+		double yIntersect = porte.get(Orientation.EST).y;
+		return new Vecteur(xIntersect, yIntersect);
+	}
+	
 
 
 	/**

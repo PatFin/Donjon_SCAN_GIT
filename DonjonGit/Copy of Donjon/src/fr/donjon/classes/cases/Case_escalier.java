@@ -6,7 +6,7 @@ import fr.donjon.utils.Orientation;
 
 public class Case_escalier extends Case {
 	
-	final static String image="Ressources/Images/Case_escalier.png";
+	final static String image="Case_escalier.png";
 	
 	public Orientation o;
 	

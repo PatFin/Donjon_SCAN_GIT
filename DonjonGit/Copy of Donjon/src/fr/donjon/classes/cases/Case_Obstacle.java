@@ -4,8 +4,6 @@
 package fr.donjon.classes.cases;
 
 import fr.donjon.classes.Personnage;
-import fr.donjon.utils.Orientation;
-import fr.donjon.utils.Vecteur;
 
 /**
  * @author Patrick
@@ -15,21 +13,20 @@ public abstract class Case_Obstacle extends Case {
 
 	/**
 	 * @param ImageName
-	 * @param traversable
 	 */
 	public Case_Obstacle(String ImageName) {
 		super(ImageName);
 	}
 	
+	
 	/**
 	 * Cette méthode est générique à toutes les cases de type obstacle.
 	 * Le personnage z est repoussé à le limite du rectangle de collision. 
-	 * @param z Le personnage en collisionavec la case
+	 * @param z Le personnage en collision avec la case
 	 */
-	public void inCollision(Personnage z) {
-
-		z.setLocation((int)z.lPos.x, (int) z.lPos.y);
-		
+	public void inCollision(Personnage p) {
+		p.setLocation((int)p.lPos.x, (int) p.lPos.y);	
 	}
+	
 
 }

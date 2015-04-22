@@ -1,6 +1,5 @@
-package fr.donjon.test;
+package fr.donjon.start;
 
-import fr.donjon.start.GamePanel;
 
 public class JeuLineaire extends GamePanel {
 

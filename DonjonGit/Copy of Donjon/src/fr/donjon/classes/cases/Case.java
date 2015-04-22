@@ -7,6 +7,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 import fr.donjon.classes.Personnage;
+import fr.donjon.utils.ImageManager;
 
 /**
  * Classe Case
@@ -26,14 +27,9 @@ public class Case {
 	 * @param traversable true si la case peut être traversée, false sinon.
 	 */
 	public Case(String ImageName){
-		try {
-			image= ImageIO.read(new File(ImageName));
-		}
-		catch(Exception err) {
-			System.out.println("Failed to read the image "+ImageName);
-			System.out.println(err);
-			System.exit(0);
-		}
+		
+		image = ImageManager.getImage(ImageName,this.getClass().getSimpleName());
+		
 		this.collision=new Rectangle(Case.TAILLE,Case.TAILLE);
 	}
 
@@ -51,7 +47,7 @@ public class Case {
 	 * Methode vide. Les cases qui dérivent de Case peuvent l'override selon leur besoin.
 	 * @param z Le personnage qui marche sur la case.
 	 */
-	public void inCollision(Personnage z) {
+	public void inCollision(Personnage p) {
 	}
 	
 	public Case clone(){

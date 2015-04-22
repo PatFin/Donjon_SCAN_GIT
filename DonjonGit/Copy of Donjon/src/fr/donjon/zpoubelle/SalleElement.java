@@ -1,6 +1,5 @@
-package fr.donjon.test;
+package fr.donjon.zpoubelle;
 
-import fr.donjon.classes.Salle;
 
 /**
  * Cette classe représente une Salle est ses liens vers les autres Salles

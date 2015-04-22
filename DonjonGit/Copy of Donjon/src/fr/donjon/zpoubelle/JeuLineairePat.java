@@ -1,8 +1,7 @@
-
 /**
  * 
  */
-package fr.donjon.start;
+package fr.donjon.zpoubelle;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -16,16 +15,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import fr.donjon.classes.Castle_Room;
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.Linear_Castle;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
-import fr.donjon.classes.Salle;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
 
 
 /**
@@ -33,7 +30,7 @@ import fr.donjon.utils.Orientation;
  *
  */
 
-public class JeuLineaireVincent extends JFrame implements EcouteurClavier {
+public class JeuLineairePat extends JFrame implements EcouteurClavier {
 	
 	static final int LARGEUR = 15;
 	static final int HAUTEUR = 9;
@@ -51,7 +48,7 @@ public class JeuLineaireVincent extends JFrame implements EcouteurClavier {
     public Linear_Castle castle;
     
 
-	public JeuLineaireVincent(){
+	public JeuLineairePat(){
 		
        initialisationFenetre();
        
@@ -110,7 +107,7 @@ public class JeuLineaireVincent extends JFrame implements EcouteurClavier {
  	
 	public static void main(String[] args) {
         
-        JeuLineaireVincent Monjeu = new JeuLineaireVincent();
+        JeuLineairePat Monjeu = new JeuLineairePat();
         
     }
 
@@ -133,15 +130,15 @@ public class JeuLineaireVincent extends JFrame implements EcouteurClavier {
 	}
 
 	@Override
-	public void stopAttaque(Orientation o) {
+	public void stopAttaque() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deplacement(Orientation o) {
+	public void deplacement(Vecteur v) {
 		// TODO Auto-generated method stub
-		hero.marcher(o);
+		hero.marcher(v);
 	}
 
 	@Override
@@ -158,9 +155,9 @@ public class JeuLineaireVincent extends JFrame implements EcouteurClavier {
 	}
 
 	@Override
-	public void stopDeplacement(Orientation o) {
+	public void stopDeplacement() {
 		// TODO Auto-generated method stub
-		hero.stop(o);
+		hero.stop();
 	}
 	
 	  

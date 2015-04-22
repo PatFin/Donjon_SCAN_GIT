@@ -16,7 +16,7 @@ public class ArmeEpee extends Arme{
 
 	final static int DMG = 20;
 	final static int DUR = 300;
-	final static String src = "C:/SVN/hero_map.png";
+	final static String src = "hero_map.png";
 	
 	/**
 	 * 

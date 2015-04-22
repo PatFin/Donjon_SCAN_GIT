@@ -14,7 +14,7 @@ public class ArmeLance extends Arme {
 
 	final static int DMG = 40;
 	final static int DUR = 400;
-	final static String src = "C:/SVN/hero_map.png";
+	final static String src = "hero_map.png";
 	
 	/**
 	 * 

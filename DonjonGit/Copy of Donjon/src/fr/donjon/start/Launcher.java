@@ -6,7 +6,6 @@ package fr.donjon.start;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import fr.donjon.test.JeuLineaire;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;

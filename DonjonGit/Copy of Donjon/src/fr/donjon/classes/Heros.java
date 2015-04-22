@@ -22,9 +22,9 @@ public class Heros extends Personnage{
 	final static int LRG = 64;
 	final static int VIE = 100;
 	final static int DEF = 10;
-	final static int VIT = 4;
-	final static String src = "Ressources/Images/hero_map.png";
-	final static double COEFF = 2.5;
+	final static int VIT = 3;
+	final static String src = "hero_map.png";
+	final static double COEFF = 1;
 	
 	
 
@@ -47,8 +47,6 @@ public class Heros extends Personnage{
 		
 		this.arme = new ArmeLance(this);
 		
-		
-
 	}
 
 
@@ -63,7 +61,7 @@ public class Heros extends Personnage{
 
 	/**
 	 * Demarre le deplacement du personnage dans une direction
-	 * @param dir Direction de deplacement du personnage
+	 * @param v Direction de deplacement du personnage
 	 */
 	public void marcher(Vecteur v){
 		

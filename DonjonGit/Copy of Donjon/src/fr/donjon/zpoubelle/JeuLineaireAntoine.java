@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.donjon.start;
+package fr.donjon.zpoubelle;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -19,7 +19,6 @@ import fr.donjon.classes.Castle_Room;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
-import fr.donjon.classes.Salle;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;

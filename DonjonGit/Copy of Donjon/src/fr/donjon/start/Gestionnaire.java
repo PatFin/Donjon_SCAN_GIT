@@ -1,13 +1,14 @@
 /**
  * 
  */
-package fr.donjon.test;
+package fr.donjon.start;
 
 import java.util.LinkedList;
 
-import fr.donjon.classes.Link;
-import fr.donjon.start.GamePanel;
+import fr.donjon.classes.Heros;
+import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.utils.EcouteurClavier;
+import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
@@ -17,27 +18,29 @@ import fr.donjon.utils.Vecteur;
  * @author Baptiste
  *
  */
-public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurClavier {
+public abstract class Gestionnaire implements EcouteurClavier {
 
-	GamePanel game;								//Le jeu qui gère l'affichage de la Salle
-	public LinkedList<SalleAbs> listeSalles;	//La liste des salles du donjon
-	public SalleAbs currentRoom;				//La salle actuelle
+	GamePanel game;									//Le jeu qui gère l'affichage de la Salle.
+	public LinkedList<SalleAbs> listeSalles;		//La liste des salles du donjon.
+	public LinkedList<SalleAbs> sallesDisponibles;	//La liste des salles dans lesquelles on peut piocher pour générer la salle suivante.
+	public SalleAbs currentRoom;					//La salle actuelle.
 	
 	public Gestionnaire(GamePanel game) {
 		this.game = game;
-		
 	}
-	
-	
-	
 	
 	
 	/**
 	 * Method called when the link has no destination set yet.
-	 * It creates a new room or makes a link to an existing one.
-	 * @param l the link which needs a destination
+	 * It creates a new room selected randomly in the rooms available.
+	 * @param l the link which destination is the new room.
 	 */
-	public abstract void createNextRoom(Link l);
+	public void createNextRoom(Link l){
+		Orientation a = Orientation.opposite(l.orientation);
+		SalleAbs s = createRandomNewRoom(l.origineSalle.hero, l, Orientation.random(a));
+		l.setDestination(s, s.destination.get(a));
+		listeSalles.add(s);
+	}
 	
 	/**
 	 * Renvoie la salle dans laquelle le héro se trouve actuellement
@@ -47,13 +50,22 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 		return currentRoom;
 	}
 	
+	/**
+	 * Selects randomly a room in the available list of rooms and returns a clone of it.
+	 * @param h the hero the player controls
+	 * @param l the link to the previous room
+	 * @param o the orientation to the next room.
+	 * @return
+	 */
+	protected SalleAbs createRandomNewRoom(Heros h, Link l,Orientation o){
+		int r = (int) (42*Math.random()*sallesDisponibles.size())%sallesDisponibles.size();
+		return sallesDisponibles.get(r).clone(h, l, o);
+	}
 	
-	/////////////////////////////////////
-	//INTERFACE CHANGEMENT SALLE/////////
-	/////////////////////////////////////
 	
 	
-	@Override
+	public abstract void changerDeSalle(Link l);
+	
 	public Orientation mustChange() {
 		
 		Link[] l=new Link[4];
@@ -88,6 +100,8 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 	} 
 	
 	
+	
+	
 	/**
 	 * Updates the current room and checks the need for change of Room
 	 * @param temps parameter used for the objects in the room.
@@ -95,8 +109,7 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 	public void update(long temps) {
 		this.currentRoom.update(temps);
 		
-		//TODO écrire le test "si doit changer de salle alors changer de salle".
-		
+		//test if the current room needs to be changed.
 		Orientation o = this.mustChange();
 		if(o != null){
 			changerDeSalle(currentRoom.link.get(o));
@@ -138,7 +151,6 @@ public abstract class Gestionnaire implements EcouteurChangementSalle, EcouteurC
 
 	@Override
 	public void stopDeplacement() {
-		// TODO Auto-generated method stub
 		this.currentRoom.stopDeplacement();
 	}
 
