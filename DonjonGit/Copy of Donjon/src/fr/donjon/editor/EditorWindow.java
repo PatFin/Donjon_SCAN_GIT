@@ -26,42 +26,47 @@ import fr.donjon.classes.cases.Case_mur;
 import fr.donjon.classes.cases.Case_rocher;
 import fr.donjon.classes.cases.Case_void;
 import fr.donjon.classes.salles.SalleEssai;
-import fr.donjon.start.GamePanel;
 import fr.donjon.start.SimplePanel;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Vecteur;
 
 /**
  * 
- * Fenêtre principale de l'éditeur
+ * Fenï¿½tre principale de l'ï¿½diteur
  * 
  * @author Baptiste
  *
  */
 public class EditorWindow extends JFrame{
 
+	public static void main(String[] a){
+
+		EditorWindow window = new EditorWindow("Editeur de cartes");
+
+	}
+
 	//Cadre principal
 	JPanel cadre;
 
 	//Panel menu
 	JPanel panMenu;
-
 	JButton BNouveau;
 	JButton BSauvegarder;
 	JButton BDelete;
 	JButton BFill;
 	JButton BOuvrir;
-	JButton BEssayer;
 	
+	JButton BEssayer;
+
 	//Panel Interactions (boutons)
 	JPanel panInteractions;
+	JSlider sliderThickness; 
 
-	JSlider sliderThickness;
-	JPanel 	panCases; 
-
+	JPanel 	panCases;
 	LinkedList<CaseButton> LCButtons;
-	LinkedList<Case> listCases;
 
+
+	LinkedList<Case> listCases;
 
 	//Panel dessin
 	PanelEdition panDessin;
@@ -148,14 +153,13 @@ public class EditorWindow extends JFrame{
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+		
 	}
 
 	/**
 	 * Ajoute tous les listeners des bouttons
 	 */
-	private void addListeners(){
-
-
+	private void addListeners(){ 
 		BDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -175,13 +179,8 @@ public class EditorWindow extends JFrame{
 		BNouveau.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Interface d'écoute sur le résultat du JDialog
+				//Interface d'ï¿½coute sur le rï¿½sultat du JDialog
 				DialogListener dl = new DialogListener() {
-
-					@Override
-					public void onValidate(Vecteur v) {
-						panDessin.reinitialize((int)v.x, (int)v.y); //Reinitialisation avec la nouvelle taille
-					}
 
 					@Override
 					public void onCancel() {
@@ -190,6 +189,11 @@ public class EditorWindow extends JFrame{
 					@Override
 					public void onValidate(String name, int index) {
 						
+					}
+
+					@Override
+					public void onValidate(Vecteur v) {
+						panDessin.reinitialize((int)v.x, (int)v.y); //Reinitialisation avec la nouvelle taille
 					}
 				};
 
@@ -205,19 +209,19 @@ public class EditorWindow extends JFrame{
 				DialogListener l = new DialogListener() {
 					
 					@Override
-					public void onValidate(Vecteur v) {
+					public void onCancel() {
 						
 					}
 					
 					@Override
-					public void onCancel() {
-						
-					}
-
-					@Override
 					public void onValidate(String name, int index) {
 						SalleDescription sd = new SalleDescription(panDessin.cases, panDessin.width, panDessin.height, index, name);
 						MapFileHandler.createMapFile(sd, true);
+					}
+
+					@Override
+					public void onValidate(Vecteur v) {
+						
 					}
 				};
 				
@@ -254,11 +258,11 @@ public class EditorWindow extends JFrame{
 				
 				JFrame frame = new JFrame("Essai de carte");
 				
-				SalleEssai essai = new SalleEssai(new Rectangle(WIDTH*Case.TAILLE, HEIGHT*Case.TAILLE), new Heros(200,200)
+				SalleEssai essai = new SalleEssai(new Rectangle(panDessin.width*Case.TAILLE, panDessin.height*Case.TAILLE), new Heros(200,200)
 				, panDessin.cases);
 				
 				SimplePanel gpanel = new SimplePanel(essai);
-				//gpanel.addKeyListener(new JeuKeyAdapter(gpanel));
+				gpanel.addKeyListener(new JeuKeyAdapter(gpanel));
 				
 				frame.setContentPane(gpanel);
 				frame.pack();
@@ -267,21 +271,12 @@ public class EditorWindow extends JFrame{
 				frame.setVisible(true);
 				gpanel.startGame();
 				
-				
-				
-				//TODO creer un jeu lancable a partir de ca
 			}
 		});
 		
 		for(CaseButton bt : LCButtons){
 			bt.addActionListener(new CaseButtonListener(bt, panDessin));
 		}
-
-	}
-
-	public static void main(String[] a){
-
-		EditorWindow window = new EditorWindow("Editeur de cartes");
 
 	}
 

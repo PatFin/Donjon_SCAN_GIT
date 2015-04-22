@@ -21,7 +21,7 @@ public class ImageManager {
 		Image im = null ;
 
 		if(map.containsKey(subpath)){
-			System.out.println(subpath + " already loaded by "+who);
+			//System.out.println(subpath + " already loaded by "+who);
 			return map.get(subpath);
 		}
 

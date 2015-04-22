@@ -13,6 +13,7 @@ import fr.donjon.classes.Objet;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Squelette;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.Case_Obstacle;
 import fr.donjon.classes.cases.Case_void;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
@@ -57,8 +58,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		this.personnage = new LinkedList <Personnage> ();
 		this.personnage.add(hero);
 		
-		addEnemy(new Squelette(ecran.width/2, ecran.height/2, h));
-		
 		
 		this.link = new EnumMap<Orientation, Link>(Orientation.class);
 
@@ -71,6 +70,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	
 	/**
 	 * Empty constructor
+	 * Used in the "gestionnaire" to have a list of rooms to be played.
 	 */
 	public SalleAbs(){
 		
@@ -79,17 +79,68 @@ public abstract class SalleAbs implements EcouteurClavier {
 
 	protected abstract void generateRoom();
 	protected abstract void setDoorPlaces();
-
+	
+	/**
+	 * The general method to add enemis to a room.
+	 * It distributes a number of "points" that depend on the room number.
+	 * So you can have few but strong ennemis or pletora of weak ennemis in the room.
+	 * Specific rooms can override this method for more specific needs.
+	 */
+	protected void generateEnnemis(){
+		//First we get a list of the tiles that can welcome an enemy.
+		//The loop excludes the sides of the room since the hero can be at these locations.
+		LinkedList<Vecteur> l = new LinkedList<Vecteur>();
+		
+		for(int x=2; x<cases.length-2; x++){
+			for(int y=2; y<cases[0].length-2; y++){
+				if(!(cases[x][y] instanceof Case_Obstacle)){
+					l.add(new Vecteur(x,y));
+				}
+			}
+		}
+		
+		//Then we choose how many enemies we will create.
+		//It shouldn't exceed 1/8 of the available tiles.
+		//It should be at least 1.
+		int r=(int)(Math.random()*l.size()/1);
+		if(r<1 && l.size()!=0){
+			r=1;
+		}
+		
+		System.out.println("This room will have "+r+" ennemis !");
+		//We create the enemies and place each of them at an available tile chosen randomly.
+		int a;
+		Vecteur v;
+		
+		for(int i=0;i<r;i++){
+			a=(int)(Math.random()*l.size()/8);			//selecting a random index in the list of available tiles.
+			v = l.get(a);
+			
+			Ennemis e = new Squelette(0,0, hero);
+			e.setLocation(v);
+			addEnemy(e);
+			l.remove(a);
+		}
+		
+		
+	}
+	
 	/**
 	 * Returns a new Room 
 	 * @param ecran the space available for the game.
 	 * @param h the hero the player controls.
 	 * @param o the orientation of the door to the next room.
-	 * @return
+	 * @return a new room.
 	 */
 	public abstract SalleAbs clone(Rectangle ecran, Heros h, Orientation o);
 	
-	
+	/**
+	 * Returns a new Room
+	 * @param h the hero controlled by the character.
+	 * @param l the link from the previous room to this one.
+	 * @param o the orientation of the link to the next one.
+	 * @return a new room.
+	 */
 	public abstract SalleAbs clone(Heros h, Link l, Orientation o);
 	
 	/**
@@ -113,8 +164,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 
 		this.link.put(a, new Link(l.origineSalle, l.origineSalle.destination.get(l.orientation), this, this.porte.get(a), a, true)); //crer une methode reciprocal dans la classe Link.
 	}
-
-
 
 	/**
 	 * Updates all the objects.
@@ -153,7 +202,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		sortCharacters();
 	}
 
-
 	/**
 	 * This method generates the image of the room.
 	 * It takes the image of each tyle contained in the 
@@ -179,7 +227,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 			}
 		}
 	}
-
 
 	/**
 	 * This method draws the room.
@@ -218,7 +265,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		personnage.add(e);
 	}
 	
-	
 	/**
 	 * This method sorts the characters in increasing y coordinate.
 	 * It is used in the paint method such that the characters at 
@@ -251,7 +297,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		
 	}
 	
-	
 	/**
 	 * This method fills the empty parts of the cases
 	 * array with Case_void(). It comes in handy when
@@ -279,8 +324,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 		return new Vecteur(xIntersect, yIntersect);
 	}
 	
-
-
 	/**
 	 * Method inherited from EcouteurClavier
 	 */

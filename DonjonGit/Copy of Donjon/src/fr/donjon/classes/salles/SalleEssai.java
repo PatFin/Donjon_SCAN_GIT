@@ -30,24 +30,17 @@ public class SalleEssai extends SalleAbs {
 		
 	}
 
-	
 	@Override
 	protected void generateRoom() {
+		// TODO Auto-generated method stub
 		
 	}
 
-	
-	@Override
-	protected void setDestinationPlaces() {
-
-	}
-
-	
 	@Override
 	protected void setDoorPlaces() {
-
+		// TODO Auto-generated method stub
+		
 	}
-
 
 	@Override
 	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) {
@@ -55,11 +48,12 @@ public class SalleEssai extends SalleAbs {
 		return null;
 	}
 
-
 	@Override
 	public SalleAbs clone(Heros h, Link l, Orientation o) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

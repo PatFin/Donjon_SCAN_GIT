@@ -51,6 +51,8 @@ public class Salle_croix extends SalleAbs {
 		//Adding a door to the next room
 		this.addDoor(o, true);
 		
+		this.generateEnnemis();
+		
 		this.generateImage();
 	}
 	
