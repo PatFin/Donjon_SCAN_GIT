@@ -102,23 +102,24 @@ public abstract class SalleAbs implements EcouteurClavier {
 		//Then we choose how many enemies we will create.
 		//It shouldn't exceed 1/8 of the available tiles.
 		//It should be at least 1.
-		int r=(int)(Math.random()*l.size()/8);
+		int r=(int)(Math.random()*l.size()/1);
 		if(r<1 && l.size()!=0){
 			r=1;
 		}
 		
-		
+		System.out.println("This room will have "+r+" ennemis !");
 		//We create the enemies and place each of them at an available tile chosen randomly.
 		int a;
 		Vecteur v;
 		
 		for(int i=0;i<r;i++){
-			a=(int)(Math.random()*l.size());			//selecting a random index in the list of available tiles.
+			a=(int)(Math.random()*l.size()/8);			//selecting a random index in the list of available tiles.
 			v = l.get(a);
 			
 			Ennemis e = new Squelette(0,0, hero);
 			e.setLocation(v);
 			addEnemy(e);
+			l.remove(a);
 		}
 		
 		
