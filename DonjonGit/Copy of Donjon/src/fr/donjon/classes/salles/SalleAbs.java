@@ -107,7 +107,11 @@ public abstract class SalleAbs implements EcouteurClavier {
 			r=1;
 		}
 		
-		System.out.println("This room will have "+r+" ennemis !");
+		//TODO remove this r=1 instruction. 
+		//It is used for tests purposes.
+		r=1;
+		
+		System.out.println("This room (Room "+roomNumber+") will have "+r+" ennemis !");
 		//We create the enemies and place each of them at an available tile chosen randomly.
 		int a;
 		Vecteur v;

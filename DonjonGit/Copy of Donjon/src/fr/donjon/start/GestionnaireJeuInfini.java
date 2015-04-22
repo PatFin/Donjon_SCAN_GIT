@@ -3,52 +3,40 @@ package fr.donjon.start;
 import java.util.LinkedList;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.salles.Castle_Room;
 import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.classes.salles.Salle_croix;
 import fr.donjon.classes.salles.Salle_foret;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
-import fr.donjon.utils.Vecteur;
 
-public class GestionnaireJeuLineaire extends Gestionnaire {
+public class GestionnaireJeuInfini extends Gestionnaire {
 
-	public GestionnaireJeuLineaire(GamePanel game) {
-		
+	/**
+	 * Constructeur
+	 * @param game
+	 */
+	public GestionnaireJeuInfini(GamePanel game) {
 		super(game);
+		
+		//On créé la liste des salles à utiliser dans le donjon
 		this.sallesDisponibles = new LinkedList<SalleAbs>();
 		sallesDisponibles.add(new Salle_foret());
 		sallesDisponibles.add(new Castle_Room());
 		sallesDisponibles.add(new Salle_croix());
 		
-		SalleAbs firstRoom = new Castle_Room(game.ecran, new Heros(200,200), Orientation.random()); //On crée la premiere Salle 
+		//On créé la première salle
+		SalleAbs firstRoom = new Salle_croix(game.ecran, new Heros(0,0), Orientation.random());
 		currentRoom = firstRoom;
 		//On initialise la liste des salles avec la première
 		this.listeSalles = new LinkedList<SalleAbs>();
 		this.listeSalles.add(firstRoom);
 	}
 
-
 	@Override
 	public void changerDeSalle(Link l) {
-		if(!l.hasDestination()){
-			createNextRoom(l);
-		}
-		Vecteur v = l.destinationSalle.destination.get(Orientation.opposite(l.orientation));
-		l.destinationSalle.hero.setLocation(v);
-		this.currentRoom = l.destinationSalle;
-	}
+		// TODO Auto-generated method stub
 
-
-	@Override
-	public void createNextRoom(Link l) {
-		super.createNextRoom(l);
-	}
-
-	@Override
-	public Orientation mustChange() {
-		return super.mustChange();
 	}
 
 }
