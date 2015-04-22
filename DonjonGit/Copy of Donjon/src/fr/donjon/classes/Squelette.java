@@ -95,7 +95,7 @@ public class Squelette extends Ennemis {
 				dir = Orientation.SUD;
 			}
 		}
-		System.out.println(""+dir);
+
 		marcher(dir);
 	}
 
