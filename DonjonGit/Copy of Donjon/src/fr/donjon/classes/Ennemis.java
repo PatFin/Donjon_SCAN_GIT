@@ -37,7 +37,10 @@ public abstract class Ennemis extends Personnage{
 	}
 
 	@Override
-	abstract public void update(long t);
+	public void update(long t) {
+		
+		super.update(t);
+	}
 
 	@Override
 	abstract public void attaquer(LinkedList<Personnage> cibles,

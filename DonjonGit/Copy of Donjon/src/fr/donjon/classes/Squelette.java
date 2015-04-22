@@ -103,6 +103,8 @@ public class Squelette extends Ennemis {
 	@Override
 	public void update(long t) {
 		
+		super.update(t);
+		
 		if (this.VIE > 0) {
 			
 			pattern();
