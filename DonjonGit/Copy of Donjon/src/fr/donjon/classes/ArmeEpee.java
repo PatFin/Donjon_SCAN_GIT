@@ -18,13 +18,13 @@ import fr.donjon.utils.Vecteur;
  */
 public class ArmeEpee extends Arme{
 
-	final static int DMG = 55;
+	final static int DMG = 50;
 	final static int DUR = 200;
 	final static String src = "hero_map.png";
 	final static String icSrc = "sword.png";
 	
 	final static int zoneWidth = 35;
-	final static int zoneHeight = 35;
+	final static int zoneHeight = 20;
 	final static int decalageZoneX = 10;
 	final static int decalageZoneY = 10; 
 

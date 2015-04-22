@@ -18,7 +18,7 @@ import fr.donjon.utils.Vecteur;
  */
 public class ArmeLance extends Arme {
 
-	final static int DMG = 35;
+	final static int DMG = 30;
 	final static int DUR = 350;
 	final static String src = "hero_map.png";
 	final static String icSrc = "spear.png";

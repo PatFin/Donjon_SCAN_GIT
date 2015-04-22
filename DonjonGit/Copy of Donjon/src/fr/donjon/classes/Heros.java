@@ -45,7 +45,7 @@ public class Heros extends Personnage{
 		animationE = new Animation(src, new Vecteur(64, 64),11,9,(long)(VIT/COEFF*100));
 		animation = animationS;
 		
-		this.inventaire = new Inventaire(4, this);
+		this.inventaire = new Inventaire(5, this);
 		inventaire.addUtilisable(new ArmeEpee());
 		inventaire.addUtilisable(new ArmeLance());
 		inventaire.useUtilisable(0);
@@ -53,10 +53,14 @@ public class Heros extends Personnage{
 
 
 	public void draw(long t, Graphics g) {
-		super.draw(t, g);
-		
+
 		//Only the Heros has to draw the inventaire
 		this.inventaire.draw(g);
+		
+		//We draw the inventaire under the hero
+		super.draw(t, g);
+		
+		
 	}
 
 	@Override

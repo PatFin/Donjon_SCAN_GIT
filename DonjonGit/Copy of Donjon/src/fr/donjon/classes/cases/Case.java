@@ -2,9 +2,6 @@ package fr.donjon.classes.cases;
 
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.io.File;
-
-import javax.imageio.ImageIO;
 
 import fr.donjon.classes.Personnage;
 import fr.donjon.utils.ImageManager;
@@ -24,7 +21,7 @@ public class Case {
 	/**
 	 * Constructeur de la Case 
 	 * @param ImageName le string contenant l'adresse de l'image.
-	 * @param traversable true si la case peut être traversée, false sinon.
+	 * @param traversable true si la case peut ï¿½tre traversï¿½e, false sinon.
 	 */
 	public Case(String ImageName){
 		
@@ -34,8 +31,8 @@ public class Case {
 	}
 
 	/**
-	 * Positionne le rectangle de collision qui va déclencher la methode inCollision.
-	 * Par défault le rectangle de collision recouvre toute la case.
+	 * Positionne le rectangle de collision qui va dï¿½clencher la methode inCollision.
+	 * Par dï¿½fault le rectangle de collision recouvre toute la case.
 	 * @param vertical index de l'array 2D de la salle.
 	 * @param horizontal index de l'array 2D de la salle.
 	 */
@@ -44,7 +41,7 @@ public class Case {
 	}
 
 	/**
-	 * Methode vide. Les cases qui dérivent de Case peuvent l'override selon leur besoin.
+	 * Methode vide. Les cases qui dï¿½rivent de Case peuvent l'override selon leur besoin.
 	 * @param z Le personnage qui marche sur la case.
 	 */
 	public void inCollision(Personnage p) {

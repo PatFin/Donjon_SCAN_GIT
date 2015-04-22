@@ -56,6 +56,7 @@ public class JeuKeyAdapter implements KeyListener {
 		tobj.add(50);
 		tobj.add(51);
 		tobj.add(52);
+		tobj.add(53);
 	}
 
 	@Override

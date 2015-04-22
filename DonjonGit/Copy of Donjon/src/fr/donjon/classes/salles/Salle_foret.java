@@ -5,6 +5,7 @@ import java.util.EnumMap;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.CaseWater;
 import fr.donjon.classes.cases.Case_fendue_sol;
 import fr.donjon.classes.cases.Case_herbe;
 import fr.donjon.classes.cases.Porte_Dalle_Sol;
@@ -135,7 +136,7 @@ public class Salle_foret extends SalleAbs {
 				if(random >= 10){
 					cases[x][y]=new Case_herbe();	
 				}else {
-					cases[x][y]=new Case_fendue_sol();
+					cases[x][y]=new CaseWater();
 				}
 			}
 		}

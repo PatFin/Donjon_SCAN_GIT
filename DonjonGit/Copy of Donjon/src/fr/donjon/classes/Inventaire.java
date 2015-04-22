@@ -16,10 +16,10 @@ import fr.donjon.utils.Utilisable;
  */
 public class Inventaire {
 
-	final static int iconWidth = 50;
+	final static int iconWidth = 40;
 	final static int iconSpacing = 4;
 	final static int boxOffsetLeft = 400;
-	final static Color backColor = Color.BLUE;
+	final static Color backColor = Color.GRAY;
 	final static Color objColor = Color.LIGHT_GRAY;
 	
 	private int taille;
