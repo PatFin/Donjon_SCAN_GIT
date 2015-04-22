@@ -22,9 +22,10 @@ public abstract class Personnage extends Deplacable{
 	public Orientation o;
 	EtatPersonnage etat;
 	Arme arme;
-	public Type type;
+	Inventaire inventaire;
 	int vie;
 	int armure;
+	public Type type;
 	public boolean living;
 	
 	Animation animation;
@@ -67,6 +68,8 @@ public abstract class Personnage extends Deplacable{
 		this.type = t;
 		this.living = true;
 		
+		this.inventaire = new Inventaire(0, this);
+		
 		this.lPos = new Vecteur(ax, ay);
 	}
 	
@@ -87,6 +90,7 @@ public abstract class Personnage extends Deplacable{
 			animation.drawImage(image.x, image.y, image.width, image.height, g, 0);//Dessin de l'image 0 seulement
 		}
 		
+		//Draws the life of the personnage
 		
 		switch(type){
 		case ALIE:

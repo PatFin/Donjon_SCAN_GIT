@@ -1,23 +1,28 @@
 package fr.donjon.classes;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatArme;
+import fr.donjon.utils.ImageManager;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Utilisable;
 
 /**
  * 
  * @author Baptiste
  *
  */
-public abstract class Arme {
+public abstract class Arme implements Utilisable{
 
 	Personnage lanceur; //Permet la syncro avec le personnage lanceur 
 	Orientation o;		//Orientation de l'attaque
 	EtatArme etat;		//Etat de l'attaque (finie ou pas)
 
+	String iconSrc;
+	
 	Animation animationN;
 	Animation animationS;
 	Animation animationE;
@@ -30,6 +35,11 @@ public abstract class Arme {
 	protected LinkedList<Personnage> cibles; //Liste des cibles potentielles
 	protected LinkedList<Projectile> projectiles;	//Listes des projectiles
 
+	
+	public Arme(String iconSrc){
+			this.iconSrc = iconSrc;
+	}
+	
 	/**
 	 * 
 	 * @param lanceur 	Lanceur de l'attaque
@@ -127,6 +137,12 @@ public abstract class Arme {
 
 	public void stopAttaquer(){
 		this.etat = EtatArme.FINISHING;
+	}
+	
+	
+	@Override
+	public Image getIcon() {
+		return ImageManager.getImage(iconSrc, this.getClass().getSimpleName());
 	}
 
 }

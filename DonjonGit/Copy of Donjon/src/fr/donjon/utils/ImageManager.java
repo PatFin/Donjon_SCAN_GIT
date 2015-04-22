@@ -16,6 +16,12 @@ public class ImageManager {
 	public ImageManager() {
 	}
 
+	/**
+	 * 
+	 * @param subpath
+	 * @param who
+	 * @return
+	 */
 	public static Image getImage(String subpath, String who){
 
 		Image im = null ;

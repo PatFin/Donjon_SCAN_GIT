@@ -51,6 +51,11 @@ public class JeuKeyAdapter implements KeyListener {
 		tdepl.add(83);
 		tdepl.add(68);
 		tdepl.add(81);
+		
+		tobj.add(49);
+		tobj.add(50);
+		tobj.add(51);
+		tobj.add(52);
 	}
 
 	@Override
@@ -94,7 +99,7 @@ public class JeuKeyAdapter implements KeyListener {
 			}
 			
 			else if (tobj.contains(i)){
-				
+				ecouteur.utiliseObjet(tobj.indexOf(i));
 			}
 			
 		}

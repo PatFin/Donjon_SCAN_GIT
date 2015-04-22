@@ -360,7 +360,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 */
 	@Override
 	public void utiliseObjet(int reference) {
-		// TODO implement the method
+		this.hero.utiliserObjet(reference);
 	}
 
 	/**

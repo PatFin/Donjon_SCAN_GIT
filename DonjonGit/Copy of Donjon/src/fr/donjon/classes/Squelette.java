@@ -14,9 +14,9 @@ public class Squelette extends Ennemis {
 	final static int LRG = 64;
 	final static int VIE = 50;
 	final static int DEF = 5;
-	final static int VIT = 2;
+	final static int VIT = 1;
 	final static String src = "skeleton_map.png";
-	final static double COEFF = 2.5;
+	final static double COEFF = 1;
 	public Personnage target;
 	
 	public Squelette(int ax, int ay, Personnage cible){
@@ -27,10 +27,10 @@ public class Squelette extends Ennemis {
 		
 		target = cible;
 		
-		animationN = new Animation(src, new Vecteur(64, 64),1,9,(long)(VIT/COEFF*100));
-		animationO = new Animation(src, new Vecteur(64, 64),2,9,(long)(VIT/COEFF*100));
-		animationS = new Animation(src, new Vecteur(64, 64),3,9,(long)(VIT/COEFF*100));
-		animationE = new Animation(src, new Vecteur(64, 64),4,9,(long)(VIT/COEFF*100));
+		animationN = new Animation(src, new Vecteur(64, 64),0,9,(long)(VIT/COEFF*100));
+		animationO = new Animation(src, new Vecteur(64, 64),1,9,(long)(VIT/COEFF*100));
+		animationS = new Animation(src, new Vecteur(64, 64),2,9,(long)(VIT/COEFF*100));
+		animationE = new Animation(src, new Vecteur(64, 64),3,9,(long)(VIT/COEFF*100));
 		animation = animationS;
 	}
 	
@@ -71,16 +71,16 @@ public class Squelette extends Ennemis {
 		
 		Orientation dir = Orientation.SUD;
 		
-		if (this.image.y < target.image.y) {
-			
-			dir = Orientation.SUD;
-		}
-		else {
+		if (this.image.y - target.image.y > 100) {
 			
 			dir = Orientation.NORD;
 		}
+		else if (this.image.y - target.image.y < -100) {
+			
+			dir = Orientation.SUD;
+		}
 		
-		if (this.image.y == target.image.y) {
+		else {
 			
 			if (this.image.x < target.image.x) {
 				
@@ -95,7 +95,7 @@ public class Squelette extends Ennemis {
 				dir = Orientation.SUD;
 			}
 		}
-		
+		System.out.println(""+dir);
 		marcher(dir);
 	}
 
