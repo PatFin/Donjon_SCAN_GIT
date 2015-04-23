@@ -3,7 +3,6 @@ package fr.donjon.start;
 import java.util.LinkedList;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.salles.Castle_Room;
 import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.classes.salles.Salle_croix;
