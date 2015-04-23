@@ -107,11 +107,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 			r=1;
 		}
 		
-		//TODO remove this r=1 instruction. 
-		//It is used for tests purposes.
-		//It limits the number of enemies to 1
-		//r=1;
-		
 		System.out.println("This room (Room "+roomNumber+") will have "+r+" ennemis !");
 		//We create the enemies and place each of them at an available tile chosen randomly.
 		int a;
@@ -196,6 +191,30 @@ public abstract class SalleAbs implements EcouteurClavier {
 
 				z.update(temps);	//Le personnage agit.
 
+				/**
+				 * On teste si le personnage est en collision avec un autre personnage
+				 */
+				for(int j=0;j<personnage.size();j++){
+					Personnage p = personnage.get(j);
+					
+					for(int k=0;k<personnage.size();k++){
+						if(k==j){
+							k++;
+						}
+						if(k==personnage.size()){
+							break;
+						}
+						Personnage q = personnage.get(k);
+						
+						if(p.collisionDecor.intersects(q.collisionDecor)){
+							p.setLocation((int)p.lPos.x, (int) p.lPos.y);
+						}
+						
+					}
+				}
+				
+				
+				
 				/**
 				 * On applique les comportements � effectuer en fonction des cases 
 				 * sur lesquelles le personnage marche.

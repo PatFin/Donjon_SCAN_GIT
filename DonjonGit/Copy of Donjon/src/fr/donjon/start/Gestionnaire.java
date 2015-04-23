@@ -138,6 +138,7 @@ public abstract class Gestionnaire implements EcouteurClavier {
 		for(int i=0; i<currentRoom.personnage.size();i++){
 			if(currentRoom.personnage.get(i) instanceof Ennemis){
 				b=false;
+				System.out.println("There are "+currentRoom.personnage.size()+" characters in the room.");
 				break;
 			}
 		}
