@@ -57,8 +57,8 @@ public abstract class SalleAbs implements EcouteurClavier {
 		this.hero=h;
 		this.personnage = new LinkedList <Personnage> ();
 		this.personnage.add(hero);
-		
-		
+
+
 		this.link = new EnumMap<Orientation, Link>(Orientation.class);
 
 		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_ARGB);
@@ -67,19 +67,19 @@ public abstract class SalleAbs implements EcouteurClavier {
 		generateRoom();
 		setDoorPlaces();
 	}
-	
+
 	/**
 	 * Empty constructor
 	 * Used in the "gestionnaire" to have a list of rooms to be played.
 	 */
 	public SalleAbs(){
-		
+
 	}
-	
+
 
 	protected abstract void generateRoom();
 	protected abstract void setDoorPlaces();
-	
+
 	/**
 	 * The general method to add enemis to a room.
 	 * It distributes a number of "points" that depend on the room number.
@@ -90,7 +90,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		//First we get a list of the tiles that can welcome an enemy.
 		//The loop excludes the sides of the room since the hero can be at these locations.
 		LinkedList<Vecteur> l = new LinkedList<Vecteur>();
-		
+
 		for(int x=2; x<cases.length-2; x++){
 			for(int y=2; y<cases[0].length-2; y++){
 				if(!(cases[x][y] instanceof Case_Obstacle)){
@@ -98,7 +98,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 				}
 			}
 		}
-		
+
 		//Then we choose how many enemies we will create.
 		//It shouldn't exceed 1/8 of the available tiles.
 		//It should be at least 1.
@@ -106,25 +106,25 @@ public abstract class SalleAbs implements EcouteurClavier {
 		if(r<1 && l.size()!=0){
 			r=1;
 		}
-		
+
 		System.out.println("This room (Room "+roomNumber+") will have "+r+" ennemis !");
 		//We create the enemies and place each of them at an available tile chosen randomly.
 		int a;
 		Vecteur v;
-		
+
 		for(int i=0;i<r;i++){
 			a=(int)(Math.random()*l.size()/8);			//selecting a random index in the list of available tiles.
 			v = l.get(a);
-			
+
 			Ennemis e = new Squelette(0,0, hero);
 			e.setLocation(v);
 			addEnemy(e);
 			l.remove(a);
 		}
-		
-		
+
+
 	}
-	
+
 	/**
 	 * Gives the instance of Case located at the position given by v as a parameter.
 	 * @param v Position vector of the tile in the room.
@@ -133,9 +133,9 @@ public abstract class SalleAbs implements EcouteurClavier {
 	public Case getCase(Vecteur v){
 		return cases[(int)v.x][(int)v.y];
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Returns a new Room 
 	 * @param ecran the space available for the game.
@@ -144,7 +144,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 * @return a new room.
 	 */
 	public abstract SalleAbs clone(Rectangle ecran, Heros h, Orientation o);
-	
+
 	/**
 	 * Returns a new Room
 	 * @param h the hero controlled by the character.
@@ -153,7 +153,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 * @return a new room.
 	 */
 	public abstract SalleAbs clone(Heros h, Link l);
-	
+
 	/**
 	 * This method creates a link to another room in the
 	 * direction required by the parameter.
@@ -184,6 +184,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 
 		Personnage z;
 
+		//Parcours des personnages
 		for(int i=0;i<personnage.size();i++){
 			z=personnage.get(i);
 
@@ -191,51 +192,27 @@ public abstract class SalleAbs implements EcouteurClavier {
 
 				z.update(temps);	//Le personnage agit.
 
-				/**
-				 * On teste si le personnage est en collision avec un autre personnage
-				 */
-				for(int j=0;j<personnage.size();j++){
-					Personnage p = personnage.get(j);
-					
-					for(int k=0;k<personnage.size();k++){
-						if(k==j){
-							k++;
-						}
-						if(k==personnage.size()){
-							break;
-						}
-						Personnage q = personnage.get(k);
-						
-						if(p.collisionDecor.intersects(q.collisionDecor)){
-							p.setLocation((int)p.lPos.x, (int) p.lPos.y);
-						}
-						
+				//Collisions inter-personnages
+				for(int j = i+1 ; j < personnage.size(); j ++){
+					Personnage p2 = personnage.get(j);
+					if(z.collisionDecor.intersects(p2.collisionDecor)){
+						z.setLocation((int)z.lPos.x, (int) z.lPos.y);
+						p2.setLocation((int)p2.lPos.x, (int) p2.lPos.y);
 					}
 				}
-				
-				
-				
-				/**
-				 * On applique les comportements � effectuer en fonction des cases 
-				 * sur lesquelles le personnage marche.
-				 */
+
+				//Collisions avec les cases
 				for(int x=0; x<cases.length;x++){
-
-					for(int y=0; y<cases[0].length; y++){
-						//If the character is in collision with a tile, apply method inCollision of the corresponding tile. 
-
-						if(z.collisionDecor.intersects(cases[x][y].collision)){	
-								cases[x][y].inCollision(z);
-						}
-
+					for(int y=0; y<cases[0].length; y++){ 
+						if(z.collisionDecor.intersects(cases[x][y].collision))cases[x][y].inCollision(z);
 					}
 				}
-				
-			}
-			
+
+			}//Fin de la boucle sur les personnages
+
 			if(!z.living)personnage.remove(z); //(on enterre les morts)
 		}
-		
+
 		//We sort the list of characters such that they superimpose correctly in the room
 		sortCharacters();
 	}
@@ -280,9 +257,9 @@ public abstract class SalleAbs implements EcouteurClavier {
 		//This is not necessary for the game to work properly
 		monG.setColor(Color.white);
 		monG.drawString("Salle "+this.roomNumber, 20, 20);
-		
-		
-		
+
+
+
 		//We display the characters
 		for(int i=0;i<personnage.size();i++){
 			Objet z=personnage.get(i);
@@ -294,7 +271,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		//Finally send everything at the destination
 		g.drawImage(buffer1, ecran.x, ecran.y, null);
 	}
-	
+
 	/**
 	 * Adds the enemy given as a parameter to the room.
 	 * @param e the enemy to be added.
@@ -302,7 +279,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	public void addEnemy(Ennemis e) {
 		personnage.add(e);
 	}
-	
+
 	/**
 	 * This method sorts the characters in increasing y coordinate.
 	 * It is used in the paint method such that the characters at 
@@ -315,26 +292,26 @@ public abstract class SalleAbs implements EcouteurClavier {
 		for(int i=0; i<a.length;i++){
 			a[i] = personnage.get(i);
 		}
-		
+
 		//Bubble sort algorithm
-        for(int j=0; j<a.length-1;j++){
-            for(int i=0;i<a.length-j-1;i++){
-                if(a[i].collisionDecor.y>a[i+1].collisionDecor.y){
-                    Personnage temp = a[i];
-                    a[i]=a[i+1];
-                    a[i+1]=temp;
-                }
-            }
-        }
-		
+		for(int j=0; j<a.length-1;j++){
+			for(int i=0;i<a.length-j-1;i++){
+				if(a[i].collisionDecor.y>a[i+1].collisionDecor.y){
+					Personnage temp = a[i];
+					a[i]=a[i+1];
+					a[i+1]=temp;
+				}
+			}
+		}
+
 		//Putting the element back into the list.
 		this.personnage = new LinkedList<Personnage>();
 		for(int i=0;i<a.length;i++){
 			this.personnage.add(a[i]);
 		}
-		
+
 	}
-	
+
 	/**
 	 * This method fills the empty parts of the cases
 	 * array with Case_void(). It comes in handy when
@@ -351,7 +328,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 			}
 		}
 	}
-	
+
 	/**
 	 * This method gives the intersection point of the doors.
 	 * @return Vecteur where the paths should intersect.
@@ -361,7 +338,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		double yIntersect = porte.get(Orientation.EST).y;
 		return new Vecteur(xIntersect, yIntersect);
 	}
-	
+
 	/**
 	 * Method inherited from EcouteurClavier
 	 */
