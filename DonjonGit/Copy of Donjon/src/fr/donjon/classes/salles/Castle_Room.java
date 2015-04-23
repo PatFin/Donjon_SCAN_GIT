@@ -5,6 +5,7 @@ import java.util.EnumMap;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.CaseLave;
 import fr.donjon.classes.cases.Case_dalle_sol;
 import fr.donjon.classes.cases.Case_fendue_sol;
 import fr.donjon.classes.cases.Case_mur;
@@ -39,8 +40,8 @@ public class Castle_Room extends SalleAbs {
 	}
 	
 	/**
-	 * @param p Le hero controlé par le joueur.
-	 * @param lien le lien de lasalle précédente vers celle-ci.
+	 * @param p Le hero controlï¿½ par le joueur.
+	 * @param lien le lien de lasalle prï¿½cï¿½dente vers celle-ci.
 	 */
 	public Castle_Room(Heros h, Link l){
 		super(SalleAbs.ecran, h);
@@ -132,12 +133,15 @@ public class Castle_Room extends SalleAbs {
 		//Filling the room randomly with dalle_fendue / rocher / normale
 		for(int y=2;y<cases[0].length-1;y++){
 			for(int x=1;x<cases.length-1;x++){
-				int random = (int)(Math.round(6*Math.random()));
+				int random = (int)(Math.round(100*Math.random()));
 
-				if(random == 0){
-					cases[x][y]=new Case_rocher();	
-				}else if(random == 1){
+				if(random <= 5){
+					cases[x][y]=new CaseLave();	
+				}else if( random <= 15){
 					cases[x][y]=new Case_fendue_sol();
+				}
+				else if(random <= 25){
+					cases[x][y]=new Case_rocher();
 				}else {						
 					cases[x][y]=new Case_dalle_sol();
 				}

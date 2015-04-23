@@ -14,7 +14,7 @@ public class Squelette extends Ennemis {
 	final static int LRG = 64;
 	final static int VIE = 50;
 	final static int DEF = 5;
-	final static int VIT = 1;
+	final static int VIT = 2;
 	final static String src = "skeleton_map.png";
 	final static double COEFF = 1;
 	public Personnage target;
