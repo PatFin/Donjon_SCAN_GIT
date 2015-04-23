@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.LinkedList;
 
 import fr.donjon.classes.Heros;
+import fr.donjon.classes.Personnage;
 import fr.donjon.classes.salles.Castle_Room;
 import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.classes.salles.Salle_croix;
@@ -53,6 +54,25 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 		
 		EnumMap<Orientation, LinkedList<Link>> d = new EnumMap<Orientation, LinkedList<Link>>(Orientation.class);
 		
+		//This array contains the orientation of increasing number of doors.
+		Orientation[] order = new Orientation[4];
+		order[0] = Orientation.NORD;
+		order[1] = Orientation.SUD;
+		order[2] = Orientation.EST;
+		order[3] = Orientation.OUEST;
+		
+			//Quicksort algorithm
+		for(int j=0; j<order.length-1;j++){
+            for(int i=0;i<order.length-j-1;i++){
+                if(d.get(order[i]).size()>d.get(order[i+1]).size()){
+                    Orientation temp = order[i];
+                    order[i]=order[i+1];
+                    order[i+1]=temp;
+                }
+            }
+        }
+		
+		
 		int total = nord.size()+est.size()+ouest.size()+sud.size();
 		//On décide du nombre de porte à créé et combien vers des salles qui existent déjà.
 		if(total==0){
@@ -86,6 +106,7 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 			//the first one to a new room.
 			//the next one(s) to an existing room.
 			int r=(int)(3*Math.random());
+			int z;
 			
 			switch(r){
 			case 0:
@@ -95,17 +116,64 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 				break;
 			case 2:
 				//Adding an available door in the direction of the least number of available ones.
+				z=0;
+				if(order[z]==a){
+					z++;
+				}
+				s.addDoor(order[z], true);
 				
+				//Now door to existing room in the second but least number of available rooms.
+				//We always take the eldest room to create the room (get(0))
+				if(order[z+1]==a){
+					z++;
+				}
 				
-				//Now door to existing room in the second but least number of available rooms. 
+				if(!d.get(order[z+1]).isEmpty()){
+					s.addDoorToPrevRoom(d.get(order[z+1]).get(0));
+				}else{
+					s.addDoor(order[z+1], true);
+				}
 				
 				break;
 			case 3:
 				//Adding an available door in the direction of the least number of available ones.
+				//first door
+				z=0;
+				if(order[z]==a){
+					z++;
+				}
+				s.addDoor(order[z], true);
 				
-				//Now door to existing room in the the two other directions. 
-			}
-		}
+				//Now 2 doors to existing room in the the two other directions.
+				
+				//second door
+				if(order[z+1]==a){
+					z++;
+				}
+				
+				if(!d.get(order[z+1]).isEmpty()){
+					s.addDoorToPrevRoom(d.get(order[z+1]).get(0));
+				}else{
+					s.addDoor(order[z+1], true);
+				}
+				//third door
+				if(order[z+2]==a){
+					z++;
+				}
+				if(!d.get(order[z+2]).isEmpty()){
+					s.addDoorToPrevRoom(d.get(order[z+2]).get(0));
+				}else{
+					s.addDoor(order[z+2], true);
+				}
+				
+				
+			}//end switch
+			
+		}//end adding random number of room
+		
+		//we create the image an add the room to the list of rooms.
+		s.generateImage();
+		listeSalles.add(s);
 	}
 
 	/**

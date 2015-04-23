@@ -13,7 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-
 public class EcranAccueil extends JPanel{ 
 
 	// déclaration de l'image
