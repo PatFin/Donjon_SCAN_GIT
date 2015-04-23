@@ -9,6 +9,7 @@ public class JeuLineaire extends GamePanel {
 		
 		//The associated "gestionnaire" is created
 		gestionnaire = new GestionnaireJeuLineaire(this);
+		//gestionnaire = new GestionnaireJeuInfini(this);
 	}
 
 }

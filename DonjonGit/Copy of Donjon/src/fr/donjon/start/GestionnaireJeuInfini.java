@@ -37,7 +37,6 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 
 	@Override
 	public void createNextRoom(Link l) {
-		// TODO Auto-generated method stub
 		
 		//On créé la salle
 		Orientation a=Orientation.opposite(l.orientation);
@@ -64,16 +63,30 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 			//Quicksort algorithm
 		for(int j=0; j<order.length-1;j++){
             for(int i=0;i<order.length-j-1;i++){
-                if(d.get(order[i]).size()>d.get(order[i+1]).size()){
-                    Orientation temp = order[i];
-                    order[i]=order[i+1];
-                    order[i+1]=temp;
+                
+                try{
+                	if(d.get(order[i]).size()>d.get(order[i+1]).size()){
+                        Orientation temp = order[i];
+                        order[i]=order[i+1];
+                        order[i+1]=temp;
+                    }
+                }catch(Exception e){
+                	i++;
                 }
+            	
+                
             }
         }
 		
 		
 		int total = nord.size()+est.size()+ouest.size()+sud.size();
+		System.out.println("Le nombre total de portes dispo est: "+total);
+		System.out.println("NORD:"+nord.size());
+		System.out.println("SUD:"+sud.size());
+		System.out.println("EST:"+est.size());
+		System.out.println("OUEST:"+ouest.size());
+		
+		
 		//On décide du nombre de porte à créé et combien vers des salles qui existent déjà.
 		if(total==0){
 			//We create three links to new rooms.
@@ -99,9 +112,10 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 				s.addDoor(Orientation.NORD,true);
 			}
 			
-		}else if(total >6){
+		}else if(total >10){
 			//We create a dead end, no doors added
 		}else{
+			//TODO correct the link to prev room as it is not currently working.
 			//We add a random number of rooms.
 			//the first one to a new room.
 			//the next one(s) to an existing room.
@@ -112,7 +126,11 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 			case 0:
 				break;
 			case 1:
-				s.addDoor(Orientation.random(a), true);
+				z=0;
+				if(order[z]==a){
+					z++;
+				}
+				s.addDoor(order[z], true);
 				break;
 			case 2:
 				//Adding an available door in the direction of the least number of available ones.
@@ -128,8 +146,9 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 					z++;
 				}
 				
-				if(!d.get(order[z+1]).isEmpty()){
+				if(d.get(Orientation.opposite(order[z+1]))!=null){
 					s.addDoorToPrevRoom(d.get(order[z+1]).get(0));
+					
 				}else{
 					s.addDoor(order[z+1], true);
 				}
@@ -151,7 +170,7 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 					z++;
 				}
 				
-				if(!d.get(order[z+1]).isEmpty()){
+				if(d.get(Orientation.opposite(order[z+1]))!=null){
 					s.addDoorToPrevRoom(d.get(order[z+1]).get(0));
 				}else{
 					s.addDoor(order[z+1], true);
@@ -160,7 +179,7 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 				if(order[z+2]==a){
 					z++;
 				}
-				if(!d.get(order[z+2]).isEmpty()){
+				if(d.get(Orientation.opposite(order[z+2]))!=null){
 					s.addDoorToPrevRoom(d.get(order[z+2]).get(0));
 				}else{
 					s.addDoor(order[z+2], true);
