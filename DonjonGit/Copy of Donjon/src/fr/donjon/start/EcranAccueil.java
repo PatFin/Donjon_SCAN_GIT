@@ -15,7 +15,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class EcranAccueil extends JPanel{ 
+import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
+
+public class EcranAccueil extends MyJPanel{ 
 
 	// déclaration de l'image
 	Image im; // IMAGE
@@ -78,7 +81,7 @@ public class EcranAccueil extends JPanel{
 		boutonJeuLineaire.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				launcher.startGame();
+				launcher.startGame(0);
 
 			}
 		});
@@ -86,11 +89,47 @@ public class EcranAccueil extends JPanel{
 		boutonJeuInfini.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				launcher.startGame();
+				launcher.startGame(1);
 
 			}
 		});
 
+	}
+
+	@Override
+	public void attaque(Orientation o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void stopAttaque() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deplacement(Vecteur v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void utiliseObjet(int reference) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void togglePause() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void stopDeplacement() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

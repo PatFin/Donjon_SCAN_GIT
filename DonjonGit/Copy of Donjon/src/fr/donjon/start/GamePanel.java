@@ -23,7 +23,7 @@ import fr.donjon.utils.Vecteur;
  * cette classe ne se charge que de l'affichage
  * @author Baptiste
  */
-public abstract class GamePanel extends JPanel implements EcouteurClavier{
+public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 
 
 	static final int LARGEUR = 15;

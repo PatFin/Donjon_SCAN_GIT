@@ -20,17 +20,20 @@ import fr.donjon.utils.Vecteur;
  */
 public class Launcher extends JFrame implements EcouteurClavier{
 
-	JPanel panActuel; //LE JPanel a utiliser 
+	MyJPanel panActuel; //LE JPanel a utiliser 
 
-	GamePanel game;	//Le JPanel dessinant le jeu (GamePanel)
-	JPanel menu;	//Le JPanel dessinant le menu (EcranAcceuil)
+	GamePanel gameLin;	//Le JPanel dessinant le jeu (GamePanel)
+	GamePanel gameInf;  //Un autre JPanel qui va contenir le jeu non linéaire
+	
+	MyJPanel menu;	//Le JPanel dessinant le menu (EcranAcceuil)
 
 	/**
 	 * Lanceur du jeu
 	 */
 	public Launcher(){
 
-		game = new JeuLineaire(); 	//Ajouter par la suite un gameLin et gameHistoire
+		gameLin = new JeuLineaire(); 	//Ajouter par la suite un gameLin et gameHistoire
+		gameInf = new JeuNonLineaire();
 		
 		menu = new EcranAccueil(this);	//
 		
@@ -43,11 +46,13 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	}
 
 	/**
-	 * Permet de démarrer le jeu (en linéaire pour le moment)
+	 * Permet de démarrer le jeu
+	 * @param mode le mode de jeu: 0 Pour jeu lineaire, default jeu non linéaire
 	 */
-	public void startGame(){
+	public void startGame(int mode){
 		
-		this.game.stopGame();		//On arrete le jeu en cours 
+		this.gameLin.stopGame();		//On arrete les jeux possiblement en cours
+		this.gameInf.startGame();
 		
 		try{
 			this.remove(panActuel);	//On enleve le JPanel du menu s'il existe
@@ -55,7 +60,18 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		catch (NullPointerException e){
 
 		}
-		this.panActuel = game;		//On change de JPanel d'affichage
+		
+		//On change de JPanel d'affichage
+		switch(mode){
+		case 0:
+			//On met un jeu linéaire
+			this.panActuel = gameLin;
+			break;
+		default:
+			this.panActuel = gameInf;
+		}
+		
+		
 		this.add(panActuel);		//Et on l'affiche
 		
 		panActuel.setFocusable(true);	//Permet la réception des evenements du clavier
@@ -63,7 +79,7 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		
 		panActuel.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier
 		
-		this.game.startGame();								//On demarre le jeu
+		this.panActuel.startGame();								//On demarre le jeu
 		
 		this.pack();										//On met a jour la taille de la fenetre
 	}
@@ -73,9 +89,10 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 */
 	public void goToMenu(){
 		//Voir fonctionnement de startGame()
-		this.game.stopGame();
+		
 		
 		try{
+			this.panActuel.stopGame();
 			this.remove(panActuel);
 		}
 		catch (NullPointerException e){
@@ -104,37 +121,37 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	@Override
 	public void attaque(Orientation o) {
 		// TODO Auto-generated method stub
-		game.attaque(o);
+		panActuel.attaque(o);
 	}
 
 	@Override
 	public void stopAttaque() {
 		// TODO Auto-generated method stub
-		game.stopAttaque();
+		panActuel.stopAttaque();
 	}
 
 	@Override
 	public void deplacement(Vecteur v) {
 		// TODO Auto-generated method stub
-		game.deplacement(v);
+		panActuel.deplacement(v);
 	}
 
 	@Override
 	public void utiliseObjet(int reference) {
 		// TODO Auto-generated method stub
-		game.utiliseObjet(reference);
+		panActuel.utiliseObjet(reference);
 	}
 
 	@Override
 	public void togglePause() {
 		// TODO Auto-generated method stub
-		game.togglePause();
+		panActuel.togglePause();
 	}
 
 	@Override
 	public void stopDeplacement() {
 		// TODO Auto-generated method stub
-		game.stopDeplacement();
+		panActuel.stopDeplacement();
 	}
 	
 	
