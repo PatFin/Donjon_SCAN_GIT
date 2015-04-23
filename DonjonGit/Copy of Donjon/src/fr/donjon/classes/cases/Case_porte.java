@@ -43,4 +43,11 @@ public abstract class Case_porte extends Case_Obstacle {
 		
 	}
 	
+	/**
+	 * 
+	 */
+	@Override
+	public void enablePassage(){
+		this.enabled=true;
+	}
 }

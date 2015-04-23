@@ -4,7 +4,6 @@ import java.util.EnumMap;
 import java.util.LinkedList;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.Personnage;
 import fr.donjon.classes.salles.Castle_Room;
 import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.classes.salles.Salle_croix;
@@ -92,24 +91,24 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 			//We create three links to new rooms.
 			switch(a){
 			case NORD:
-				s.addDoor(Orientation.EST, true);
-				s.addDoor(Orientation.SUD,true);
-				s.addDoor(Orientation.OUEST,true);
+				s.addDoor(Orientation.EST, false);
+				s.addDoor(Orientation.SUD,false);
+				s.addDoor(Orientation.OUEST,false);
 				break;
 			case SUD:
-				s.addDoor(Orientation.EST, true);
-				s.addDoor(Orientation.NORD,true);
-				s.addDoor(Orientation.OUEST,true);
+				s.addDoor(Orientation.EST, false);
+				s.addDoor(Orientation.NORD,false);
+				s.addDoor(Orientation.OUEST,false);
 				break;
 			case EST:
-				s.addDoor(Orientation.NORD, true);
-				s.addDoor(Orientation.SUD,true);
-				s.addDoor(Orientation.OUEST,true);
+				s.addDoor(Orientation.NORD, false);
+				s.addDoor(Orientation.SUD,false);
+				s.addDoor(Orientation.OUEST,false);
 				break;
 			case OUEST:
-				s.addDoor(Orientation.EST, true);
-				s.addDoor(Orientation.SUD,true);
-				s.addDoor(Orientation.NORD,true);
+				s.addDoor(Orientation.EST, false);
+				s.addDoor(Orientation.SUD,false);
+				s.addDoor(Orientation.NORD,false);
 			}
 			
 		}else if(total >10){
@@ -130,27 +129,26 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 				if(order[z]==a){
 					z++;
 				}
-				s.addDoor(order[z], true);
+				s.addDoor(order[z], false);
 				break;
 			case 2:
-				//Adding an available door in the direction of the least number of available ones.
+				//Adding a door in the direction of the least number of available ones.
 				z=0;
 				if(order[z]==a){
 					z++;
 				}
-				s.addDoor(order[z], true);
+				s.addDoor(order[z], false);
 				
 				//Now door to existing room in the second but least number of available rooms.
-				//We always take the eldest room to create the room (get(0))
+				//We always take the eldest room to create the link (get(0))
 				if(order[z+1]==a){
 					z++;
 				}
 				
 				if(d.get(Orientation.opposite(order[z+1]))!=null){
 					s.addDoorToPrevRoom(d.get(order[z+1]).get(0));
-					
 				}else{
-					s.addDoor(order[z+1], true);
+					s.addDoor(order[z+1], false);
 				}
 				
 				break;
@@ -161,7 +159,7 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 				if(order[z]==a){
 					z++;
 				}
-				s.addDoor(order[z], true);
+				s.addDoor(order[z], false);
 				
 				//Now 2 doors to existing room in the the two other directions.
 				
@@ -173,7 +171,7 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 				if(d.get(Orientation.opposite(order[z+1]))!=null){
 					s.addDoorToPrevRoom(d.get(order[z+1]).get(0));
 				}else{
-					s.addDoor(order[z+1], true);
+					s.addDoor(order[z+1], false);
 				}
 				//third door
 				if(order[z+2]==a){
@@ -182,7 +180,7 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 				if(d.get(Orientation.opposite(order[z+2]))!=null){
 					s.addDoorToPrevRoom(d.get(order[z+2]).get(0));
 				}else{
-					s.addDoor(order[z+2], true);
+					s.addDoor(order[z+2], false);
 				}
 				
 				

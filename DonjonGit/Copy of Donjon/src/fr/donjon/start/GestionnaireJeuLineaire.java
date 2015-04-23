@@ -35,7 +35,7 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 		l.setDestination(s, s.destination.get(a));
 		
 		//We add a random unique door to the room.
-		s.addDoor(Orientation.random(a), true);
+		s.addDoor(Orientation.random(a), false);
 		
 		//We generate the image of the room
 		s.generateImage();

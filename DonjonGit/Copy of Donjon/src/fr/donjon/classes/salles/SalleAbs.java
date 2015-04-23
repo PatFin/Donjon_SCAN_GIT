@@ -102,7 +102,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		//Then we choose how many enemies we will create.
 		//It shouldn't exceed 1/8 of the available tiles.
 		//It should be at least 1.
-		int r=(int)(Math.random()*l.size()/1);
+		int r=(int)(Math.random()*l.size()/8);
 		if(r<1 && l.size()!=0){
 			r=1;
 		}
@@ -129,6 +129,17 @@ public abstract class SalleAbs implements EcouteurClavier {
 		
 		
 	}
+	
+	/**
+	 * Gives the instance of Case located at the position given by v as a parameter.
+	 * @param v Position vector of the tile in the room.
+	 * @return the tile at position v in the room.
+	 */
+	public Case getCase(Vecteur v){
+		return cases[(int)v.x][(int)v.y];
+	}
+	
+	
 	
 	/**
 	 * Returns a new Room 

@@ -5,6 +5,7 @@ package fr.donjon.start;
 
 import java.util.LinkedList;
 
+import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.utils.EcouteurClavier;
@@ -68,6 +69,10 @@ public abstract class Gestionnaire implements EcouteurClavier {
 		this.currentRoom = l.destinationSalle;
 	}
 	
+	/**
+	 * Gives the orientation of the door on which the player is stepping on (if door availabe)
+	 * @return null if we don't have to change of room, the orientation of the door in the room otherwise.
+	 */
 	public Orientation mustChange() {
 		
 		Link[] l=new Link[4];
@@ -111,6 +116,11 @@ public abstract class Gestionnaire implements EcouteurClavier {
 	public void update(long temps) {
 		this.currentRoom.update(temps);
 		
+		//tests if all the enemies have been killed. If so enable all the doors of the room.
+		if(allEnnemiesKilled()){
+			enableAllDoors();
+		}
+		
 		//test if the current room needs to be changed.
 		Orientation o = this.mustChange();
 		if(o != null){
@@ -119,7 +129,51 @@ public abstract class Gestionnaire implements EcouteurClavier {
 		
 	}
 	
+	/**
+	 * This method checks if all the enemies in the room have been killed or not.
+	 * @return true if all the enemies are dead (they don't appear in the list of characters of the current room), false otherwise.
+	 */
+	protected boolean allEnnemiesKilled(){
+		boolean b=true;
+		for(int i=0; i<currentRoom.personnage.size();i++){
+			if(currentRoom.personnage.get(i) instanceof Ennemis){
+				b=false;
+				break;
+			}
+		}
+		
+		return b;
+	}
 	
+	/**
+	 * Enables all the door of the current room
+	 */
+	protected void enableAllDoors(){
+		enableDoor(Orientation.NORD);
+		enableDoor(Orientation.SUD);
+		enableDoor(Orientation.EST);
+		enableDoor(Orientation.OUEST);
+	}
+	
+	/**
+	 * Enables the door of the current room as the orientation given in parameter
+	 * @param o the position of the door to be enabled in the current room.
+	 */
+	protected void enableDoor(Orientation o){
+		//we check if the link exists
+		Link l = this.currentRoom.link.get(o);
+		if(l!=null){
+			
+			//The link is enabled.
+			l.enabled=true;
+			
+			//The tile is enabled.
+			Vecteur v = currentRoom.porte.get(o);
+			currentRoom.getCase(v).enablePassage();
+		}
+		
+		
+	}
 	
 	/////////////////////////////////////
 	//INTERFACE ECOUTEUR CLAVIER/////////

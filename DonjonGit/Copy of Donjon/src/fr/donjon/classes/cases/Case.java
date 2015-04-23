@@ -51,4 +51,13 @@ public class Case {
 		return null;
 	}
 	
+	/**
+	 * Empty method 
+	 * It's purpose is to change the value of a boolean that determines whether a tile can be stepped on or not.
+	 * The class Case_porte overrides this method.
+	 */
+	public void enablePassage(){
+		
+	}
+	
 }
