@@ -4,7 +4,6 @@
 package fr.donjon.start;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;
@@ -23,7 +22,7 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	MyJPanel panActuel; //LE JPanel a utiliser 
 
 	GamePanel gameLin;	//Le JPanel dessinant le jeu (GamePanel)
-	GamePanel gameInf;  //Un autre JPanel qui va contenir le jeu non linéaire
+	GamePanel gameInf;  //Un autre JPanel qui va contenir le jeu non linï¿½aire
 	
 	MyJPanel menu;	//Le JPanel dessinant le menu (EcranAcceuil)
 
@@ -46,8 +45,8 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	}
 
 	/**
-	 * Permet de démarrer le jeu
-	 * @param mode le mode de jeu: 0 Pour jeu lineaire, default jeu non linéaire
+	 * Permet de dï¿½marrer le jeu
+	 * @param mode le mode de jeu: 0 Pour jeu lineaire, default jeu non linï¿½aire
 	 */
 	public void startGame(int mode){
 		
@@ -64,7 +63,7 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		//On change de JPanel d'affichage
 		switch(mode){
 		case 0:
-			//On met un jeu linéaire
+			//On met un jeu linï¿½aire
 			this.panActuel = gameLin;
 			break;
 		default:
@@ -74,7 +73,7 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		
 		this.add(panActuel);		//Et on l'affiche
 		
-		panActuel.setFocusable(true);	//Permet la réception des evenements du clavier
+		panActuel.setFocusable(true);	//Permet la rï¿½ception des evenements du clavier
 		panActuel.requestFocusInWindow(); //Pareil
 		
 		panActuel.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier

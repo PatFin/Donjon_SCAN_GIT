@@ -29,7 +29,7 @@ public class CaseWater extends Case {
 	
 	@Override
 	public void inCollision(Personnage p) {
-		p.addEffect("WATER_SLOW",  new Effet(0 , 0, -1, 0, 40,false));
+		p.addEffect("WATER_SLOW",  new Effet(0 , 0, -1, 0, 20,false, false));
 	}
 
 }

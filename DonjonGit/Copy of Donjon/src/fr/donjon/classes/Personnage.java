@@ -68,9 +68,7 @@ public abstract class Personnage extends Deplacable{
 		this.etat=etat;
 
 		this.effets = new EffetMap<String,Effet>();
-		effets.addEffect("STATS_BASE", new Effet(vie,armure,vitd, 0,false));
-
-		sumEffects();
+		addEffect("STATS_BASE", new Effet(vie,armure,vitd, 0,false, false)); //Les stats de base
 
 		this.arme = arme;
 		this.type = t;
@@ -86,7 +84,8 @@ public abstract class Personnage extends Deplacable{
 	public void draw(long t, Graphics g) {
 
 		if(!living)return;
-
+		
+		//Draws the character
 		switch(etat){
 		case ATTAQUE:
 			arme.paint(g, t);
@@ -99,7 +98,6 @@ public abstract class Personnage extends Deplacable{
 		}
 
 		//Draws the life of the personnage
-
 		switch(type){
 		case ALIE:
 			g.setColor(new Color(0, 255, 0, 120));
@@ -116,21 +114,21 @@ public abstract class Personnage extends Deplacable{
 			break;
 
 		}
-
+		
 		g.fillRect( (int)getCentre().x - stats.vie/2, (int)getCentre().y - image.height/2 - 15, stats.vie, 10);
-
+		
 	}
 
 	@Override
 	public void update(long t) {
 
 		if(!living)return;
-
-		super.update(t);
+		
+		super.update(t); 
 
 		this.lPos.setLocation(image.x, image.y); //On met a jour la position pr�c�dente
-		sumEffects();
-
+		
+		
 		//Deplacement
 		switch(etat){
 
@@ -151,6 +149,8 @@ public abstract class Personnage extends Deplacable{
 			break;
 		}
 
+		sumEffects(); 
+		
 	}
 
 	public void stop(){
@@ -202,18 +202,20 @@ public abstract class Personnage extends Deplacable{
 
 	/**
 	 * Permet de mettre a jour les stats du perso
-	 * @return La somme
+	 * 
+	 * @return La somme 
 	 */
 	public void sumEffects(){
 
 		stats = effets.getSum();
+		
 		if(stats.vie<=0){
-			this.living = false;
+			this.living = false; //On t'enterre biatch
 		}
 	}
 
 	/**
-	 * Retire un effet a la liste s'il y est et recalcule la somme
+	 * Retire un effet de la liste et met a jour les stats
 	 * 
 	 * @param e
 	 */
@@ -223,21 +225,13 @@ public abstract class Personnage extends Deplacable{
 	}
 
 	/**
-	 * Ajoute un effet a la liste s'il n'y est pas et recalcule la somme
+	 * Ajoute un effet de la liste et recalcule la somme
 	 * 
-	 * @param e
+	 * @param key Cle associé a l'effet
+	 * @param e		L'effet a ajouter
 	 */
 	public void addEffect(String key, Effet e){
-
-		if(key == "STATS_BASE"){
-			Effet prev = effets.get(key);
-			prev = prev.sum(e);
-			effets.replace(key, prev);
-			sumEffects();
-		}
-		else{
-			effets.addEffect(key, e);
-			sumEffects();
-		}
+		effets.addEffect(key, e);
+		sumEffects();
 	}
 }

@@ -28,8 +28,8 @@ public class CaseLave extends Case {
 
 	@Override
 	public void inCollision(final Personnage p) {
-		p.addEffect("LAVE_SLOW",  new Effet(0 , 0, -2, 0, 40,false));
-		p.addEffect("LAVE_HURT",  new Effet(-1 , 0, 0, 0, 100,true));
+		p.addEffect("LAVE_SLOW",  new Effet(0 , 0, -2, 0, 20, false, false));//-2 VIT constant
+		p.addEffect("LAVE_HURT",  new Effet(-1 , 0, 0, 0, 100, true, true)); //10 dmg bruts par seconde
 	}
 
 }

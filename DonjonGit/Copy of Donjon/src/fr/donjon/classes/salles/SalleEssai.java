@@ -12,7 +12,7 @@ import fr.donjon.utils.Orientation;
 
 /**
  * 
- * Permet d'essayer une salle crée a l'éditeur
+ * Permet d'essayer une salle crï¿½e a l'ï¿½diteur
  * 
  * @author Baptiste
  *
@@ -49,10 +49,12 @@ public class SalleEssai extends SalleAbs {
 	}
 
 	@Override
-	public SalleAbs clone(Heros h, Link l, Orientation o) {
+	public SalleAbs clone(Heros h, Link l) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 	
 

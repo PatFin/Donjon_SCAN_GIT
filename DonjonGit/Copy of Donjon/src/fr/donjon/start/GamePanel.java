@@ -19,7 +19,7 @@ import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
 /**
- * La classe mère qui permet de gerer l'affichage et la mise a jour d'une salle
+ * La classe mï¿½re qui permet de gerer l'affichage et la mise a jour d'une salle
  * cette classe ne se charge que de l'affichage
  * @author Baptiste
  */
@@ -28,7 +28,7 @@ public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 
 	static final int LARGEUR = 15;
 	static final int HAUTEUR = 9;
-	final static int timerTime = 10;
+	final static int timerTime = 20;
 
 	BufferedImage arrierePlan;
 	Graphics buffer;
@@ -48,7 +48,7 @@ public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 
 		initialisationFenetre();
 		timer = new Timer(timerTime, new TimerAction());
-		//Le timer sera démarré plus tard grace a la méthode startGame()
+		//Le timer sera dï¿½marrï¿½ plus tard grace a la mï¿½thode startGame()
 			
 	}
 
@@ -63,7 +63,7 @@ public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 		//Image buffer pour dessiner dessus
 		arrierePlan = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_ARGB);
 
-		//Récuperation de la partie graphique de de l'image pour dessiner dessus
+		//Rï¿½cuperation de la partie graphique de de l'image pour dessiner dessus
 		buffer = arrierePlan.getGraphics();
 	}
 
@@ -86,7 +86,7 @@ public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 
 
 	/**
-	 * Permet de démarrer l'actualisation du jeu (par défaut en pause)
+	 * Permet de dï¿½marrer l'actualisation du jeu (par dï¿½faut en pause)
 	 */
 	public void startGame(){
 		this.timer.start();
@@ -100,7 +100,7 @@ public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 	}
 
 	public class TimerAction implements ActionListener{
-		// actions listener appelés toutes les 20ms
+		// actions listener appelï¿½s toutes les 20ms
 		public void actionPerformed(ActionEvent e){
 			update();
 			temps +=timerTime;

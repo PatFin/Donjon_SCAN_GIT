@@ -22,7 +22,7 @@ public class Heros extends Personnage{
 	final static int LRG = 64;
 	final static int VIE = 100;
 	final static int DEF = 10;
-	final static int VIT = 3;
+	final static int VIT = 6;
 	final static String src = "hero_map.png";
 	final static double COEFF = 1;
 	

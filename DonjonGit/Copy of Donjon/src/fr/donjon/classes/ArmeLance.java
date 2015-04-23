@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
+import fr.donjon.utils.Effet;
 import fr.donjon.utils.EtatArme;
 import fr.donjon.utils.Type;
 import fr.donjon.utils.Vecteur;
@@ -114,6 +115,7 @@ public class ArmeLance extends Arme {
 	@Override
 	public int utilise(Personnage p) {
 		p.arme = new ArmeLance(p);
+		p.addEffect(KEY_EFFET1, new Effet(0, 1, -2, 0, false));
 		return 0; //L'arme peut etre reutilisée
 	}
 
