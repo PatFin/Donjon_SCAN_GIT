@@ -111,7 +111,7 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 	/**
 	 * Gives the list of all the available doors in the orientation given.
 	 * @param o the orientation of the doors
-	 * @return linkedlist of links 
+	 * @return linkedlist of links that have the orientation given in parameter.
 	 */
 	private LinkedList<Link> getAvailableDoors(Orientation o){
 		LinkedList<Link> a = new LinkedList<Link>();
