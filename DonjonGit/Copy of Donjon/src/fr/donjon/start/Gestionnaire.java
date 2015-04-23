@@ -32,15 +32,10 @@ public abstract class Gestionnaire implements EcouteurClavier {
 	
 	/**
 	 * Method called when the link has no destination set yet.
-	 * It creates a new room selected randomly in the rooms available.
+	 * It creates a new room selected randomly in the available rooms.
 	 * @param l the link which destination is the new room.
 	 */
-	public void createNextRoom(Link l){
-		Orientation a = Orientation.opposite(l.orientation);
-		SalleAbs s = createRandomNewRoom(l.origineSalle.hero, l, Orientation.random(a));
-		l.setDestination(s, s.destination.get(a));
-		listeSalles.add(s);
-	}
+	public abstract void createNextRoom(Link l);
 	
 	/**
 	 * Renvoie la salle dans laquelle le héro se trouve actuellement
@@ -57,14 +52,21 @@ public abstract class Gestionnaire implements EcouteurClavier {
 	 * @param o the orientation to the next room.
 	 * @return
 	 */
-	protected SalleAbs createRandomNewRoom(Heros h, Link l,Orientation o){
+	protected SalleAbs createRandomNewRoom(Heros h, Link l){
 		int r = (int) (42*Math.random()*sallesDisponibles.size())%sallesDisponibles.size();
-		return sallesDisponibles.get(r).clone(h, l, o);
+		return sallesDisponibles.get(r).clone(h, l);
 	}
 	
 	
 	
-	public abstract void changerDeSalle(Link l);
+	public void changerDeSalle(Link l){
+		if(!l.hasDestination()){
+			createNextRoom(l);
+		}
+		Vecteur v = l.destinationSalle.destination.get(Orientation.opposite(l.orientation));
+		l.destinationSalle.hero.setLocation(v);
+		this.currentRoom = l.destinationSalle;
+	}
 	
 	public Orientation mustChange() {
 		

@@ -41,18 +41,14 @@ public class Salle_foret extends SalleAbs {
 	 * @param l the link from the previous room to this one
 	 * @param o the orientation of the door to the next room
 	 */
-	public Salle_foret(Heros h, Link l, Orientation o){
+	public Salle_foret(Heros h, Link l){
 		super(SalleAbs.ecran, h);
 		
 		//Creating the link to the previous room
 		this.addDoorToPrevRoom(l);
 		
-		//Adding a door to the next room
-		this.addDoor(o, true);
-		
 		this.generateEnnemis();
 		
-		this.generateImage();
 	}
 	
 	/**
@@ -153,8 +149,8 @@ public class Salle_foret extends SalleAbs {
 
 
 	@Override
-	public SalleAbs clone(Heros h, Link l, Orientation o) {
-		return new Salle_foret(h, l, o);
+	public SalleAbs clone(Heros h, Link l) {
+		return new Salle_foret(h, l);
 	}
 
 }

@@ -40,16 +40,13 @@ public class Salle_croix extends SalleAbs {
 	 * Constructor called when the character comes from another room
 	 * @param h the hero controlled by the player
 	 * @param l the link from the previous room to this one
-	 * @param o the orientation of the door to the next room
 	 */
-	public Salle_croix(Heros h, Link l, Orientation o){
+	public Salle_croix(Heros h, Link l){
 		super(SalleAbs.ecran,h);
 		
 		//Creating the link to the previous room.
 		this.addDoorToPrevRoom(l);
 		
-		//Adding a door to the next room
-		this.addDoor(o, true);
 		
 		this.generateEnnemis();
 		
@@ -117,7 +114,7 @@ public class Salle_croix extends SalleAbs {
 	 * Adds the door to the prev room and a bridge
 	 * to the center of the room.
 	 */
-	protected void addDoorToPrevRoom(Link l){
+	public void addDoorToPrevRoom(Link l){
 		changeTilesTo(Orientation.opposite(l.orientation));
 		
 		Vecteur v = this.porte.get(Orientation.opposite(l.orientation));
@@ -219,8 +216,8 @@ public class Salle_croix extends SalleAbs {
 	}
 
 	@Override
-	public SalleAbs clone(Heros h, Link l, Orientation o) {
-		return new Salle_croix(h, l, o);
+	public SalleAbs clone(Heros h, Link l) {
+		return new Salle_croix(h, l);
 	}
 
 }

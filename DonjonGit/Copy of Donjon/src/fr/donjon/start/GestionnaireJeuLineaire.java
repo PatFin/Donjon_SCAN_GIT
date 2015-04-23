@@ -9,7 +9,6 @@ import fr.donjon.classes.salles.Salle_croix;
 import fr.donjon.classes.salles.Salle_foret;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
-import fr.donjon.utils.Vecteur;
 
 public class GestionnaireJeuLineaire extends Gestionnaire {
 
@@ -30,19 +29,18 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 
 
 	@Override
-	public void changerDeSalle(Link l) {
-		if(!l.hasDestination()){
-			createNextRoom(l);
-		}
-		Vecteur v = l.destinationSalle.destination.get(Orientation.opposite(l.orientation));
-		l.destinationSalle.hero.setLocation(v);
-		this.currentRoom = l.destinationSalle;
-	}
-
-
-	@Override
 	public void createNextRoom(Link l) {
-		super.createNextRoom(l);
+		Orientation a = Orientation.opposite(l.orientation);
+		SalleAbs s = createRandomNewRoom(l.origineSalle.hero, l);
+		l.setDestination(s, s.destination.get(a));
+		
+		//We add a random unique door to the room.
+		s.addDoor(Orientation.random(a), true);
+		
+		//We generate the image of the room
+		s.generateImage();
+		
+		listeSalles.add(s);
 	}
 
 	@Override

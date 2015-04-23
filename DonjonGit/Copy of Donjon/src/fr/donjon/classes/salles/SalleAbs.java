@@ -109,6 +109,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		
 		//TODO remove this r=1 instruction. 
 		//It is used for tests purposes.
+		//It limits the number of enemies to 1
 		//r=1;
 		
 		System.out.println("This room (Room "+roomNumber+") will have "+r+" ennemis !");
@@ -145,7 +146,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 * @param o the orientation of the link to the next one.
 	 * @return a new room.
 	 */
-	public abstract SalleAbs clone(Heros h, Link l, Orientation o);
+	public abstract SalleAbs clone(Heros h, Link l);
 	
 	/**
 	 * This method creates a link to another room in the
@@ -162,7 +163,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 * This method creates a link to the previous room
 	 * @param l the link from the previous room to the current one
 	 */
-	protected void addDoorToPrevRoom(Link l){
+	public void addDoorToPrevRoom(Link l){
 		//We create the link.
 		Orientation a = Orientation.opposite(l.orientation);
 
@@ -214,7 +215,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 * It takes the image of each tyle contained in the 
 	 * cases[][] array and stiches them together.
 	 */
-	protected void generateImage(){
+	public void generateImage(){
 
 		//Initializing the graphic tools 
 		imageSalle = new BufferedImage(ecran.width,ecran.height, BufferedImage.TYPE_INT_RGB);

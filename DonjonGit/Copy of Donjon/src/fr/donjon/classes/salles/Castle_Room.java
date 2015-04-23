@@ -40,15 +40,13 @@ public class Castle_Room extends SalleAbs {
 	
 	/**
 	 * @param p Le hero controlé par le joueur.
-	 * @param ecran L'écran de jeu.
 	 * @param lien le lien de lasalle précédente vers celle-ci.
 	 */
-	public Castle_Room(Heros h, Link l, Orientation o){
+	public Castle_Room(Heros h, Link l){
 		super(SalleAbs.ecran, h);
 		
 		this.addDoorToPrevRoom(l);
 		
-		this.addDoor(o, true);
 		this.generateEnnemis();
 		this.generateImage();
 	}
@@ -91,7 +89,7 @@ public class Castle_Room extends SalleAbs {
 	}
 	
 	@Override
-	protected void addDoorToPrevRoom(Link l) {
+	public void addDoorToPrevRoom(Link l) {
 		//We change the tiles of the door.
 		Vecteur v = porte.get(Orientation.opposite(l.orientation));
 		
@@ -175,8 +173,8 @@ public class Castle_Room extends SalleAbs {
 
 
 	@Override
-	public SalleAbs clone(Heros h, Link l, Orientation o) {
-		return new Castle_Room(h, l, o);
+	public SalleAbs clone(Heros h, Link l) {
+		return new Castle_Room(h, l);
 	}
 
 }
