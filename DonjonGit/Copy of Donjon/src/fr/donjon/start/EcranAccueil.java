@@ -1,6 +1,8 @@
 package fr.donjon.start;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -26,8 +28,10 @@ public class EcranAccueil extends JPanel{
 
 	// déclaration des boutons et du panel et de l'icone pour le bouton
 	private JPanel panel = new JPanel();
-	ImageIcon icone= new ImageIcon("Ressources/Images/Player.png"); // icone de l'image
-	private JButton boutonStart = new JButton("Click to Play !! ",icone);
+	ImageIcon iconePlayer= new ImageIcon("Ressources/Images/Player.png"); // icone de l'image du joueur
+	ImageIcon iconeInfinity= new ImageIcon("Ressources/Images/Infinity.png"); // icone du sigle infini
+	private JButton boutonJeuLineaire = new JButton("Jeu Linéaire",iconePlayer);
+	private JButton boutonJeuInfini=new JButton ("Jeu infini",iconeInfinity);
 
 	private Launcher launcher;
 
@@ -50,7 +54,8 @@ public class EcranAccueil extends JPanel{
 
 		// JPANEL ET BOUTONS
 		//Ajout du bouton à notre content pane
-		panel.add(boutonStart);
+		panel.add(boutonJeuLineaire);
+		panel.add(boutonJeuInfini);
 		this.add(panel);
 		// Actions listener
 		this.addListeners();
@@ -71,7 +76,15 @@ public class EcranAccueil extends JPanel{
 
 	private void addListeners(){
 
-		boutonStart.addActionListener(new ActionListener() {
+		boutonJeuLineaire.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				launcher.startGame();
+
+			}
+		});
+		
+		boutonJeuInfini.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				launcher.startGame();
