@@ -3,9 +3,14 @@ package fr.donjon.classes;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Iterator;
 import java.util.LinkedList;
 
+
+
+
 import fr.donjon.utils.Animation;
+import fr.donjon.utils.DrawableDamages;
 import fr.donjon.utils.Effet;
 import fr.donjon.utils.EffetMap;
 import fr.donjon.utils.EtatPersonnage;
@@ -68,7 +73,7 @@ public abstract class Personnage extends Deplacable{
 		this.etat=etat;
 
 		this.effets = new EffetMap<String,Effet>();
-		addEffect("STATS_BASE", new Effet(vie,armure,vitd, 0,false, false)); //Les stats de base
+		addEffect("STATS_BASE", new Effet(this,vie,armure,vitd, 0,false, false)); //Les stats de base
 
 		this.arme = arme;
 		this.type = t;
@@ -116,6 +121,12 @@ public abstract class Personnage extends Deplacable{
 		}
 		
 		g.fillRect( (int)getCentre().x - stats.vie/2, (int)getCentre().y - image.height/2 - 15, stats.vie, 10);
+		
+		Iterator<Effet> it = effets.values().iterator();
+
+		while (it.hasNext()) {
+		   it.next().draw(g, t);
+		}
 		
 	}
 
@@ -197,6 +208,9 @@ public abstract class Personnage extends Deplacable{
 	 */
 	public void receiveDammages(int amount){
 		effets.get("STATS_BASE").vie -= amount <= stats.def ? 0 : amount - stats.def ; //Aucun dmg subit si armure >= dmg
+		Effet e1 = new Effet(this,0,0,0,0,40,false);
+		e1.setDrawable(new DrawableDamages());
+		addEffect("DAMAGES", e1);
 		sumEffects();
 	}
 

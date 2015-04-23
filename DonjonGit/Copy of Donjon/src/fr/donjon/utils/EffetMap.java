@@ -112,7 +112,7 @@ public class EffetMap<K, V> extends HashMap<String, Effet> {
 	 */
 	public Effet getSum(){
 
-		Effet e1 = new Effet(0,0,0,0);
+		Effet e1 = new Effet(null,0,0,0,0);
 
 		//System.out.println("//////////SUM/////////");
 

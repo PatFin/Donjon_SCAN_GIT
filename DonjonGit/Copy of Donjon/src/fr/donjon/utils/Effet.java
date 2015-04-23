@@ -3,10 +3,13 @@
  */
 package fr.donjon.utils;
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
+
+import fr.donjon.classes.Personnage;
 
 /**
  * 
@@ -15,8 +18,10 @@ import javax.swing.Timer;
  * @author Baptiste
  *
  */
-public class Effet {
+public class Effet{
 
+	Personnage p;
+	
 	public int vie;		//Bonus/Malus de	Vie
 	public int def;		//					Defense
 	public int vit;		//					Vitesse
@@ -31,6 +36,8 @@ public class Effet {
 
 	Timer t;			//Timer associé a la temporisation	
 
+	Drawable drawable;
+	
 	/**
 	 * 
 	 * Crée un effet non temporisé, non cummulable avec comportement selon activité
@@ -40,8 +47,8 @@ public class Effet {
 	 * @param eVit
 	 * @param atk
 	 */
-	public Effet(int eVie, int eDef, int eVit, int atk){
-		this(eVie, eDef, eVit, atk, false);
+	public Effet(Personnage p,int eVie, int eDef, int eVit, int atk){
+		this(p,eVie, eDef, eVit, atk, false);
 
 	}
 
@@ -55,8 +62,8 @@ public class Effet {
 	 * @param cummulable
 	 * @param iEtat
 	 */
-	public Effet( int eVie, int eDef, int eVit, int atk, boolean cummulable, boolean iEtat ){
-		this(eVie, eDef, eVit, atk, -1, cummulable, iEtat);
+	public Effet( Personnage p,int eVie, int eDef, int eVit, int atk, boolean cummulable, boolean iEtat ){
+		this(p,eVie, eDef, eVit, atk, -1, cummulable, iEtat);
 	}
 
 	/**
@@ -69,8 +76,8 @@ public class Effet {
 	 * @param atk
 	 * @param cummulable
 	 */
-	public Effet( int eVie, int eDef, int eVit, int atk, boolean cummulable ){
-		this(eVie, eDef, eVit, atk, cummulable, false);
+	public Effet( Personnage p,int eVie, int eDef, int eVit, int atk, boolean cummulable ){
+		this(p,eVie, eDef, eVit, atk, cummulable, false);
 	}
 
 	/**
@@ -84,8 +91,8 @@ public class Effet {
 	 * @param eDur
 	 * @param cummulable
 	 */
-	public Effet( int eVie, int eDef, int eVit, int atk, int eDur, boolean cummulable) {
-		this(eVie, eDef, eVit, atk, eDur, cummulable, false);
+	public Effet( Personnage p,int eVie, int eDef, int eVit, int atk, int eDur, boolean cummulable) {
+		this(p,eVie, eDef, eVit, atk, eDur, cummulable, false);
 	}
 
 	/**
@@ -99,8 +106,10 @@ public class Effet {
 	 * @param cummulable
 	 * @param iEtat
 	 */
-	public Effet( int eVie, int eDef, int eVit, int atk, int eDur, boolean cummulable, boolean iEtat) {
+	public Effet( Personnage p, int eVie, int eDef, int eVit, int atk, int eDur, boolean cummulable, boolean iEtat) {
 
+		this.p = p;
+		
 		this.vie = eVie;
 		this.def = eDef;
 		this.vit = eVit;
@@ -128,6 +137,8 @@ public class Effet {
 		}
 	}
 
+	
+	
 	/**
 	 * Renvoie la somme avec un autre effet sans modifier l'objet actuel,
 	 * La vitesse et l'attaque valerons zéro si les valeurs calculées sont négatives
@@ -137,7 +148,7 @@ public class Effet {
 	 */
 	public Effet sum(Effet e){
 
-		return new Effet( vie+ e.vie  ,
+		return new Effet(e.p, vie+ e.vie  ,
 							def+ e.def ,
 							vit+ e.vit >= 0 ? vit+ e.vit : 0, //Speed should not be negative
 							atk+ e.atk >= 0 ? atk+ e.atk : 0);//Attak should not be negative
@@ -155,7 +166,7 @@ public class Effet {
 	 */
 	public Effet initialiseWithParametersOf(Effet e){
 		
-		return new Effet(vie, def, vit, atk, e.duree, e.cummulable, e.ignoreEtat);
+		return new Effet(e.p,vie, def, vit, atk, e.duree, e.cummulable, e.ignoreEtat);
 		
 	}
 
@@ -168,8 +179,18 @@ public class Effet {
 				+ atk + ", actif=" + actif + ", cummulable=" + cummulable
 				+ ", timed=" + timed + ", ignoreEtat=" + ignoreEtat + "]";
 	}
+
 	
 	
+	public void draw(Graphics g, long t) {
+		if(drawable!=null && actif){
+			drawable.draw(p, g, t);
+		}
+	}
+	
+	public void setDrawable(Drawable d){
+		this.drawable = d;
+	}
 	
 
 	

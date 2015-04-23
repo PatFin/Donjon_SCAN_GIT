@@ -3,7 +3,12 @@
  */
 package fr.donjon.classes.cases;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 import fr.donjon.classes.Personnage;
+import fr.donjon.utils.Drawable;
+import fr.donjon.utils.DrawableSlow;
 import fr.donjon.utils.Effet;
 
 /**
@@ -29,7 +34,9 @@ public class CaseWater extends Case {
 	
 	@Override
 	public void inCollision(Personnage p) {
-		p.addEffect("WATER_SLOW",  new Effet(0 , 0, -1, 0, 20,false, false));
+		Effet e1 = new Effet(p, 0 , 0, -1, 0, 20,false, false);
+		e1.setDrawable(new DrawableSlow(new Color(0,50,255)));
+		p.addEffect("WATER_SLOW",  e1);
 	}
 
 }

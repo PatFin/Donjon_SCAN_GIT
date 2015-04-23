@@ -116,7 +116,7 @@ public class ArmeEpee extends Arme{
 	@Override
 	public int utilise(Personnage p) {
 		p.arme = new ArmeEpee(p);
-		p.addEffect(KEY_EFFET1, new Effet(0, 0, -1, 0));
+		p.addEffect(KEY_EFFET1, new Effet(lanceur, 0, 0, -1, 0));
 		return 0; //L'arme peut etre reutilisée
 	}
 
