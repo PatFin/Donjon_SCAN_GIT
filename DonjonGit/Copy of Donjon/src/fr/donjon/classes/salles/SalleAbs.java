@@ -167,7 +167,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		//We create the link.
 		Orientation a = Orientation.opposite(l.orientation);
 
-		this.link.put(a, new Link(l.origineSalle, l.origineSalle.destination.get(l.orientation), this, this.porte.get(a), a, true)); //crer une methode reciprocal dans la classe Link.
+		this.link.put(a, new Link(l.origineSalle, l.origineSalle.destination.get(l.orientation), this, this.porte.get(a), a, true));
 	}
 
 	/**
