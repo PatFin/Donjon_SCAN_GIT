@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import fr.donjon.classes.cases.Case;
@@ -25,10 +24,12 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 
+	static int instances = 0;
+	int instance;
 
 	static final int LARGEUR = 15;
 	static final int HAUTEUR = 9;
-	final static int timerTime = 20;
+	final static int timerTime = 30;
 
 	BufferedImage arrierePlan;
 	Graphics buffer;
@@ -39,7 +40,7 @@ public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 
 	long temps;
 
-
+	long ta = -1;
 	/**
 	 * Permet de creer un JPanel contenant le jeu
 	 * @param s	La salle a dessiner
@@ -49,7 +50,9 @@ public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 		initialisationFenetre();
 		timer = new Timer(timerTime, new TimerAction());
 		//Le timer sera d�marr� plus tard grace a la m�thode startGame()
-			
+		
+		instance = instances;
+		instances++;
 	}
 
 	private void initialisationFenetre(){
@@ -79,7 +82,17 @@ public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 	 * Permet de mettre a jour et de dessiner la salle
 	 */
 	public void update(){
-
+		
+		//Shows the fps of the actual game
+		if(ta == -1)ta = System.currentTimeMillis();
+		else{
+			if(temps%900==0){//Add comment to hide the message
+				System.out.println("FPS:" + 1000/(System.currentTimeMillis() - ta)+ " from GamPanel "+instance+ " (GamePanel l.90)");
+			}
+			ta = System.currentTimeMillis();
+		}
+		
+		
 		this.gestionnaire.update(temps);
 		repaint();
 	}
@@ -100,7 +113,7 @@ public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 	}
 
 	public class TimerAction implements ActionListener{
-		// actions listener appel�s toutes les 20ms
+
 		public void actionPerformed(ActionEvent e){
 			update();
 			temps +=timerTime;

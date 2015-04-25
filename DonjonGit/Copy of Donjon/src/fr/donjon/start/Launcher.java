@@ -51,7 +51,7 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	public void startGame(int mode){
 		
 		this.gameLin.stopGame();		//On arrete les jeux possiblement en cours
-		this.gameInf.startGame();
+		this.gameInf.stopGame();
 		
 		try{
 			this.remove(panActuel);	//On enleve le JPanel du menu s'il existe
@@ -73,7 +73,7 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		
 		this.add(panActuel);		//Et on l'affiche
 		
-		panActuel.setFocusable(true);	//Permet la r�ception des evenements du clavier
+		panActuel.setFocusable(true);	//Permet la réception des evenements du clavier
 		panActuel.requestFocusInWindow(); //Pareil
 		
 		panActuel.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier

@@ -1,6 +1,7 @@
 package fr.donjon.classes;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
@@ -112,7 +113,7 @@ public class Squelette extends Ennemis {
 	}
 
 	@Override
-	public void attaquer(LinkedList<Personnage> cibles,
+	public void attaquer(ArrayList<Personnage> cibles,
 			LinkedList<Projectile> projectiles, Orientation o) {
 		
 	}

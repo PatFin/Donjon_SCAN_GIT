@@ -11,6 +11,7 @@ import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Type;
 import fr.donjon.utils.Vecteur;
 
 /**
@@ -21,9 +22,9 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class Gestionnaire implements EcouteurClavier {
 
-	GamePanel game;									//Le jeu qui gère l'affichage de la Salle.
+	GamePanel game;									//Le jeu qui gï¿½re l'affichage de la Salle.
 	public LinkedList<SalleAbs> listeSalles;		//La liste des salles du donjon.
-	public LinkedList<SalleAbs> sallesDisponibles;	//La liste des salles dans lesquelles on peut piocher pour générer la salle suivante.
+	public LinkedList<SalleAbs> sallesDisponibles;	//La liste des salles dans lesquelles on peut piocher pour gï¿½nï¿½rer la salle suivante.
 	public SalleAbs currentRoom;					//La salle actuelle.
 	
 	public Gestionnaire(GamePanel game) {
@@ -39,7 +40,7 @@ public abstract class Gestionnaire implements EcouteurClavier {
 	public abstract void createNextRoom(Link l);
 	
 	/**
-	 * Renvoie la salle dans laquelle le héro se trouve actuellement
+	 * Renvoie la salle dans laquelle le hï¿½ro se trouve actuellement
 	 * @return 
 	 */
 	public SalleAbs getCurrentRoom(){
@@ -136,9 +137,9 @@ public abstract class Gestionnaire implements EcouteurClavier {
 	protected boolean allEnnemiesKilled(){
 		boolean b=true;
 		for(int i=0; i<currentRoom.personnage.size();i++){
-			if(currentRoom.personnage.get(i) instanceof Ennemis){
+			if(currentRoom.personnage.get(i).type == Type.ENNEMI){
 				b=false;
-				System.out.println("There are "+currentRoom.personnage.size()+" characters in the room.");
+				//System.out.println("There are "+currentRoom.personnage.size()+" characters in the room.");
 				break;
 			}
 		}

@@ -2,6 +2,7 @@ package fr.donjon.classes;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
@@ -34,7 +35,7 @@ public abstract class Arme implements Utilisable{
 	int degats;			//Degats bruts ou par seconde selon le type d'attaque
 	long duree;			//Duree de l'attaque
 
-	protected LinkedList<Personnage> cibles; //Liste des cibles potentielles
+	protected ArrayList<Personnage> cibles; //Liste des cibles potentielles
 	protected LinkedList<Projectile> projectiles;	//Listes des projectiles
 
 	
@@ -110,14 +111,14 @@ public abstract class Arme implements Utilisable{
 	 * @param cibles		La fonction ataque de l'arme définit les cibles touchées
 	 * @param projectiles	Si l'arme lance des projectiles elle l'ajoute a cette liste
 	 */
-	public void attaquer(LinkedList<Personnage> cib,
+	public void attaquer(ArrayList<Personnage> personnage,
 			LinkedList<Projectile> proj, Orientation o){
 		
 		//L'attaque demarre et on regle la bonne animation selon la direction
 		this.etat = EtatArme.RUNNING;
 		this.o = o;
 		this.projectiles = proj;
-		this.cibles = cib;
+		this.cibles = personnage;
 		this.lanceur.o = o;
 
 		switch(o){

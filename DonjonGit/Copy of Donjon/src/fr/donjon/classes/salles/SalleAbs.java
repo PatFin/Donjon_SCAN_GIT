@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.LinkedList;
 
@@ -34,7 +35,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	public EnumMap<Orientation,Vecteur> porte;				//the list of the positions of the potential doors of the room.
 
 	public Case[][] cases; 									//2D array containing the tyles composing the room.
-	public LinkedList <Personnage> personnage; 				//Contains the character of the room (Ennemis and Heros).
+	public ArrayList <Personnage> personnage; 				//Contains the character of the room (Ennemis and Heros).
 	public Heros hero;										//The character the player controls.
 
 	public BufferedImage imageSalle;  						//Contains the image of the room without the objects.
@@ -55,7 +56,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 
 		SalleAbs.ecran=ecran;
 		this.hero=h;
-		this.personnage = new LinkedList <Personnage> ();
+		this.personnage = new ArrayList <Personnage> ();
 		this.personnage.add(hero);
 
 
@@ -289,6 +290,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	private void sortCharacters(){
 		//Putting the elements in an array
 		Personnage [] a = new Personnage[personnage.size()];
+		
 		for(int i=0; i<a.length;i++){
 			a[i] = personnage.get(i);
 		}
@@ -305,7 +307,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 		}
 
 		//Putting the element back into the list.
-		this.personnage = new LinkedList<Personnage>();
+		this.personnage = new ArrayList<Personnage>();
 		for(int i=0;i<a.length;i++){
 			this.personnage.add(a[i]);
 		}
