@@ -59,7 +59,12 @@ public abstract class Deplacable extends Objet {
 	 * @param v the coordinates of the tile the character should be placed on.
 	 */
 	public void setLocation(Vecteur v){
-		this.setLocation((int)v.x*Case.TAILLE, (int)v.y*Case.TAILLE);
+		try{
+			this.setLocation((int)v.x*Case.TAILLE, (int)v.y*Case.TAILLE);
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		
 	}
 	
 	@Override
