@@ -5,7 +5,9 @@ import java.util.EnumMap;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.Case_dalle_sol;
 import fr.donjon.classes.cases.Porte_Dalle_Sol;
+import fr.donjon.classes.cases.Tele_dalle_sol;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -51,9 +53,60 @@ public class Enigme_teleportation extends SalleAbs {
 		
 		Vecteur v;
 		
-		//On initialise les positions des centre de téléporteur
+		//On initialise la position des centres de téléporteurs
 		//TODO
 		
+		v=new Vecteur(cases.length/4+1, cases[0].length/4);
+		
+		cases[(int)v.x-1][(int)v.y-1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x+1][(int)v.y-1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x-1][(int)v.y+1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x+1][(int)v.y+1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x][(int)v.y] = new Case_dalle_sol();
+		cases[(int)v.x+1][(int)v.y] = new Case_dalle_sol();
+		cases[(int)v.x-1][(int)v.y] = new Case_dalle_sol();
+		cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
+		cases[(int)v.x][(int)v.y-1] = new Case_dalle_sol();
+		
+		
+		v=new Vecteur(3*cases.length/4-1, cases[0].length/4);
+		
+		cases[(int)v.x-1][(int)v.y-1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x+1][(int)v.y-1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x-1][(int)v.y+1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x+1][(int)v.y+1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x][(int)v.y] = new Case_dalle_sol();
+		cases[(int)v.x+1][(int)v.y] = new Case_dalle_sol();
+		cases[(int)v.x-1][(int)v.y] = new Case_dalle_sol();
+		cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
+		cases[(int)v.x][(int)v.y-1] = new Case_dalle_sol();
+		
+		v=new Vecteur(cases.length/4+1, 3*cases[0].length/4);
+		
+		cases[(int)v.x-1][(int)v.y-1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x+1][(int)v.y-1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x-1][(int)v.y+1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x+1][(int)v.y+1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x][(int)v.y] = new Case_dalle_sol();
+		cases[(int)v.x+1][(int)v.y] = new Case_dalle_sol();
+		cases[(int)v.x-1][(int)v.y] = new Case_dalle_sol();
+		cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
+		cases[(int)v.x][(int)v.y-1] = new Case_dalle_sol();
+		
+		
+		v=new Vecteur(3*cases.length/4-1, 3*cases[0].length/4);
+		
+		cases[(int)v.x-1][(int)v.y-1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x+1][(int)v.y-1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x-1][(int)v.y+1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x+1][(int)v.y+1] = new Tele_dalle_sol(null, true);
+		cases[(int)v.x][(int)v.y] = new Case_dalle_sol();
+		cases[(int)v.x+1][(int)v.y] = new Case_dalle_sol();
+		cases[(int)v.x-1][(int)v.y] = new Case_dalle_sol();
+		cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
+		cases[(int)v.x][(int)v.y-1] = new Case_dalle_sol();
+		
+		fillEmptyWithVoid();
 		
 	}
 
@@ -73,6 +126,29 @@ public class Enigme_teleportation extends SalleAbs {
 		//We change the tiles of the door
 		Vecteur v = porte.get(Orientation.opposite(l.orientation));
 		this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(true);
+		
+		Vecteur p1;
+		Vecteur p2;
+		switch(Orientation.opposite(l.orientation)){
+			case NORD:
+				p1=new Vecteur(v.x, v.y+1);
+				p2=new Vecteur(v.x, v.y+2);
+				break;
+			case SUD:
+				p1=new Vecteur(v.x, v.y-1);
+				p2=new Vecteur(v.x, v.y-2);
+				break;
+			case OUEST:
+				p1=new Vecteur(v.x+1, v.y);
+				p2=new Vecteur(v.x+2, v.y);
+				break;
+			default:
+				p1=new Vecteur(v.x-1, v.y);
+				p2=new Vecteur(v.x-2, v.y);
+		}
+		this.cases[(int)p1.x][(int)p1.y] = new Case_dalle_sol();
+		this.cases[(int)p2.x][(int)p2.y] = new Tele_dalle_sol(null, true);
+	
 		
 		
 		//The link is created in the mother class

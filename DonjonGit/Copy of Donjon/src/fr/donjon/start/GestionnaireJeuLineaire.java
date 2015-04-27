@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.salles.Castle_Room;
+import fr.donjon.classes.salles.Enigme_teleportation;
 import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.classes.salles.Salle_croix;
 import fr.donjon.classes.salles.Salle_foret;
@@ -19,6 +20,7 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 		sallesDisponibles.add(new Salle_foret());
 		sallesDisponibles.add(new Castle_Room());
 		sallesDisponibles.add(new Salle_croix());
+		sallesDisponibles.add(new Enigme_teleportation());
 		
 		SalleAbs firstRoom = new Castle_Room(game.ecran, new Heros(200,200), Orientation.random()); //On crée la premiere Salle 
 		currentRoom = firstRoom;
