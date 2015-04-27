@@ -28,7 +28,7 @@ public class EcranAccueil extends MyJPanel{
 	// déclaration des boutons et du panel et de l'icone pour le bouton
 	private JPanel panel = new JPanel();
 	ImageIcon iconePlayer = new ImageIcon(ImageManager.getImage("Player.png", getClass().getSimpleName())); // icone de l'image du joueur
-	ImageIcon iconeInfinity = new ImageIcon(ImageManager.getImage("Infinity.png", getClass().getSimpleName())); // icone du sigle infini
+	ImageIcon iconeInfinity = new ImageIcon(ImageManager.getImage("infinity.png", getClass().getSimpleName())); // icone du sigle infini
 	
 	private JButton boutonJeuLineaire = new JButton("Jeu Linéaire",iconePlayer);
 	private JButton boutonJeuInfini=new JButton ("Jeu Infini",iconeInfinity);
