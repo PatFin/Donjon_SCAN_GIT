@@ -9,4 +9,8 @@ public class Porte_Dalle_Sol extends Case_porte {
 		super(ImageName, enabled);
 	}
 
+	@Override
+	public Case clone() {
+		return new Porte_Dalle_Sol(false);
+	}
 }

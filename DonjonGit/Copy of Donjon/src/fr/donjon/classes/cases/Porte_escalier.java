@@ -7,5 +7,10 @@ public class Porte_escalier extends Case_porte {
 	public Porte_escalier(boolean enabled) {
 		super(image, enabled);
 	}
+	
+	@Override
+	public Case clone() {
+		return new Porte_escalier(false);
+	}
 
 }

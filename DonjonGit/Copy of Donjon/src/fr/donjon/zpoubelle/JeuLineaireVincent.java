@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import fr.donjon.classes.Castle_Room;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
@@ -85,7 +84,7 @@ public class JeuLineaireVincent extends JFrame implements EcouteurClavier {
        //Image buffer pour dessiner dessus
        arrierePlan = new BufferedImage(getSize().width,getSize().height, BufferedImage.TYPE_INT_RGB);
        
-       //Récuperation de la partie graphique de de l'image pour dessiner dessus
+       //Rï¿½cuperation de la partie graphique de de l'image pour dessiner dessus
        buffer = arrierePlan.getGraphics();
 	}
 
@@ -113,7 +112,7 @@ public class JeuLineaireVincent extends JFrame implements EcouteurClavier {
     }
 
 	private class TimerAction implements ActionListener{
-		// actions listener appelés toutes les 20ms
+		// actions listener appelï¿½s toutes les 20ms
 		public void actionPerformed(ActionEvent e){
 			update();
 			temps +=timerTime;

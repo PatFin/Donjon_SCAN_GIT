@@ -8,6 +8,8 @@ import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.CaseWater;
 import fr.donjon.classes.cases.Case_herbe;
 import fr.donjon.classes.cases.Porte_Dalle_Sol;
+import fr.donjon.editor.MapFileHandler;
+import fr.donjon.editor.SalleDescription;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;

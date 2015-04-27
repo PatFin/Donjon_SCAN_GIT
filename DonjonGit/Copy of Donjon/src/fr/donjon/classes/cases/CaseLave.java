@@ -4,10 +4,8 @@
 package fr.donjon.classes.cases;
 
 import java.awt.Color;
-import java.awt.Graphics;
 
 import fr.donjon.classes.Personnage;
-import fr.donjon.utils.Drawable;
 import fr.donjon.utils.DrawableSlow;
 import fr.donjon.utils.Effet;
 

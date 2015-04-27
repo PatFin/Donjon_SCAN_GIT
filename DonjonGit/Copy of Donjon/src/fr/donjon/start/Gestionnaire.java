@@ -5,7 +5,6 @@ package fr.donjon.start;
 
 import java.util.LinkedList;
 
-import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.utils.EcouteurClavier;

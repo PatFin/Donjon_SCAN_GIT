@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.salles.Castle_Room;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -45,7 +46,7 @@ public class Linear_Castle {
 	public void update(long temps){
 		//On update la salle.
 		currentRoom.update(temps);
-		//On vérifie si le héro doit être changé de salle ou pas
+		//On vï¿½rifie si le hï¿½ro doit ï¿½tre changï¿½ de salle ou pas
 		for(int i=0; i<currentRoom.liens.size(); i++){
 			Link z = currentRoom.liens.get(i);
 			

@@ -12,7 +12,6 @@ import fr.donjon.classes.cases.Case_mur;
 import fr.donjon.classes.cases.Case_rocher;
 import fr.donjon.classes.cases.Porte_Dalle_Sol;
 import fr.donjon.classes.cases.Porte_escalier;
-import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;

@@ -4,7 +4,6 @@
 package fr.donjon.editor;
 
 import java.awt.Dimension;
-import java.awt.GraphicsConfiguration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -109,7 +108,7 @@ public class DialogSauvegarder extends JDialog{
 		content.add(Box.createVerticalStrut(5));
 		content.add(box3);
 		content.add(Box.createVerticalStrut(5));
-		content.setBorder(BorderFactory.createTitledBorder("Entrez les données de la carte: "));
+		content.setBorder(BorderFactory.createTitledBorder("Entrez les donnÃ©es de la carte: "));
 
 		//Finalisation
 
@@ -122,7 +121,7 @@ public class DialogSauvegarder extends JDialog{
 
 	private void validateBox(){
 
-		String name = tfIndex.getText();
+		String name = tfName.getText();
 		int index = -1;
 		
 		try{
@@ -133,6 +132,8 @@ public class DialogSauvegarder extends JDialog{
 			tfIndex.setText("0");
 			return;
 		}
+		
+		
 		
 		listener.onValidate(name,index);
 		this.setVisible(false);

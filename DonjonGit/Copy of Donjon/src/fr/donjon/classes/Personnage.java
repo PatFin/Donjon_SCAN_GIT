@@ -7,10 +7,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-
-
-
-
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.DrawableDamages;
 import fr.donjon.utils.Effet;

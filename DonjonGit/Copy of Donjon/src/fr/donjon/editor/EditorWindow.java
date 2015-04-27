@@ -5,16 +5,20 @@ import java.awt.FlowLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileFilter;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
@@ -28,6 +32,7 @@ import fr.donjon.classes.cases.Case_mur;
 import fr.donjon.classes.cases.Case_rocher;
 import fr.donjon.classes.cases.Case_void;
 import fr.donjon.classes.cases.Porte_Dalle_Sol;
+import fr.donjon.classes.cases.Porte_escalier;
 import fr.donjon.classes.salles.SalleEssai;
 import fr.donjon.start.SimplePanel;
 import fr.donjon.utils.JeuKeyAdapter;
@@ -58,7 +63,7 @@ public class EditorWindow extends JFrame{
 	JButton BDelete;
 	JButton BFill;
 	JButton BOuvrir;
-	
+
 	JButton BEssayer;
 
 	//Panel Interactions (boutons)
@@ -81,7 +86,7 @@ public class EditorWindow extends JFrame{
 	 */
 	public EditorWindow(String nom){
 		super(nom);
-		
+
 		//Remplissage des cases disponibles
 		listCases = new LinkedList<Case>();
 		LCButtons = new LinkedList<CaseButton>();
@@ -95,7 +100,7 @@ public class EditorWindow extends JFrame{
 		listCases.add(new CaseLave());
 		listCases.add(new CaseWater());
 		listCases.add(new Porte_Dalle_Sol(false));
-		
+		listCases.add(new Porte_escalier(false));
 		listCases.add(new Case_void());
 
 		//CADRE PRINCIPAL
@@ -130,15 +135,15 @@ public class EditorWindow extends JFrame{
 		panInteractions = new JPanel();
 		panInteractions.setLayout(new BoxLayout(panInteractions, BoxLayout.Y_AXIS));
 		panInteractions.setPreferredSize(new Dimension(170,600));
-		
-		
+
+
 		panCases = new JPanel();
 		panCases.setLayout(new FlowLayout(FlowLayout.CENTER, 10,10));
 		panCases.setBorder(BorderFactory.createTitledBorder("Cases disponibles :"));
-		
+
 		sliderThickness = new JSlider(1,6,1);
 		sliderThickness.setBorder(BorderFactory.createTitledBorder("Taille : 1"));
-		
+
 		for(int i = 0 ; i < listCases.size() ; i++){
 			LCButtons.add(new CaseButton(listCases.get(i))); //Creation des CaseButton grace a la liste de cases
 		}
@@ -160,13 +165,14 @@ public class EditorWindow extends JFrame{
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
-		
+
 	}
 
 	/**
 	 * Ajoute tous les listeners des bouttons
 	 */
 	private void addListeners(){ 
+		
 		BDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -195,7 +201,7 @@ public class EditorWindow extends JFrame{
 
 					@Override
 					public void onValidate(String name, int index) {
-						
+
 					}
 
 					@Override
@@ -212,26 +218,28 @@ public class EditorWindow extends JFrame{
 		BSauvegarder.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				DialogListener l = new DialogListener() {
-					
+
 					@Override
 					public void onCancel() {
-						
 					}
-					
+
 					@Override
 					public void onValidate(String name, int index) {
 						SalleDescription sd = new SalleDescription(panDessin.cases, panDessin.width, panDessin.height, index, name);
-						MapFileHandler.createMapFile(sd, true);
+						int finalIndex = MapFileHandler.createMapFile(sd, false);
+						if(index != finalIndex){
+							JOptionPane.showMessageDialog(null, "L'index existe déja, nouveau index: "+finalIndex, "Index deja existant :", JOptionPane.INFORMATION_MESSAGE);
+						}
 					}
 
 					@Override
 					public void onValidate(Vecteur v) {
-						
+
 					}
 				};
-				
+
 				DialogSauvegarder dl = new DialogSauvegarder(null, "Sauvegarde de carte", true, l);
 			}
 		});
@@ -245,42 +253,87 @@ public class EditorWindow extends JFrame{
 		});
 
 		BOuvrir.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				SalleDescription sd = null;
+				
+				final JFileChooser fc = new JFileChooser();
+				fc.setCurrentDirectory(new File(MapFileHandler.absolutePath+"/"+MapFileHandler.pathMaps));
+				fc.setFileFilter(new FileFilter() {
+
+					@Override
+					public String getDescription() {
+						// TODO Auto-generated method stub
+						return null;
+					}
+
+					@Override
+					public boolean accept(File f) {
+						// TODO Auto-generated method stub
+						if (f.isDirectory()) {
+							return true;
+						}
+
+						String extension = null;
+						try{
+							extension = f.getName().split("\\.")[1];
+						}
+						catch(ArrayIndexOutOfBoundsException e){
+						}
+						
+						if (extension != null) {
+							if (extension.equals(MapFileHandler.extension)){
+								return true;
+							} else {
+								return false;
+							}
+						}
+
+						return false;
+					}
+				});
+				int returnVal = fc.showOpenDialog(cadre);
+
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					sd = MapFileHandler.getFileToDescription(fc.getSelectedFile());
+					panDessin.reinitialize(sd.matrix);
+				}
+				
 				
 			}
 		});
-		
+
 		BEssayer.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				for(int y = 0 ; y < panDessin.height ; y++){
 					for(int x = 0 ; x < panDessin.width ; x++){
 						panDessin.cases[x][y].setCollisionBoxLocation(y, x);
 					}
 				}
-				
+
 				JFrame frame = new JFrame("Essai de carte");
-				
+
 				SalleEssai essai = new SalleEssai(new Rectangle(panDessin.width*Case.TAILLE, panDessin.height*Case.TAILLE), new Heros(200,200)
 				, panDessin.cases);
-				
+
 				SimplePanel gpanel = new SimplePanel(essai);
 				gpanel.addKeyListener(new JeuKeyAdapter(gpanel));
-				
+
 				frame.setContentPane(gpanel);
 				frame.pack();
 				frame.setResizable(false);
 				frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 				frame.setVisible(true);
 				gpanel.startGame();
-				
+
 			}
 		});
-		
+
 		for(CaseButton bt : LCButtons){
 			bt.addActionListener(new CaseButtonListener(bt, panDessin));
 		}

@@ -1,7 +1,5 @@
 package fr.donjon.start;
 
-import java.awt.LayoutManager;
-
 import javax.swing.JPanel;
 
 import fr.donjon.utils.EcouteurClavier;
