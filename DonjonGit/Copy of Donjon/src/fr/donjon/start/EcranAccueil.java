@@ -1,8 +1,6 @@
 package fr.donjon.start;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -15,47 +13,45 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import fr.donjon.utils.ImageManager;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
 public class EcranAccueil extends MyJPanel{ 
 
-	// déclaration de l'image
+	// dÃ©claration de l'image
 	Image im; // IMAGE
-	final static String srcImage="Ressources/Images/BackgroundMenu.jpg"; // FICHIER SOURCE POUR CHARGER L'IMAGE
+	final static String srcImage = "BackgroundMenu.jpg"; // FICHIER SOURCE POUR CHARGER L'IMAGE
 	final int SCREENX=800; // LONGUEUR FENETRE
 	final int SCREENY=600; // LARGEUR FENETRE
 
-
-
-	// déclaration des boutons et du panel et de l'icone pour le bouton
+	// dÃ©claration des boutons et du panel et de l'icone pour le bouton
 	private JPanel panel = new JPanel();
-	ImageIcon iconePlayer= new ImageIcon("Ressources/Images/Player.png"); // icone de l'image du joueur
-	ImageIcon iconeInfinity= new ImageIcon("Ressources/Images/Infinity.png"); // icone du sigle infini
-	private JButton boutonJeuLineaire = new JButton("Jeu Linéaire",iconePlayer);
-	private JButton boutonJeuInfini=new JButton ("Jeu infini",iconeInfinity);
+	ImageIcon iconePlayer = new ImageIcon(ImageManager.getImage("Player.png", getClass().getSimpleName())); // icone de l'image du joueur
+	ImageIcon iconeInfinity = new ImageIcon(ImageManager.getImage("Infinity.png", getClass().getSimpleName())); // icone du sigle infini
+	
+	private JButton boutonJeuLineaire = new JButton("Jeu LinÃ©aire",iconePlayer);
+	private JButton boutonJeuInfini=new JButton ("Jeu Infini",iconeInfinity);
 
 	private Launcher launcher;
 
-	// constructeur de la classe EcranAccueil
+	//Constructeur de la classe EcranAccueil
 
 	public EcranAccueil (Launcher l){
 
 		this.setPreferredSize(new Dimension(SCREENX,SCREENY));
 		
+		boutonJeuInfini.setPreferredSize(new Dimension(180, 60));
+		boutonJeuLineaire.setPreferredSize(new Dimension(180, 60));
+		
 		this.launcher = l;
 		
 		// lecture de l'image
-		try {
-			this.im=ImageIO.read (new File (srcImage));
-		}
-		catch (IOException e){
-			System.out.println ("Could not load image file.");
-		}
+		this.im = ImageManager.getImage(srcImage, this.getClass().getSimpleName());
 
 
 		// JPANEL ET BOUTONS
-		//Ajout du bouton à notre content pane
+		//Ajout du bouton ï¿½ notre content pane
 		panel.add(boutonJeuLineaire);
 		panel.add(boutonJeuInfini);
 		this.add(panel);
@@ -64,10 +60,9 @@ public class EcranAccueil extends MyJPanel{
 
 	}
 
-	// méthode pour peindre l'image de fond
+	// mÃ©thode pour peindre l'image de fond
 	@Override
 	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		
 		if (im!=null) {

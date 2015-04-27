@@ -57,11 +57,11 @@ public class EffetMap<K, V> extends HashMap<String, Effet> {
 				if(e1.cummulable){
 					//ADD
 					Effet sum = e1.sum(e);
-					replace(key, sum.initialiseWithParametersOf(e));
+					//TODO replace(key, sum.initialiseWithParametersOf(e));
 				}
 				else {
 					//Replace
-					replace(key, e);
+					//TODO replace(key, e);
 				}
 			}
 		}
@@ -71,11 +71,11 @@ public class EffetMap<K, V> extends HashMap<String, Effet> {
 				if(e1.cummulable){
 					//ADD
 					Effet sum = e1.sum(e);
-					replace(key, sum.initialiseWithParametersOf(e));
+					//TODO replace(key, sum.initialiseWithParametersOf(e));
 				}
 				else {
 					//Replace
-					replace(key, e);
+					//TODO replace(key, e);
 				}
 			}
 			//IF NOT ACTIVE
@@ -85,7 +85,7 @@ public class EffetMap<K, V> extends HashMap<String, Effet> {
 				}
 				else {
 					//Replace
-					replace(key, e);
+					//TODO replace(key, e);
 				}
 			}
 		}
