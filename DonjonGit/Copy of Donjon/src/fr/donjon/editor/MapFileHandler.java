@@ -70,7 +70,7 @@ public class MapFileHandler {
 	 * 
 	 * Allows to get a list of SalleDescription from a list of indexes
 	 * 
-	 * @param indexes	The list of indexes as an Integer table
+	 * @param indexes	The list of indexes as an Integer array
 	 * @return			The list of SalleDescription
 	 */
 	public static LinkedList<SalleDescription> getGroupOfMaps(int[] indexes){
@@ -96,7 +96,7 @@ public class MapFileHandler {
 	 * 
 	 * Return the existing indexes of map in the standard directory
 	 * 
-	 * @return Th int table containing the existing indexes
+	 * @return The int table containing the existing indexes
 	 */
 	public static int[] getExistingIndexes(){
 

@@ -16,6 +16,7 @@ import fr.donjon.classes.Squelette;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.Case_Obstacle;
 import fr.donjon.classes.cases.Case_void;
+import fr.donjon.utils.CustomException;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
@@ -49,8 +50,9 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 * Constructor
 	 * @param ecran the space available for the game
 	 * @param h the character the player can control
+	 * @throws CustomException 
 	 */
-	public SalleAbs(Rectangle ecran, Heros h) {
+	public SalleAbs(Rectangle ecran, Heros h) throws CustomException {
 		this.roomNumber=numberOfRooms;
 		SalleAbs.numberOfRooms++;
 
@@ -78,7 +80,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	}
 
 
-	protected abstract void generateRoom();
+	protected abstract void generateRoom() throws CustomException;
 	protected abstract void setDoorPlaces();
 
 	/**
