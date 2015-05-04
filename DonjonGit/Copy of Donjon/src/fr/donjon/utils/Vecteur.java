@@ -80,6 +80,12 @@ public class Vecteur {
 		}
 	}
 	
+	public Orientation projectMainDirection(Vecteur from, Vecteur to){
+		Vecteur v = new Vecteur(to.x-from.x, to.y-from.y);
+		return projectMainDirection(v);
+	}
 	
-	
+	public Orientation projectMainDirection(){
+		return projectMainDirection(this);
+	}
 }

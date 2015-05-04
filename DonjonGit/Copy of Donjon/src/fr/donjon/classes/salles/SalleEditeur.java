@@ -90,6 +90,9 @@ public class SalleEditeur extends SalleAbs {
 						throw new CustomException("Aucune case disponible n'a été trouvée autour d'une porte.");
 					}
 					
+					//We set the appropriate
+					
+					
 				}
 				
 				
