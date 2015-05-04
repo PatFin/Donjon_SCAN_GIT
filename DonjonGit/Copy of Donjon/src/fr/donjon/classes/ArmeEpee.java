@@ -21,7 +21,7 @@ public class ArmeEpee extends Arme{
 
 	final static int DMG = 50;
 	final static int DUR = 200;
-	final static String src = "hero_map.png";
+	final static String src = "attaque_new_192.png";
 	final static String icSrc = "sword.png";
 	
 	final static int zoneWidth = 35;
@@ -46,10 +46,10 @@ public class ArmeEpee extends Arme{
 	public ArmeEpee(Personnage lanceur) {
 		super(lanceur, DMG, DUR);
 
-		animationN = new Animation(src, new Vecteur(64, 64),12,6,DUR); 
-		animationO = new Animation(src, new Vecteur(64, 64),13,6,DUR);
-		animationS = new Animation(src, new Vecteur(64, 64),14,6,DUR);
-		animationE = new Animation(src, new Vecteur(64, 64),15,6,DUR);
+		animationN = new Animation(src, new Vecteur(192, 192),0,6,DUR); 
+		animationO = new Animation(src, new Vecteur(192, 192),1,6,DUR);
+		animationS = new Animation(src, new Vecteur(192, 192),2,6,DUR);
+		animationE = new Animation(src, new Vecteur(192, 192),3,6,DUR);
 		animation = animationS;
 
 		this.persoTouches = new LinkedList<Personnage>();
