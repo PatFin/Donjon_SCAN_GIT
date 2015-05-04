@@ -214,12 +214,12 @@ public class Salle_croix extends SalleAbs {
 	}
 
 	@Override
-	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) {
+	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) throws CustomException {
 		return new Salle_croix(ecran, h, o);
 	}
 
 	@Override
-	public SalleAbs clone(Heros h, Link l) {
+	public SalleAbs clone(Heros h, Link l) throws CustomException {
 		return new Salle_croix(h, l);
 	}
 

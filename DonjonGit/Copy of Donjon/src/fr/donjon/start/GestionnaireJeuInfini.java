@@ -41,7 +41,13 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 		
 		//On cr�� la salle
 		Orientation a=Orientation.opposite(l.orientation);
-		SalleAbs s = createRandomNewRoom(l.origineSalle.hero, l);
+		SalleAbs s = null;
+		try {
+			s = createRandomNewRoom(l.origineSalle.hero, l);
+		} catch (CustomException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		l.setDestination(s, s.destination.get(a));
 		
 		//On ajoute les portes

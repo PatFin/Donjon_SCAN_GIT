@@ -40,7 +40,13 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 	@Override
 	public void createNextRoom(Link l) {
 		Orientation a = Orientation.opposite(l.orientation);
-		SalleAbs s = createRandomNewRoom(l.origineSalle.hero, l);
+		SalleAbs s = null;
+		try {
+			s = createRandomNewRoom(l.origineSalle.hero, l);
+		} catch (CustomException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		l.setDestination(s, s.destination.get(a));
 		
 		//We add a random unique door to the room.
