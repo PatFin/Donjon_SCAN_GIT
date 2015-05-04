@@ -119,7 +119,8 @@ public abstract class SalleAbs implements EcouteurClavier {
 			a=(int)(Math.random()*l.size()/8);			//selecting a random index in the list of available tiles.
 			v = l.get(a);
 
-			Ennemis e = new Squelette(0,0, hero);
+			//TODO implement a level selection system
+			Ennemis e = new Squelette(0,0, hero, 1);
 			e.setLocation(v);
 			addEnemy(e);
 			l.remove(a);
