@@ -81,7 +81,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 
 
 	protected abstract void generateRoom() throws CustomException;
-	protected abstract void setDoorPlaces();
+	protected abstract void setDoorPlaces() throws CustomException;
 
 	/**
 	 * The general method to add enemis to a room.

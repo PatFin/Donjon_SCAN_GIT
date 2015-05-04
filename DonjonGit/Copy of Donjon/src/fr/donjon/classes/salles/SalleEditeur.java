@@ -4,12 +4,14 @@ import java.awt.Rectangle;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.Case_Obstacle;
 import fr.donjon.classes.cases.Case_porte;
 import fr.donjon.classes.cases.Case_void;
 import fr.donjon.editor.SalleDescription;
 import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
 
 public class SalleEditeur extends SalleAbs {
 
@@ -64,13 +66,13 @@ public class SalleEditeur extends SalleAbs {
 		}
 		if(nbPortes!=4){
 			//Send an error
-			throw new CustomException("4 doors were not found in this room. It can't work with the rest of the donjon");
+			throw new CustomException("4 doors were not found in this room. It can't work with the rest of the donjon. Too bad :D");
 		}
 
 	}
 
 	@Override
-	protected void setDoorPlaces() {
+	protected void setDoorPlaces() throws CustomException {
 		//We go through the array of description and detect a door
 		Case[][] description = s.getMatrix();
 		
@@ -81,20 +83,53 @@ public class SalleEditeur extends SalleAbs {
 				if(description[i][j] instanceof Case_porte){
 					
 					//We look around this door looking for the landing place of the character
+					Vecteur destination = getAvailableCaseNear(new Vecteur(i,j));
 					
-					
+					//If no appropriate tile was found, we send an exception.
+					if(destination.x == -1){
+						throw new CustomException("Aucune case disponible n'a été trouvée autour d'une porte.");
+					}
 					
 				}
 				
 				
 			}
 		}
-			
+		
 		
 		
 		
 
 	}
+	
+	private Vecteur getAvailableCaseNear(Vecteur v){
+		Vecteur a = new Vecteur(-1,-1);
+		for(int i=-1; i<2;i=i+2){
+			try{
+				if(!(cases[(int)v.x][(int)v.y+i] instanceof Case_Obstacle)){
+					a.setLocation((int)v.x,(int)v.y +i);
+					break;
+				}
+				
+				
+			}catch(Exception e){
+				//catches a potential out of bound exception
+			}
+			
+			try{
+				if(!(cases[(int)v.x+i][(int)v.y] instanceof Case_Obstacle)){
+					a.setLocation((int)v.x+i,(int)v.y);
+					break;
+				}
+				
+			}catch(Exception e){
+				//catches a potential out of bound exception
+			}
+		}
+		return a;
+	}
+	
+	
 
 	@Override
 	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) {
