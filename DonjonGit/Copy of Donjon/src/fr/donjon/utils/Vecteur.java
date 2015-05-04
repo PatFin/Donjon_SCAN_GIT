@@ -63,4 +63,23 @@ public class Vecteur {
 		// TODO Auto-generated method stub
 		return "X:"+x + " Y:"+y;
 	}
+	
+	public Orientation projectMainDirection(Vecteur v){
+		if(Math.abs(v.x) > Math.abs(v.y)){
+			if(v.x<0){
+				return Orientation.OUEST;
+			}else{
+				return Orientation.EST;
+			}
+		}else{
+			if(v.y<0){
+				return Orientation.NORD;
+			}else{
+				return Orientation.SUD;
+			}
+		}
+	}
+	
+	
+	
 }
