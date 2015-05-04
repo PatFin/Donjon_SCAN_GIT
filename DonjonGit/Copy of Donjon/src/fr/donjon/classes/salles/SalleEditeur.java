@@ -1,6 +1,7 @@
 package fr.donjon.classes.salles;
 
 import java.awt.Rectangle;
+import java.util.EnumMap;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
@@ -16,6 +17,8 @@ import fr.donjon.utils.Vecteur;
 public class SalleEditeur extends SalleAbs {
 
 	SalleDescription s;
+	EnumMap<Orientation, Case_porte> porte_case;
+	
 	
 	/**
 	 * Constructeur quand on veut créer une nouvelle instance de ce genre de salle
@@ -76,11 +79,18 @@ public class SalleEditeur extends SalleAbs {
 		//We go through the array of description and detect a door
 		Case[][] description = s.getMatrix();
 		
+		//Initialisation of the enumMaps
+		this.porte=new EnumMap<Orientation, Vecteur>(Orientation.class);
+		this.destination=new EnumMap<Orientation, Vecteur>(Orientation.class);
+		this.porte_case = new EnumMap<Orientation, Case_porte>(Orientation.class);
+		
 		for(int i=0; i<description.length; i++){
 			for(int j=0; j<description[0].length; j++){
 				
 				//We have a door
 				if(description[i][j] instanceof Case_porte){
+					
+					
 					
 					//We look around this door looking for the landing place of the character
 					Vecteur porte = new Vecteur(i,j);
@@ -94,18 +104,22 @@ public class SalleEditeur extends SalleAbs {
 					//We set the appropriate door in the correct direction:
 					Orientation o = Vecteur.projectMainDirection(destination, porte);
 					
-					
-					
+					//We store the information in the enumMaps.
+					this.porte.put(o, porte);
+					this.destination.put(o, destination);
+					porte_case.put(o, (Case_porte) description[i][j].clone());
 				}
 				
 				
 			}
 		}
 		
+		//We check if all the doors have been found in the room
+		if(!(this.porte.containsKey(Orientation.NORD) && this.porte.containsKey(Orientation.SUD) && porte.containsKey(Orientation.OUEST) && porte.containsKey(Orientation.EST))){
+			throw new CustomException("Toutes les portes n'ont pas été trouvées. Il doit y en avoir en double!");
+		}
 		
 		
-		
-
 	}
 	
 	private Vecteur getAvailableCaseNear(Vecteur v){
@@ -135,6 +149,22 @@ public class SalleEditeur extends SalleAbs {
 		return a;
 	}
 	
+	@Override
+	public void addDoor(Orientation o, boolean enabled){
+		Vecteur v = porte.get(o);
+		this.cases[(int)v.x][(int)v.y] = porte_case.get(o).clone();
+		
+		super.addDoor(o, enabled);
+	}
+	
+	@Override
+	public void addDoorToPrevRoom(Link l){
+		Orientation a= Orientation.opposite(l.orientation);
+		Vecteur v = porte.get(a);
+		this.cases[(int)v.x][(int)v.y] = porte_case.get(a).clone();
+		
+		super.addDoorToPrevRoom(l);
+	}
 	
 
 	@Override

@@ -8,8 +8,7 @@ import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.CaseWater;
 import fr.donjon.classes.cases.Case_herbe;
 import fr.donjon.classes.cases.Porte_Dalle_Sol;
-import fr.donjon.editor.MapFileHandler;
-import fr.donjon.editor.SalleDescription;
+import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -21,8 +20,9 @@ public class Salle_foret extends SalleAbs {
 	 * @param ecran contains the space available to the room
 	 * @param h the hero controlled by the player
 	 * @param o the orientation of the door to be placed
+	 * @throws CustomException 
 	 */
-	public Salle_foret(Rectangle ecran, Heros h, Orientation o) {
+	public Salle_foret(Rectangle ecran, Heros h, Orientation o) throws CustomException {
 		super(ecran,h);
 		
 		//Adding the doors to the next room
@@ -42,8 +42,9 @@ public class Salle_foret extends SalleAbs {
 	 * @param h the hero controlled by the player
 	 * @param l the link from the previous room to this one
 	 * @param o the orientation of the door to the next room
+	 * @throws CustomException 
 	 */
-	public Salle_foret(Heros h, Link l){
+	public Salle_foret(Heros h, Link l) throws CustomException{
 		super(SalleAbs.ecran, h);
 		
 		//Creating the link to the previous room
@@ -145,13 +146,13 @@ public class Salle_foret extends SalleAbs {
 
 
 	@Override
-	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) {
+	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) throws CustomException {
 		return new Salle_foret(ecran, h, o);
 	}
 
 
 	@Override
-	public SalleAbs clone(Heros h, Link l) {
+	public SalleAbs clone(Heros h, Link l) throws CustomException {
 		return new Salle_foret(h, l);
 	}
 
