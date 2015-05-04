@@ -20,8 +20,13 @@ public class SalleEditeur extends SalleAbs {
 	EnumMap<Orientation, Case_porte> porte_case;
 	
 	
-	public SalleEditeur(Rectangle ecran, Heros h, Orientation o) throws CustomException {
+	public SalleEditeur(Rectangle ecran, Heros h, Orientation o, SalleDescription s) throws CustomException {
 		super(ecran,h);
+		
+		this.s=s;
+		
+		generateRoom();
+		setDoorPlaces();
 		
 		//Adding the doors to the next room
 		this.addDoor(o,true);
@@ -40,10 +45,13 @@ public class SalleEditeur extends SalleAbs {
 	 * @param l le lien de la salle précédente vers cette nouvelle salle
 	 * @throws CustomException 
 	 */
-	public SalleEditeur(Heros h, Link l) throws CustomException {
+	public SalleEditeur(Heros h, Link l, SalleDescription s) throws CustomException {
 		super(ecran, h);
+		this.s = s;
 
-
+		generateRoom();
+		setDoorPlaces();
+		
 		this.addDoorToPrevRoom(l);
 		
 		this.generateEnnemis();
@@ -55,16 +63,19 @@ public class SalleEditeur extends SalleAbs {
 	 * Cette méthode convertit la description de la salle créé dans l'éditeur en une salle jouable.
 	 * @param s la description de la salle. 
 	 */
-	public SalleEditeur(SalleDescription s) {
-		// TODO Auto-generated constructor stub
+	public SalleEditeur(SalleDescription s)throws CustomException {
 		this.s = s;
 		
+		//We try to generate the room
+		//At this point the process might fail in the gestionnaire initialisation
+		//The Exception is caught by a try/catch block.
+		generateRoom();
+		setDoorPlaces();
 		
 	}
 
 	@Override
 	protected void generateRoom() throws CustomException {
-		// TODO Auto-generated method stub
 		int nbPortes=0;
 		
 		Case[][] description = s.getMatrix(); 
@@ -87,7 +98,7 @@ public class SalleEditeur extends SalleAbs {
 		}
 		if(nbPortes!=4){
 			//Send an error
-			throw new CustomException("4 doors were not found in this room. It can't work with the rest of the donjon. Too bad :D");
+			throw new CustomException(nbPortes+" doors were not found in this room. It can't work with the rest of the donjon. Too bad :D");
 		}
 
 	}
@@ -187,12 +198,12 @@ public class SalleEditeur extends SalleAbs {
 
 	@Override
 	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) throws CustomException {
-		return new SalleEditeur(ecran, h, o);
+		return new SalleEditeur(ecran, h, o,this.s);
 	}
 
 	@Override
 	public SalleAbs clone(Heros h, Link l) throws CustomException {
-		return new SalleEditeur(h,l);
+		return new SalleEditeur(h,l, this.s);
 	}
 
 }

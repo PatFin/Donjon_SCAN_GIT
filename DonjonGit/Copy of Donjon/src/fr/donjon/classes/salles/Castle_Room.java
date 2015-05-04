@@ -30,6 +30,8 @@ public class Castle_Room extends SalleAbs {
 	 */
 	public Castle_Room(Rectangle ecran, Heros h, Orientation o) throws CustomException {
 		super(ecran, h);
+		generateRoom();
+		setDoorPlaces();
 		
 		this.addDoor(o, true);
 		
@@ -47,6 +49,9 @@ public class Castle_Room extends SalleAbs {
 	 */
 	public Castle_Room(Heros h, Link l) throws CustomException{
 		super(SalleAbs.ecran, h);
+		
+		generateRoom();
+		setDoorPlaces();
 		
 		this.addDoorToPrevRoom(l);
 		

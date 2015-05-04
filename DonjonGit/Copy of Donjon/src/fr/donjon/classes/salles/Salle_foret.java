@@ -24,6 +24,9 @@ public class Salle_foret extends SalleAbs {
 	 */
 	public Salle_foret(Rectangle ecran, Heros h, Orientation o) throws CustomException {
 		super(ecran,h);
+		generateRoom();
+		setDoorPlaces();;
+		
 		
 		//Adding the doors to the next room
 		this.addDoor(o,true);
@@ -46,6 +49,9 @@ public class Salle_foret extends SalleAbs {
 	 */
 	public Salle_foret(Heros h, Link l) throws CustomException{
 		super(SalleAbs.ecran, h);
+		
+		generateRoom();
+		setDoorPlaces();
 		
 		//Creating the link to the previous room
 		this.addDoorToPrevRoom(l);

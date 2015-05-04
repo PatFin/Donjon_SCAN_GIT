@@ -16,6 +16,7 @@ import fr.donjon.classes.Squelette;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.Case_Obstacle;
 import fr.donjon.classes.cases.Case_void;
+import fr.donjon.editor.SalleDescription;
 import fr.donjon.utils.CustomException;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
@@ -67,8 +68,9 @@ public abstract class SalleAbs implements EcouteurClavier {
 		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_ARGB);
 		monG = buffer1.getGraphics();
 
-		generateRoom();
-		setDoorPlaces();
+		//TODO remove that useless bit
+		//generateRoom();
+		//setDoorPlaces();
 	}
 
 	/**
@@ -77,6 +79,30 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 */
 	public SalleAbs(){
 
+	}
+	
+	
+	//TODO Find a better solution than this
+	/**
+	 * Specific constructor required by rooms from a salleEditeur
+	 * @param ecran
+	 * @param h
+	 * @param s
+	 */
+	public SalleAbs(Rectangle ecran, Heros h, SalleDescription s){
+		this.roomNumber=numberOfRooms;
+		SalleAbs.numberOfRooms++;
+
+		SalleAbs.ecran=ecran;
+		this.hero=h;
+		this.personnage = new ArrayList <Personnage> ();
+		this.personnage.add(hero);
+
+
+		this.link = new EnumMap<Orientation, Link>(Orientation.class);
+		
+		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_ARGB);
+		monG = buffer1.getGraphics();
 	}
 
 
