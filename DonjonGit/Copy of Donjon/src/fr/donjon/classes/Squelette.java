@@ -13,14 +13,14 @@ public class Squelette extends Ennemis {
 	
 	final static int LNG = 64;
 	final static int LRG = 64;
-	final static int VIE = 50;
-	final static int DEF = 5;
-	final static int VIT = 3;
+	static int VIE = 50;
+	static int DEF = 5;
+	static int VIT = 3;
 	final static String src = "skeleton_map.png";
 	final static double COEFF = 0.3;
 	public Personnage target;
 	
-	public Squelette(int ax, int ay, Personnage cible){
+	public Squelette(int ax, int ay, Personnage cible, int level){
 		super(ax, ay, LNG, LRG, src,
 				new Rectangle(17,15,30,49), new Rectangle(22,48,20,16), true,
 				Orientation.SUD, EtatPersonnage.REPOS, Vecteur.vNull,VIT,
@@ -33,6 +33,8 @@ public class Squelette extends Ennemis {
 		animationS = new Animation(src, new Vecteur(64, 64),2,9,(long)(VIT/COEFF*100));
 		animationE = new Animation(src, new Vecteur(64, 64),3,9,(long)(VIT/COEFF*100));
 		animation = animationS;
+		
+		NIV = level;
 	}
 	
 	//TODO utiliser un vecteur plutot qu'une orientation
