@@ -64,7 +64,7 @@ public class Vecteur {
 		return "X:"+x + " Y:"+y;
 	}
 	
-	public Orientation projectMainDirection(Vecteur v){
+	public static Orientation projectMainDirection(Vecteur v){
 		if(Math.abs(v.x) > Math.abs(v.y)){
 			if(v.x<0){
 				return Orientation.OUEST;
@@ -80,7 +80,7 @@ public class Vecteur {
 		}
 	}
 	
-	public Orientation projectMainDirection(Vecteur from, Vecteur to){
+	public static Orientation projectMainDirection(Vecteur from, Vecteur to){
 		Vecteur v = new Vecteur(to.x-from.x, to.y-from.y);
 		return projectMainDirection(v);
 	}

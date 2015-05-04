@@ -83,14 +83,17 @@ public class SalleEditeur extends SalleAbs {
 				if(description[i][j] instanceof Case_porte){
 					
 					//We look around this door looking for the landing place of the character
-					Vecteur destination = getAvailableCaseNear(new Vecteur(i,j));
+					Vecteur porte = new Vecteur(i,j);
+					Vecteur destination = getAvailableCaseNear(porte);
 					
 					//If no appropriate tile was found, we send an exception.
 					if(destination.x == -1){
 						throw new CustomException("Aucune case disponible n'a été trouvée autour d'une porte.");
 					}
 					
-					//We set the appropriate
+					//We set the appropriate door in the correct direction:
+					Orientation o = Vecteur.projectMainDirection(destination, porte);
+					
 					
 					
 				}
