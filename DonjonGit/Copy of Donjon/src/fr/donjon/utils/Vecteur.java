@@ -44,7 +44,7 @@ public class Vecteur {
 	
 	public Vecteur normalise(){
 		if(getNorm() == 0)return this;
-		return this.multiplie(1/getNorm());
+		else return this.multiplie(1/getNorm());
 	
 	}
 	
@@ -87,5 +87,10 @@ public class Vecteur {
 	
 	public Orientation projectMainDirection(){
 		return projectMainDirection(this);
+	}
+	
+	public void display() { // Méthode affichant les coordonnées du vecteur dans la console
+		
+		System.out.println("(" + x + ", " + y + ")");
 	}
 }

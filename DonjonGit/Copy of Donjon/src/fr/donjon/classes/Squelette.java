@@ -37,29 +37,31 @@ public class Squelette extends Ennemis {
 	
 	//TODO utiliser un vecteur plutot qu'une orientation
 	//calculer le vecteur Squellette Personnage (voir methode marche de heros)
-	public void marcher(Orientation dir){
+	public void marcher(Vecteur v){
 		
 		//Si le personnage attaque, ne pas le faire se deplacer
 		if(this.etat == EtatPersonnage.ATTAQUE)return;
 		//Le personnage passe en mode deplacement
 		this.etat = EtatPersonnage.DEPLACEMENT;
+		
+		Orientation dir = v.projectMainDirection();
 		this.o = dir;
+		
+		v = v.normalise();
+		this.vvitesse = v;
+		
 		//Reglage du vecteur vitesse et de l'animation selon la direction de deplacement
 		switch (dir){
 		case NORD:
-			this.vvitesse = Vecteur.vNord;
 			this.animation = animationN;
 			break;
 		case SUD:
-			this.vvitesse = Vecteur.vSud;
 			this.animation = animationS;
 			break;
 		case EST:
-			this.vvitesse = Vecteur.vEst;
 			this.animation = animationE;
 			break;
 		case OUEST:
-			this.vvitesse = Vecteur.vOuest;
 			this.animation = animationO;
 			break;
 		default :
@@ -68,36 +70,21 @@ public class Squelette extends Ennemis {
 		}
 	}
 	
-	public void pattern() { // Le squelette se dirige vers le personnage p
+	public void pattern() { // Le squelette se dirige vers sa cible
+
+		int dx = target.image.x - this.image.x;
+		int dy = target.image.y - this.image.y;
 		
-		Orientation dir = Orientation.SUD;
+		Vecteur v = new Vecteur(dx, dy);
 		
-		if (this.image.y - target.image.y > 100) {
+		if (v.getNorm() > 30) {
 			
-			dir = Orientation.NORD;
+			marcher(v);
 		}
-		else if (this.image.y - target.image.y < -100) {
-			
-			dir = Orientation.SUD;
-		}
-		
 		else {
 			
-			if (this.image.x < target.image.x) {
-				
-				dir = Orientation.EST;
-			}
-			else if (this.image.x > target.image.x) {
-				
-				dir = Orientation.OUEST;
-			}
-			else {
-				
-				dir = Orientation.SUD;
-			}
+			this.etat = EtatPersonnage.REPOS;
 		}
-
-		marcher(dir);
 	}
 
 
