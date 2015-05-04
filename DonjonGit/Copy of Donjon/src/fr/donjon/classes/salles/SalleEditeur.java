@@ -20,6 +20,20 @@ public class SalleEditeur extends SalleAbs {
 	EnumMap<Orientation, Case_porte> porte_case;
 	
 	
+	public SalleEditeur(Rectangle ecran, Heros h, Orientation o) throws CustomException {
+		super(ecran,h);
+		
+		//Adding the doors to the next room
+		this.addDoor(o,true);
+		
+		//generating the image of the room after all the tiles have been set
+		this.generateImage();
+		
+		//Placing the character in the middle of the room.
+		Vecteur v = this.getCenter();
+		hero.setLocation((int)v.x*Case.TAILLE, (int)v.y*Case.TAILLE);
+	}
+	
 	/**
 	 * Constructeur quand on veut créer une nouvelle instance de ce genre de salle
 	 * @param h le héros controlé par le joueur
@@ -28,7 +42,11 @@ public class SalleEditeur extends SalleAbs {
 	 */
 	public SalleEditeur(Heros h, Link l) throws CustomException {
 		super(ecran, h);
-		// TODO Auto-generated constructor stub
+
+
+		this.addDoorToPrevRoom(l);
+		
+		this.generateEnnemis();
 	}
 
 	
@@ -168,15 +186,13 @@ public class SalleEditeur extends SalleAbs {
 	
 
 	@Override
-	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) {
-		// TODO Auto-generated method stub
-		return null;
+	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) throws CustomException {
+		return new SalleEditeur(ecran, h, o);
 	}
 
 	@Override
-	public SalleAbs clone(Heros h, Link l) {
-		// TODO Auto-generated method stub
-		return null;
+	public SalleAbs clone(Heros h, Link l) throws CustomException {
+		return new SalleEditeur(h,l);
 	}
 
 }
