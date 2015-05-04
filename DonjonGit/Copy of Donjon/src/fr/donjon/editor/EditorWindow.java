@@ -35,6 +35,7 @@ import fr.donjon.classes.cases.Porte_Dalle_Sol;
 import fr.donjon.classes.cases.Porte_escalier;
 import fr.donjon.classes.salles.SalleEssai;
 import fr.donjon.start.SimplePanel;
+import fr.donjon.utils.CustomException;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Vecteur;
 
@@ -318,8 +319,14 @@ public class EditorWindow extends JFrame{
 
 				JFrame frame = new JFrame("Essai de carte");
 
-				SalleEssai essai = new SalleEssai(new Rectangle(panDessin.width*Case.TAILLE, panDessin.height*Case.TAILLE), new Heros(200,200)
-				, panDessin.cases);
+				SalleEssai essai = null;
+				try {
+					essai = new SalleEssai(new Rectangle(panDessin.width*Case.TAILLE, panDessin.height*Case.TAILLE), new Heros(200,200)
+					, panDessin.cases);
+				} catch (CustomException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 				SimplePanel gpanel = new SimplePanel(essai);
 				gpanel.addKeyListener(new JeuKeyAdapter(gpanel));

@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 
@@ -22,8 +23,9 @@ public class SalleEssai extends SalleAbs {
 	/**
 	 * @param ecran
 	 * @param h
+	 * @throws CustomException 
 	 */
-	public SalleEssai(Rectangle ecran, Heros h, Case[][] cases) {
+	public SalleEssai(Rectangle ecran, Heros h, Case[][] cases) throws CustomException {
 		super(ecran, h);
 		this.cases = cases;
 		generateImage();
