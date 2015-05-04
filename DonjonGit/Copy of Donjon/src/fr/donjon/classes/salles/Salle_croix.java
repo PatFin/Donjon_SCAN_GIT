@@ -9,6 +9,7 @@ import fr.donjon.classes.cases.Case_dalle_sol;
 import fr.donjon.classes.cases.Case_mur;
 import fr.donjon.classes.cases.Case_void;
 import fr.donjon.classes.cases.Porte_Dalle_Sol;
+import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -20,8 +21,9 @@ public class Salle_croix extends SalleAbs {
 	 * @param ecran contains the space available to the room
 	 * @param h the hero controlled by the player
 	 * @param o the orientation of the door to be placed
+	 * @throws CustomException 
 	 */
-	public Salle_croix(Rectangle ecran, Heros h, Orientation o) {
+	public Salle_croix(Rectangle ecran, Heros h, Orientation o) throws CustomException {
 		super(ecran, h);
 		
 		//Adding the doors to the next room
@@ -40,8 +42,9 @@ public class Salle_croix extends SalleAbs {
 	 * Constructor called when the character comes from another room
 	 * @param h the hero controlled by the player
 	 * @param l the link from the previous room to this one
+	 * @throws CustomException 
 	 */
-	public Salle_croix(Heros h, Link l){
+	public Salle_croix(Heros h, Link l) throws CustomException{
 		super(SalleAbs.ecran,h);
 		
 		//Creating the link to the previous room.

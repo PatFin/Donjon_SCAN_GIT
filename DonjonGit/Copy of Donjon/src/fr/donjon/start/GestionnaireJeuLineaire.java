@@ -8,6 +8,7 @@ import fr.donjon.classes.salles.Enigme_teleportation;
 import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.classes.salles.Salle_croix;
 import fr.donjon.classes.salles.Salle_foret;
+import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 
@@ -22,9 +23,15 @@ public class GestionnaireJeuLineaire extends Gestionnaire {
 		sallesDisponibles.add(new Salle_croix());
 		sallesDisponibles.add(new Enigme_teleportation());
 		
-		SalleAbs firstRoom = new Castle_Room(game.ecran, new Heros(200,200), Orientation.random()); //On crée la premiere Salle 
+		SalleAbs firstRoom = null;
+		try {
+			firstRoom = new Castle_Room(game.ecran, new Heros(200,200), Orientation.random());
+		} catch (CustomException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //On crï¿½e la premiere Salle 
 		currentRoom = firstRoom;
-		//On initialise la liste des salles avec la première
+		//On initialise la liste des salles avec la premiï¿½re
 		this.listeSalles = new LinkedList<SalleAbs>();
 		this.listeSalles.add(firstRoom);
 	}

@@ -7,6 +7,7 @@ import java.util.LinkedList;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.salles.SalleAbs;
+import fr.donjon.utils.CustomException;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
@@ -52,8 +53,9 @@ public abstract class Gestionnaire implements EcouteurClavier {
 	 * @param l the link to the previous room
 	 * @param o the orientation to the next room.
 	 * @return
+	 * @throws CustomException 
 	 */
-	protected SalleAbs createRandomNewRoom(Heros h, Link l){
+	protected SalleAbs createRandomNewRoom(Heros h, Link l) throws CustomException{
 		int r = (int) (42*Math.random()*sallesDisponibles.size())%sallesDisponibles.size();
 		return sallesDisponibles.get(r).clone(h, l);
 	}

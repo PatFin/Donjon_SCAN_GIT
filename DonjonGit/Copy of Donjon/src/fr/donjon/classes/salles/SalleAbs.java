@@ -145,8 +145,9 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 * @param h the hero the player controls.
 	 * @param o the orientation of the door to the next room.
 	 * @return a new room.
+	 * @throws CustomException 
 	 */
-	public abstract SalleAbs clone(Rectangle ecran, Heros h, Orientation o);
+	public abstract SalleAbs clone(Rectangle ecran, Heros h, Orientation o) throws CustomException;
 
 	/**
 	 * Returns a new Room
@@ -154,8 +155,9 @@ public abstract class SalleAbs implements EcouteurClavier {
 	 * @param l the link from the previous room to this one.
 	 * @param o the orientation of the link to the next one.
 	 * @return a new room.
+	 * @throws CustomException 
 	 */
-	public abstract SalleAbs clone(Heros h, Link l);
+	public abstract SalleAbs clone(Heros h, Link l) throws CustomException;
 
 	/**
 	 * This method creates a link to another room in the

@@ -5,6 +5,7 @@ package fr.donjon.start;
 
 import javax.swing.JFrame;
 
+import fr.donjon.utils.CustomException;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
@@ -28,8 +29,9 @@ public class Launcher extends JFrame implements EcouteurClavier{
 
 	/**
 	 * Lanceur du jeu
+	 * @throws CustomException 
 	 */
-	public Launcher(){
+	public Launcher() throws CustomException{
 
 		gameLin = new JeuLineaire(); 	//Ajouter par la suite un gameLin et gameHistoire
 		gameInf = new JeuNonLineaire();
@@ -104,8 +106,9 @@ public class Launcher extends JFrame implements EcouteurClavier{
 
 	/**
 	 * @param args
+	 * @throws CustomException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CustomException {
 		// TODO Auto-generated method stub
 		Launcher launch = new Launcher();
 	}

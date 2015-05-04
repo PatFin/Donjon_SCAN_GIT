@@ -12,6 +12,7 @@ import fr.donjon.classes.cases.Case_mur;
 import fr.donjon.classes.cases.Case_rocher;
 import fr.donjon.classes.cases.Porte_Dalle_Sol;
 import fr.donjon.classes.cases.Porte_escalier;
+import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -25,8 +26,9 @@ public class Castle_Room extends SalleAbs {
 	 * @param ecran contains the space available to the room
 	 * @param h the hero controlled by the player
 	 * @param o the orientation of the door to be placed
+	 * @throws CustomException 
 	 */
-	public Castle_Room(Rectangle ecran, Heros h, Orientation o) {
+	public Castle_Room(Rectangle ecran, Heros h, Orientation o) throws CustomException {
 		super(ecran, h);
 		
 		this.addDoor(o, true);
@@ -41,8 +43,9 @@ public class Castle_Room extends SalleAbs {
 	/**
 	 * @param p Le hero control� par le joueur.
 	 * @param lien le lien de lasalle pr�c�dente vers celle-ci.
+	 * @throws CustomException 
 	 */
-	public Castle_Room(Heros h, Link l){
+	public Castle_Room(Heros h, Link l) throws CustomException{
 		super(SalleAbs.ecran, h);
 		
 		this.addDoorToPrevRoom(l);
@@ -170,13 +173,13 @@ public class Castle_Room extends SalleAbs {
 
 
 	@Override
-	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) {
+	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) throws CustomException {
 		return new Castle_Room(ecran, h, o);
 	}
 
 
 	@Override
-	public SalleAbs clone(Heros h, Link l) {
+	public SalleAbs clone(Heros h, Link l) throws CustomException {
 		return new Castle_Room(h, l);
 	}
 

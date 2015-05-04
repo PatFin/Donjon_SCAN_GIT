@@ -8,6 +8,7 @@ import fr.donjon.classes.salles.Castle_Room;
 import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.classes.salles.Salle_croix;
 import fr.donjon.classes.salles.Salle_foret;
+import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 
@@ -16,20 +17,21 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 	/**
 	 * Constructeur
 	 * @param game
+	 * @throws CustomException 
 	 */
-	public GestionnaireJeuInfini(GamePanel game) {
+	public GestionnaireJeuInfini(GamePanel game) throws CustomException {
 		super(game);
 		
-		//On créé la liste des salles à utiliser dans le donjon
+		//On crï¿½ï¿½ la liste des salles ï¿½ utiliser dans le donjon
 		this.sallesDisponibles = new LinkedList<SalleAbs>();
 		sallesDisponibles.add(new Salle_foret());
 		sallesDisponibles.add(new Castle_Room());
 		sallesDisponibles.add(new Salle_croix());
 		
-		//On créé la première salle
+		//On crï¿½ï¿½ la premiï¿½re salle
 		SalleAbs firstRoom = new Salle_croix(game.ecran, new Heros(0,0), Orientation.random());
 		currentRoom = firstRoom;
-		//On initialise la liste des salles avec la première
+		//On initialise la liste des salles avec la premiï¿½re
 		this.listeSalles = new LinkedList<SalleAbs>();
 		this.listeSalles.add(firstRoom);
 	}
@@ -37,14 +39,14 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 	@Override
 	public void createNextRoom(Link l) {
 		
-		//On créé la salle
+		//On crï¿½ï¿½ la salle
 		Orientation a=Orientation.opposite(l.orientation);
 		SalleAbs s = createRandomNewRoom(l.origineSalle.hero, l);
 		l.setDestination(s, s.destination.get(a));
 		
 		//On ajoute les portes
 		
-		//On vérifie combien de liens vers d'autres salles sont disponibles
+		//On vï¿½rifie combien de liens vers d'autres salles sont disponibles
 		LinkedList<Link> nord=getAvailableDoors(Orientation.NORD);
 		LinkedList<Link> sud=getAvailableDoors(Orientation.SUD);
 		LinkedList<Link> est=getAvailableDoors(Orientation.EST);
@@ -86,7 +88,7 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 		System.out.println("OUEST:"+ouest.size());
 		
 		
-		//On décide du nombre de porte à créé et combien vers des salles qui existent déjà.
+		//On dï¿½cide du nombre de porte ï¿½ crï¿½ï¿½ et combien vers des salles qui existent dï¿½jï¿½.
 		if(total==0){
 			//We create three links to new rooms.
 			switch(a){
