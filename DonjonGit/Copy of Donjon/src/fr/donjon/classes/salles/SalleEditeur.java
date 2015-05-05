@@ -20,6 +20,16 @@ public class SalleEditeur extends SalleAbs {
 	EnumMap<Orientation, Case_porte> porte_case;
 	
 	
+	/**
+	 * Constructeur de la première salle qui n'a qu'une seule porte vers une autre salle
+	 * NB : cette méthode est appelée par le clône. Il faut toujours avoir essayé d'initialisé
+	 * cette salle  
+	 * @param ecran l'espace de jeu
+	 * @param h le héros controlé par le joueur 
+	 * @param o l'orientation de la porte qui doit être créé
+	 * @param s la description de la salle.
+	 * @throws CustomException
+	 */
 	public SalleEditeur(Rectangle ecran, Heros h, Orientation o, SalleDescription s) throws CustomException {
 		super(ecran,h);
 		

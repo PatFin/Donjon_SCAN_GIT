@@ -67,10 +67,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 
 		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_ARGB);
 		monG = buffer1.getGraphics();
-
-		//TODO remove that useless bit
-		//generateRoom();
-		//setDoorPlaces();
 	}
 
 	/**
@@ -81,30 +77,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 
 	}
 	
-	
-	//TODO Find a better solution than this
-	/**
-	 * Specific constructor required by rooms from a salleEditeur
-	 * @param ecran
-	 * @param h
-	 * @param s
-	 */
-	public SalleAbs(Rectangle ecran, Heros h, SalleDescription s){
-		this.roomNumber=numberOfRooms;
-		SalleAbs.numberOfRooms++;
-
-		SalleAbs.ecran=ecran;
-		this.hero=h;
-		this.personnage = new ArrayList <Personnage> ();
-		this.personnage.add(hero);
-
-
-		this.link = new EnumMap<Orientation, Link>(Orientation.class);
-		
-		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_ARGB);
-		monG = buffer1.getGraphics();
-	}
-
 
 	protected abstract void generateRoom() throws CustomException;
 	protected abstract void setDoorPlaces() throws CustomException;
