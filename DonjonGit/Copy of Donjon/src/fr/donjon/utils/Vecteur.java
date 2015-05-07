@@ -44,7 +44,7 @@ public class Vecteur {
 	
 	public Vecteur normalise(){
 		if(getNorm() == 0)return this;
-		return this.multiplie(1/getNorm());
+		else return this.multiplie(1/getNorm());
 	
 	}
 	
@@ -62,5 +62,35 @@ public class Vecteur {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "X:"+x + " Y:"+y;
+	}
+	
+	public static Orientation projectMainDirection(Vecteur v){
+		if(Math.abs(v.x) > Math.abs(v.y)){
+			if(v.x<0){
+				return Orientation.OUEST;
+			}else{
+				return Orientation.EST;
+			}
+		}else{
+			if(v.y<0){
+				return Orientation.NORD;
+			}else{
+				return Orientation.SUD;
+			}
+		}
+	}
+	
+	public static Orientation projectMainDirection(Vecteur from, Vecteur to){
+		Vecteur v = new Vecteur(to.x-from.x, to.y-from.y);
+		return projectMainDirection(v);
+	}
+	
+	public Orientation projectMainDirection(){
+		return projectMainDirection(this);
+	}
+	
+	public void display() { // Méthode affichant les coordonnées du vecteur dans la console
+		
+		System.out.println("(" + x + ", " + y + ")");
 	}
 }

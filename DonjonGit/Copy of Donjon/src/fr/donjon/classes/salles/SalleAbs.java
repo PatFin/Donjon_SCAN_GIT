@@ -16,6 +16,7 @@ import fr.donjon.classes.Squelette;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.Case_Obstacle;
 import fr.donjon.classes.cases.Case_void;
+import fr.donjon.editor.SalleDescription;
 import fr.donjon.utils.CustomException;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
@@ -66,9 +67,6 @@ public abstract class SalleAbs implements EcouteurClavier {
 
 		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_ARGB);
 		monG = buffer1.getGraphics();
-
-		generateRoom();
-		setDoorPlaces();
 	}
 
 	/**
@@ -78,7 +76,7 @@ public abstract class SalleAbs implements EcouteurClavier {
 	public SalleAbs(){
 
 	}
-
+	
 
 	protected abstract void generateRoom() throws CustomException;
 	protected abstract void setDoorPlaces() throws CustomException;
@@ -119,7 +117,8 @@ public abstract class SalleAbs implements EcouteurClavier {
 			a=(int)(Math.random()*l.size()/8);			//selecting a random index in the list of available tiles.
 			v = l.get(a);
 
-			Ennemis e = new Squelette(0,0, hero);
+			//TODO implement a level selection system
+			Ennemis e = new Squelette(0,0, hero, 1);
 			e.setLocation(v);
 			addEnemy(e);
 			l.remove(a);

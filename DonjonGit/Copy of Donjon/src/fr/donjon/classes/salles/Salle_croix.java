@@ -26,6 +26,9 @@ public class Salle_croix extends SalleAbs {
 	public Salle_croix(Rectangle ecran, Heros h, Orientation o) throws CustomException {
 		super(ecran, h);
 		
+		generateRoom();
+		setDoorPlaces();
+		
 		//Adding the doors to the next room
 		this.addDoor(o, true);
 				
@@ -46,6 +49,9 @@ public class Salle_croix extends SalleAbs {
 	 */
 	public Salle_croix(Heros h, Link l) throws CustomException{
 		super(SalleAbs.ecran,h);
+		
+		generateRoom();
+		setDoorPlaces();
 		
 		//Creating the link to the previous room.
 		this.addDoorToPrevRoom(l);

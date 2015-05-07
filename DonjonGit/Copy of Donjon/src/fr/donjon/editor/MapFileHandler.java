@@ -206,7 +206,6 @@ public class MapFileHandler {
 			return sd.index;
 
 		} catch (IOException e3) {
-			// TODO Auto-generated catch block
 			System.out.println("Error writing map "+sd.name);
 			return -1;
 		}
@@ -214,7 +213,7 @@ public class MapFileHandler {
 	}
 
 	/**
-	 * Returns a SalleDescription object from the file with the correcponding index
+	 * Returns a SalleDescription object from the file with the corresponding index
 	 * 
 	 * @param index	The index of the file to be read
 	 * @return The description of the file
@@ -230,7 +229,6 @@ public class MapFileHandler {
 			file = sc.nextLine();
 			System.out.println("Reading "+getMapFilePath(index));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Error reading map  "+getMapFilePath(index));
 		}
 

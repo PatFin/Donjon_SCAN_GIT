@@ -18,6 +18,9 @@ import fr.donjon.utils.Vecteur;
 public abstract class Ennemis extends Personnage{
 	
 	Personnage cible;
+	
+	static int NIV;
+	
 	// Ajouter des Animations ici directement ?
 	
 	public Ennemis(int ax, int ay,int longueur, int largeur, String nom, Rectangle offArm, Rectangle offCol, boolean toDisplay,
