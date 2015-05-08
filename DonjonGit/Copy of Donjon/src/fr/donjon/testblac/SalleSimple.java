@@ -5,7 +5,6 @@ package fr.donjon.testblac;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case;
-import fr.donjon.classes.cases.Case_herbe;
 import fr.donjon.classes.cases.Case_mur;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -66,16 +65,16 @@ public class SalleSimple extends Salle {
 		
 		switch(Orientation.getOrientation(dir)){
 		case EST:
-			pos.setLocation(1, (H/2));
+			pos.setLocation(2, (H/2)+1);
 			break;
 		case NORD:
-			pos.setLocation( (W/2), (H-2));
+			pos.setLocation( (W/2)+1, (H-1));
 			break;
 		case OUEST:
-			pos.setLocation( (W-2), (H/2) );
+			pos.setLocation( (W-1), (H/2)+1 );
 			break;
 		case SUD:
-			pos.setLocation( (W/2) , 1 );
+			pos.setLocation( (W/2)+1 , 2 );
 			break;
 		default:
 			break;

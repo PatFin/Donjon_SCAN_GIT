@@ -50,36 +50,33 @@ public abstract class Salle implements EcouteurClavier{
 		finie = false;
 	}
 
-	public Salle(Heros h, ArrayList<Personnage> persos, Case[][] cases){
+	public Salle(Heros h, ArrayList<Personnage> persos, Case[][] c){
+		this(c.length + 2, c[0].length + 2);
 
-		this.cases = cases;
+
+		for(int y = 0 ; y < c[0].length; y++){
+			for(int x = 0 ; x < c.length ; x++){
+				
+				this.cases[x+1][y+1] = c[x][y];
+			}
+		}
+
+
 		this.personnages = persos;
 		this.hero = h;
 		this.finie = false;
 
 		personnages.add(hero);
-		
+
 		this.portes = new ArrayList<CasePorte>();
-		
+
 		trouverLesPortes();
 
 		this.roomNumber = instances++;
 	}
 
 	public Salle(Heros h , Case[][] cases){
-
-		this.cases = cases;
-		this.personnages = new ArrayList<Personnage>();
-		this.hero = h;
-		this.finie = false;
-
-		personnages.add(hero);
-
-		this.portes = new ArrayList<CasePorte>();
-		
-		trouverLesPortes();
-
-		this.roomNumber = instances++;
+		this(h, new ArrayList<Personnage>(), cases);
 	}
 
 	public void passerLaPorte(Vecteur dir){
@@ -88,7 +85,7 @@ public abstract class Salle implements EcouteurClavier{
 
 	public void trouverLesPortes(){
 
-		
+
 		for(int y = 0 ; y < cases[0].length ; y++){
 			for(int x = 0 ; x < cases.length ; x++){
 				if(cases[x][y].getClass().getSimpleName().equals("CasePorte")){
