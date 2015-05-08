@@ -31,6 +31,8 @@ public class ArmeEpee extends Arme{
 
 	private Rectangle zoneDommages = new Rectangle(0,0, zoneWidth, zoneHeight);
 	private LinkedList<Personnage> persoTouches;
+	
+	Vecteur c = new Vecteur(0,0);
 
 	/**
 	 * Objet sans porteur
@@ -84,7 +86,7 @@ public class ArmeEpee extends Arme{
 	@Override
 	protected void updateBounds() {
 
-		Vecteur c = lanceur.getCentre();
+		c = lanceur.getCentre();
 
 		switch(o){
 		case EST:

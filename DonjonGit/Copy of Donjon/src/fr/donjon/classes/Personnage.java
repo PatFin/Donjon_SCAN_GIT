@@ -41,7 +41,8 @@ public abstract class Personnage extends Deplacable{
 	Animation animationE;
 	Animation animationO;
 
-	public Vecteur lPos;	//Permet la gestion des collisions
+	public Vecteur lPos;
+	Vecteur tPos = new Vecteur(0,0);
 
 	/**
 	 * 
@@ -137,20 +138,19 @@ public abstract class Personnage extends Deplacable{
 
 		this.lPos.setLocation(image.x, image.y); //On met a jour la position pr�c�dente
 		
+		tPos.setLocation(image.x, image.y);
+		tPos = tPos.ajoute(vvitesse.multiplie(stats.vit));
 		
 		//Deplacement
 		switch(etat){
 
 		case ATTAQUE :
 			if(arme != null)arme.update(t);
-			Vecteur nexPos = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(stats.vit));
-			setLocation( (int) nexPos.x, (int) nexPos.y);
+			setLocation( (int) tPos.x, (int) tPos.y);
 			break;
 
 		case DEPLACEMENT :
-			//TODO : A optimiser, eviter de cr�er un objets ttes le 40ms
-			Vecteur nexPos1 = (new Vecteur(image.x,image.y)).ajoute(vvitesse.multiplie(stats.vit));
-			setLocation((int) nexPos1.x, (int) nexPos1.y);
+			setLocation((int) tPos.x, (int) tPos.y);
 			break;
 
 		case REPOS :

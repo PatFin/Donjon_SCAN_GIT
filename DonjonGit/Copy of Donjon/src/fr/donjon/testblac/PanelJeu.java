@@ -35,6 +35,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 	GestionnaireBasique gestion;
 	DessinateurSalle dessinateur;
 	
+	
 	long temps;
 	long ta = -1;
 	
@@ -57,7 +58,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		////
 		
 		gestion = new GestionnaireBasique();
-		dessinateur = new DessinateurSalle(ecran, gestion.getsActuelle());
+		dessinateur = new DessinateurSalle(ecran, gestion.sActuelle);
 		
 		startGame();
 		
@@ -69,6 +70,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 	public void update(){
 
 		//Shows the fps of the actual game
+		
 		if(ta == -1)ta = System.currentTimeMillis();
 		else{
 			if(temps%900==0){//Add comment to hide the message
@@ -77,6 +79,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 			}
 			ta = System.currentTimeMillis();
 		}
+		
 
 		gestion.update(temps);
 
@@ -98,6 +101,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		
 		Vecteur d = new Vecteur( - gestion.centreCamera.x + getWidth()/2 , 
 				 					- gestion.centreCamera.y + getHeight()/2);
+		
 		
 		
 		g.drawImage(dessinateur.getImage(g, temps),(int)d.x,(int)d.y,null);

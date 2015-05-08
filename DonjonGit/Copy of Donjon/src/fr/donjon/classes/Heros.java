@@ -27,7 +27,6 @@ public class Heros extends Personnage{
 	final static String src = "hero_map.png";
 	final static double COEFF = 1;
 	
-	
 
 	/**
 	 * 

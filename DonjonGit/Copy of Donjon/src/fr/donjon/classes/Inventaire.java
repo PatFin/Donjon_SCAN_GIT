@@ -16,15 +16,17 @@ import fr.donjon.utils.Utilisable;
  */
 public class Inventaire {
 
-	final static int iconWidth = 40;
-	final static int iconSpacing = 4;
-	final static int boxOffsetLeft = 400;
+	final static int iconWidth = 20;
+	final static int iconSpacing = 2;
 	final static Color backColor = Color.GRAY;
 	final static Color objColor = Color.LIGHT_GRAY;
 	
 	private int taille;
 	private ArrayList<Utilisable> utilisables;
 	private Personnage porteur;
+	
+	int boxOffsetLeft;
+	int boxOffsetRight;
 	
 	/**
 	 * Crée un inventaire avec une taille définie
@@ -40,13 +42,16 @@ public class Inventaire {
 	public void draw(Graphics g){
 		if(taille == 0)return;
 		
+		boxOffsetLeft = porteur.image.x - (taille*iconWidth + (taille+1)*iconSpacing)/2 + porteur.image.width/2;
+		boxOffsetRight = porteur.image.y - 40;
+		
 		g.setColor(backColor);
-		g.fillRect(boxOffsetLeft, 0, taille*iconWidth + (taille+1)*iconSpacing, iconWidth + 2*iconSpacing);
+		g.fillRect(boxOffsetLeft, boxOffsetRight, taille*iconWidth + (taille+1)*iconSpacing, iconWidth + 2*iconSpacing);
 		
 		g.setColor(objColor);
 		for(int i = 0 ; i < taille ; i++){
-			g.fillRect( boxOffsetLeft + i * iconWidth + (i+1)*iconSpacing, iconSpacing, iconWidth, iconWidth);
-			if(i < utilisables.size())g.drawImage(utilisables.get(i).getIcon(), boxOffsetLeft + i * iconWidth + (i+1)*iconSpacing, iconSpacing, iconWidth, iconWidth,null);
+			g.fillRect( boxOffsetLeft + i * iconWidth + (i+1)*iconSpacing, boxOffsetRight + iconSpacing, iconWidth, iconWidth);
+			if(i < utilisables.size())g.drawImage(utilisables.get(i).getIcon(), boxOffsetLeft + i * iconWidth + (i+1)*iconSpacing, boxOffsetRight+  iconSpacing, iconWidth, iconWidth,null);
 		}
 		
 	}

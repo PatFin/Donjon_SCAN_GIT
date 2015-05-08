@@ -43,20 +43,24 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 		sActuelle.update(t);
 
-		centreCamera.setLocation(sActuelle.hero.image.x, sActuelle.hero.image.y);
+		centreCamera.setLocation(sActuelle.hero.image.x + sActuelle.hero.image.width/2,
+				sActuelle.hero.image.height/2 + sActuelle.hero.image.y);
 	}
 
 
-	public boolean changementSalle(Vecteur npos){
-
+	public boolean changementSalle(Vecteur dir){
+		
+		Vecteur npos = position.ajoute(dir);
 
 		if( !(npos.x >= 0 && npos.x < smap.length && npos.y >= 0  && npos.y < smap[0].length) )return false;
 
 		if(smap[(int)npos.x][(int)npos.y] != null ){
-			setSActuelle( smap[(int)npos.x][(int)npos.y] , npos );
+			setSActuelle( smap[(int)npos.x][(int)npos.y] , dir );
 		}
 		else{
-			setSActuelle( fournirNouvelleSalle(), npos);
+			Salle s = fournirNouvelleSalle((int)npos.x, (int)npos.y);
+			setSActuelle( s, dir);
+			smap[(int)npos.x][(int)npos.y] = s;
 		}
 		
 		return true;
@@ -68,7 +72,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 		position = position.ajoute(nPos);
 	}
 
-	public abstract Salle fournirNouvelleSalle();
+	public abstract Salle fournirNouvelleSalle(int x, int y);
 
 	
 

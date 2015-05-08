@@ -5,6 +5,7 @@ import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.cases.Case;
+import fr.donjon.classes.cases.Case_mur;
 import fr.donjon.classes.cases.Case_void;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
@@ -20,6 +21,9 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class Salle implements EcouteurClavier{
 
+	final static int W = 15;
+	final static int H = 10;
+	
 	public static int instances=0;
 	public int roomNumber;
 
@@ -51,16 +55,10 @@ public abstract class Salle implements EcouteurClavier{
 	}
 
 	public Salle(Heros h, ArrayList<Personnage> persos, Case[][] c){
-		this(c.length + 2, c[0].length + 2);
+		this(c.length, c[0].length);
 
 
-		for(int y = 0 ; y < c[0].length; y++){
-			for(int x = 0 ; x < c.length ; x++){
-				
-				this.cases[x+1][y+1] = c[x][y];
-			}
-		}
-
+		this.cases = c;
 
 		this.personnages = persos;
 		this.hero = h;
@@ -72,7 +70,6 @@ public abstract class Salle implements EcouteurClavier{
 
 		trouverLesPortes();
 
-		this.roomNumber = instances++;
 	}
 
 	public Salle(Heros h , Case[][] cases){
@@ -97,6 +94,29 @@ public abstract class Salle implements EcouteurClavier{
 	}
 
 	public abstract void activerLesPortes(boolean a);
+
+	public static Case[][] addWalls(Case[][] c){
+
+		Case[][] cs = new Case[c.length+2][c[0].length+2];
+
+		for(int x = 0 ; x < cs.length ; x++){
+			cs[x][0] = new Case_mur();
+			cs[x][cs[0].length - 1] = new Case_mur();
+		}
+
+		for(int y = 0 ; y < cs[0].length ; y++){
+			cs[0][y] = new Case_mur();
+			cs[cs.length - 1][y] = new Case_mur();
+		}
+		
+		for(int y = 0 ; y < c[0].length ; y++){
+			for(int x = 0 ; x < c.length ; x++){
+				cs[x+1][y+1] = c[x][y];
+			}
+		}
+
+		return cs;
+	}
 
 	public void setEcouteur(EcouteurChangementSalle e){
 		this.ecouteur = e;
@@ -190,7 +210,7 @@ public abstract class Salle implements EcouteurClavier{
 	}
 
 	public void checkFinie(){
-		if(personnages.size() == 1){
+		if(personnages.size() == 1 && !finie){
 			finie = true;
 			activerLesPortes(true);
 		}
