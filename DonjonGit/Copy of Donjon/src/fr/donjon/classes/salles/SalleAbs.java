@@ -16,7 +16,6 @@ import fr.donjon.classes.Squelette;
 import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.Case_Obstacle;
 import fr.donjon.classes.cases.Case_void;
-import fr.donjon.editor.SalleDescription;
 import fr.donjon.utils.CustomException;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;

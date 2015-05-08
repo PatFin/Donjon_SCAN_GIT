@@ -20,13 +20,15 @@ public abstract class Case_Obstacle extends Case {
 	
 	
 	/**
-	 * Cette méthode est générique à toutes les cases de type obstacle.
-	 * Le personnage z est repoussé à le limite du rectangle de collision. 
+	 * Cette mï¿½thode est gï¿½nï¿½rique ï¿½ toutes les cases de type obstacle.
+	 * Le personnage z est repoussï¿½ ï¿½ le limite du rectangle de collision. 
 	 * @param z Le personnage en collision avec la case
 	 */
 	public void inCollision(Personnage p) {
 		p.setLocation((int)p.lPos.x, (int) p.lPos.y);	
 	}
+	
+	
 	
 
 }

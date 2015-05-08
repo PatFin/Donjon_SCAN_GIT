@@ -4,14 +4,15 @@ import java.awt.Rectangle;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.cases.Case_escalier;
+import fr.donjon.testblac.EcouteurChangementSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
 /**
  * 
- * Cette classe est une Salle qui possède un ecouteur de changement de salle, lorsque le joueur marche
- * sur une case escalier l'ecouteur (Gestionnaire) est prévenu qu'il faut changer de salle
+ * Cette classe est une Salle qui possï¿½de un ecouteur de changement de salle, lorsque le joueur marche
+ * sur une case escalier l'ecouteur (Gestionnaire) est prï¿½venu qu'il faut changer de salle
  * 
  * @author Baptiste
  *
@@ -43,8 +44,8 @@ public class SalleInteractive extends Salle implements EcouteurClavier{
 		// TODO Auto-generated method stub
 		super.update(temps);
 		
-		//Gère les collisions avec les escaliers
-		//A amélieorer !
+		//Gï¿½re les collisions avec les escaliers
+		//A amï¿½lieorer !
 		
 		if(this.hero.collisionDecor.intersects(cases[cases.length/2][1].collision)){
 			ecouteur.changerDeSalle(Orientation.NORD, this.hero);
