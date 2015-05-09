@@ -4,13 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
-import fr.donjon.utils.DrawableDamages;
 import fr.donjon.utils.Effet;
-import fr.donjon.utils.EffetMap;
 import fr.donjon.utils.EtatPersonnage;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Type;
@@ -28,7 +25,6 @@ public abstract class Personnage extends Deplacable{
 	EtatPersonnage etat;
 	Arme arme;
 	Inventaire inventaire;
-	EffetMap<String, Effet> effets; //Liste des effets du personnage
 
 	public Effet stats;		//les stats du personnage (vie, atk,...)
 
@@ -71,8 +67,7 @@ public abstract class Personnage extends Deplacable{
 		this.o=o;
 		this.etat=etat;
 
-		this.effets = new EffetMap<String,Effet>();
-		addEffect("STATS_BASE", new Effet(this,vie,armure,vitd, 0,false, false)); //Les stats de base
+		this.stats = new Effet(this,vie,armure,vitd,0);
 
 		this.arme = arme;
 		this.type = t;
@@ -121,11 +116,6 @@ public abstract class Personnage extends Deplacable{
 		
 		g.fillRect( (int)getCentre().x - stats.vie/2, (int)getCentre().y - image.height/2 - 15, stats.vie, 10);
 		
-		Iterator<Effet> it = effets.values().iterator();
-
-		while (it.hasNext()) {
-		   it.next().draw(g, t);
-		}
 		
 	}
 
@@ -158,7 +148,6 @@ public abstract class Personnage extends Deplacable{
 			break;
 		}
 
-		sumEffects(); 
 		
 	}
 
@@ -205,45 +194,9 @@ public abstract class Personnage extends Deplacable{
 	 * @param amount Nombre de dommages a distribuer
 	 */
 	public void receiveDammages(int amount){
-		effets.get("STATS_BASE").vie -= amount <= stats.def ? 0 : amount - stats.def ; //Aucun dmg subit si armure >= dmg
-		Effet e1 = new Effet(this,0,0,0,0,40,false);
-		e1.setDrawable(new DrawableDamages());
-		addEffect("DAMAGES", e1);
-		sumEffects();
+		stats.vie -= amount <= stats.def ? 0 : amount - stats.def ;
+		if(stats.vie <= 0) living = false;
 	}
 
-	/**
-	 * Permet de mettre a jour les stats du perso
-	 * 
-	 * @return La somme 
-	 */
-	public void sumEffects(){
-
-		stats = effets.getSum();
-		
-		if(stats.vie<=0){
-			this.living = false; //On t'enterre biatch
-		}
-	}
-
-	/**
-	 * Retire un effet de la liste et met a jour les stats
-	 * 
-	 * @param e
-	 */
-	public void removeEffect(String key){
-		effets.remove(key);
-		sumEffects();
-	}
-
-	/**
-	 * Ajoute un effet de la liste et recalcule la somme
-	 * 
-	 * @param key Cle associé a l'effet
-	 * @param e		L'effet a ajouter
-	 */
-	public void addEffect(String key, Effet e){
-		effets.addEffect(key, e);
-		sumEffects();
-	}
+	
 }

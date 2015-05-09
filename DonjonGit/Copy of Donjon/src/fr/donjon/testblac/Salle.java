@@ -1,12 +1,13 @@
 package fr.donjon.testblac;
 import java.util.ArrayList;
 
+import fr.donjon.cases2.Case;
+import fr.donjon.cases2.CaseMur;
+import fr.donjon.cases2.CasePorte;
+import fr.donjon.cases2.CaseVide;
 import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Personnage;
-import fr.donjon.classes.cases.Case;
-import fr.donjon.classes.cases.Case_mur;
-import fr.donjon.classes.cases.Case_void;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -21,8 +22,8 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class Salle implements EcouteurClavier{
 
-	final static int W = 15;
-	final static int H = 10;
+	final static int W = 7;
+	final static int H = 4;
 	
 	public static int instances=0;
 	public int roomNumber;
@@ -100,13 +101,13 @@ public abstract class Salle implements EcouteurClavier{
 		Case[][] cs = new Case[c.length+2][c[0].length+2];
 
 		for(int x = 0 ; x < cs.length ; x++){
-			cs[x][0] = new Case_mur();
-			cs[x][cs[0].length - 1] = new Case_mur();
+			cs[x][0] = new CaseMur();
+			cs[x][cs[0].length - 1] = new CaseMur();
 		}
 
 		for(int y = 0 ; y < cs[0].length ; y++){
-			cs[0][y] = new Case_mur();
-			cs[cs.length - 1][y] = new Case_mur();
+			cs[0][y] = new CaseMur();
+			cs[cs.length - 1][y] = new CaseMur();
 		}
 		
 		for(int y = 0 ; y < c[0].length ; y++){
@@ -150,7 +151,7 @@ public abstract class Salle implements EcouteurClavier{
 				//Collisions avec les cases
 				for(int x=0; x<cases.length;x++){
 					for(int y=0; y<cases[0].length; y++){ 
-						if(z.collisionDecor.intersects(cases[x][y].collision))cases[x][y].inCollision(z);
+						if(z.collisionDecor.intersects(cases[x][y].limites))cases[x][y].inCollision(z);
 					}
 				}
 
@@ -202,7 +203,7 @@ public abstract class Salle implements EcouteurClavier{
 			for(int y=0;y<cases[0].length;y++){
 
 				if(cases[x][y]==null){
-					cases[x][y]=new Case_void();
+					cases[x][y]=new CaseVide();
 					cases[x][y].setCollisionBoxLocation(y, x);
 				}
 			}

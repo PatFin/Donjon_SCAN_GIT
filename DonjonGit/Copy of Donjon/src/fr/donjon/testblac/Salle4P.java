@@ -3,14 +3,14 @@
  */
 package fr.donjon.testblac;
 
-import java.util.ArrayList;
-
+import fr.donjon.cases2.Case;
+import fr.donjon.cases2.CaseLave;
+import fr.donjon.cases2.CasePorte;
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.Personnage;
-import fr.donjon.classes.Squelette;
-import fr.donjon.classes.cases.Case;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
+
+
 
 /**
  * @author Baptiste
@@ -34,6 +34,8 @@ public class Salle4P extends Salle {
 				cs[x][y].setCollisionBoxLocation(y, x);
 			}
 		}
+		
+		cs[3][3] = new CaseLave();
 
 		
 		cs = addWalls(cs);

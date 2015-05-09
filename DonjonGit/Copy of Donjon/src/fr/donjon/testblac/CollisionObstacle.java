@@ -23,4 +23,11 @@ public class CollisionObstacle implements CollisionPattern {
 		p.setLocation((int)p.lPos.x, (int) p.lPos.y);
 	}
 
+
+	@Override
+	public void nonCollision() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -1,13 +1,8 @@
 /**
  * 
  */
-package fr.donjon.classes.cases;
+package fr.donjon.cases2;
 
-import java.awt.Color;
-
-import fr.donjon.classes.Personnage;
-import fr.donjon.utils.Effet;
-import fr.donjon.zpoubelle.DrawableSlow;
 
 /**
  * @author Baptiste
@@ -30,4 +25,5 @@ public class CaseWater extends Case {
 		return new CaseWater();
 	}
 	
+
 }

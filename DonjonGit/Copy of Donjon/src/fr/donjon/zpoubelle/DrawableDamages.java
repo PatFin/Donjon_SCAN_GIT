@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.donjon.utils;
+package fr.donjon.zpoubelle;
 
 import java.awt.Color;
 import java.awt.Graphics;

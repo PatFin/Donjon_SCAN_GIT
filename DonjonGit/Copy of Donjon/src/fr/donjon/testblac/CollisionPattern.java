@@ -6,4 +6,5 @@ public interface CollisionPattern {
 
 	public void enCollision(Personnage p);
 	
+	public void nonCollision();
 }

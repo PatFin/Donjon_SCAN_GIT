@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.donjon.utils;
+package fr.donjon.zpoubelle;
 
 import java.util.HashMap;
 

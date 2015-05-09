@@ -46,8 +46,8 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 	 */
 	public PanelJeu() {
 
-		this.setSize(new Dimension(15*Case.TAILLE, 10*Case.TAILLE));
-		this.setPreferredSize(new Dimension(15*Case.TAILLE, 10*Case.TAILLE));
+		this.setSize(new Dimension((Salle.W+2)*Case.TAILLE, (Salle.H+2)*Case.TAILLE));
+		this.setPreferredSize(new Dimension((Salle.W+2)*Case.TAILLE, (Salle.H+2)*Case.TAILLE));
 
 		//Partie utile de la fenetre
 		ecran = new Rectangle(0,0,getWidth(),getHeight());
@@ -75,7 +75,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		else{
 			if(temps%900==0){//Add comment to hide the message
 				fps =  (int) (1000/(System.currentTimeMillis() - ta));
-				System.out.println(""+fps);
+				//System.out.println(""+fps);
 			}
 			ta = System.currentTimeMillis();
 		}

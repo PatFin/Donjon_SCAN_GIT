@@ -29,4 +29,11 @@ public class CollisionTeleportation implements CollisionPattern {
 		s.passerLaPorte(directionSalle);
 	}
 
+
+	@Override
+	public void nonCollision() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

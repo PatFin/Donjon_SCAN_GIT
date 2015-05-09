@@ -8,7 +8,6 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
-import fr.donjon.utils.Effet;
 import fr.donjon.utils.EtatArme;
 import fr.donjon.utils.Type;
 import fr.donjon.utils.Vecteur;
@@ -118,8 +117,7 @@ public class ArmeEpee extends Arme{
 	@Override
 	public int utilise(Personnage p) {
 		p.arme = new ArmeEpee(p);
-		p.addEffect(KEY_EFFET1, new Effet(lanceur, 0, 0, -1, 0));
-		return 0; //L'arme peut etre reutilisée
+		return 0;
 	}
 
 }

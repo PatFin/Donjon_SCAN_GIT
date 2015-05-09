@@ -1,13 +1,8 @@
 /**
  * 
  */
-package fr.donjon.classes.cases;
+package fr.donjon.cases2;
 
-import java.awt.Color;
-
-import fr.donjon.classes.Personnage;
-import fr.donjon.utils.Effet;
-import fr.donjon.zpoubelle.DrawableSlow;
 
 /**
  * @author Baptiste
@@ -16,12 +11,13 @@ import fr.donjon.zpoubelle.DrawableSlow;
 public class CaseLave extends Case {
 
 	final static String src = "Case_lava.png";
+	final static int DPS = 11;
 	
 	/**
 	 * @param ImageName
 	 */
 	public CaseLave() {
-		super(src);
+		super(src,true, new CollisionDegats(DPS));
 	}
 	
 	@Override
