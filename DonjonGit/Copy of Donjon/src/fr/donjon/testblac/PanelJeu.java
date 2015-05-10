@@ -24,6 +24,10 @@ import fr.donjon.utils.Vecteur;
  */
 public class PanelJeu extends JPanel implements EcouteurClavier{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static int instances = 0;
 	int instance;
 
@@ -105,27 +109,25 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		//si salle plus petite que la fenêtre, on centre l'image.
 		//Sinon la caméra suit le héros
 		Vecteur z = gestion.sActuelle.getPixelSize();
+		int Width = getWidth();
+		int Height = getHeight();
+		
 		
 		int x;
-		if(z.x<this.getWidth()){
-			x=(int)(this.getWidth()/2-z.x/2);
+		if(z.x<Width){
+			x=(int)(Width/2-z.x/2);
 		}else{
-			x=(int)(- gestion.centreCamera.x + getWidth()/2);
+			x=(int)(- gestion.centreCamera.x + Width/2);
 		}
 		
 		int y;
-		if(z.y<this.getHeight()){
-			y=(int)(this.getHeight()/2-z.y/2);
+		if(z.y<Height){
+			y=(int)(Height/2-z.y/2);
 		}else{
-			y=(int)(- gestion.centreCamera.y + getHeight()/2);
+			y=(int)(- gestion.centreCamera.y + Height/2);
 		}
 		
 		Vecteur d = new Vecteur(x,y);
-		
-		//TODO remove this bit.
-		//Vecteur d = new Vecteur( - gestion.centreCamera.x + getWidth()/2 , 
-		//		 					- gestion.centreCamera.y + getHeight()/2);
-		
 		
 		
 		g.drawImage(dessinateur.getImage(g, temps),(int)d.x,(int)d.y,null);
