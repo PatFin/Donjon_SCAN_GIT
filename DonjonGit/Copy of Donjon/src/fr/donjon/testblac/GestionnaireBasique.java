@@ -7,7 +7,6 @@ import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
 
-
 /**
  * @author Baptiste
  *
@@ -16,8 +15,7 @@ public class GestionnaireBasique extends GestionnaireSalle {
 
 
 	public GestionnaireBasique() {
-		super( new Salle2PA(new Heros(100,100),
-				MapFileHandler.getSalleDescriptionFromFile(43).getMatrix(), 
+		super( new Salle2PA(new Heros(100,100), 15,10, 
 				Orientation.EST ), 
 				3, 3 );
 

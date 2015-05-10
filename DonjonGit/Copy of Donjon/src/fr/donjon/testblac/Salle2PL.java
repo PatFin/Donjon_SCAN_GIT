@@ -14,7 +14,7 @@ import fr.donjon.utils.Vecteur;
  * @author Baptiste
  *
  */
-public class Salle2PL extends Salle {
+public class Salle2PL extends SalleQuatre {
 
 
 	Orientation o;

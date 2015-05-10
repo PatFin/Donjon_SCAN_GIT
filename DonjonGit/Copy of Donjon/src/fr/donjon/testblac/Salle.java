@@ -22,8 +22,8 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class Salle implements EcouteurClavier{
 
-	final static int W = 10;
-	final static int H = 6;
+	int width;
+	int height;
 	
 	public static int instances=0;
 	public int roomNumber;
@@ -42,6 +42,9 @@ public abstract class Salle implements EcouteurClavier{
 
 		this.cases = new Case[w][h];
 
+		this.width = w;
+		this.height = h;
+		
 		fillEmptyWithVoid();
 
 		this.personnages = new ArrayList<Personnage>();
@@ -57,7 +60,6 @@ public abstract class Salle implements EcouteurClavier{
 
 	public Salle(Heros h, ArrayList<Personnage> persos, Case[][] c){
 		this(c.length, c[0].length);
-
 
 		this.cases = c;
 
@@ -77,6 +79,7 @@ public abstract class Salle implements EcouteurClavier{
 		this(h, new ArrayList<Personnage>(), cases);
 	}
 
+	
 	public void passerLaPorte(Vecteur dir){
 		ecouteur.changerDeSalle(dir);
 	}
@@ -84,8 +87,8 @@ public abstract class Salle implements EcouteurClavier{
 	public void trouverLesPortes(){
 
 
-		for(int y = 0 ; y < cases[0].length ; y++){
-			for(int x = 0 ; x < cases.length ; x++){
+		for(int y = 0 ; y < height ; y++){
+			for(int x = 0 ; x < width ; x++){
 				if(cases[x][y].getClass().getSimpleName().equals("CasePorte")){
 					portes.add((CasePorte) cases[x][y]);
 				}
@@ -149,8 +152,8 @@ public abstract class Salle implements EcouteurClavier{
 				}
 
 				//Collisions avec les cases
-				for(int x=0; x<cases.length;x++){
-					for(int y=0; y<cases[0].length; y++){ 
+				for(int x = 0 ; x < width ; x++){
+					for(int y = 0 ; y < height ; y++){ 
 						if(z.collisionDecor.intersects(cases[x][y].limites))cases[x][y].inCollision(z);
 						else cases[x][y].nonCollision(z);
 					}
@@ -200,8 +203,8 @@ public abstract class Salle implements EcouteurClavier{
 	}
 
 	private void fillEmptyWithVoid(){
-		for(int x=0; x<cases.length;x++){
-			for(int y=0;y<cases[0].length;y++){
+		for(int x=0; x<width;x++){
+			for(int y=0;y<height;y++){
 
 				if(cases[x][y]==null){
 					cases[x][y]=new CaseVide();

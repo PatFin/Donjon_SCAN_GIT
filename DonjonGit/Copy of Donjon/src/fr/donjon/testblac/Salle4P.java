@@ -17,7 +17,7 @@ import fr.donjon.utils.Vecteur;
  * @author Baptiste
  *
  */
-public class Salle4P extends Salle {
+public class Salle4P extends SalleQuatre {
 
 
 	
