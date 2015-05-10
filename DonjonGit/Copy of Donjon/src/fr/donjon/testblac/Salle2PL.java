@@ -5,6 +5,7 @@ package fr.donjon.testblac;
 
 import fr.donjon.cases2.Case;
 import fr.donjon.cases2.CasePorte;
+import fr.donjon.cases2.CollisionTeleportation;
 import fr.donjon.classes.Heros;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;

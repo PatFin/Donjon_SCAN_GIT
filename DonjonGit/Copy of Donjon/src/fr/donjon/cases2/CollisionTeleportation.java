@@ -1,9 +1,10 @@
 /**
  * 
  */
-package fr.donjon.testblac;
+package fr.donjon.cases2;
 
 import fr.donjon.classes.Personnage;
+import fr.donjon.testblac.Salle;
 import fr.donjon.utils.Vecteur;
 
 /**
@@ -31,8 +32,7 @@ public class CollisionTeleportation implements CollisionPattern {
 
 
 	@Override
-	public void nonCollision() {
-		// TODO Auto-generated method stub
+	public void nonCollision(Personnage p) {
 		
 	}
 

@@ -5,6 +5,7 @@ package fr.donjon.testblac;
 
 import fr.donjon.cases2.Case;
 import fr.donjon.cases2.CasePorte;
+import fr.donjon.cases2.CollisionTeleportation;
 import fr.donjon.classes.Heros;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -79,8 +80,8 @@ public class Salle2PA extends Salle {
 
 	public static Case[][] getCases(Case[][] c, Orientation o){
 		
-		addWalls(c);
-		addDoors(c, o);
+		c = addWalls(c);
+		c = addDoors(c, o);
 		
 		return c;
 	}

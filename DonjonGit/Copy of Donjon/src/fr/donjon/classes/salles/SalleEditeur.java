@@ -3,8 +3,8 @@ package fr.donjon.classes.salles;
 import java.awt.Rectangle;
 import java.util.EnumMap;
 
+import fr.donjon.cases2.Case;
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.cases.Case;
 import fr.donjon.classes.cases.Case_Obstacle;
 import fr.donjon.classes.cases.Case_porte;
 import fr.donjon.classes.cases.Case_void;
@@ -14,6 +14,8 @@ import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
+
+
 public class SalleEditeur extends SalleAbs {
 
 	SalleDescription s;
@@ -21,12 +23,12 @@ public class SalleEditeur extends SalleAbs {
 	
 	
 	/**
-	 * Constructeur de la première salle qui n'a qu'une seule porte vers une autre salle
-	 * NB : cette méthode est appelée par le clône. Il faut toujours avoir essayé d'initialisé
+	 * Constructeur de la premiï¿½re salle qui n'a qu'une seule porte vers une autre salle
+	 * NB : cette mï¿½thode est appelï¿½e par le clï¿½ne. Il faut toujours avoir essayï¿½ d'initialisï¿½
 	 * cette salle  
 	 * @param ecran l'espace de jeu
-	 * @param h le héros controlé par le joueur 
-	 * @param o l'orientation de la porte qui doit être créé
+	 * @param h le hï¿½ros controlï¿½ par le joueur 
+	 * @param o l'orientation de la porte qui doit ï¿½tre crï¿½ï¿½
 	 * @param s la description de la salle.
 	 * @throws CustomException
 	 */
@@ -50,9 +52,9 @@ public class SalleEditeur extends SalleAbs {
 	}
 	
 	/**
-	 * Constructeur quand on veut créer une nouvelle instance de ce genre de salle
-	 * @param h le héros controlé par le joueur
-	 * @param l le lien de la salle précédente vers cette nouvelle salle
+	 * Constructeur quand on veut crï¿½er une nouvelle instance de ce genre de salle
+	 * @param h le hï¿½ros controlï¿½ par le joueur
+	 * @param l le lien de la salle prï¿½cï¿½dente vers cette nouvelle salle
 	 * @throws CustomException 
 	 */
 	public SalleEditeur(Heros h, Link l, SalleDescription s) throws CustomException {
@@ -69,8 +71,8 @@ public class SalleEditeur extends SalleAbs {
 
 	
 	/**
-	 * Constructeur vide utilisé lors de la création de la liste des salles disponibles dans le gestionnaire.
-	 * Cette méthode convertit la description de la salle créé dans l'éditeur en une salle jouable.
+	 * Constructeur vide utilisï¿½ lors de la crï¿½ation de la liste des salles disponibles dans le gestionnaire.
+	 * Cette mï¿½thode convertit la description de la salle crï¿½ï¿½ dans l'ï¿½diteur en une salle jouable.
 	 * @param s la description de la salle. 
 	 */
 	public SalleEditeur(SalleDescription s)throws CustomException {
@@ -137,7 +139,7 @@ public class SalleEditeur extends SalleAbs {
 					
 					//If no appropriate tile was found, we send an exception.
 					if(destination.x == -1){
-						throw new CustomException("Aucune case disponible n'a été trouvée autour d'une porte.");
+						throw new CustomException("Aucune case disponible n'a ï¿½tï¿½ trouvï¿½e autour d'une porte.");
 					}
 					
 					//We set the appropriate door in the correct direction:
@@ -155,7 +157,7 @@ public class SalleEditeur extends SalleAbs {
 		
 		//We check if all the doors have been found in the room
 		if(!(this.porte.containsKey(Orientation.NORD) && this.porte.containsKey(Orientation.SUD) && porte.containsKey(Orientation.OUEST) && porte.containsKey(Orientation.EST))){
-			throw new CustomException("Toutes les portes n'ont pas été trouvées. Il doit y en avoir en double!");
+			throw new CustomException("Toutes les portes n'ont pas ï¿½tï¿½ trouvï¿½es. Il doit y en avoir en double!");
 		}
 		
 		

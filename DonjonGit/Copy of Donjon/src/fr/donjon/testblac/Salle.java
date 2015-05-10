@@ -22,8 +22,8 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class Salle implements EcouteurClavier{
 
-	final static int W = 7;
-	final static int H = 4;
+	final static int W = 10;
+	final static int H = 6;
 	
 	public static int instances=0;
 	public int roomNumber;
@@ -36,7 +36,7 @@ public abstract class Salle implements EcouteurClavier{
 	public EcouteurChangementSalle ecouteur;
 
 	boolean finie;
-
+	
 
 	public Salle(int w, int h) {
 
@@ -152,6 +152,7 @@ public abstract class Salle implements EcouteurClavier{
 				for(int x=0; x<cases.length;x++){
 					for(int y=0; y<cases[0].length; y++){ 
 						if(z.collisionDecor.intersects(cases[x][y].limites))cases[x][y].inCollision(z);
+						else cases[x][y].nonCollision(z);
 					}
 				}
 

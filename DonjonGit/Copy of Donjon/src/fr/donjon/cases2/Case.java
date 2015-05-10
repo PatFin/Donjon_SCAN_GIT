@@ -4,7 +4,6 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 import fr.donjon.classes.Personnage;
-import fr.donjon.testblac.CollisionPattern;
 import fr.donjon.utils.ImageManager;
 
 /**
@@ -58,6 +57,10 @@ public class Case {
 	 */
 	public void inCollision(Personnage p) {
 		if(enabled && collision != null)collision.enCollision(p);
+	}
+	
+	public void nonCollision(Personnage p){
+		if(enabled && collision != null)collision.nonCollision(p);
 	}
 
 	public Case clone(){

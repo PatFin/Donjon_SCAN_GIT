@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.donjon.testblac;
+package fr.donjon.cases2;
 
 import fr.donjon.classes.Personnage;
 
@@ -25,9 +25,7 @@ public class CollisionObstacle implements CollisionPattern {
 
 
 	@Override
-	public void nonCollision() {
-		// TODO Auto-generated method stub
-		
+	public void nonCollision(Personnage p) {
 	}
 
 }

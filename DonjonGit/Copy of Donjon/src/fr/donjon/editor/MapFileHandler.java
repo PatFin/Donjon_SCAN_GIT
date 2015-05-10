@@ -10,18 +10,17 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import fr.donjon.classes.cases.Case;
-import fr.donjon.classes.cases.CaseLave;
-import fr.donjon.classes.cases.CaseWater;
-import fr.donjon.classes.cases.Case_dalle_sol;
-import fr.donjon.classes.cases.Case_escalier;
-import fr.donjon.classes.cases.Case_fendue_sol;
-import fr.donjon.classes.cases.Case_herbe;
-import fr.donjon.classes.cases.Case_mur;
-import fr.donjon.classes.cases.Case_rocher;
-import fr.donjon.classes.cases.Case_void;
-import fr.donjon.classes.cases.Porte_Dalle_Sol;
-import fr.donjon.classes.cases.Porte_escalier;
+import fr.donjon.cases2.Case;
+import fr.donjon.cases2.CaseDalle;
+import fr.donjon.cases2.CaseEscalier;
+import fr.donjon.cases2.CaseFendue;
+import fr.donjon.cases2.CaseHerbe;
+import fr.donjon.cases2.CaseLave;
+import fr.donjon.cases2.CaseMur;
+import fr.donjon.cases2.CaseRocher;
+import fr.donjon.cases2.CaseVide;
+import fr.donjon.cases2.CaseWater;
+
 
 /**
  * @author Baptiste
@@ -308,17 +307,15 @@ public class MapFileHandler {
 
 		LinkedList<Case> listCases = new LinkedList<Case>();
 
-		listCases.add(new Case_dalle_sol());
-		listCases.add(new Case_escalier());
-		listCases.add(new Case_fendue_sol());
-		listCases.add(new Case_herbe());
-		listCases.add(new Case_mur());
-		listCases.add(new Case_rocher());
+		listCases.add(new CaseDalle());
+		listCases.add(new CaseEscalier());
+		listCases.add(new CaseFendue());
+		listCases.add(new CaseHerbe());
+		listCases.add(new CaseMur());
+		listCases.add(new CaseRocher());
 		listCases.add(new CaseLave());
 		listCases.add(new CaseWater());
-		listCases.add(new Porte_Dalle_Sol(false));
-		listCases.add(new Porte_escalier(false));
-		listCases.add(new Case_void());
+		listCases.add(new CaseVide());
 
 		return listCases;
 
@@ -361,6 +358,6 @@ public class MapFileHandler {
 
 		Case c = list.get(index).clone();
 
-		return c == null ? new Case_void() : c;
+		return c == null ? new CaseVide() : c;
 	}
 }

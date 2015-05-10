@@ -9,8 +9,9 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import fr.donjon.classes.cases.Case;
-import fr.donjon.classes.cases.Case_dalle_sol;
+import fr.donjon.cases2.Case;
+import fr.donjon.cases2.CaseDalle;
+import fr.donjon.cases2.CaseVide;
 import fr.donjon.classes.cases.Case_void;
 import fr.donjon.utils.Vecteur;
 
@@ -54,7 +55,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 		this.setPreferredSize(new Dimension(panelWidth,panelHeight));
 		this.thickness = 1;
 		this.initialized = false;
-		this.caseT = new Case_dalle_sol(); //Case par defaut
+		this.caseT = new CaseDalle(); //Case par defaut
 
 		image = new BufferedImage(panelWidth, panelHeight, BufferedImage.TYPE_INT_ARGB);
 		imageGrid = new BufferedImage(panelWidth, panelHeight, BufferedImage.TYPE_INT_ARGB);
@@ -72,7 +73,7 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 	 */
 	public PanelEdition(int width, int height){
 		this(new Case[width][height]);
-		fill(new Case_void());
+		fill(new CaseVide());
 	}
 	
 	public PanelEdition(Case[][] cases){
@@ -105,12 +106,12 @@ public class PanelEdition extends JPanel implements MouseMotionListener, MouseLi
 	 */
 	public void reinitialize(int w, int h){
 		reinitialize(new Case[w][h]);
-		this.fill(new Case_void());
+		this.fill(new CaseVide());
 	}
 
 public void reinitialize(Case[][] cases){
 		
-		this.caseT = new Case_dalle_sol();
+		this.caseT = new CaseDalle();
 
 		image = new BufferedImage(panelWidth, panelHeight, BufferedImage.TYPE_INT_ARGB);
 		imageGrid = new BufferedImage(panelWidth, panelHeight, BufferedImage.TYPE_INT_ARGB);

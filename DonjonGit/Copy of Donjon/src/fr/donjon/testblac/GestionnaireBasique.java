@@ -1,10 +1,12 @@
 package fr.donjon.testblac;
 
 import fr.donjon.cases2.CaseDalle;
-import fr.donjon.cases2.CaseHerbe;
 import fr.donjon.classes.Heros;
+import fr.donjon.editor.MapFileHandler;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
+
+
 
 /**
  * @author Baptiste
@@ -14,7 +16,10 @@ public class GestionnaireBasique extends GestionnaireSalle {
 
 
 	public GestionnaireBasique() {
-		super(new Salle2PA(new Heros(50,50), new CaseHerbe(), Orientation.EST), 3, 3);
+		super( new Salle2PA(new Heros(100,100),
+				MapFileHandler.getSalleDescriptionFromFile(43).getMatrix(), 
+				Orientation.EST ), 
+				3, 3 );
 
 		
 		this.sActuelle.setEcouteur(this);

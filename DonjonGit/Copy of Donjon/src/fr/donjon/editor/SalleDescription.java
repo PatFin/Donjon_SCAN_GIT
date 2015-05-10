@@ -3,7 +3,7 @@
  */
 package fr.donjon.editor;
 
-import fr.donjon.classes.cases.Case;
+import fr.donjon.cases2.Case;
 
 /**
  * @author Baptiste

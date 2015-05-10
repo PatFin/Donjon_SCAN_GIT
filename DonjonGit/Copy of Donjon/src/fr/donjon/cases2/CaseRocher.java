@@ -2,8 +2,6 @@ package fr.donjon.cases2;
 
 import java.awt.Rectangle;
 
-import fr.donjon.testblac.CollisionObstacle;
-
 
 public class CaseRocher extends Case {
 

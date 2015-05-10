@@ -1,6 +1,5 @@
 package fr.donjon.cases2;
 
-import fr.donjon.testblac.CollisionObstacle;
 import fr.donjon.utils.Orientation;
 
 

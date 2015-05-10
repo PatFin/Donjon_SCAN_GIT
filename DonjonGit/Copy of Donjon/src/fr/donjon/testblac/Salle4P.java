@@ -4,9 +4,10 @@
 package fr.donjon.testblac;
 
 import fr.donjon.cases2.Case;
-import fr.donjon.cases2.CaseLave;
 import fr.donjon.cases2.CasePorte;
+import fr.donjon.cases2.CollisionTeleportation;
 import fr.donjon.classes.Heros;
+import fr.donjon.classes.Squelette;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
@@ -22,6 +23,7 @@ public class Salle4P extends Salle {
 	
 	public Salle4P(Heros h, Case c) {
 		super(h,getCases(c));
+		this.addEnemy(new Squelette(100,100,hero,1));
 	}
 
 	public static Case[][] getCases(Case c){
@@ -35,8 +37,6 @@ public class Salle4P extends Salle {
 			}
 		}
 		
-		cs[3][3] = new CaseLave();
-
 		
 		cs = addWalls(cs);
 		cs = addDoors(cs);

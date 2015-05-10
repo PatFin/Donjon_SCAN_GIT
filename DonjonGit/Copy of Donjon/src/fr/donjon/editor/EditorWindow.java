@@ -2,7 +2,6 @@ package fr.donjon.editor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -20,24 +19,21 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
 
-import fr.donjon.classes.Heros;
-import fr.donjon.classes.cases.Case;
-import fr.donjon.classes.cases.CaseLave;
-import fr.donjon.classes.cases.CaseWater;
-import fr.donjon.classes.cases.Case_dalle_sol;
-import fr.donjon.classes.cases.Case_escalier;
-import fr.donjon.classes.cases.Case_fendue_sol;
-import fr.donjon.classes.cases.Case_herbe;
-import fr.donjon.classes.cases.Case_mur;
-import fr.donjon.classes.cases.Case_rocher;
-import fr.donjon.classes.cases.Case_void;
-import fr.donjon.classes.cases.Porte_Dalle_Sol;
-import fr.donjon.classes.cases.Porte_escalier;
+import fr.donjon.cases2.Case;
+import fr.donjon.cases2.CaseDalle;
+import fr.donjon.cases2.CaseEscalier;
+import fr.donjon.cases2.CaseFendue;
+import fr.donjon.cases2.CaseHerbe;
+import fr.donjon.cases2.CaseLave;
+import fr.donjon.cases2.CaseMur;
+import fr.donjon.cases2.CaseRocher;
+import fr.donjon.cases2.CaseVide;
+import fr.donjon.cases2.CaseWater;
 import fr.donjon.classes.salles.SalleEssai;
 import fr.donjon.start.SimplePanel;
-import fr.donjon.utils.CustomException;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Vecteur;
+
 
 /**
  * 
@@ -92,17 +88,15 @@ public class EditorWindow extends JFrame{
 		listCases = new LinkedList<Case>();
 		LCButtons = new LinkedList<CaseButton>();
 
-		listCases.add(new Case_dalle_sol());
-		listCases.add(new Case_escalier());
-		listCases.add(new Case_fendue_sol());
-		listCases.add(new Case_herbe());
-		listCases.add(new Case_mur());
-		listCases.add(new Case_rocher());
+		listCases.add(new CaseDalle());
+		listCases.add(new CaseEscalier());
+		listCases.add(new CaseFendue());
+		listCases.add(new CaseHerbe());
+		listCases.add(new CaseMur());
+		listCases.add(new CaseRocher());
 		listCases.add(new CaseLave());
 		listCases.add(new CaseWater());
-		listCases.add(new Porte_Dalle_Sol(false));
-		listCases.add(new Porte_escalier(false));
-		listCases.add(new Case_void());
+		listCases.add(new CaseVide());
 
 		//CADRE PRINCIPAL
 		cadre = new JPanel();
@@ -177,7 +171,7 @@ public class EditorWindow extends JFrame{
 		BDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panDessin.fill(new Case_void());
+				panDessin.fill(new CaseVide());
 			}
 		});
 
@@ -320,13 +314,7 @@ public class EditorWindow extends JFrame{
 				JFrame frame = new JFrame("Essai de carte");
 
 				SalleEssai essai = null;
-				try {
-					essai = new SalleEssai(new Rectangle(panDessin.width*Case.TAILLE, panDessin.height*Case.TAILLE), new Heros(200,200)
-					, panDessin.cases);
-				} catch (CustomException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				
 
 				SimplePanel gpanel = new SimplePanel(essai);
 				gpanel.addKeyListener(new JeuKeyAdapter(gpanel));

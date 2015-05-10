@@ -4,6 +4,7 @@
 package fr.donjon.cases2;
 
 
+
 /**
  * @author Baptiste
  *
@@ -17,7 +18,7 @@ public class CaseWater extends Case {
 	 * @param ImageName
 	 */
 	public CaseWater() {
-		super(src);
+		super(src,true, new CollisionVitesse(-2));
 	}
 	
 	@Override
