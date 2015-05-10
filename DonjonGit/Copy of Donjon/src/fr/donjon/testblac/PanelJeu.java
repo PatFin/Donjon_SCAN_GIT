@@ -93,14 +93,38 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 
 	@Override
 	public void paint(Graphics g) {
-
-		g.setColor(Color.GRAY);
 		
+		//TODO I changed the color from grey to black
+		//On remplit la salle d'un fond noir
+		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
+		//vecteur d place l'image de la salle de façon à ce qu'on voit le personnage au centre de la fenêtre.
+		//On peut donc avoir des salles qui sont plus grandes que la fenêtre.
 		
-		Vecteur d = new Vecteur( - gestion.centreCamera.x + getWidth()/2 , 
-				 					- gestion.centreCamera.y + getHeight()/2);
+		//si salle plus petite que la fenêtre, on centre l'image.
+		//Sinon la caméra suit le héros
+		Vecteur z = gestion.sActuelle.getPixelSize();
+		
+		int x;
+		if(z.x<this.getWidth()){
+			x=(int)(this.getWidth()/2-z.x/2);
+		}else{
+			x=(int)(- gestion.centreCamera.x + getWidth()/2);
+		}
+		
+		int y;
+		if(z.y<this.getHeight()){
+			y=(int)(this.getHeight()/2-z.y/2);
+		}else{
+			y=(int)(- gestion.centreCamera.y + getHeight()/2);
+		}
+		
+		Vecteur d = new Vecteur(x,y);
+		
+		//TODO remove this bit.
+		//Vecteur d = new Vecteur( - gestion.centreCamera.x + getWidth()/2 , 
+		//		 					- gestion.centreCamera.y + getHeight()/2);
 		
 		
 		
