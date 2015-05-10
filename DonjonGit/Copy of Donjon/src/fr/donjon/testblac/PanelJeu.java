@@ -24,6 +24,10 @@ import fr.donjon.utils.Vecteur;
  */
 public class PanelJeu extends JPanel implements EcouteurClavier{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static int instances = 0;
 	int instance;
 
@@ -93,15 +97,37 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 
 	@Override
 	public void paint(Graphics g) {
-
-		g.setColor(Color.GRAY);
 		
+		//TODO I changed the color from grey to black
+		//On remplit la salle d'un fond noir
+		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
+		//vecteur d place l'image de la salle de façon à ce qu'on voit le personnage au centre de la fenêtre.
+		//On peut donc avoir des salles qui sont plus grandes que la fenêtre.
 		
-		Vecteur d = new Vecteur( - gestion.centreCamera.x + getWidth()/2 , 
-				 					- gestion.centreCamera.y + getHeight()/2);
+		//si salle plus petite que la fenêtre, on centre l'image.
+		//Sinon la caméra suit le héros
+		Vecteur z = gestion.sActuelle.getPixelSize();
+		int Width = getWidth();
+		int Height = getHeight();
 		
+		
+		int x;
+		if(z.x<Width){
+			x=(int)(Width/2-z.x/2);
+		}else{
+			x=(int)(- gestion.centreCamera.x + Width/2);
+		}
+		
+		int y;
+		if(z.y<Height){
+			y=(int)(Height/2-z.y/2);
+		}else{
+			y=(int)(- gestion.centreCamera.y + Height/2);
+		}
+		
+		Vecteur d = new Vecteur(x,y);
 		
 		
 		g.drawImage(dessinateur.getImage(g, temps),(int)d.x,(int)d.y,null);
