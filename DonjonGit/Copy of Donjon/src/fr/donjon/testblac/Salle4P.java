@@ -7,7 +7,6 @@ import fr.donjon.cases2.Case;
 import fr.donjon.cases2.CasePorte;
 import fr.donjon.cases2.CollisionTeleportation;
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.Squelette;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
@@ -21,30 +20,27 @@ public class Salle4P extends SalleQuatre {
 
 
 	
-	public Salle4P(Heros h, Case c) {
-		super(h,getCases(c));
-		this.addEnemy(new Squelette(100,100,hero,1));
+	public Salle4P(Heros he, Case c,int w, int h){
+		this(he,MapGenerator.fillWith(c, w, h));
 	}
-
-	public static Case[][] getCases(Case c){
-
-		Case[][] cs = new Case[W][H];
-
-		for(int x = 0 ; x < W ; x++){
-			for(int y = 0 ; y < H ; y++){
-				cs[x][y] = c.clone();
-				cs[x][y].setCollisionBoxLocation(y, x);
-			}
-		}
-		
-		
-		cs = addWalls(cs);
-		cs = addDoors(cs);
-		
-
-		return cs;
-
+	
+	public Salle4P(Heros h, Case[][] cs){
+		super(h,getCases(cs));
 	}
+	
+	public Salle4P(Heros hero,int w, int h){
+		this(hero, MapGenerator.randomForet(w, h));
+	}
+	
+	
+	public static Case[][] getCases(Case[][] c){
+
+		c = addWalls(c);
+		c = addDoors(c);
+		
+		return c;
+	}
+	
 
 	public static Case[][] addDoors(Case[][] c){
 		
@@ -67,16 +63,16 @@ public class Salle4P extends SalleQuatre {
 
 		switch(Orientation.getOrientation(dir)){
 		case EST:
-			pos.setLocation(1, (H/2)+1);
+			pos.setLocation(1, (height/2)+1);
 			break;
 		case NORD:
-			pos.setLocation( (W/2)+1, H);
+			pos.setLocation( (width/2)+1, height);
 			break;
 		case OUEST:
-			pos.setLocation( W , (H/2)+1 );
+			pos.setLocation( width , (height/2)+1 );
 			break;
 		case SUD:
-			pos.setLocation( (W/2)+1 , 1 );
+			pos.setLocation( (width/2)+1 , 1 );
 			break;
 		default:
 			break;

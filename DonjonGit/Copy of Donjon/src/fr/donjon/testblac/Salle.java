@@ -223,12 +223,11 @@ public abstract class Salle implements EcouteurClavier{
 	
 	/**
 	 * Donne la taille de l'image de la salle
-	 * @return vecteur. Coordonnée x taille horizontale, y taille verticale.
+	 * @return vecteur. Coordonnï¿½e x taille horizontale, y taille verticale.
 	 */
 	public Vecteur getPixelSize(){
 		return new Vecteur(this.cases.length*Case.TAILLE, this.cases[0].length*Case.TAILLE);
 	}
-	
 
 	/////////////////////////////////////
 	///INTERFACE ECOUTE//////////////////

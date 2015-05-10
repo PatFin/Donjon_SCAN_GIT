@@ -19,14 +19,17 @@ public class Salle2PL extends SalleQuatre {
 
 	Orientation o;
 
-	public Salle2PL(Heros h, Case c, Orientation o){
-		super(h,getCases(c,o));
-		this.o = o;
+	public Salle2PL(Heros he, Case c,int w, int h, Orientation o){
+		this(he,MapGenerator.fillWith(c, w, h),o);
 	}
 	
 	public Salle2PL(Heros h, Case[][] cs, Orientation o){
 		super(h,getCases(cs,o));
 		this.o = o;
+	}
+	
+	public Salle2PL(Heros hero,int w, int h, Orientation o){
+		this(hero, MapGenerator.randomForet(w, h),o);
 	}
 	
 	
@@ -54,27 +57,11 @@ public class Salle2PL extends SalleQuatre {
 		return c;
 	}
 
-	public static Case[][] getCases(Case c, Orientation o){
-
-		Case[][] cs = new Case[W][H];
-
-		for(int x = 0 ; x < W ; x++){
-			for(int y = 0 ; y < H ; y++){
-				cs[x][y] = c.clone();
-				cs[x][y].setCollisionBoxLocation(y, x);
-			}
-		}
-
-		cs = addWalls(cs);
-		cs = addDoors(cs, o);
-
-		return cs;
-	}
 
 	public static Case[][] getCases(Case[][] c, Orientation o){
 		
-		addWalls(c);
-		addDoors(c, o);
+		c = addWalls(c);
+		c = addDoors(c, o);
 		
 		return c;
 	}
@@ -87,16 +74,16 @@ public class Salle2PL extends SalleQuatre {
 
 		switch(Orientation.getOrientation(dir)){
 		case EST:
-			pos.setLocation(1, (H/2)+1);
+			pos.setLocation(1, (height/2)+1);
 			break;
 		case NORD:
-			pos.setLocation( (W/2)+1, H);
+			pos.setLocation( (width/2)+1, height);
 			break;
 		case OUEST:
-			pos.setLocation( W , (H/2)+1 );
+			pos.setLocation( width , (height/2)+1 );
 			break;
 		case SUD:
-			pos.setLocation( (W/2)+1 , 1 );
+			pos.setLocation( (width/2)+1 , 1 );
 			break;
 		default:
 			break;
