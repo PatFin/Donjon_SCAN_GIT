@@ -41,9 +41,10 @@ public class BouleDeFeu extends Projectile {
 	 * @param degats
 	 */
 	public BouleDeFeu(int ax, int ay , Vecteur vvitesse) {
-		
 		super(ax, ay, DIM, DIM, src, new Rectangle(0,0), new Rectangle(0,0),
 				true, vvitesse, VIT, Type.ENNEMI, DGT);
+		
+		
 		
 		
 	}
