@@ -63,7 +63,7 @@ public class ProbabilityMap {
 
 	private void sortArray(){
 
-		probs.sort(new Comparator<CaseProbability>() {
+		/*probs.sort(new Comparator<CaseProbability>() {
 
 			@Override
 			public int compare(CaseProbability o1, CaseProbability o2) {
@@ -72,7 +72,7 @@ public class ProbabilityMap {
 			}
 
 
-		});
+		});*/
 	}
 
 	/*

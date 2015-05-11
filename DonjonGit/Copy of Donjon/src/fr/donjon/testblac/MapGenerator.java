@@ -9,6 +9,7 @@ import fr.donjon.cases2.CaseHerbe;
 import fr.donjon.cases2.CaseLave;
 import fr.donjon.cases2.CaseRocher;
 import fr.donjon.cases2.CaseWater;
+import fr.donjon.editor.MapFileHandler;
 
 
 
@@ -26,41 +27,44 @@ public class MapGenerator {
 	}
 
 	public static Case[][] randomMap(){
+
+		MapFileHandler.getMapList();
+
 		return null;
-		
+
 	}
-	
+
 	public static Case[][] randomForet(int w, int h){
 
 		ProbabilityMap map = new ProbabilityMap();
 
-		map.addProba( new CaseHerbe() , 0.90 );
-
 		map.addProba( new CaseWater() , 0.10 );
+
+		map.addProba( new CaseHerbe() , 0.90 );
 
 		return generateFromProbabilities(map, w, h);
 	}
 
 	public static Case[][] randomChateauLave(int w, int h){
-		
+
 		ProbabilityMap map = new ProbabilityMap();
 
-		map.addProba( new CaseDalle() , 0.80 );
-
 		map.addProba( new CaseLave() , 0.10 );
-		
+
 		map.addProba( new CaseRocher() , 0.10 );
+
+		map.addProba( new CaseDalle() , 0.80 );
 
 		return generateFromProbabilities(map, w, h);
 	}
 
 	public static Case[][] randomChateauRochers(int w, int h){
-		
+
 		ProbabilityMap map = new ProbabilityMap();
 
-		map.addProba( new CaseDalle() , 0.80 );
-
 		map.addProba( new CaseRocher() , 0.20 );
+		
+		map.addProba( new CaseDalle() , 0.80 );
 
 		return generateFromProbabilities(map, w, h);
 
