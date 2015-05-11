@@ -1,4 +1,4 @@
-package fr.donjon.classes.cases;
+package fr.donjon.zpoubelle;
 
 import java.awt.Image;
 import java.awt.Rectangle;

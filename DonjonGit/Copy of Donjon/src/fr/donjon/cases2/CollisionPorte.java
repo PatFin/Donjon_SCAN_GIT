@@ -11,7 +11,7 @@ import fr.donjon.utils.Vecteur;
  * @author Baptiste
  *
  */
-public class CollisionTeleportation implements CollisionPattern {
+public class CollisionPorte implements CollisionPattern {
 
 	Salle s;
 	Vecteur directionSalle;
@@ -19,7 +19,7 @@ public class CollisionTeleportation implements CollisionPattern {
 	/**
 	 * 
 	 */
-	public CollisionTeleportation(Salle s, Vecteur arrivee) {
+	public CollisionPorte(Salle s, Vecteur arrivee) {
 		this.s = s;
 		this.directionSalle = arrivee;
 	}

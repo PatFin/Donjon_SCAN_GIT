@@ -1,4 +1,4 @@
-package fr.donjon.classes.cases;
+package fr.donjon.zpoubelle;
 
 public class Porte_Dalle_Sol extends Case_porte {
 

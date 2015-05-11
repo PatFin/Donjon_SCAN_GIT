@@ -5,14 +5,14 @@ import java.util.EnumMap;
 
 import fr.donjon.cases2.Case;
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.cases.Case_Obstacle;
-import fr.donjon.classes.cases.Case_porte;
-import fr.donjon.classes.cases.Case_void;
 import fr.donjon.editor.SalleDescription;
 import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.Case_Obstacle;
+import fr.donjon.zpoubelle.Case_porte;
+import fr.donjon.zpoubelle.Case_void;
 
 
 

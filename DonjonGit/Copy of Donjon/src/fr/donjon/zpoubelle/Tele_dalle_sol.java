@@ -1,22 +1,22 @@
-package fr.donjon.classes.cases;
+package fr.donjon.zpoubelle;
 
 import fr.donjon.classes.Personnage;
 import fr.donjon.utils.Vecteur;
 
 public class Tele_dalle_sol extends Case_dalle_sol {
 
-	Vecteur destination;		//Contient les coordonnées de la case de destination
+	Vecteur destination;		//Contient les coordonnï¿½es de la case de destination
 	boolean enabled;
 	
 	/**
 	 * Constructeur
-	 * @param destination vecteur contenant les coordonnées de la case de destination
+	 * @param destination vecteur contenant les coordonnï¿½es de la case de destination
 	 */
 	public Tele_dalle_sol(Vecteur destination, boolean enabled) {
-		//On appelle le constructeur de la classe mère
+		//On appelle le constructeur de la classe mï¿½re
 		super();
 		
-		//On stocke le vecteur qui indique où le héro sera déplacé
+		//On stocke le vecteur qui indique oï¿½ le hï¿½ro sera dï¿½placï¿½
 		this.destination = destination;
 		this.enabled=enabled;
 	}

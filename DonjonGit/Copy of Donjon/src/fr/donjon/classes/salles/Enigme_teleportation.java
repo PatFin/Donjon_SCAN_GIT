@@ -4,13 +4,13 @@ import java.awt.Rectangle;
 import java.util.EnumMap;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.cases.Case;
-import fr.donjon.classes.cases.Case_dalle_sol;
-import fr.donjon.classes.cases.Porte_Dalle_Sol;
-import fr.donjon.classes.cases.Tele_dalle_sol;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.Case;
+import fr.donjon.zpoubelle.Case_dalle_sol;
+import fr.donjon.zpoubelle.Porte_Dalle_Sol;
+import fr.donjon.zpoubelle.Tele_dalle_sol;
 
 public class Enigme_teleportation extends SalleAbs {
 	
@@ -53,7 +53,7 @@ public class Enigme_teleportation extends SalleAbs {
 		
 		Vecteur v;
 		
-		//On initialise la position des centres de téléporteurs
+		//On initialise la position des centres de tï¿½lï¿½porteurs
 		//TODO
 		
 		v=new Vecteur(cases.length/4+1, cases[0].length/4);
@@ -187,7 +187,7 @@ public class Enigme_teleportation extends SalleAbs {
 
 	@Override
 	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) {
-		//cette salle ne peut être la première salle du donjon
+		//cette salle ne peut ï¿½tre la premiï¿½re salle du donjon
 		//A la place on met donc une salle type "Castle_Room".
 		return new Castle_Room(ecran, h, o);
 	}

@@ -13,10 +13,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import fr.donjon.classes.cases.Case;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.Case;
 
 /**
  * @author Baptiste
@@ -103,11 +103,11 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		//vecteur d place l'image de la salle de façon à ce qu'on voit le personnage au centre de la fenêtre.
-		//On peut donc avoir des salles qui sont plus grandes que la fenêtre.
+		//vecteur d place l'image de la salle de faï¿½on ï¿½ ce qu'on voit le personnage au centre de la fenï¿½tre.
+		//On peut donc avoir des salles qui sont plus grandes que la fenï¿½tre.
 		
-		//si salle plus petite que la fenêtre, on centre l'image.
-		//Sinon la caméra suit le héros
+		//si salle plus petite que la fenï¿½tre, on centre l'image.
+		//Sinon la camï¿½ra suit le hï¿½ros
 		Vecteur z = gestion.sActuelle.getPixelSize();
 		int Width = getWidth();
 		int Height = getHeight();

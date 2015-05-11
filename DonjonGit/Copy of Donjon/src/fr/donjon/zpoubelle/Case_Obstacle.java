@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.donjon.classes.cases;
+package fr.donjon.zpoubelle;
 
 import fr.donjon.classes.Personnage;
 

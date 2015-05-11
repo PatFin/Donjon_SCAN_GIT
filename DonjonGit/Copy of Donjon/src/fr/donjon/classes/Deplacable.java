@@ -3,8 +3,8 @@ package fr.donjon.classes;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import fr.donjon.classes.cases.Case;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.Case;
 
 /**
  * 

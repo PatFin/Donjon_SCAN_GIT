@@ -25,7 +25,11 @@ public class MapGenerator {
 
 	}
 
-
+	public static Case[][] randomMap(){
+		return null;
+		
+	}
+	
 	public static Case[][] randomForet(int w, int h){
 
 		ProbabilityMap map = new ProbabilityMap();

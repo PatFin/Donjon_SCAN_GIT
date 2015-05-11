@@ -1,4 +1,4 @@
-package fr.donjon.classes.cases;
+package fr.donjon.zpoubelle;
 
 public class Case_dalle_sol extends Case {
 	

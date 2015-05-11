@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import fr.donjon.cases2.Case;
 import fr.donjon.cases2.CaseDalle;
 import fr.donjon.cases2.CaseVide;
-import fr.donjon.classes.cases.Case_void;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.Case_void;
 
 /**
  * 

@@ -12,10 +12,10 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
 
-import fr.donjon.classes.cases.Case;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.Case;
 
 /**
  * La classe m�re qui permet de gerer l'affichage et la mise a jour d'une salle

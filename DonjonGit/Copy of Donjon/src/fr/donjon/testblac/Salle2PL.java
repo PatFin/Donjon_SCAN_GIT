@@ -5,7 +5,7 @@ package fr.donjon.testblac;
 
 import fr.donjon.cases2.Case;
 import fr.donjon.cases2.CasePorte;
-import fr.donjon.cases2.CollisionTeleportation;
+import fr.donjon.cases2.CollisionPorte;
 import fr.donjon.classes.Heros;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -112,7 +112,7 @@ public class Salle2PL extends SalleQuatre {
 					break;
 				}
 
-				((CasePorte) c).setCollision( new CollisionTeleportation(this, dir));
+				((CasePorte) c).setCollision( new CollisionPorte(this, dir));
 
 			}
 
@@ -132,7 +132,7 @@ public class Salle2PL extends SalleQuatre {
 					break;
 				}
 
-				((CasePorte) c).setCollision( new CollisionTeleportation(this, dir));
+				((CasePorte) c).setCollision( new CollisionPorte(this, dir));
 
 			}
 

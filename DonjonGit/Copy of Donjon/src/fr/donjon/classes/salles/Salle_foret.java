@@ -4,14 +4,14 @@ import java.awt.Rectangle;
 import java.util.EnumMap;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.cases.Case;
-import fr.donjon.classes.cases.CaseWater;
-import fr.donjon.classes.cases.Case_herbe;
-import fr.donjon.classes.cases.Porte_Dalle_Sol;
 import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.Case;
+import fr.donjon.zpoubelle.CaseWater;
+import fr.donjon.zpoubelle.Case_herbe;
+import fr.donjon.zpoubelle.Porte_Dalle_Sol;
 
 public class Salle_foret extends SalleAbs {
 	

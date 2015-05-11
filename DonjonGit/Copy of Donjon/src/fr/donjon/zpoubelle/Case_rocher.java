@@ -1,4 +1,4 @@
-package fr.donjon.classes.cases;
+package fr.donjon.zpoubelle;
 
 import java.awt.Rectangle;
 
@@ -26,7 +26,7 @@ public class Case_rocher extends Case_Obstacle {
 	
 	@Override
 	/**
-	 * Positionne le rectangle de collision associé à la case.
+	 * Positionne le rectangle de collision associï¿½ ï¿½ la case.
 	 */
 	public void setCollisionBoxLocation(int horizontal, int vertical) {
 		
@@ -36,7 +36,7 @@ public class Case_rocher extends Case_Obstacle {
 	@Override
 	/**
 	 * Au cas ou les personnage essaie de traverser le rectangle (interdit) de la case, 
-	 * il est remis à la limite de la case.
+	 * il est remis ï¿½ la limite de la case.
 	 */
 	public void inCollision(Personnage z) {
 		

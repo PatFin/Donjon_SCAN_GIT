@@ -9,8 +9,8 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import fr.donjon.classes.Objet;
-import fr.donjon.classes.cases.Case;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.Case;
 
 /**
  * @author Baptiste

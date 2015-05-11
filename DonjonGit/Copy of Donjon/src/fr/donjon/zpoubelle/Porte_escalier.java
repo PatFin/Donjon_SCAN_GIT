@@ -1,4 +1,4 @@
-package fr.donjon.classes.cases;
+package fr.donjon.zpoubelle;
 
 public class Porte_escalier extends Case_porte {
 
