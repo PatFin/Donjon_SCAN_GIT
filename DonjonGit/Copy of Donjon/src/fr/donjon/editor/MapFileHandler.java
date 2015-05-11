@@ -16,10 +16,14 @@ import fr.donjon.cases2.CaseEscalier;
 import fr.donjon.cases2.CaseFendue;
 import fr.donjon.cases2.CaseHerbe;
 import fr.donjon.cases2.CaseLave;
+import fr.donjon.cases2.CaseMap;
 import fr.donjon.cases2.CaseMur;
 import fr.donjon.cases2.CaseRocher;
+import fr.donjon.cases2.CaseSource;
 import fr.donjon.cases2.CaseVide;
 import fr.donjon.cases2.CaseWater;
+import fr.donjon.utils.ImageManager;
+import fr.donjon.utils.Vecteur;
 
 
 /**
@@ -317,6 +321,7 @@ public class MapFileHandler {
 		listCases.add(new CaseWater());
 		listCases.add(new CaseVide());
 
+		
 		return listCases;
 
 	}

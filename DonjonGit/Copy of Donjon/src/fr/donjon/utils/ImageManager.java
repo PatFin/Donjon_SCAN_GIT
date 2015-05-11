@@ -7,11 +7,14 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
+import fr.donjon.cases2.CaseMap;
+
 public class ImageManager {
 
 	final static String path = "Ressources/Images/";
 	static HashMap<String,Image> map = new HashMap<String, Image>();
 
+	public static CaseMap map1 = new CaseMap("case_map_1.png", 32);
 
 	public ImageManager() {
 	}

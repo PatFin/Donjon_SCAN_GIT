@@ -35,7 +35,8 @@ public class CaseButton extends JButton {
 		this.setPreferredSize(new Dimension(size,size));
 	
 		//Redimensionne l'image pour qu'elle prenne toute la place dans le boutton
-		Image newimg = c.image.getScaledInstance( size, size,  java.awt.Image.SCALE_SMOOTH ) ;  
+		Image newimg = c.image.getScaledInstance( size, size,  java.awt.Image.SCALE_SMOOTH ) ; 
+		
 		Icon icon = new ImageIcon( newimg );
 		this.setIcon(icon);
 		

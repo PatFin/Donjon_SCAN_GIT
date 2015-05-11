@@ -50,8 +50,17 @@ public class DessinateurSalle {
 
 	public BufferedImage getImage(Graphics g, long t){
 
-		buffer.drawImage(imageSol,0,0,null);
+		//buffer.drawImage(imageSol,0,0,null);
 
+		for(int y=0;y<salle.cases[0].length;y++){
+			for(int x=0;x<salle.cases.length;x++){
+				
+				salle.cases[x][y].draw(buffer, t, x, y);
+				
+				
+			}
+		}
+		
 		//We add the room number at the top left hand corner
 		//This is not necessary for the game to work properly
 		buffer.setColor(Color.white);
@@ -88,6 +97,15 @@ public class DessinateurSalle {
 
 	private void creerImageSol(){
 
+		for(int y=0;y<salle.cases[0].length;y++){
+			for(int x=0;x<salle.cases.length;x++){
+				
+				this.salle.cases[x][y].setCollisionBoxLocation(x, y);
+			}
+		}
+		
+		
+		/*
 		imageSol = new BufferedImage(salle.cases.length * Case.TAILLE, salle.cases[0].length * Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
 		bufferSol = imageSol.createGraphics();
 
@@ -102,6 +120,8 @@ public class DessinateurSalle {
 				}
 			}
 		}
+		
+		*/
 	}
 	
 	public Vecteur getSize(){
