@@ -4,13 +4,13 @@ import java.util.EnumMap;
 import java.util.LinkedList;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.salles.Castle_Room;
-import fr.donjon.classes.salles.SalleAbs;
-import fr.donjon.classes.salles.Salle_croix;
-import fr.donjon.classes.salles.Salle_foret;
 import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
+import fr.donjon.zpoubelle.Castle_Room;
+import fr.donjon.zpoubelle.SalleAbs;
+import fr.donjon.zpoubelle.Salle_croix;
+import fr.donjon.zpoubelle.Salle_foret;
 
 public class GestionnaireJeuInfini extends Gestionnaire {
 

@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 import fr.donjon.classes.Personnage;
+import fr.donjon.classes.Projectile;
 import fr.donjon.utils.ImageManager;
 
 /**
@@ -19,7 +20,7 @@ public class Case {
 	public Rectangle limites;
 
 	boolean enabled;
-	CollisionPattern collision;
+	public CollisionPattern collision;
 
 	/**
 	 * Constructeur de la Case 
@@ -56,6 +57,10 @@ public class Case {
 	 * @param z Le personnage qui marche sur la case.
 	 */
 	public void inCollision(Personnage p) {
+		if(enabled && collision != null)collision.enCollision(p);
+	}
+	
+	public void inCollision(Projectile p){
 		if(enabled && collision != null)collision.enCollision(p);
 	}
 	

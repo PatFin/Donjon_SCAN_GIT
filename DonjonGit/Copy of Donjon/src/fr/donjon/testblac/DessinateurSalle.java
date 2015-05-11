@@ -9,6 +9,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import fr.donjon.classes.Objet;
+import fr.donjon.classes.Projectile;
 import fr.donjon.utils.Vecteur;
 import fr.donjon.zpoubelle.Case;
 
@@ -56,7 +57,11 @@ public class DessinateurSalle {
 		buffer.setColor(Color.white);
 		buffer.drawString("Salle "+salle.roomNumber, 20, 20);
 
-
+		for( Projectile p : salle.projectiles){
+			
+			p.draw(t, buffer);
+			
+		}
 
 		//We display the characters
 		for(int i=0;i<salle.personnages.size();i++){

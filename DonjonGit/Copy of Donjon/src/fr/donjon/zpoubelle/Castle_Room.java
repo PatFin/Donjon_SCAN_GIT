@@ -1,4 +1,4 @@
-package fr.donjon.classes.salles;
+package fr.donjon.zpoubelle;
 
 import java.awt.Rectangle;
 import java.util.EnumMap;
@@ -8,14 +8,6 @@ import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
-import fr.donjon.zpoubelle.Case;
-import fr.donjon.zpoubelle.CaseLave;
-import fr.donjon.zpoubelle.Case_dalle_sol;
-import fr.donjon.zpoubelle.Case_fendue_sol;
-import fr.donjon.zpoubelle.Case_mur;
-import fr.donjon.zpoubelle.Case_rocher;
-import fr.donjon.zpoubelle.Porte_Dalle_Sol;
-import fr.donjon.zpoubelle.Porte_escalier;
 
 
 

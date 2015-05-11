@@ -5,9 +5,9 @@ package fr.donjon.start;
 
 import java.awt.Graphics;
 
-import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.SalleAbs;
 
 /**
  * @author Baptiste

@@ -1,4 +1,4 @@
-package fr.donjon.classes.salles;
+package fr.donjon.zpoubelle;
 
 import java.awt.Rectangle;
 import java.util.EnumMap;
@@ -7,10 +7,6 @@ import fr.donjon.classes.Heros;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
-import fr.donjon.zpoubelle.Case;
-import fr.donjon.zpoubelle.Case_dalle_sol;
-import fr.donjon.zpoubelle.Porte_Dalle_Sol;
-import fr.donjon.zpoubelle.Tele_dalle_sol;
 
 public class Enigme_teleportation extends SalleAbs {
 	

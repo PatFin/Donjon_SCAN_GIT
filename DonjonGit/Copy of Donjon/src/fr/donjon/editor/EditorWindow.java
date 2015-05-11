@@ -29,10 +29,10 @@ import fr.donjon.cases2.CaseMur;
 import fr.donjon.cases2.CaseRocher;
 import fr.donjon.cases2.CaseVide;
 import fr.donjon.cases2.CaseWater;
-import fr.donjon.classes.salles.SalleEssai;
 import fr.donjon.start.SimplePanel;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.SalleEssai;
 
 
 /**

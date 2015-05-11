@@ -3,7 +3,6 @@ package fr.donjon.classes;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatPersonnage;
@@ -46,8 +45,11 @@ public class Heros extends Personnage{
 		animation = animationS;
 		
 		this.inventaire = new Inventaire(5, this);
+		
 		inventaire.addUtilisable(new ArmeEpee());
 		inventaire.addUtilisable(new ArmeLance());
+		inventaire.addUtilisable(new BatonDeGlace());
+		
 		inventaire.useUtilisable(0);
 	}
 
@@ -118,13 +120,14 @@ public class Heros extends Personnage{
 	 * L'attaque pourra ajouter des projectiles sur le terrain
 	 */
 	public void attaquer(ArrayList<Personnage> personnage,
-			LinkedList<Projectile> projectiles, Orientation o) {
+			ArrayList<Projectile> projectiles, Orientation o) {
 		
 		//S'il attaque deja on ne fait rien
 		if(this.etat == EtatPersonnage.ATTAQUE)return;
 		
 		//Lancement de l'attaque
 		this.etat = EtatPersonnage.ATTAQUE;
+		
 		this.arme.attaquer(personnage, projectiles,o);
 
 	}

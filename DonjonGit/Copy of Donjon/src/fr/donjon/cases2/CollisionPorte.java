@@ -4,6 +4,7 @@
 package fr.donjon.cases2;
 
 import fr.donjon.classes.Personnage;
+import fr.donjon.classes.Projectile;
 import fr.donjon.testblac.Salle;
 import fr.donjon.utils.Vecteur;
 
@@ -34,6 +35,12 @@ public class CollisionPorte implements CollisionPattern {
 	@Override
 	public void nonCollision(Personnage p) {
 		
+	}
+
+
+	@Override
+	public void enCollision(Projectile p) {
+		p.living = false;
 	}
 
 }

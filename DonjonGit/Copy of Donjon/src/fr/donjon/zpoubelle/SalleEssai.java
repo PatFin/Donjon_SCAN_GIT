@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.donjon.classes.salles;
+package fr.donjon.zpoubelle;
 
 import java.awt.Rectangle;
 
@@ -9,7 +9,6 @@ import fr.donjon.classes.Heros;
 import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
-import fr.donjon.zpoubelle.Case;
 
 /**
  * 

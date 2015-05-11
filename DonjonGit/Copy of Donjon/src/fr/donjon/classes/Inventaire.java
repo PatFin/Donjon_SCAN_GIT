@@ -82,7 +82,9 @@ public class Inventaire {
 		
 		if(ref > (utilisables.size() - 1))return false;
 		
-		utilisables.get(ref).utilise(porteur);
+		if(utilisables.get(ref).utilise(porteur) > 0) utilisables.remove(ref);
+		
+		
 		
 		return true;
 	}

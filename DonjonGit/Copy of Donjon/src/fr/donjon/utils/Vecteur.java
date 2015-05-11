@@ -60,7 +60,6 @@ public class Vecteur {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "X:"+x + " Y:"+y;
 	}
 	
@@ -89,7 +88,7 @@ public class Vecteur {
 		return projectMainDirection(this);
 	}
 	
-	public void display() { // Méthode affichant les coordonnées du vecteur dans la console
+	public void display() { // Mï¿½thode affichant les coordonnï¿½es du vecteur dans la console
 		
 		System.out.println("(" + x + ", " + y + ")");
 	}

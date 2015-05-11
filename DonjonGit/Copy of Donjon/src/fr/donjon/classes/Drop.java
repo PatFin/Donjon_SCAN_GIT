@@ -16,7 +16,7 @@ import fr.donjon.utils.Utilisable;
  */
 public class Drop extends Objet implements Utilisable {
 	Image imageObjet;
-	boolean utilise; // pour savoir si l'objet à été utilisé ou non
+	boolean utilise; // pour savoir si l'objet ï¿½ ï¿½tï¿½ utilisï¿½ ou non
 	final static int longueur=64;
 	final static int largeur=64;
 
@@ -34,8 +34,7 @@ public class Drop extends Objet implements Utilisable {
 	public Drop(int ax, int ay, String nom,Rectangle offArm, Rectangle offCol, boolean toDisplay){
 		super(ax, ay, longueur, largeur, nom, offArm, offCol, true);
 		this.utilise=false;
-		this.imageObjet=ImageManager.getImage(nom, this.getClass().getSimpleName());
-		// TODO Auto-generated constructor stub
+		this.imageObjet=getIcon();
 	}
 
 	/* (non-Javadoc)
@@ -43,7 +42,6 @@ public class Drop extends Objet implements Utilisable {
 	 */
 	@Override
 	public int utilise(Personnage p) {
-		// TODO Auto-generated method stub
 		return 1;
 	}
 
@@ -52,8 +50,6 @@ public class Drop extends Objet implements Utilisable {
 	 */
 	@Override
 	public Image getIcon() {
-		
-		// TODO Auto-generated method stub
 		return ImageManager.getImage(nom, this.getClass().getSimpleName());
 	}
 
@@ -62,7 +58,6 @@ public class Drop extends Objet implements Utilisable {
 	 */
 	@Override
 	public void update(long t) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -77,7 +72,6 @@ public class Drop extends Objet implements Utilisable {
 		}
 		g.drawImage(imageObjet, image.x, image.y, image.width, image.height, null);
 		
-		// TODO Auto-generated method stub
 
 	}
 	

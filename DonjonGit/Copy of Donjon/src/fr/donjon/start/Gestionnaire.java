@@ -6,13 +6,13 @@ package fr.donjon.start;
 import java.util.LinkedList;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.salles.SalleAbs;
 import fr.donjon.utils.CustomException;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Type;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.SalleAbs;
 
 /**
  * Permet la gestion des salles

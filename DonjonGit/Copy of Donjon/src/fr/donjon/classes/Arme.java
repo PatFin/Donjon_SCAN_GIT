@@ -3,7 +3,6 @@ package fr.donjon.classes;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatArme;
@@ -36,7 +35,7 @@ public abstract class Arme implements Utilisable{
 	long duree;			//Duree de l'attaque
 
 	protected ArrayList<Personnage> cibles; //Liste des cibles potentielles
-	protected LinkedList<Projectile> projectiles;	//Listes des projectiles
+	protected ArrayList<Projectile> projectiles;	//Listes des projectiles
 
 	
 	public Arme(String iconSrc){
@@ -112,7 +111,7 @@ public abstract class Arme implements Utilisable{
 	 * @param projectiles	Si l'arme lance des projectiles elle l'ajoute a cette liste
 	 */
 	public void attaquer(ArrayList<Personnage> personnage,
-			LinkedList<Projectile> proj, Orientation o){
+			ArrayList<Projectile> proj, Orientation o){
 		
 		//L'attaque demarre et on regle la bonne animation selon la direction
 		this.etat = EtatArme.RUNNING;

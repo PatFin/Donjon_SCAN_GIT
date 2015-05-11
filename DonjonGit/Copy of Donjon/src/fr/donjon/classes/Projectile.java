@@ -16,7 +16,7 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class Projectile extends Deplacable {
 
-
+	public boolean living;
 	int degats;
 	Animation anim;
 	Type type;
@@ -46,7 +46,10 @@ public abstract class Projectile extends Deplacable {
 		
 		this.type = type;
 		this.degats = degats;
+		this.living = true;
 	}
+
+	public abstract void inCollision(Personnage p);
 
 
 
@@ -54,15 +57,14 @@ public abstract class Projectile extends Deplacable {
 	@Override
 	abstract public void update(long t);
 
-	//A redéfinir ?
+	//A redï¿½finir ?
 	public boolean enCollision(Rectangle r) {
 		return super.enCollision(r);
 	}
 
-	//A redéfinir ?
+	//A redï¿½finir ?
 	@Override
 	public void draw(long t, Graphics g) {
-		// TODO Auto-generated method stub
 
 	}
 

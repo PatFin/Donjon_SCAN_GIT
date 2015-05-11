@@ -4,6 +4,7 @@
 package fr.donjon.cases2;
 
 import fr.donjon.classes.Personnage;
+import fr.donjon.classes.Projectile;
 
 /**
  * @author Baptiste
@@ -31,7 +32,7 @@ public class CollisionVitesse implements CollisionPattern {
 
 		else{
 			actif = true;
-			p.stats.vit += vitesse;
+			//p.stats.vit += vitesse;
 		}
 
 
@@ -44,9 +45,14 @@ public class CollisionVitesse implements CollisionPattern {
 		
 		if(actif){
 			actif = false;
-			p.stats.vit -= vitesse;
+			//p.stats.vit -= vitesse;
 		}
 
+	}
+
+
+	@Override
+	public void enCollision(Projectile p) {
 	}
 
 }

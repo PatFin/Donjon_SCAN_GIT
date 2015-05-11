@@ -1,6 +1,7 @@
 package fr.donjon.cases2;
 
 import fr.donjon.classes.Personnage;
+import fr.donjon.classes.Projectile;
 import fr.donjon.utils.Vecteur;
 
 public class CollisionTeleportation implements CollisionPattern {
@@ -23,7 +24,7 @@ public class CollisionTeleportation implements CollisionPattern {
 	}
 
 	/**
-	 * Si le personnage est en collision avec la case, l'envoyer à la case destination
+	 * Si le personnage est en collision avec la case, l'envoyer ï¿½ la case destination
 	 */
 	@Override
 	public void enCollision(Personnage p) {
@@ -48,6 +49,11 @@ public class CollisionTeleportation implements CollisionPattern {
 	@Override
 	public void nonCollision(Personnage p) {
 		//On ne fait rien
+	}
+
+	@Override
+	public void enCollision(Projectile p) {
+		
 	}
 
 }

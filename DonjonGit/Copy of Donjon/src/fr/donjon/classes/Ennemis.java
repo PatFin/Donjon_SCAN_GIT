@@ -3,7 +3,6 @@ package fr.donjon.classes;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import fr.donjon.utils.EtatPersonnage;
 import fr.donjon.utils.Orientation;
@@ -47,5 +46,5 @@ public abstract class Ennemis extends Personnage{
 
 	@Override
 	abstract public void attaquer(ArrayList<Personnage> cibles,
-			LinkedList<Projectile> projectiles, Orientation o);
+			ArrayList<Projectile> projectiles, Orientation o);
 }
