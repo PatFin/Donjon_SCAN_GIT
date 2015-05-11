@@ -62,6 +62,25 @@ public enum Orientation {
 		else if (v.y > 0 && v.x == 0)return SUD;
 		else if (v.y < 0 && v.x == 0)return NORD;
 		else return NORD;
-		
+	}
+	
+	/**
+	 * Gives back the unit vector corresponding to an orientation
+	 * @param o the orientation to be converted into a vector
+	 * @return a unit vector in the orientation given
+	 */
+	public static Vecteur getUnitVector(Orientation o){
+		switch(o){
+		case NORD:
+			return Vecteur.vNord;
+		case SUD:
+			return Vecteur.vSud;
+		case EST:
+			return Vecteur.vEst;
+		case OUEST:
+			return Vecteur.vOuest;
+		default:
+			return Vecteur.vNull;
+		}
 	}
 }
