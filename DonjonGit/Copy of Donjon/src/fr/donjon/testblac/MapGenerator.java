@@ -10,8 +10,8 @@ import fr.donjon.cases2.Case;
 import fr.donjon.cases2.CaseDalle;
 import fr.donjon.cases2.CaseHerbe;
 import fr.donjon.cases2.CaseLave;
+import fr.donjon.cases2.CaseLiane;
 import fr.donjon.cases2.CaseRocher;
-import fr.donjon.cases2.CaseWater;
 import fr.donjon.editor.MapFileHandler;
 import fr.donjon.editor.SalleDescription;
 
@@ -56,7 +56,7 @@ public class MapGenerator {
 
 		ProbabilityMap map = new ProbabilityMap();
 
-		map.addProba( new CaseWater() , 0.10 );
+		map.addProba( new CaseLiane() , 0.10 );
 
 		map.addProba( new CaseHerbe() , 0.90 );
 

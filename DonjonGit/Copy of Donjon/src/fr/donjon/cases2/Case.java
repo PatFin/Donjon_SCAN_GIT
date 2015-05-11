@@ -1,5 +1,6 @@
 package fr.donjon.cases2;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 
@@ -42,6 +43,14 @@ public class Case {
 		this.limites = new Rectangle(Case.TAILLE,Case.TAILLE);
 	}
 
+	public void draw(Graphics g, long t, int x, int y){
+		
+		if(image == null)return;
+		
+		g.drawImage(image, TAILLE*x, TAILLE*y , TAILLE, TAILLE, null);
+		
+	}
+	
 	/**
 	 * Positionne le rectangle de collision qui va d�clencher la methode inCollision.
 	 * Par d�fault le rectangle de collision recouvre toute la case.

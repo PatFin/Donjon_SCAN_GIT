@@ -5,8 +5,6 @@ import fr.donjon.cases2.Case;
 import fr.donjon.cases2.CaseMur;
 import fr.donjon.cases2.CasePorte;
 import fr.donjon.cases2.CaseVide;
-import fr.donjon.cases2.CollisionObstacle;
-import fr.donjon.classes.BouleDeGlace;
 import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Personnage;

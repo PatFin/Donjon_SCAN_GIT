@@ -25,11 +25,14 @@ import fr.donjon.cases2.CaseEscalier;
 import fr.donjon.cases2.CaseFendue;
 import fr.donjon.cases2.CaseHerbe;
 import fr.donjon.cases2.CaseLave;
+import fr.donjon.cases2.CaseMap;
 import fr.donjon.cases2.CaseMur;
 import fr.donjon.cases2.CaseRocher;
+import fr.donjon.cases2.CaseSource;
 import fr.donjon.cases2.CaseVide;
 import fr.donjon.cases2.CaseWater;
 import fr.donjon.start.SimplePanel;
+import fr.donjon.utils.ImageManager;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Vecteur;
 import fr.donjon.zpoubelle.SalleEssai;
@@ -97,6 +100,16 @@ public class EditorWindow extends JFrame{
 		listCases.add(new CaseLave());
 		listCases.add(new CaseWater());
 		listCases.add(new CaseVide());
+		
+		//TODO
+		/*
+		CaseMap map = ImageManager.map1;
+		for(int x= 0 ; x < map.w ; x++){
+			for(int y = 0 ; y < map.h ; y++){
+				listCases.add(new CaseSource(new Vecteur(x,y)));
+			}
+		}
+		*/
 
 		//CADRE PRINCIPAL
 		cadre = new JPanel();
@@ -260,13 +273,11 @@ public class EditorWindow extends JFrame{
 
 					@Override
 					public String getDescription() {
-						// TODO Auto-generated method stub
 						return null;
 					}
 
 					@Override
 					public boolean accept(File f) {
-						// TODO Auto-generated method stub
 						if (f.isDirectory()) {
 							return true;
 						}

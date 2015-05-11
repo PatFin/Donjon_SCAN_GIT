@@ -17,8 +17,6 @@ import fr.donjon.utils.Utilisable;
  */
 public abstract class Arme implements Utilisable{
 
-	final static String KEY_EFFET1 = "WEAP_EFFECT";
-	
 	Personnage lanceur; //Permet la syncro avec le personnage lanceur 
 	Orientation o;		//Orientation de l'attaque
 	EtatArme etat;		//Etat de l'attaque (finie ou pas)
