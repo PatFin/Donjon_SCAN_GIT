@@ -1,9 +1,6 @@
 package fr.donjon.utils;
 
-import java.awt.Rectangle;
-
-import fr.donjon.classes.Heros;
-import fr.donjon.zpoubelle.SalleAbs;
+import fr.donjon.testblac.Salle;
 
 /**
  * Cette class contient la description d'un tï¿½lï¿½porteur d'une
@@ -13,15 +10,16 @@ import fr.donjon.zpoubelle.SalleAbs;
  */
 public class Link {
 
-	public SalleAbs destinationSalle;				//la destination du lien, l'autre salle.
-	public Vecteur 	destinationCase;				//coordonnï¿½es de la case de destination.
+	private Salle destinationSalle;				//la destination du lien, l'autre salle.
+	private Vecteur destinationCase;				//coordonnï¿½es de la case de destination.
 	
-	public SalleAbs origineSalle;
-	public Vecteur origineCase;
+	private Salle origineSalle;
+	private Vecteur origineCase;
 	
-	public Orientation orientation;
-	public Rectangle rectangleCollision;	//Si le hï¿½ro marche sur ce rectangle et que enabled vaut true, alors on change de salle.
-	public Boolean enabled;					//autorise ou pas le changement de salle. Attribut commun ï¿½ celui de la case porte associï¿½e.
+	private Orientation orientation;
+	//TODO remove unused argument : rectangleCollision
+	//public Rectangle rectangleCollision;	//Si le hï¿½ro marche sur ce rectangle et que enabled vaut true, alors on change de salle.
+	//public Boolean enabled;					//autorise ou pas le changement de salle. Attribut commun ï¿½ celui de la case porte associï¿½e.
 	
 	/**
 	 * Constructeur de link lorsque tous les ï¿½lï¿½ments sont connus d'avance.
@@ -32,7 +30,7 @@ public class Link {
 	 * @param o l'orientation du lien. ie la position de la porte dans la salle origine
 	 * @param enabled
 	 */
-	public Link(SalleAbs destination, Vecteur desVecteur, SalleAbs origine,Vecteur origVecteur, Orientation o, Boolean enabled) {
+	public Link(Salle destination, Vecteur desVecteur, Salle origine,Vecteur origVecteur, Orientation o) {
 		this.destinationSalle = destination;
 		this.destinationCase = desVecteur;
 		
@@ -40,9 +38,9 @@ public class Link {
 		this.origineCase = origVecteur;
 		
 		this.orientation = o;
-		this.enabled = enabled;
 		
-		this.rectangleCollision=origine.cases[(int)origineCase.x][(int)origineCase.y].collision;
+		//TODO remove unused bit
+		//this.rectangleCollision=origine.cases[(int)origineCase.x][(int)origineCase.y].collision;
 	}
 	
 	/**
@@ -52,8 +50,7 @@ public class Link {
 	 * @param o l'orientation du lien. ie la position de la porte dans la salle origine
 	 * @param enabled
 	 */
-	public Link(SalleAbs origine,Vecteur origVecteur, Orientation o, Boolean enabled){
-		this.enabled = enabled;
+	public Link(Salle origine,Vecteur origVecteur, Orientation o){
 		
 		this.destinationSalle=null;
 		
@@ -62,8 +59,8 @@ public class Link {
 		
 		this.origineCase=origVecteur;
 		
-		
-		this.rectangleCollision=origine.cases[(int)origineCase.x][(int)origineCase.y].collision;
+		//TODO remove unused bit
+		//this.rectangleCollision=origine.cases[(int)origineCase.x][(int)origineCase.y].collision;
 	}
 	
 	
@@ -79,25 +76,26 @@ public class Link {
 		return z;
 	}
 	
+	//TODO remove unused method
 	/**
 	 * Methode qui vï¿½rifie si le hï¿½ros a le droit de changer de salle
 	 * ie, il marche sur le tï¿½lï¿½porteur et le tï¿½lï¿½porteur est "enabled".
 	 * @param p le hero ï¿½ faire (ou pas) changer de salle
 	 * @return true si p est ï¿½ changer de salle, false sinon.
 	 */
-	public boolean mustChangeRoom(Heros p){
-		return this.enabled && p.enCollision(rectangleCollision);
-	}
+	//public boolean mustChangeRoom(Heros p){
+		//return this.enabled && p.enCollision(rectangleCollision);
+	//}
 	
 	
 	
 	/**
-	 * Mï¿½thode utilisï¿½e quand une salle de destination n'a pas ï¿½tï¿½ dï¿½finie dans le constructeur
+	 * Mï¿éthode utilisée quand une salle de destination n'a pas été définie dans le constructeur
 	 * ou que l'on veut chager la destination d'une salle.
 	 * @param des salle de destination
 	 * @param desVecteur vecteur vers la case de destination dans la salle destination
 	 */
-	public void setDestination(SalleAbs des, Vecteur desVecteur){
+	public void setDestination(Salle des, Vecteur desVecteur){
 		this.destinationSalle = des;
 		this.destinationCase = desVecteur;
 	}
@@ -109,5 +107,26 @@ public class Link {
 		}else{
 			return ("Lien de salle "+origineSalle.roomNumber+" vers null");
 		}
+	}
+	
+	public Vecteur getDestinationVecteur(){
+		return new Vecteur(this.destinationCase.x, this.destinationCase.y);
+	}
+	
+	public Salle getSalleDestination(){
+		return destinationSalle;
+	}
+	
+	public Orientation getOrientation(){
+		return this.orientation;
+	}
+	
+	/**
+	 * Gives a reciprocal link. If there exists a link from room A to B, this method creates the link from room B to A
+	 * @param l the link which reciprocal is to be created
+	 * @return a new link which is the reciprocal of that of l
+	 */
+	public static Link getReciprocal(Link l){
+		return new Link(l.origineSalle,l.origineCase, l.destinationSalle, l.destinationCase, Orientation.opposite(l.orientation));
 	}
 }
