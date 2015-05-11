@@ -35,7 +35,7 @@ public class GestionnaireBasique extends GestionnaireSalle {
 
 		
 		Salle sh = null;
-
+		
 		int w = smap.length;
 		int h = smap[0].length;
 
