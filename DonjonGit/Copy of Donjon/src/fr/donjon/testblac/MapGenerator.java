@@ -3,6 +3,9 @@
  */
 package fr.donjon.testblac;
 
+import java.io.File;
+import java.util.LinkedList;
+
 import fr.donjon.cases2.Case;
 import fr.donjon.cases2.CaseDalle;
 import fr.donjon.cases2.CaseHerbe;
@@ -10,6 +13,7 @@ import fr.donjon.cases2.CaseLave;
 import fr.donjon.cases2.CaseRocher;
 import fr.donjon.cases2.CaseWater;
 import fr.donjon.editor.MapFileHandler;
+import fr.donjon.editor.SalleDescription;
 
 
 
@@ -26,12 +30,26 @@ public class MapGenerator {
 
 	}
 
-	public static Case[][] randomMap(){
+	public static Case[][] randomMap(int w, int h){
 
-		MapFileHandler.getMapList();
-
-		return null;
-
+		LinkedList<File> files =  MapFileHandler.getMapList();
+		LinkedList<SalleDescription> sls = new LinkedList<SalleDescription>();
+		
+		for( File f : files){
+			sls.add(MapFileHandler.getFileToDescription(f));
+		}
+		
+		int r = (int) Math.random() * (3 + sls.size() );
+		
+		
+		if( r == 0) return randomChateauLave(w, h);
+		
+		else if (r == 1) return randomChateauRochers(w, h);
+		
+		else if( r == 2 ) return randomForet(w, h);
+		
+		else return sls.get( (r - 3) ).getMatrix();
+		
 	}
 
 	public static Case[][] randomForet(int w, int h){
