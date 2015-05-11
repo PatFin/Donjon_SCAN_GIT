@@ -3,28 +3,28 @@ package fr.donjon.utils;
 import java.awt.Rectangle;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.salles.SalleAbs;
+import fr.donjon.zpoubelle.SalleAbs;
 
 /**
- * Cette class contient la description d'un téléporteur d'une
- * salle à une autre. Chaque salle ontient une LinkedList de link 
+ * Cette class contient la description d'un tï¿½lï¿½porteur d'une
+ * salle ï¿½ une autre. Chaque salle ontient une LinkedList de link 
  * @author Patrick
- *		Il pourrait être possible de la faire fonctionner avec des vecteurs. Une "amélioration" future?
+ *		Il pourrait ï¿½tre possible de la faire fonctionner avec des vecteurs. Une "amï¿½lioration" future?
  */
 public class Link {
 
 	public SalleAbs destinationSalle;				//la destination du lien, l'autre salle.
-	public Vecteur 	destinationCase;				//coordonnées de la case de destination.
+	public Vecteur 	destinationCase;				//coordonnï¿½es de la case de destination.
 	
 	public SalleAbs origineSalle;
 	public Vecteur origineCase;
 	
 	public Orientation orientation;
-	public Rectangle rectangleCollision;	//Si le héro marche sur ce rectangle et que enabled vaut true, alors on change de salle.
-	public Boolean enabled;					//autorise ou pas le changement de salle. Attribut commun à celui de la case porte associée.
+	public Rectangle rectangleCollision;	//Si le hï¿½ro marche sur ce rectangle et que enabled vaut true, alors on change de salle.
+	public Boolean enabled;					//autorise ou pas le changement de salle. Attribut commun ï¿½ celui de la case porte associï¿½e.
 	
 	/**
-	 * Constructeur de link lorsque tous les éléments sont connus d'avance.
+	 * Constructeur de link lorsque tous les ï¿½lï¿½ments sont connus d'avance.
 	 * @param destination la salle de destination
 	 * @param desVecteur le vecteur qui indique la case de destination
 	 * @param origine la salle d'origine
@@ -46,7 +46,7 @@ public class Link {
 	}
 	
 	/**
-	 * Constructeur utilisé quand on ne connait pas la salle de destination
+	 * Constructeur utilisï¿½ quand on ne connait pas la salle de destination
 	 * @param origine la salle d'origine
 	 * @param origVecteur le vecteur qui pointe vers la case qui sert de porte
 	 * @param o l'orientation du lien. ie la position de la porte dans la salle origine
@@ -68,7 +68,7 @@ public class Link {
 	
 	
 	/**
-	 * Indique si une salle de destination a été spécifiée
+	 * Indique si une salle de destination a ï¿½tï¿½ spï¿½cifiï¿½e
 	 * @return true si destination n'est pas 'null'. false sinon.
 	 */
 	public boolean hasDestination(){
@@ -80,10 +80,10 @@ public class Link {
 	}
 	
 	/**
-	 * Methode qui vérifie si le héros a le droit de changer de salle
-	 * ie, il marche sur le téléporteur et le téléporteur est "enabled".
-	 * @param p le hero à faire (ou pas) changer de salle
-	 * @return true si p est à changer de salle, false sinon.
+	 * Methode qui vï¿½rifie si le hï¿½ros a le droit de changer de salle
+	 * ie, il marche sur le tï¿½lï¿½porteur et le tï¿½lï¿½porteur est "enabled".
+	 * @param p le hero ï¿½ faire (ou pas) changer de salle
+	 * @return true si p est ï¿½ changer de salle, false sinon.
 	 */
 	public boolean mustChangeRoom(Heros p){
 		return this.enabled && p.enCollision(rectangleCollision);
@@ -92,7 +92,7 @@ public class Link {
 	
 	
 	/**
-	 * Méthode utilisée quand une salle de destination n'a pas été définie dans le constructeur
+	 * Mï¿½thode utilisï¿½e quand une salle de destination n'a pas ï¿½tï¿½ dï¿½finie dans le constructeur
 	 * ou que l'on veut chager la destination d'une salle.
 	 * @param des salle de destination
 	 * @param desVecteur vecteur vers la case de destination dans la salle destination

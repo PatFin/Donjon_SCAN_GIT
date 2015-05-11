@@ -1,4 +1,4 @@
-package fr.donjon.classes.salles;
+package fr.donjon.zpoubelle;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -18,9 +18,6 @@ import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
-import fr.donjon.zpoubelle.Case;
-import fr.donjon.zpoubelle.Case_Obstacle;
-import fr.donjon.zpoubelle.Case_void;
 
 public abstract class SalleAbs implements EcouteurClavier {
 

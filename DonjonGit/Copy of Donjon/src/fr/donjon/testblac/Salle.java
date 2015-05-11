@@ -5,9 +5,12 @@ import fr.donjon.cases2.Case;
 import fr.donjon.cases2.CaseMur;
 import fr.donjon.cases2.CasePorte;
 import fr.donjon.cases2.CaseVide;
+import fr.donjon.cases2.CollisionObstacle;
+import fr.donjon.classes.BouleDeGlace;
 import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Personnage;
+import fr.donjon.classes.Projectile;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -25,12 +28,13 @@ public abstract class Salle implements EcouteurClavier{
 	int width;
 	int height;
 	
-	public static int instances=0;
+	public static int instances = 0;
 	public int roomNumber;
 
 	public Case[][] cases;
 	public ArrayList<CasePorte> portes;
 	public ArrayList <Personnage> personnages;
+	public ArrayList<Projectile> projectiles;
 	public Heros hero;	
 
 	public EcouteurChangementSalle ecouteur;
@@ -51,6 +55,8 @@ public abstract class Salle implements EcouteurClavier{
 
 		this.portes = new ArrayList<CasePorte>();
 
+		this.projectiles = new ArrayList<Projectile>();
+		
 		this.hero = new Heros(0, 0);
 
 		this.roomNumber = instances++;
@@ -79,13 +85,11 @@ public abstract class Salle implements EcouteurClavier{
 		this(h, new ArrayList<Personnage>(), cases);
 	}
 
-	
 	public void passerLaPorte(Vecteur dir){
 		ecouteur.changerDeSalle(dir);
 	}
 
 	public void trouverLesPortes(){
-
 
 		for(int y = 0 ; y < height ; y++){
 			for(int x = 0 ; x < width ; x++){
@@ -134,6 +138,11 @@ public abstract class Salle implements EcouteurClavier{
 
 		Personnage z;
 
+		//Update des projectiles
+		for( Projectile p : projectiles){
+			p.update(temps);
+		}
+		
 		//Parcours des personnages
 		for(int i=0;i<personnages.size();i++){
 			z=personnages.get(i);
@@ -153,15 +162,32 @@ public abstract class Salle implements EcouteurClavier{
 
 				//Collisions avec les cases
 				for(int x = 0 ; x < width ; x++){
-					for(int y = 0 ; y < height ; y++){ 
-						if(z.collisionDecor.intersects(cases[x][y].limites))cases[x][y].inCollision(z);
+					for(int y = 0 ; y < height ; y++){
+						
+						//Collision case personnage
+						if(z.collisionDecor.intersects(cases[x][y].limites)) cases[x][y].inCollision(z);
 						else cases[x][y].nonCollision(z);
+						
+						//Collision case-projectile
+						for(Projectile p : projectiles){
+							if(p.collisionDecor.intersects(cases[x][y].limites)) cases[x][y].inCollision(p);
+						}
 					}
 				}
+				
+				//Collision projectiles-persos
+				for( Projectile p : projectiles){
+					if(p.collisionArmes.intersects(z.collisionArmes))p.inCollision(z);
+				}
+				
 
 			}//Fin de la boucle sur les personnages
 
 			if(!z.living)personnages.remove(z); //(on enterre les morts)
+		}
+		
+		for(int i = 0 ; i< projectiles.size() ; i++){
+			if(!projectiles.get(i).living)projectiles.remove(projectiles.get(i));
 		}
 
 		checkFinie();
@@ -238,7 +264,7 @@ public abstract class Salle implements EcouteurClavier{
 	 */
 	@Override
 	public void attaque(Orientation o) {
-		this.hero.attaquer(personnages, null, o);
+		this.hero.attaquer(personnages, projectiles, o);
 	}
 
 	/**

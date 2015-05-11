@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
-import fr.donjon.utils.Effet;
 import fr.donjon.utils.EtatArme;
 import fr.donjon.utils.Type;
 import fr.donjon.utils.Vecteur;

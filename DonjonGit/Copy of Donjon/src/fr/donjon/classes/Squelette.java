@@ -2,7 +2,6 @@ package fr.donjon.classes;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatPersonnage;
@@ -28,6 +27,7 @@ public class Squelette extends Ennemis {
 		
 		target = cible;
 		
+		
 		animationN = new Animation(src, new Vecteur(64, 64),0,9,(long)(VIT/COEFF*100));
 		animationO = new Animation(src, new Vecteur(64, 64),1,9,(long)(VIT/COEFF*100));
 		animationS = new Animation(src, new Vecteur(64, 64),2,9,(long)(VIT/COEFF*100));
@@ -37,7 +37,6 @@ public class Squelette extends Ennemis {
 		NIV = level;
 	}
 	
-	//TODO utiliser un vecteur plutot qu'une orientation
 	//calculer le vecteur Squellette Personnage (voir methode marche de heros)
 	public void marcher(Vecteur v){
 		
@@ -103,7 +102,7 @@ public class Squelette extends Ennemis {
 
 	@Override
 	public void attaquer(ArrayList<Personnage> cibles,
-			LinkedList<Projectile> projectiles, Orientation o) {
+			ArrayList<Projectile> projectiles, Orientation o) {
 		
 	}
 

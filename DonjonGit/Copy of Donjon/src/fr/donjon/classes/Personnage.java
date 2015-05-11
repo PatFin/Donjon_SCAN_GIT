@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.Effet;
@@ -178,7 +177,7 @@ public abstract class Personnage extends Deplacable{
 	 * @param projectiles	Tableau de projectiles de la salle 
 	 * @param o				Orientation de l'attaque
 	 */
-	public abstract void attaquer(ArrayList<Personnage> cibles, LinkedList<Projectile> projectiles, Orientation o );
+	public abstract void attaquer(ArrayList<Personnage> cibles, ArrayList<Projectile> projectiles, Orientation o );
 
 	/**
 	 * A modifier par la suite

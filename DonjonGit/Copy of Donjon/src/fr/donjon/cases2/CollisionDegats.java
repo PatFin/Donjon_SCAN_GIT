@@ -4,6 +4,7 @@
 package fr.donjon.cases2;
 
 import fr.donjon.classes.Personnage;
+import fr.donjon.classes.Projectile;
 
 /**
  * @author Baptiste
@@ -58,6 +59,13 @@ public class CollisionDegats implements CollisionPattern {
 	public void nonCollision(Personnage p) {
 		if(time != -1)time = -1;
 
+	}
+
+
+	@Override
+	public void enCollision(Projectile p) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
