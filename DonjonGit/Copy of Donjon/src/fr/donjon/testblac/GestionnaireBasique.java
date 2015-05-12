@@ -3,7 +3,6 @@ package fr.donjon.testblac;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Squelette;
 import fr.donjon.utils.Orientation;
-import fr.donjon.utils.Vecteur;
 
 
 /**
@@ -27,6 +26,10 @@ public class GestionnaireBasique extends GestionnaireSalle {
 	}
 
 
+	/**
+	 * Fournit une nouvelle salle pour ce genre de donjon.
+	 * Il s'agit d'un carré 3x3.
+	 */
 	@Override
 	public Salle fournirNouvelleSalle(int x, int y) {
 

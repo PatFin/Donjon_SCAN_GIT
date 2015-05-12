@@ -75,9 +75,14 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 
+	/**
+	 * Change le personnage de salle vers celle située à la salle située aux coordonnées actuelles+dir
+	 * @param dir vecteur de la salle actuelle vers la nouvelle salle actuelle
+	 * @return true si le changement a été effectué, false sinon.
+	 */
 	public boolean changementSalle(Vecteur dir){
 		
-		Vecteur npos = position.ajoute(dir); //les coordonnées de la prochaine salle dans le tableau.
+		Vecteur npos = position.ajoute(dir); //les coordonnées de la prochaine salleActuelle dans le tableau.
 
 		if( !(npos.x >= 0 && npos.x < smap.length && npos.y >= 0  && npos.y < smap[0].length) )return false; //On tombe en dehors du tableau de salle, on renvoi false
 

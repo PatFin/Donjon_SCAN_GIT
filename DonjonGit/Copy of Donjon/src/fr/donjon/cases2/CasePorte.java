@@ -15,9 +15,6 @@ public class CasePorte extends Case {
 	
 	Orientation o;
 	
-	/**
-	 * @param ImageName
-	 */
 	public CasePorte() {
 		super(src);
 		this.setCollision(new CollisionObstacle());
