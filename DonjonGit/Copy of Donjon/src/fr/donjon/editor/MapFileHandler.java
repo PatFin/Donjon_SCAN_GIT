@@ -127,17 +127,31 @@ public class MapFileHandler {
 	 */
 	public static SalleDescription getFileToDescription(File f){
 
-		if(f.exists() && f.getName().endsWith(extension)){
-
+		try{
 			int index = Integer.parseInt( f.getName().split("\\.")[0] );
 
 			return getSalleDescriptionFromFile(index);
-
-		}else{
+		}catch(Exception e){
 			System.out.println("This file is not a readable map file ("+f.getName() + ")");
 			return null;
 		}
-
+		
+		
+		
+		
+		//TODO replace by a try/catch? //It seems to work ... Baptiste?
+		/**
+*		if(f.exists() && f.getName().endsWith(extension)){
+*
+*			int index = Integer.parseInt( f.getName().split("\\.")[0] );
+*
+*			return getSalleDescriptionFromFile(index);
+*
+*		}else{
+*			System.out.println("This file is not a readable map file ("+f.getName() + ")");
+*			return null;
+*		}
+*/
 	}
 
 	/**

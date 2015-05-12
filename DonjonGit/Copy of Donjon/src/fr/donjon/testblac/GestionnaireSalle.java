@@ -191,6 +191,24 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 		this.centreCamera = centreCamera;
 	}
 	
+	
+	/////////////////////////////////////
+	//INTERFACE ECOUTEURChangementSalle//
+	/////////////////////////////////////
+	
+	//TODO changer cette méthode et y mettre le contenu de la méthode changementSalle actuelle
+	//Il n'y a pas d'intérêt à avoir ce genre de doublon. 
+	//Dans les gestionnaire dérivant on pourra alors éventuellement override cette méthode.
+	/**
+	 * Override de la méthode changerDeSalle de EcouteurChangementSalle
+	 * On appelle la méthode du gestionnaire.
+	 */
+	@Override
+	public void changerDeSalle(Vecteur dir) {
+		this.changementSalle(dir);
+	}
+	
+	
 
 	/////////////////////////////////////
 	//INTERFACE ECOUTEUR CLAVIER/////////

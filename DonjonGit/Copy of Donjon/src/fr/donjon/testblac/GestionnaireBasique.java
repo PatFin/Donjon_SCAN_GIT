@@ -13,6 +13,9 @@ import fr.donjon.utils.Vecteur;
 public class GestionnaireBasique extends GestionnaireSalle {
 
 
+	/**
+	 * Constructeur
+	 */
 	public GestionnaireBasique() {
 		super( new Salle2PA(new Heros(100,100), 15,10, 
 				Orientation.EST ), 
@@ -21,12 +24,6 @@ public class GestionnaireBasique extends GestionnaireSalle {
 		
 		this.sActuelle.setEcouteur(this);
 		this.sActuelle.activerLesPortes(true);
-	}
-
-
-	@Override
-	public void changerDeSalle(Vecteur dir) {
-		changementSalle(dir);
 	}
 
 

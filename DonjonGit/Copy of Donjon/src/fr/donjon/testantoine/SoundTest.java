@@ -11,7 +11,7 @@ public class SoundTest{
 		 try
 		    {
 		        clip = AudioSystem.getClip();
-		        clip.open(AudioSystem.getAudioInputStream(new File("/Users/chwat/git/Donjon_SCAN_GIT/DonjonGit/Copy of Donjon/Ressources/Sounds/RPG Theme.wav")));
+		        clip.open(AudioSystem.getAudioInputStream(new File("Ressources/Sounds/RPG Theme.wav")));
 		    }
 		    catch (Exception exc)
 		    {
