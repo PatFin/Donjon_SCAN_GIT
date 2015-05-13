@@ -10,6 +10,7 @@ import fr.donjon.classes.Heros;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
 import fr.donjon.utils.EcouteurClavier;
+import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
@@ -83,8 +84,12 @@ public abstract class Salle implements EcouteurClavier{
 		this(h, new ArrayList<Personnage>(), cases);
 	}
 
-	public void passerLaPorte(Vecteur dir){
-		ecouteur.changerDeSalle(dir);
+	/**
+	 * Methode appelée par les cases portes quand le héros marche dessus.
+	 * @param l le lien de la porte
+	 */ 
+	public void passerLaPorte(Link l){
+		ecouteur.changerDeSalle(l);
 	}
 
 	public void trouverLesPortes(){

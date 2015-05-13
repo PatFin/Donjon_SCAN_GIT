@@ -83,4 +83,8 @@ public enum Orientation {
 			return Vecteur.vNull;
 		}
 	}
+
+	public Vecteur getUnitVector() {
+		return Orientation.getUnitVector(this);
+	}
 }
