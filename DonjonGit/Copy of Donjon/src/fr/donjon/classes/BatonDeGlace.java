@@ -84,6 +84,7 @@ public class BatonDeGlace extends Arme{
 
 		}
 		
+		
 		projectiles.add(new BouleDeGlace(lanceur.image.x, lanceur.image.y, v));
 
 		

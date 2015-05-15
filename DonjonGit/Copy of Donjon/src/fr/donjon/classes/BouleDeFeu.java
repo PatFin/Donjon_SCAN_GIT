@@ -52,8 +52,25 @@ public class BouleDeFeu extends Projectile {
 
 	@Override
 	public void update(long t) {
+		if(!living)return;
 		
+		Vecteur pos = new Vecteur(image.x, image.y).ajoute(vvitesse.multiplie(vitDeplacement));
+		
+		setLocation( (int)pos.x, (int)pos.y );
 
 	}
+	
+	@Override
+	public void inCollision(Personnage p) {
+		
+		if(!living) return;
+		if(p.type == this.type)return;
+
+
+		p.receiveDammages(degats);
+		//living = false;
+		
+	}
+	
 
 }
