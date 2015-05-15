@@ -1,7 +1,6 @@
 package fr.donjon.testblac;
-import java.util.ArrayList;
-import java.util.EnumMap;
 
+import java.util.ArrayList;
 import fr.donjon.cases2.Case;
 import fr.donjon.cases2.CaseMur;
 import fr.donjon.cases2.CasePorte;
@@ -42,6 +41,12 @@ public abstract class Salle implements EcouteurClavier{
 	boolean finie;
 	
 
+	/**
+	 * Constructeur
+	 * ATTENTION, les cases qui composent la salle n'ont pas été définies!
+	 * @param w largeur de la salle
+	 * @param h hauteur de la salle
+	 */
 	public Salle(int w, int h) {
 
 		this.cases = new Case[w][h];
@@ -64,6 +69,13 @@ public abstract class Salle implements EcouteurClavier{
 		finie = false;
 	}
 
+	/**
+	 * Constructeur
+	 * Il est possible d'afficher cette salle après avoir utilisé ce constructeur 
+	 * @param h le héros contrôlé par le personnage
+	 * @param persos liste des personnages de la salle
+	 * @param c tableau de cases de la salle
+	 */
 	public Salle(Heros h, ArrayList<Personnage> persos, Case[][] c){
 		this(c.length, c[0].length);
 
@@ -78,21 +90,34 @@ public abstract class Salle implements EcouteurClavier{
 		this.portes = new ArrayList<CasePorte>();
 
 		trouverLesPortes();
-
 	}
 
+	/**
+	 * Constructeur
+	 * On initialise les cases de la salle et le heros que le joueur contrôle
+	 * @param h héros contrôlé par le joueur
+	 * @param cases le tableau de cases de la salle
+	 */
 	public Salle(Heros h , Case[][] cases){
 		this(h, new ArrayList<Personnage>(), cases);
 	}
 
 	/**
 	 * Methode appelée par les cases portes quand le héros marche dessus.
-	 * @param l le lien de la porte
+	 * Cela va appeler la méthode correspondante dans le gestionnaire de salle auquel la salle appartient.
+	 * @param l le lien de la porte sur laquelle le héro marche
 	 */ 
 	public void passerLaPorte(Link l){
 		ecouteur.changerDeSalle(l);
 	}
 
+	/**
+	 * Permet de détecter les portes et de les stocker dans une liste.
+	 * Il est nécessaire d'appeler cette méthode après l'ajout des portes.
+	 * Sans quoi il ne sera pas possible de changer de salle car le booléen 
+	 * passageAutorise des casePorte ne pourra pas être changé en true par la
+	 * méthode activerLesPortes
+	 */
 	public void trouverLesPortes(){
 
 		for(int y = 0 ; y < height ; y++){
@@ -106,8 +131,8 @@ public abstract class Salle implements EcouteurClavier{
 	}
 
 	/**
-	 * On met la valeur a dans l'autorisation de passage de toutes les portes.
-	 * @param a
+	 * On met la valeur a dans l'autorisation de passage de toutes les portes de la salle.
+	 * @param a true si on veut rendre le passage possible, false sinon.
 	 */
 	public void activerLesPortes(boolean a){
 		for(int i=0; i<portes.size(); i++){
@@ -116,7 +141,11 @@ public abstract class Salle implements EcouteurClavier{
 	}
 	
 	
-	
+	/**
+	 * Créé toutes les portes dans la salle s'il peut exister une salle à côté de cete instance.
+	 * Voir dans la classe SalleQuatre pour plus de précisions
+	 * @param sMap le tableau de salles
+	 */
 	public abstract void createPorteSalleVoisines(Salle[][] sMap);
 
 	/**
@@ -147,14 +176,27 @@ public abstract class Salle implements EcouteurClavier{
 		return cs;
 	}
 
+	/**
+	 * Mutateur
+	 * @param e l'écouteur qui doit être le même que celui du gestionnaire
+	 */
 	public void setEcouteur(EcouteurChangementSalle e){
 		this.ecouteur = e;
 	}
 
+	/**
+	 * Acceseur
+	 * @param v position de la case dans la salle
+	 * @return la case à la position v dans le salle
+	 */
 	public Case getCase(Vecteur v){
 		return cases[(int)v.x][(int)v.y];
 	}
 
+	/**
+	 * Anime les objets de la salle
+	 * @param temps indispensable pour les animations des objets
+	 */
 	public void update(long temps){
 
 		Personnage z;
@@ -204,23 +246,34 @@ public abstract class Salle implements EcouteurClavier{
 
 			}//Fin de la boucle sur les personnages
 
+			//TODO générer les loots!
 			if(!z.living)personnages.remove(z); //(on enterre les morts)
 		}
 		
+		//On retire les projectiles qui ne "vivent" plus
 		for(int i = 0 ; i< projectiles.size() ; i++){
 			if(!projectiles.get(i).living)projectiles.remove(projectiles.get(i));
 		}
 
-		checkFinie();
+		checkFinie(); //Si tous les ennemis ont été détruits, on rends la traversée des portes possible
 
 		//We sort the list of characters such that they superimpose correctly in the room
 		sortCharacters();
 	}
 
+	/**
+	 * Permet d'ajouter un ennemis à la salle
+	 * @param e l'ennemi à ajouter
+	 */
 	public void addEnemy(Ennemis e) {
 		personnages.add(e);
 	}
 
+	/**
+	 * Méthode de tri
+	 * Pour que les images des personnages se superposent correctement, il faut qu'ils soient triés par coordonnées y croissante.
+	 * Cette méthode est donc appelée dans update()
+	 */
 	private void sortCharacters(){
 		//Putting the elements in an array
 		Personnage [] a = new Personnage[personnages.size()];
@@ -249,7 +302,10 @@ public abstract class Salle implements EcouteurClavier{
 
 	}
 
-	private void fillEmptyWithVoid(){
+	/**
+	 * Rempli les cases non définies de la salle par des cases noires/void
+	 */
+	public void fillEmptyWithVoid(){
 		for(int x=0; x<width;x++){
 			for(int y=0;y<height;y++){
 
@@ -263,8 +319,8 @@ public abstract class Salle implements EcouteurClavier{
 	
 	/**
 	 * Donne une case porte de l'orientation donnée en parametre
-	 * @param o
-	 * @return
+	 * @param o l'orientation de la porte souhaitées
+	 * @return une CasePorte de la bonne orientation
 	 */
 	public CasePorte getPorte(Orientation o){
 		for(CasePorte c : this.portes){
@@ -276,6 +332,10 @@ public abstract class Salle implements EcouteurClavier{
 	}
 	
 
+	/**
+	 * On vérifie si le nombre d'ennemis est nul et que seul le héros contrôlé par le joueur reste dans la salle.
+	 * Si c'est le cas on rends le passage vers les autres salles possible
+	 */
 	public void checkFinie(){
 		if(personnages.size() == 1 && !finie){
 			finie = true;
@@ -296,48 +356,54 @@ public abstract class Salle implements EcouteurClavier{
 	///INTERFACE ECOUTE//////////////////
 	/////////////////////////////////////
 
-	/**
-	 * Method inherited from EcouteurClavier
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
 	 */
 	@Override
 	public void attaque(Orientation o) {
 		this.hero.attaquer(personnages, projectiles, o);
 	}
 
-	/**
-	 * Method inherited from EcouteurClavier
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopAttaque()
 	 */
 	@Override
 	public void stopAttaque() {
 
 	}
 
-	/**
-	 * Method inherited from EcouteurClavier
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
 	 */
 	@Override
 	public void deplacement(Vecteur v) {
 		this.hero.marcher(v);
 	}
 
-	/**
-	 * Method inherited from EcouteurClavier
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
 	 */
 	@Override
 	public void utiliseObjet(int reference) {
 		this.hero.utiliserObjet(reference);
 	}
 
-	/**
-	 * Method inherited from EcouteurClavier
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
 	 */
 	@Override
 	public void togglePause() {
 
 	}
 
-	/**
-	 * Method inherited from EcouteurClavier
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
 	 */
 	@Override
 	public void stopDeplacement() {

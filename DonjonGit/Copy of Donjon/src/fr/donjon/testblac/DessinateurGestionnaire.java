@@ -31,9 +31,9 @@ public class DessinateurGestionnaire {
 
 	int salleW;
 	int salleH;
-	/**
-	 * 
-	 */
+	
+	
+
 	public DessinateurGestionnaire(Rectangle ecran, GestionnaireSalle g) {
 
 		this.gest = g;
