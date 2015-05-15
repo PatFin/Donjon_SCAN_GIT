@@ -35,7 +35,7 @@ public class Case {
 	public Case( String src, boolean e, CollisionPattern cp){
 
 		image = ImageManager.getImage(src,this.getClass().getSimpleName());
-
+		
 		this.enabled = e;
 
 		this.collision = cp;
@@ -77,9 +77,11 @@ public class Case {
 		if(enabled && collision != null)collision.nonCollision(p);
 	}
 
+	
 	public Case clone(){
 		return null;
 	}
+	
 
 	public void setEnabled(boolean b){
 		this.enabled = b;

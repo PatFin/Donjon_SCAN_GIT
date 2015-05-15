@@ -12,6 +12,7 @@ import fr.donjon.cases2.CaseHerbe;
 import fr.donjon.cases2.CaseLave;
 import fr.donjon.cases2.CaseLiane;
 import fr.donjon.cases2.CaseRocher;
+import fr.donjon.cases2.CaseSwitch;
 import fr.donjon.editor.MapFileHandler;
 import fr.donjon.editor.SalleDescription;
 
@@ -71,7 +72,10 @@ public class MapGenerator {
 
 		map.addProba( new CaseRocher() , 0.10 );
 
-		map.addProba( new CaseDalle() , 0.80 );
+		map.addProba( new CaseDalle() , 0.70 );
+		
+		//TODO remove this bit.
+		map.addProba(new CaseSwitch(), 0.10);
 
 		return generateFromProbabilities(map, w, h);
 	}
