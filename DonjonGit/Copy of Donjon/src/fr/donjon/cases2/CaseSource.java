@@ -4,7 +4,6 @@
 package fr.donjon.cases2;
 
 import java.awt.Graphics;
-import java.awt.Image;
 
 import fr.donjon.utils.ImageManager;
 import fr.donjon.utils.Vecteur;

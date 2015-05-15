@@ -3,8 +3,6 @@ package fr.donjon.cases2;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import fr.donjon.classes.Personnage;
-
 public class CaseSwitch extends Case {
 
 	final static String image = "Case_dalle.png";
@@ -29,9 +27,6 @@ public class CaseSwitch extends Case {
 		g.fillRect(x*TAILLE, y*TAILLE, TAILLE, TAILLE);
 	}
 	
-	public void inCollision(Personnage p){
-		this.colliSwitch.enCollision(p);
-	}
 	
 	@Override
 	public Case clone(){

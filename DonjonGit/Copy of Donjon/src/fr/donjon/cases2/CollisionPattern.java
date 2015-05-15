@@ -5,9 +5,13 @@ import fr.donjon.classes.Projectile;
 
 public interface CollisionPattern {
 
-	public void enCollision(Personnage p);
+	public void persoCollision(Personnage p);
 	
-	public void enCollision(Projectile p);
+	public void persoEnterCase(Personnage p);
 	
-	public void nonCollision(Personnage p);
+	public void projEnterCase(Projectile p);
+	
+	public void projLeaveCase(Projectile p);
+	
+	public void persoLeaveCase(Personnage p);
 }

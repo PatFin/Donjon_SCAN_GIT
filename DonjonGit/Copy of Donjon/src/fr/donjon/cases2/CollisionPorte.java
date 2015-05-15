@@ -16,9 +16,6 @@ import fr.donjon.utils.Vecteur;
  */
 public class CollisionPorte implements CollisionPattern {
 
-	//TODO remove unused bits
-	
-	//Vecteur directionSalle;
 	public Link lien;
 	
 	/**
@@ -36,20 +33,29 @@ public class CollisionPorte implements CollisionPattern {
 
 
 	@Override
-	public void enCollision(Personnage p) {
+	public void persoCollision(Personnage p) {
+	}
+
+
+	@Override
+	public void persoEnterCase(Personnage p) {
 		lien.getSalleOrigine().passerLaPorte(lien);
 	}
 
 
 	@Override
-	public void nonCollision(Personnage p) {
-		
+	public void projEnterCase(Projectile p) {
+		p.living = false;
 	}
 
 
 	@Override
-	public void enCollision(Projectile p) {
-		p.living = false;
+	public void projLeaveCase(Projectile p) {
+	}
+
+
+	@Override
+	public void persoLeaveCase(Personnage p) {
 	}
 
 }

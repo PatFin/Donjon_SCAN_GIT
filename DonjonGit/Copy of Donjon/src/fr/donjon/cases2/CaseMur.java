@@ -20,10 +20,7 @@ public class CaseMur extends Case{
 		super(image,true, new CollisionObstacle());
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.cases2.Case#clone()
-	 */
+	
 	@Override
 	public Case clone() {
 		return new CaseMur();

@@ -40,9 +40,9 @@ public class CasePorte extends Case {
 	}
 	
 	/**
-	 * Constructeur utilisé quand on créé le lien réciproque de la nouvelle salleActuelle vers la salle précédente.
+	 * Constructeur utilisï¿½ quand on crï¿½ï¿½ le lien rï¿½ciproque de la nouvelle salleActuelle vers la salle prï¿½cï¿½dente.
 	 * On connait alors le lien de A->B. 
-	 * @param l le lien reciproque de B->A (voir méthode static de Link)
+	 * @param l le lien reciproque de B->A (voir mï¿½thode static de Link)
 	 */
 	public CasePorte(Link l){
 		super(src);
@@ -52,7 +52,7 @@ public class CasePorte extends Case {
 	
 	
 	/**
-	 * Methode utilisée pour créer le lien vers la salle suivante.
+	 * Methode utilisï¿½e pour crï¿½er le lien vers la salle suivante.
 	 * @param des
 	 */
 	public void setDestination(CasePorte des){
@@ -73,7 +73,7 @@ public class CasePorte extends Case {
 		System.out.println(passageAutorise);
 		if(passageAutorise){
 			//Alors on change de salle
-			collisionPorte.enCollision(p);
+			collisionPorte.persoEnterCase(p);
 		}else{
 			//La porte se comporte comme un obstacle
 			super.inCollision(p);

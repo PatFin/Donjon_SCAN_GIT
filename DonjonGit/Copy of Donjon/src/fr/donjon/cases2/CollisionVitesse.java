@@ -25,34 +25,41 @@ public class CollisionVitesse implements CollisionPattern {
 	}
 
 
+	
 	@Override
-	public void enCollision(Personnage p) {
-
-		if(actif) return;
-
-		else{
-			actif = true;
-			//p.stats.vit += vitesse;
-		}
-
-
-
-	}
-
-
-	@Override
-	public void nonCollision(Personnage p) {
+	public void persoEnterCase(Personnage p) {
+		// TODO Auto-generated method stub
 		
-		if(actif){
-			actif = false;
-			//p.stats.vit -= vitesse;
-		}
-
 	}
 
 
 	@Override
-	public void enCollision(Projectile p) {
+	public void projEnterCase(Projectile p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void persoLeaveCase(Personnage p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void projLeaveCase(Projectile p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void persoCollision(Personnage p) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

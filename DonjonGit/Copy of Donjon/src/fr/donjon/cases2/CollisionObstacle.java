@@ -16,23 +16,35 @@ public class CollisionObstacle implements CollisionPattern {
 	 * 
 	 */
 	public CollisionObstacle() {
-	}
-
-	
-	@Override
-	public void enCollision(Personnage p) {
-		p.setLocation((int)p.lPos.x, (int) p.lPos.y);
+		
 	}
 
 
 	@Override
-	public void nonCollision(Personnage p) {
+	public void persoEnterCase(Personnage p) {
 	}
 
 
 	@Override
-	public void enCollision(Projectile p) {
+	public void projEnterCase(Projectile p) {
 		p.living = false;
+	}
+
+
+	@Override
+	public void persoLeaveCase(Personnage p) {
+	}
+
+
+	@Override
+	public void projLeaveCase(Projectile p) {
+		
+	}
+
+
+	@Override
+	public void persoCollision(Personnage p) {
+		p.setLocation(p.lPos);
 	}
 
 }

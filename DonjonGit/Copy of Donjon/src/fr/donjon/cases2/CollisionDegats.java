@@ -31,7 +31,37 @@ public class CollisionDegats implements CollisionPattern {
 
 	}
 
+	@Override
+	public void persoEnterCase(Personnage p) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void projEnterCase(Projectile p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void persoLeaveCase(Personnage p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void projLeaveCase(Projectile p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void persoCollision(Personnage p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*
 	@Override
 	public void enCollision(Personnage p) {
 
@@ -53,19 +83,10 @@ public class CollisionDegats implements CollisionPattern {
 
 		lastTime = System.currentTimeMillis();
 	}
+	*/
 
 
-	@Override
-	public void nonCollision(Personnage p) {
-		if(time != -1)time = -1;
 
-	}
-
-
-	@Override
-	public void enCollision(Projectile p) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

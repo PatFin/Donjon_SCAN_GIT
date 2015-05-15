@@ -13,25 +13,35 @@ public class CollisionSwitch implements CollisionPattern {
 		this.wasSteppedOn=false;
 	}
 
-	//TODO put a time parameter in method enCollision
+	
+
 	@Override
-	public void enCollision(Personnage p) {
+	public void persoCollision(Personnage p) {
+
+	}
+
+	@Override
+	public void persoEnterCase(Personnage p) {
 		if(on){
 			on=false;
 			return;
 		}else{				
 			on=true;
 		}
+		
 	}
 
 	@Override
-	public void enCollision(Projectile p) {
-		//Do nothing
+	public void projEnterCase(Projectile p) {
+		
 	}
 
 	@Override
-	public void nonCollision(Personnage p) {
-		//Do nothing
+	public void projLeaveCase(Projectile p) {
+	}
+
+	@Override
+	public void persoLeaveCase(Personnage p) {
 	}
 
 }

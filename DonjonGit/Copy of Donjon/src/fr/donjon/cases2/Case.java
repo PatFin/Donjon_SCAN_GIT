@@ -3,6 +3,7 @@ package fr.donjon.cases2;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
@@ -22,6 +23,9 @@ public class Case {
 
 	boolean enabled;
 	public CollisionPattern collision;
+	
+	ArrayList<Personnage> persos;
+	ArrayList<Projectile> projs;;
 
 	/**
 	 * Constructeur de la Case 
@@ -35,12 +39,15 @@ public class Case {
 	public Case( String src, boolean e, CollisionPattern cp){
 
 		image = ImageManager.getImage(src,this.getClass().getSimpleName());
-		
+
 		this.enabled = e;
 
 		this.collision = cp;
 
 		this.limites = new Rectangle(Case.TAILLE,Case.TAILLE);
+		
+		persos = new ArrayList<Personnage>();
+		projs = new ArrayList<Projectile>();
 	}
 
 	public void draw(Graphics g, long t, int x, int y){
@@ -66,22 +73,52 @@ public class Case {
 	 * @param z Le personnage qui marche sur la case.
 	 */
 	public void inCollision(Personnage p) {
-		if(enabled && collision != null)collision.enCollision(p);
+		
+		if(enabled && collision != null){
+			collision.persoCollision(p);
+			if(!persos.contains(p)){
+				collision.persoEnterCase(p);
+				persos.add(p);
+			}
+		}
+		
+	}
+	
+	public void nonCollision(Projectile p){
+		
+		if(enabled && collision != null){
+			if(projs.contains(p)){
+				collision.projLeaveCase(p);
+				projs.remove(p);
+			}
+		}
+		
 	}
 	
 	public void inCollision(Projectile p){
-		if(enabled && collision != null)collision.enCollision(p);
+		if(enabled && collision != null){
+			if(!projs.contains(p)){
+				collision.projEnterCase(p);
+				projs.add(p);
+			}
+		}
 	}
 	
 	public void nonCollision(Personnage p){
-		if(enabled && collision != null)collision.nonCollision(p);
+		
+		if(enabled && collision != null){
+			if(persos.contains(p)){
+				collision.persoLeaveCase(p);
+				persos.remove(p);
+			}
+		}
+		
 	}
 
 	
 	public Case clone(){
 		return null;
 	}
-	
 
 	public void setEnabled(boolean b){
 		this.enabled = b;
