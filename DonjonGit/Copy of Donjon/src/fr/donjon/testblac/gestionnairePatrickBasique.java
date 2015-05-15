@@ -7,8 +7,8 @@ import fr.donjon.utils.Vecteur;
 
 public class gestionnairePatrickBasique extends GestionnaireSalle {
 
-	final static int SALLEWIDTH = 10;
-	final static int SALLEHEIGHT = 10;
+	final static int SALLEWIDTH = 8;
+	final static int SALLEHEIGHT = 7;
 	
 	/**
 	 * handles a new donjon. This one is just a grid of size w*h

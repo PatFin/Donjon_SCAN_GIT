@@ -62,7 +62,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		////
 		
 		//gestion = new GestionnaireBasique();
-		gestion = new gestionnairePatrickBasique(3, 3);
+		gestion = new gestionnairePatrickBasique(4,3);
 		dessinateur = new DessinateurSalle(ecran, gestion.sActuelle);
 		
 		startGame();
