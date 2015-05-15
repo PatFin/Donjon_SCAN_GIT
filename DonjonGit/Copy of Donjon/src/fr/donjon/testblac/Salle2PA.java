@@ -80,9 +80,14 @@ public class Salle2PA extends SalleQuatre {
 		return c;
 	}
 	
+	//TODO remove this as it is now handled in the superclass
+	/**
 	@Override
 	public void passerLaPorte(Vecteur dir) {
 		super.passerLaPorte(dir);
+		
+		//TODO remove this as it is now handled in the superclass
+		
 		Vecteur pos = new Vecteur(0,0);
 
 
@@ -104,8 +109,11 @@ public class Salle2PA extends SalleQuatre {
 		}
 
 		hero.setLocation(pos);
+		
 	}
+	*/
 
+	//TODO changer les constructeurs en correspondance avec le nouveau CollisionPorte
 	@Override
 	public void activerLesPortes(boolean a) {
 

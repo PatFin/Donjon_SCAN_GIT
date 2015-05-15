@@ -1,6 +1,6 @@
 package fr.donjon.testblac;
 
-import fr.donjon.utils.Vecteur;
+import fr.donjon.utils.Link;
 
 
 
@@ -11,7 +11,7 @@ public interface EcouteurChangementSalle {
 	 * de changement de Salle et le héro a utiliser dans la nouvelle Salle
 	 * @param l le lien de la salle actuelle vers la prochaine salle
 	 */
-	public void changerDeSalle(Vecteur dir);
+	public void changerDeSalle(Link l);
 	
 	
 }

@@ -121,6 +121,15 @@ public class Link {
 		return this.orientation;
 	}
 	
+	public Salle getSalleOrigine(){
+		return this.origineSalle;
+	}
+	
+	public Vecteur getPalier(){
+		return this.origineCase;
+	}
+	
+	
 	/**
 	 * Gives a reciprocal link. If there exists a link from room A to B, this method creates the link from room B to A
 	 * @param l the link which reciprocal is to be created

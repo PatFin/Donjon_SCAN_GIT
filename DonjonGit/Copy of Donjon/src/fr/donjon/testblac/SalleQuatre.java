@@ -6,16 +6,19 @@ package fr.donjon.testblac;
 import java.util.ArrayList;
 
 import fr.donjon.cases2.Case;
+import fr.donjon.cases2.CaseFendue;
+import fr.donjon.cases2.CasePorte;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Personnage;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
+import fr.donjon.zpoubelle.Case_dalle_sol;
 
 /**
  * @author Baptiste
  *
  */
-public abstract class SalleQuatre extends Salle {
+public class SalleQuatre extends Salle {
 
 	//TODO remove unused bits
 	//final static int W = 15;
@@ -40,31 +43,66 @@ public abstract class SalleQuatre extends Salle {
 	 * Detecte les salles potentielles situées autours de cette instance
 	 * @param sMap le tableau de salle
 	 */
+	@Override
 	public void createPorteSalleVoisines(Salle[][] sMap){
 		Vecteur position = detectSalleDansTableau(sMap);
 		
 		if(position.x>0){
-			this.addDoor(Orientation.OUEST);
+			this.addDoor(Orientation.OUEST, sMap);
 		}
 		if(position.x<sMap.length-1){
-			this.addDoor(Orientation.EST);
+			this.addDoor(Orientation.EST,sMap);
 		}
 
 		if(position.y>0){
-			this.addDoor(Orientation.NORD);
+			this.addDoor(Orientation.NORD, sMap);
 		}
-		if(position.x<sMap[0].length-1){
-			this.addDoor(Orientation.SUD);
+		if(position.y<sMap[0].length-1){
+			this.addDoor(Orientation.SUD, sMap);
 		}
 		
 	}
 	
 	/**
 	 * Créé une case sur un côté de la salle selon l'orientation
-	 * @param o
+	 * @param o Orientation de la porte à créé
+	 * @param smap le tableau de salles du donjon
 	 */
-	private void addDoor(Orientation o) {
-		// TODO Auto-generated method stub
+	public void addDoor(Orientation o, Salle[][] sMap) {
+		int w = cases.length;
+		int h = cases[0].length;
+		
+		//On ajoute une case porte et une case sur laquelle on peut marcher juste devant.
+		switch(o){
+		case NORD:
+			cases[(int)w/2][0] = new CasePorte(this, new Vecteur((int)w/2,1), Orientation.NORD);
+			cases[(int)w/2][1] = new CaseFendue();
+			break;
+		case SUD:
+			cases[(int)w/2][h-1] = new CasePorte(this, new Vecteur((int)w/2, h-2), Orientation.SUD);
+			cases[(int)w/2][h-2] = new CaseFendue();
+			break;
+		case EST:
+			cases[w-1][(int)h/2] = new CasePorte(this, new Vecteur(w-2, (int)h/2), Orientation.EST);
+			cases[w-2][(int)h/2] = new CaseFendue();
+			break;
+		case OUEST:
+			cases[0][(int)h/2] = new CasePorte(this, new Vecteur(1, (int)h/2), Orientation.OUEST);
+			cases[1][(int)h/2] = new CaseFendue();
+			break;
+
+		}
+		super.trouverLesPortes();
+		
+		//Si la salle voisine a déjà été créé, on initialise les liens
+		//TODO
+		Vecteur voisin =  this.detectSalleDansTableau(sMap).ajoute(o.getUnitVector());
+		Salle sVoisine = sMap[(int)voisin.x][(int)voisin.y];
+		if(sVoisine != null){
+			CasePorte cV = sVoisine.getPorte(o.opposite());
+			cV.setDestination(this.getPorte(o));
+			this.getPorte(o).setDestination(cV);
+		}
 		
 	}
 

@@ -6,6 +6,8 @@ package fr.donjon.cases2;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
 import fr.donjon.testblac.Salle;
+import fr.donjon.utils.Link;
+import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
 /**
@@ -14,21 +16,28 @@ import fr.donjon.utils.Vecteur;
  */
 public class CollisionPorte implements CollisionPattern {
 
-	Salle s;
-	Vecteur directionSalle;
+	//TODO remove unused bits
+	
+	//Vecteur directionSalle;
+	public Link lien;
 	
 	/**
 	 * 
 	 */
-	public CollisionPorte(Salle s, Vecteur arrivee) {
-		this.s = s;
-		this.directionSalle = arrivee;
+	public CollisionPorte(Salle s, Vecteur palier, Orientation o) {
+		lien = new Link(s,palier,o);
+		//this.directionSalle = arrivee;
 	}
 
 	
+	public CollisionPorte(Link l) {
+		lien=l;
+	}
+
+
 	@Override
 	public void enCollision(Personnage p) {
-		s.passerLaPorte(directionSalle);
+		lien.getSalleOrigine().passerLaPorte(lien);
 	}
 
 

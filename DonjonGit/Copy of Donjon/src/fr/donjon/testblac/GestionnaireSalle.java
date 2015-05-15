@@ -4,6 +4,7 @@
 package fr.donjon.testblac;
 
 import fr.donjon.utils.EcouteurClavier;
+import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
@@ -77,23 +78,21 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 	/**
 	 * Change le personnage de salle vers celle située à la salle située aux coordonnées actuelles+dir
-	 * @param dir vecteur de la salle actuelle vers la nouvelle salle actuelle
+	 * @param l lien de la salle actuelle vers la nouvelle salle actuelle
 	 * @return true si le changement a été effectué, false sinon.
 	 */
-	public boolean changementSalle(Vecteur dir){
+	public boolean changementSalle(Link l){
 		
-		Vecteur npos = position.ajoute(dir); //les coordonnées de la prochaine salleActuelle dans le tableau.
+		Vecteur npos = position.ajoute(l.getOrientation().getUnitVector()); //les coordonnées de la prochaine salleActuelle dans le tableau.
 
 		if( !(npos.x >= 0 && npos.x < smap.length && npos.y >= 0  && npos.y < smap[0].length) )return false; //On tombe en dehors du tableau de salle, on renvoi false
 
-		if(this.getSalleAt(npos) != null ){
-			setSActuelle(npos);
+		if(this.getSalleAt(npos) == null){
+			fournirNouvelleSalle(npos, l, this.smap); //On créé une nouvelle salle et on la met dans le tableau
 		}
-		else{
-			smap[(int)npos.x][(int)npos.y] = fournirNouvelleSalle((int)npos.x, (int)npos.y); //On créé une nouvelle salle et on la met dans le tableau
-			setSActuelle(npos);
-			
-		}
+		
+		setSActuelle(npos);
+		sActuelle.hero.setLocation(l.getDestinationVecteur());
 		
 		return true;		//On a bien changé de salle, on renvoie true
 	}
@@ -125,7 +124,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 		return smap[(int) v.x][(int) v.y];
 	}
 	
-	public abstract Salle fournirNouvelleSalle(int x, int y);
+	public abstract void fournirNouvelleSalle(Vecteur position, Link l, Salle[][] smap);
 
 	
 
@@ -205,12 +204,13 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	//Il n'y a pas d'intérêt à avoir ce genre de doublon. 
 	//Dans les gestionnaire dérivant on pourra alors éventuellement override cette méthode.
 	/**
+	 * Cette méthode est appelée par la salleActuelle lorsque le héros marche sur une porte.
 	 * Override de la méthode changerDeSalle de EcouteurChangementSalle
 	 * On appelle la méthode du gestionnaire.
 	 */
 	@Override
-	public void changerDeSalle(Vecteur dir) {
-		this.changementSalle(dir);
+	public void changerDeSalle(Link l) {
+		this.changementSalle(l);
 	}
 	
 	

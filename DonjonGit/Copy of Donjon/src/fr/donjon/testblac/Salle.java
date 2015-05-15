@@ -1,5 +1,6 @@
 package fr.donjon.testblac;
 import java.util.ArrayList;
+import java.util.EnumMap;
 
 import fr.donjon.cases2.Case;
 import fr.donjon.cases2.CaseMur;
@@ -104,10 +105,27 @@ public abstract class Salle implements EcouteurClavier{
 
 	}
 
-	public abstract void activerLesPortes(boolean a);
+	/**
+	 * On met la valeur a dans l'autorisation de passage de toutes les portes.
+	 * @param a
+	 */
+	public void activerLesPortes(boolean a){
+		for(int i=0; i<portes.size(); i++){
+			portes.get(i).setPassageAutorise(a);
+		}
+	}
+	
+	
+	
+	public abstract void createPorteSalleVoisines(Salle[][] sMap);
 
+	/**
+	 * Prends le tableau de cases et en créé un nouveau entouré de murs
+	 * @param c tableau de cases
+	 * @return le même tableau mais de dimensions +2² entouré de cases murs
+	 */
 	public static Case[][] addWalls(Case[][] c){
-
+		
 		Case[][] cs = new Case[c.length+2][c[0].length+2];
 
 		for(int x = 0 ; x < cs.length ; x++){
@@ -242,11 +260,27 @@ public abstract class Salle implements EcouteurClavier{
 			}
 		}
 	}
+	
+	/**
+	 * Donne une case porte de l'orientation donnée en parametre
+	 * @param o
+	 * @return
+	 */
+	public CasePorte getPorte(Orientation o){
+		for(CasePorte c : this.portes){
+			if(c.collisionPorte.lien.getOrientation() == o){
+				return c;
+			}
+		}
+		return null;
+	}
+	
 
 	public void checkFinie(){
 		if(personnages.size() == 1 && !finie){
 			finie = true;
 			activerLesPortes(true);
+			System.out.println("Les portes sont maintenant ouvertes");
 		}
 	}
 	

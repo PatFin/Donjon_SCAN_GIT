@@ -55,6 +55,11 @@ public enum Orientation {
 		}
 	}
 	
+	public Orientation opposite(){
+		return Orientation.opposite(this);
+	}
+	
+	
 	public static Orientation getOrientation(Vecteur v){
 		
 		if(v.x > 0 && v.y == 0)return EST;
