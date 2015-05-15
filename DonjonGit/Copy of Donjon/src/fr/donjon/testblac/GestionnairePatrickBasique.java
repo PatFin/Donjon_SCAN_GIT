@@ -1,5 +1,7 @@
 package fr.donjon.testblac;
 
+import fr.donjon.cases2.CaseTeleportation;
+import fr.donjon.cases2.CollisionTeleportation;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Squelette;
 import fr.donjon.utils.Link;
@@ -32,6 +34,16 @@ public class GestionnairePatrickBasique extends GestionnaireSalle {
 		
 		this.sActuelle.hero.setLocation(new Vecteur(100,100));
 		this.sActuelle.createPorteSalleVoisines(smap);
+		
+		//TODO : remove
+		sActuelle.cases[3][5] = new CaseTeleportation();
+		sActuelle.cases[7][5] = new CaseTeleportation();
+		
+		sActuelle.cases[3][5].setCollision(new CollisionTeleportation(sActuelle.cases[3][5],sActuelle.cases[7][5]));
+		sActuelle.cases[7][5].setCollision(new CollisionTeleportation(sActuelle.cases[7][5],sActuelle.cases[3][5]));
+		//
+		
+		
 		this.sActuelle.setEcouteur(this);
 		
 		//TODO create a proper enemy generation algorithm. Maybe in fournirNouvelleSalle?

@@ -1,30 +1,48 @@
 package fr.donjon.cases2;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import fr.donjon.classes.Personnage;
+import fr.donjon.classes.Projectile;
+import fr.donjon.utils.Type;
+import fr.donjon.utils.Vecteur;
 
-public class CaseSwitch extends Case {
+public class CaseSwitch extends CaseSource {
 
-	final static String image = "Case_dalle.png";
-	CollisionSwitch colliSwitch;
+	static Vecteur pos1 = new Vecteur(9,0);
+	static Vecteur pos2 = new Vecteur(10,0);
 	
 	public CaseSwitch() {
-		super(image);
-		this.colliSwitch = new CollisionSwitch();
+		super(pos1);
+	
+		setCollision(new CollisionPattern() {
+			
+			@Override
+			public void projLeaveCase(Projectile p) {
+			}
+			
+			@Override
+			public void projEnterCase(Projectile p) {
+			}
+			
+			@Override
+			public void persoLeaveCase(Personnage p) {
+			}
+			
+			@Override
+			public void persoEnterCase(Personnage p) {
+				if(p.type != Type.HERO)return;
+				positionInMap = positionInMap == pos2 ? pos1 : pos2;
+			}
+			
+			@Override
+			public void persoCollision(Personnage p) {
+			}
+		});
+		
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.cases2.Case#draw(java.awt.Graphics, long, int, int)
-	 */
-	@Override
-	public void draw(Graphics g, long t, int x, int y){
-		if(colliSwitch.on){
-			g.setColor(Color.green);
-		}else{
-			g.setColor(Color.red);
-		}
-		g.fillRect(x*TAILLE, y*TAILLE, TAILLE, TAILLE);
+	
+	public boolean isActivated(){
+		return positionInMap == pos1 ? false : true;
 	}
 	
 	

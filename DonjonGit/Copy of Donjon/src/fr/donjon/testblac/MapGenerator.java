@@ -66,18 +66,20 @@ public class MapGenerator {
 
 	public static Case[][] randomChateauLave(int w, int h){
 
+		//TODO remove this
+		return fillWith(new CaseSwitch(), w, h);
+		
+		/*
 		ProbabilityMap map = new ProbabilityMap();
-
+		
 		map.addProba( new CaseLave() , 0.10 );
 
 		map.addProba( new CaseRocher() , 0.10 );
 
-		map.addProba( new CaseDalle() , 0.70 );
+		map.addProba( new CaseDalle() , 0.75 );
 		
-		//TODO remove this bit.
-		map.addProba(new CaseSwitch(), 0.10);
-
 		return generateFromProbabilities(map, w, h);
+		*/
 	}
 
 	public static Case[][] randomChateauRochers(int w, int h){
