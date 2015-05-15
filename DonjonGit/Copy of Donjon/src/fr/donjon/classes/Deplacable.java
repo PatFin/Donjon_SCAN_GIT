@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import fr.donjon.utils.Vecteur;
-import fr.donjon.zpoubelle.Case;
 
 /**
  * 
@@ -59,8 +58,7 @@ public abstract class Deplacable extends Objet {
 	 * @param v the coordinates of the tile the character should be placed on.
 	 */
 	public void setLocation(Vecteur v){
-			this.setLocation((int)v.x*Case.TAILLE, (int)v.y*Case.TAILLE);
-		
+			this.setLocation((int)v.x, (int)v.y);
 	}
 	
 	@Override

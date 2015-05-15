@@ -43,7 +43,7 @@ public abstract class Salle implements EcouteurClavier{
 
 	/**
 	 * Constructeur
-	 * ATTENTION, les cases qui composent la salle n'ont pas été définies!
+	 * ATTENTION, les cases qui composent la salle n'ont pas ï¿½tï¿½ dï¿½finies!
 	 * @param w largeur de la salle
 	 * @param h hauteur de la salle
 	 */
@@ -71,8 +71,8 @@ public abstract class Salle implements EcouteurClavier{
 
 	/**
 	 * Constructeur
-	 * Il est possible d'afficher cette salle après avoir utilisé ce constructeur 
-	 * @param h le héros contrôlé par le personnage
+	 * Il est possible d'afficher cette salle aprï¿½s avoir utilisï¿½ ce constructeur 
+	 * @param h le hï¿½ros contrï¿½lï¿½ par le personnage
 	 * @param persos liste des personnages de la salle
 	 * @param c tableau de cases de la salle
 	 */
@@ -94,8 +94,8 @@ public abstract class Salle implements EcouteurClavier{
 
 	/**
 	 * Constructeur
-	 * On initialise les cases de la salle et le heros que le joueur contrôle
-	 * @param h héros contrôlé par le joueur
+	 * On initialise les cases de la salle et le heros que le joueur contrï¿½le
+	 * @param h hï¿½ros contrï¿½lï¿½ par le joueur
 	 * @param cases le tableau de cases de la salle
 	 */
 	public Salle(Heros h , Case[][] cases){
@@ -103,20 +103,20 @@ public abstract class Salle implements EcouteurClavier{
 	}
 
 	/**
-	 * Methode appelée par les cases portes quand le héros marche dessus.
-	 * Cela va appeler la méthode correspondante dans le gestionnaire de salle auquel la salle appartient.
-	 * @param l le lien de la porte sur laquelle le héro marche
+	 * Methode appelï¿½e par les cases portes quand le hï¿½ros marche dessus.
+	 * Cela va appeler la mï¿½thode correspondante dans le gestionnaire de salle auquel la salle appartient.
+	 * @param l le lien de la porte sur laquelle le hï¿½ro marche
 	 */ 
 	public void passerLaPorte(Link l){
 		ecouteur.changerDeSalle(l);
 	}
 
 	/**
-	 * Permet de détecter les portes et de les stocker dans une liste.
-	 * Il est nécessaire d'appeler cette méthode après l'ajout des portes.
-	 * Sans quoi il ne sera pas possible de changer de salle car le booléen 
-	 * passageAutorise des casePorte ne pourra pas être changé en true par la
-	 * méthode activerLesPortes
+	 * Permet de dï¿½tecter les portes et de les stocker dans une liste.
+	 * Il est nï¿½cessaire d'appeler cette mï¿½thode aprï¿½s l'ajout des portes.
+	 * Sans quoi il ne sera pas possible de changer de salle car le boolï¿½en 
+	 * passageAutorise des casePorte ne pourra pas ï¿½tre changï¿½ en true par la
+	 * mï¿½thode activerLesPortes
 	 */
 	public void trouverLesPortes(){
 
@@ -142,16 +142,16 @@ public abstract class Salle implements EcouteurClavier{
 	
 	
 	/**
-	 * Créé toutes les portes dans la salle s'il peut exister une salle à côté de cete instance.
-	 * Voir dans la classe SalleQuatre pour plus de précisions
+	 * Crï¿½ï¿½ toutes les portes dans la salle s'il peut exister une salle ï¿½ cï¿½tï¿½ de cete instance.
+	 * Voir dans la classe SalleQuatre pour plus de prï¿½cisions
 	 * @param sMap le tableau de salles
 	 */
 	public abstract void createPorteSalleVoisines(Salle[][] sMap);
 
 	/**
-	 * Prends le tableau de cases et en créé un nouveau entouré de murs
+	 * Prends le tableau de cases et en crï¿½ï¿½ un nouveau entourï¿½ de murs
 	 * @param c tableau de cases
-	 * @return le même tableau mais de dimensions +2² entouré de cases murs
+	 * @return le mï¿½me tableau mais de dimensions +2ï¿½ entourï¿½ de cases murs
 	 */
 	public static Case[][] addWalls(Case[][] c){
 		
@@ -178,7 +178,7 @@ public abstract class Salle implements EcouteurClavier{
 
 	/**
 	 * Mutateur
-	 * @param e l'écouteur qui doit être le même que celui du gestionnaire
+	 * @param e l'ï¿½couteur qui doit ï¿½tre le mï¿½me que celui du gestionnaire
 	 */
 	public void setEcouteur(EcouteurChangementSalle e){
 		this.ecouteur = e;
@@ -187,7 +187,7 @@ public abstract class Salle implements EcouteurClavier{
 	/**
 	 * Acceseur
 	 * @param v position de la case dans la salle
-	 * @return la case à la position v dans le salle
+	 * @return la case ï¿½ la position v dans le salle
 	 */
 	public Case getCase(Vecteur v){
 		return cases[(int)v.x][(int)v.y];
@@ -198,6 +198,7 @@ public abstract class Salle implements EcouteurClavier{
 	 * @param temps indispensable pour les animations des objets
 	 */
 	public void update(long temps){
+
 
 		Personnage z;
 
@@ -234,6 +235,7 @@ public abstract class Salle implements EcouteurClavier{
 						//Collision case-projectile
 						for(Projectile p : projectiles){
 							if(p.collisionDecor.intersects(cases[x][y].limites)) cases[x][y].inCollision(p);
+							else cases[x][y].nonCollision(p);
 						}
 					}
 				}
@@ -246,33 +248,31 @@ public abstract class Salle implements EcouteurClavier{
 
 			}//Fin de la boucle sur les personnages
 
-			//TODO générer les loots!
 			if(!z.living)personnages.remove(z); //(on enterre les morts)
 		}
 		
-		//On retire les projectiles qui ne "vivent" plus
 		for(int i = 0 ; i< projectiles.size() ; i++){
 			if(!projectiles.get(i).living)projectiles.remove(projectiles.get(i));
 		}
 
-		checkFinie(); //Si tous les ennemis ont été détruits, on rends la traversée des portes possible
+		checkFinie();
 
 		//We sort the list of characters such that they superimpose correctly in the room
 		sortCharacters();
 	}
 
 	/**
-	 * Permet d'ajouter un ennemis à la salle
-	 * @param e l'ennemi à ajouter
+	 * Permet d'ajouter un ennemis ï¿½ la salle
+	 * @param e l'ennemi ï¿½ ajouter
 	 */
 	public void addEnemy(Ennemis e) {
 		personnages.add(e);
 	}
 
 	/**
-	 * Méthode de tri
-	 * Pour que les images des personnages se superposent correctement, il faut qu'ils soient triés par coordonnées y croissante.
-	 * Cette méthode est donc appelée dans update()
+	 * Mï¿½thode de tri
+	 * Pour que les images des personnages se superposent correctement, il faut qu'ils soient triï¿½s par coordonnï¿½es y croissante.
+	 * Cette mï¿½thode est donc appelï¿½e dans update()
 	 */
 	private void sortCharacters(){
 		//Putting the elements in an array
@@ -303,7 +303,7 @@ public abstract class Salle implements EcouteurClavier{
 	}
 
 	/**
-	 * Rempli les cases non définies de la salle par des cases noires/void
+	 * Rempli les cases non dï¿½finies de la salle par des cases noires/void
 	 */
 	public void fillEmptyWithVoid(){
 		for(int x=0; x<width;x++){
@@ -318,8 +318,8 @@ public abstract class Salle implements EcouteurClavier{
 	}
 	
 	/**
-	 * Donne une case porte de l'orientation donnée en parametre
-	 * @param o l'orientation de la porte souhaitées
+	 * Donne une case porte de l'orientation donnï¿½e en parametre
+	 * @param o l'orientation de la porte souhaitï¿½es
 	 * @return une CasePorte de la bonne orientation
 	 */
 	public CasePorte getPorte(Orientation o){
@@ -333,7 +333,7 @@ public abstract class Salle implements EcouteurClavier{
 	
 
 	/**
-	 * On vérifie si le nombre d'ennemis est nul et que seul le héros contrôlé par le joueur reste dans la salle.
+	 * On vï¿½rifie si le nombre d'ennemis est nul et que seul le hï¿½ros contrï¿½lï¿½ par le joueur reste dans la salle.
 	 * Si c'est le cas on rends le passage vers les autres salles possible
 	 */
 	public void checkFinie(){

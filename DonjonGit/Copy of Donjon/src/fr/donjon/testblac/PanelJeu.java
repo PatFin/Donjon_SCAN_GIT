@@ -62,7 +62,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		////
 		
 		//gestion = new GestionnaireBasique();
-		gestion = new gestionnairePatrickBasique(4,3);
+		gestion = new GestionnairePatrickBasique(4,3);
 		dessinateur = new DessinateurSalle(ecran, gestion.sActuelle);
 		
 		startGame();
@@ -99,9 +99,9 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 
 	/**
 	 * Dessine la salle du donjon actuelle.
-	 * On place l'image de la salle de façon à ce qu'on voit le personnage au centre de la fenêtre.
-	 * On peut donc avoir des salles qui sont plus grandes que la fenêtre.
-	 * Toutefois, si salle plus petite que la fenêtre, on centre l'image.
+	 * On place l'image de la salle de faï¿½on ï¿½ ce qu'on voit le personnage au centre de la fenï¿½tre.
+	 * On peut donc avoir des salles qui sont plus grandes que la fenï¿½tre.
+	 * Toutefois, si salle plus petite que la fenï¿½tre, on centre l'image.
 	 */
 	@Override
 	public void paint(Graphics g) {
@@ -110,23 +110,23 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		//On obtient les dimensions de la salle et de la fenêtre
+		//On obtient les dimensions de la salle et de la fenï¿½tre
 		Vecteur z = gestion.sActuelle.getPixelSize();
 		int Width = getWidth();
 		int Height = getHeight();
 		
 		
-		int x; //coordonnée horizontale de la caméra
+		int x; //coordonnï¿½e horizontale de la camï¿½ra
 		if(z.x<Width){
-			//on centre la salle dans la fenêtre
+			//on centre la salle dans la fenï¿½tre
 			x=(int)(Width/2-z.x/2); 
 		}else{
-			//on place la caméra sur le héros
+			//on place la camï¿½ra sur le hï¿½ros
 			x=(int)(- gestion.centreCamera.x + Width/2);
 		}
 		
 		//Cf au dessus
-		int y; //coordonnée verticale de la caméra
+		int y; //coordonnï¿½e verticale de la camï¿½ra
 		if(z.y<Height){
 			y=(int)(Height/2-z.y/2);
 		}else{
@@ -154,7 +154,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 	
 	/**
 	 * Classe interne du timer
-	 * On anime la salle et on incrémente la variable temps
+	 * On anime la salle et on incrï¿½mente la variable temps
 	 */
 	public class TimerAction implements ActionListener{
 

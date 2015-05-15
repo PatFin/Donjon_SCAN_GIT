@@ -59,11 +59,7 @@ public class BouleDeGlace extends Projectile{
 		
 		anim.drawAnim(image.x, image.y, DIM, DIM, g, t);
 	
-		/*
-		g.setColor(Color.RED);
-		g.fillRect(collisionArmes.x, collisionArmes.y, collisionArmes.width, collisionArmes.height);
-		g.fillRect(collisionDecor.x, collisionDecor.y, collisionDecor.width, collisionDecor.height);
-		*/
+		
 	}
 
 

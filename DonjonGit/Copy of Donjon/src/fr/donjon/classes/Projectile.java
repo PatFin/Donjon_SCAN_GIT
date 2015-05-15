@@ -52,20 +52,14 @@ public abstract class Projectile extends Deplacable {
 	public abstract void inCollision(Personnage p);
 
 
-
-
 	@Override
 	abstract public void update(long t);
 
-	//A red�finir ?
+
 	public boolean enCollision(Rectangle r) {
 		return super.enCollision(r);
 	}
 
-	//A red�finir ?
-	@Override
-	public void draw(long t, Graphics g) {
 
-	}
 
 }

@@ -3,6 +3,7 @@
  */
 package fr.donjon.testblac;
 
+import fr.donjon.cases2.Case;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
@@ -17,12 +18,12 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 	Salle[][] smap;			//le tableau de salles du donjon
 
-	Salle sActuelle;		//la salle dans laquelle le héros se trouve
+	Salle sActuelle;		//la salle dans laquelle le hï¿½ros se trouve
 
-	Vecteur position;		//le vecteur contenant les coordonnées de la salle actuelle
+	Vecteur position;		//le vecteur contenant les coordonnï¿½es de la salle actuelle
 
 	Vecteur centreCamera; 	//vecteur contenant l'emplacement du personnage dans la salle.
-							//Il est utile quand on cherche à peindre la salle.
+							//Il est utile quand on cherche ï¿½ peindre la salle.
 
 	/**
 	 * Constructeur initialisant les dimensions du donjon
@@ -36,9 +37,9 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
-	 * Constructeur initialisant une première salle et donnant les dimensions du donjon.
-	 * Par défaut la première salle est placée en haut à gauche du tableau.
-	 * @param s la première salle
+	 * Constructeur initialisant une premiï¿½re salle et donnant les dimensions du donjon.
+	 * Par dï¿½faut la premiï¿½re salle est placï¿½e en haut ï¿½ gauche du tableau.
+	 * @param s la premiï¿½re salle
 	 * @param w la largeur du donjon (nombres de salles sur axe horizontal)
 	 * @param h la hauteur du donjon (nombres de salles sur axe vertical)
 	 */
@@ -48,11 +49,11 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 	
 	/**
-	 * Constructeur initialisant une première salle et donnant les dimensions du donjon
-	 * La première salle est placée aux coordonnées sx et sy données en paramètres
-	 * @param s la première salle du donjon
-	 * @param sx position x dans le tableau de la première salle
-	 * @param sy position y dans le tableau de la première salle
+	 * Constructeur initialisant une premiï¿½re salle et donnant les dimensions du donjon
+	 * La premiï¿½re salle est placï¿½e aux coordonnï¿½es sx et sy donnï¿½es en paramï¿½tres
+	 * @param s la premiï¿½re salle du donjon
+	 * @param sx position x dans le tableau de la premiï¿½re salle
+	 * @param sy position y dans le tableau de la premiï¿½re salle
 	 * @param w la largeur du donjon (nombres de salles sur axe horizontal)
 	 * @param h la hauteur du donjon (nombres de salles sur axe vertical)
 	 */
@@ -64,37 +65,37 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
-	 * Méthode raffraichissant la salle actuelle
-	 * @param t le temps qui s'est écoulé depuis le début du jeu, paramètre nécessaire aux animations et autres.
+	 * Mï¿½thode raffraichissant la salle actuelle
+	 * @param t le temps qui s'est ï¿½coulï¿½ depuis le dï¿½but du jeu, paramï¿½tre nï¿½cessaire aux animations et autres.
 	 */
 	public void update (long t){
 
 		sActuelle.update(t);	//On raffarichit uniquement la salle actuelle, inutile de faire bouger les ennemis dans tout le donjon.
 
 		centreCamera.setLocation(sActuelle.hero.image.x + sActuelle.hero.image.width/2,
-				sActuelle.hero.image.height/2 + sActuelle.hero.image.y);		//On recentre le vecteur centre caméra sur la position du personnage.
+				sActuelle.hero.image.height/2 + sActuelle.hero.image.y);		//On recentre le vecteur centre camï¿½ra sur la position du personnage.
 	}
 
 
 	/**
-	 * Change le personnage de salle vers celle située à la salle située aux coordonnées actuelles+dir
+	 * Change le personnage de salle vers celle situï¿½e ï¿½ la salle situï¿½e aux coordonnï¿½es actuelles+dir
 	 * @param l lien de la salle actuelle vers la nouvelle salle actuelle
-	 * @return true si le changement a été effectué, false sinon.
+	 * @return true si le changement a ï¿½tï¿½ effectuï¿½, false sinon.
 	 */
 	public boolean changementSalle(Link l){
 		
-		Vecteur npos = position.ajoute(l.getOrientation().getUnitVector()); //les coordonnées de la prochaine salleActuelle dans le tableau.
+		Vecteur npos = position.ajoute(l.getOrientation().getUnitVector()); //les coordonnï¿½es de la prochaine salleActuelle dans le tableau.
 
 		if( !(npos.x >= 0 && npos.x < smap.length && npos.y >= 0  && npos.y < smap[0].length) )return false; //On tombe en dehors du tableau de salle, on renvoi false
 
 		if(this.getSalleAt(npos) == null){
-			fournirNouvelleSalle(npos, l, this.smap); //On créé une nouvelle salle et on la met dans le tableau
+			fournirNouvelleSalle(npos, l, this.smap); //On crï¿½ï¿½ une nouvelle salle et on la met dans le tableau
 		}
 		
 		setSActuelle(npos);
-		sActuelle.hero.setLocation(l.getDestinationVecteur());
+		sActuelle.hero.setLocation(l.getDestinationVecteur().multiplie(Case.TAILLE));
 		
-		return true;		//On a bien changé de salle, on renvoie true
+		return true;		//On a bien changï¿½ de salle, on renvoie true
 	}
 
 	/**
@@ -107,8 +108,8 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 	
 	/**
-	 * Change la salle actuelle à celle stuée dans le tableau aux coordonnées données dans le vecteur
-	 * @param nouvelleSalle les coordonnées dans le tableau de la nouvelle salle actuelle.
+	 * Change la salle actuelle ï¿½ celle stuï¿½e dans le tableau aux coordonnï¿½es donnï¿½es dans le vecteur
+	 * @param nouvelleSalle les coordonnï¿½es dans le tableau de la nouvelle salle actuelle.
 	 */
 	private void setSActuelle(Vecteur Salle){
 		position = Salle;
@@ -116,7 +117,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
-	 * donne la salle située à la position dans le donjon donnée par le vecteur.
+	 * donne la salle situï¿½e ï¿½ la position dans le donjon donnï¿½e par le vecteur.
 	 * @param v
 	 * @return
 	 */
@@ -125,7 +126,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 	
 	/**
-	 * Méthode utilisée pour générer la salle suivante. 
+	 * Mï¿½thode utilisï¿½e pour gï¿½nï¿½rer la salle suivante. 
 	 * @param position
 	 * @param l
 	 * @param smap
@@ -136,7 +137,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 	/**
 	 * Mutateur
-	 * change la salle actuelle pour celle aux coordonnées indiqués.
+	 * change la salle actuelle pour celle aux coordonnï¿½es indiquï¿½s.
 	 * @param v
 	 */
 	private void setSalleActuelleOn(Vecteur v){

@@ -5,7 +5,7 @@ import fr.donjon.classes.Squelette;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Vecteur;
 
-public class gestionnairePatrickBasique extends GestionnaireSalle {
+public class GestionnairePatrickBasique extends GestionnaireSalle {
 
 	final static int SALLEWIDTH = 8;
 	final static int SALLEHEIGHT = 7;
@@ -16,7 +16,7 @@ public class gestionnairePatrickBasique extends GestionnaireSalle {
 	 * @param w width of the donjon
 	 * @param h height of the donjon
 	 */
-	public gestionnairePatrickBasique(int w, int h) {
+	public GestionnairePatrickBasique(int w, int h) {
 		this(w, h,0,0);
 	}
 
@@ -27,10 +27,10 @@ public class gestionnairePatrickBasique extends GestionnaireSalle {
 	 * @param sX x position of the 1st room
 	 * @param sY y position of the 1st room
 	 */
-	public gestionnairePatrickBasique(int w, int h, int sX, int sY){
+	public GestionnairePatrickBasique(int w, int h, int sX, int sY){
 		super(new SalleQuatre(new Heros(0, 0), Salle.addWalls(MapGenerator.randomForet(SALLEWIDTH, SALLEHEIGHT))),sX,sY,w, h);
 		
-		this.sActuelle.hero.setLocation(new Vecteur(1,1));
+		this.sActuelle.hero.setLocation(new Vecteur(100,100));
 		this.sActuelle.createPorteSalleVoisines(smap);
 		this.sActuelle.setEcouteur(this);
 		
