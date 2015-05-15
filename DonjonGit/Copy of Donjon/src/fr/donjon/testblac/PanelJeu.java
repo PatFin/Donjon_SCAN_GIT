@@ -96,46 +96,51 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 
 	}
 
+
+	/**
+	 * Dessine la salle du donjon actuelle.
+	 * On place l'image de la salle de façon à ce qu'on voit le personnage au centre de la fenêtre.
+	 * On peut donc avoir des salles qui sont plus grandes que la fenêtre.
+	 * Toutefois, si salle plus petite que la fenêtre, on centre l'image.
+	 */
 	@Override
 	public void paint(Graphics g) {
 		
-		//TODO I changed the color from grey to black
-		//On remplit la salle d'un fond noir
+		//On remplit la salle d'un fond noir (pour les tests mettre du gris)
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		//vecteur d place l'image de la salle de faï¿½on ï¿½ ce qu'on voit le personnage au centre de la fenï¿½tre.
-		//On peut donc avoir des salles qui sont plus grandes que la fenï¿½tre.
-		
-		//si salle plus petite que la fenï¿½tre, on centre l'image.
-		//Sinon la camï¿½ra suit le hï¿½ros
+		//On obtient les dimensions de la salle et de la fenêtre
 		Vecteur z = gestion.sActuelle.getPixelSize();
 		int Width = getWidth();
 		int Height = getHeight();
 		
 		
-		int x;
+		int x; //coordonnée horizontale de la caméra
 		if(z.x<Width){
-			x=(int)(Width/2-z.x/2);
+			//on centre la salle dans la fenêtre
+			x=(int)(Width/2-z.x/2); 
 		}else{
+			//on place la caméra sur le héros
 			x=(int)(- gestion.centreCamera.x + Width/2);
 		}
 		
-		int y;
+		//Cf au dessus
+		int y; //coordonnée verticale de la caméra
 		if(z.y<Height){
 			y=(int)(Height/2-z.y/2);
 		}else{
 			y=(int)(- gestion.centreCamera.y + Height/2);
 		}
 		
-		Vecteur d = new Vecteur(x,y);
 		
-		
-		g.drawImage(dessinateur.getImage(g, temps),(int)d.x,(int)d.y,null);
-		
-		
+		//On dessine la salle 
+		g.drawImage(dessinateur.getImage(g, temps),x,y,null);
 	}
 
+	/**
+	 * Lance le jeu
+	 */
 	public void startGame(){
 		this.timer.start();
 	}
@@ -147,6 +152,10 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		this.timer.stop();
 	}
 	
+	/**
+	 * Classe interne du timer
+	 * On anime la salle et on incrémente la variable temps
+	 */
 	public class TimerAction implements ActionListener{
 
 		public void actionPerformed(ActionEvent e){
@@ -164,32 +173,60 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 	
 	//On fait passer les ordres au Gestionnaire et on intercepte celui pour stopper le Timer
 	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
+	 */
 	@Override
 	public void attaque(Orientation o) {
 		gestion.attaque(o);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopAttaque()
+	 */
 	@Override
 	public void stopAttaque() {
 		gestion.stopAttaque();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
+	 */
 	@Override
 	public void deplacement(Vecteur v) {
 		gestion.deplacement(v);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
+	 */
 	@Override
 	public void utiliseObjet(int reference) {
 		gestion.utiliseObjet(reference);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
+	 */
 	@Override
 	public void togglePause() {
-		if(timer.isRunning())timer.stop();
-		else timer.start();
+		//TODO check this is working
+		if(timer.isRunning()){
+			this.stopGame();
+		}else{
+			this.startGame();
+		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
+	 */
 	@Override
 	public void stopDeplacement() {
 		gestion.stopDeplacement();

@@ -124,11 +124,18 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 		return smap[(int) v.x][(int) v.y];
 	}
 	
+	/**
+	 * Méthode utilisée pour générer la salle suivante. 
+	 * @param position
+	 * @param l
+	 * @param smap
+	 */
 	public abstract void fournirNouvelleSalle(Vecteur position, Link l, Salle[][] smap);
 
 	
 
 	/**
+	 * Mutateur
 	 * change la salle actuelle pour celle aux coordonnées indiqués.
 	 * @param v
 	 */
@@ -137,9 +144,8 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 	
 	
-	//MUT
-	
 	/**
+	 * Accesseur
 	 * @return the smap
 	 */
 	public Salle[][] getSmap() {
@@ -147,6 +153,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
+	 * Mutateur
 	 * @param smap the smap to set
 	 */
 	public void setSmap(Salle[][] smap) {
@@ -154,6 +161,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
+	 * Accesseur
 	 * @return the sActuelle
 	 */
 	public Salle getsActuelle() {
@@ -161,6 +169,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
+	 * Mutateur
 	 * @param sActuelle the sActuelle to set
 	 */
 	public void setsActuelle(Salle sActuelle) {
@@ -168,6 +177,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
+	 * Accesseur
 	 * @return the position
 	 */
 	public Vecteur getPosition() {
@@ -175,6 +185,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
+	 * Mutateur
 	 * @param position the position to set
 	 */
 	public void setPosition(Vecteur position) {
@@ -182,6 +193,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
+	 * Accesseur
 	 * @return the centreCamera
 	 */
 	public Vecteur getCentreCamera() {
@@ -189,7 +201,8 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
-	 * @param centreCamera the centreCamera to set
+	 * Mutateur
+	 * @param centreCamera nouvelle valeur de centreCamera
 	 */
 	public void setCentreCamera(Vecteur centreCamera) {
 		this.centreCamera = centreCamera;
@@ -200,13 +213,9 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	//INTERFACE ECOUTEURChangementSalle//
 	/////////////////////////////////////
 	
-	//TODO changer cette méthode et y mettre le contenu de la méthode changementSalle actuelle
-	//Il n'y a pas d'intérêt à avoir ce genre de doublon. 
-	//Dans les gestionnaire dérivant on pourra alors éventuellement override cette méthode.
-	/**
-	 * Cette méthode est appelée par la salleActuelle lorsque le héros marche sur une porte.
-	 * Override de la méthode changerDeSalle de EcouteurChangementSalle
-	 * On appelle la méthode du gestionnaire.
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.testblac.EcouteurChangementSalle#changerDeSalle(fr.donjon.utils.Link)
 	 */
 	@Override
 	public void changerDeSalle(Link l) {
@@ -220,37 +229,57 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	/////////////////////////////////////
 
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
+	 */
 	@Override
 	public void attaque(Orientation o) {
 		this.sActuelle.attaque(o);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopAttaque()
+	 */
 	@Override
 	public void stopAttaque() {
 		this.sActuelle.stopAttaque();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
+	 */
 	@Override
 	public void deplacement(Vecteur v) {
 		this.sActuelle.deplacement(v);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
+	 */
 	@Override
 	public void utiliseObjet(int reference) {
 		this.sActuelle.utiliseObjet(reference);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
+	 */
 	@Override
 	public void togglePause() {
 		//Nothing to do, its done in game panel
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
+	 */
 	@Override
 	public void stopDeplacement() {
 		this.sActuelle.stopDeplacement();
 	}
-
-
-	
-	
 }

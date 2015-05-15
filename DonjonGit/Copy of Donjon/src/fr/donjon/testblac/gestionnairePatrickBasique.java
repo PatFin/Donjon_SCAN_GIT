@@ -34,12 +34,16 @@ public class gestionnairePatrickBasique extends GestionnaireSalle {
 		this.sActuelle.createPorteSalleVoisines(smap);
 		this.sActuelle.setEcouteur(this);
 		
-		//TODO create a proper ennemy generation algorythm. Maybe in fournirNouvelleSalle?
+		//TODO create a proper enemy generation algorithm. Maybe in fournirNouvelleSalle?
 		this.sActuelle.addEnemy(new Squelette(400, 400, sActuelle.hero, 1));
 		
 		this.sActuelle.activerLesPortes(false);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.testblac.GestionnaireSalle#fournirNouvelleSalle(fr.donjon.utils.Vecteur, fr.donjon.utils.Link, fr.donjon.testblac.Salle[][])
+	 */
 	@Override
 	public void fournirNouvelleSalle(Vecteur position, Link l, Salle[][] smap) {
 		//create the new room
