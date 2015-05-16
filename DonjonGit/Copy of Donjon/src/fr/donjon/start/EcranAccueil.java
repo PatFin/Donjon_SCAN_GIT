@@ -17,6 +17,12 @@ import fr.donjon.zpoubelle.MyJPanel;
 
 public class EcranAccueil extends MyJPanel{ 
 
+	/**
+	 * TODO remplacer le paramËtre launcher en ecouteur evËnements launcher.
+	 * C'est plus propre!
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	// d√©claration de l'image
 	Image im; // IMAGE
 	final static String srcImage = "BackgroundMenu.jpg"; // FICHIER SOURCE POUR CHARGER L'IMAGE
@@ -30,7 +36,8 @@ public class EcranAccueil extends MyJPanel{
 	
 	private JButton boutonJeuLineaire = new JButton("Jeu Lin√©aire",iconePlayer);
 	private JButton boutonJeuInfini=new JButton ("Jeu Infini",iconeInfinity);
-
+	
+	
 	private Launcher launcher;
 
 	//Constructeur de la classe EcranAccueil
@@ -58,7 +65,10 @@ public class EcranAccueil extends MyJPanel{
 
 	}
 
-	// m√©thode pour peindre l'image de fond
+	/*
+	 * (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -88,45 +98,4 @@ public class EcranAccueil extends MyJPanel{
 		});
 
 	}
-
-	@Override
-	public void attaque(Orientation o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void stopAttaque() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deplacement(Vecteur v) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void utiliseObjet(int reference) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void togglePause() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void stopDeplacement() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-
 }
