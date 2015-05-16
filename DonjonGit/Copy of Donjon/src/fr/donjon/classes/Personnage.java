@@ -171,7 +171,7 @@ public abstract class Personnage extends Deplacable{
 
 	/**
 	 * 
-	 * 	Methode permettant ï¿½ un personnage d'attaquer
+	 * 	Methode permettant à un personnage d'attaquer
 	 * 
 	 * @param cibles		Cibles potentielles de l'attaque
 	 * @param projectiles	Tableau de projectiles de la salle 

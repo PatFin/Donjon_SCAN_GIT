@@ -39,8 +39,9 @@ public class MapGenerator {
 		for( File f : files){
 			sls.add(MapFileHandler.getFileToDescription(f));
 		}
+		System.out.println(sls.size());
 		
-		int r = (int) Math.random() * (3 + sls.size() );
+		int r = (int) (Math.random() * (2 + sls.size()));
 		
 		
 		if( r == 0) return randomChateauLave(w, h);
@@ -66,10 +67,8 @@ public class MapGenerator {
 
 	public static Case[][] randomChateauLave(int w, int h){
 
-		//TODO remove this
-		return fillWith(new CaseSwitch(), w, h);
 		
-		/*
+		
 		ProbabilityMap map = new ProbabilityMap();
 		
 		map.addProba( new CaseLave() , 0.10 );
@@ -79,7 +78,7 @@ public class MapGenerator {
 		map.addProba( new CaseDalle() , 0.75 );
 		
 		return generateFromProbabilities(map, w, h);
-		*/
+		
 	}
 
 	public static Case[][] randomChateauRochers(int w, int h){

@@ -32,10 +32,10 @@ public class GestionnairePatrickBasique extends GestionnaireSalle {
 	public GestionnairePatrickBasique(int w, int h, int sX, int sY){
 		super(new SalleQuatre(new Heros(0, 0), Salle.addWalls(MapGenerator.randomForet(SALLEWIDTH, SALLEHEIGHT))),sX,sY,w, h);
 		
-		this.sActuelle.hero.setLocation(new Vecteur(100,100));
+		this.sActuelle.hero.setLocation(sActuelle.getRoomCenter());
 		this.sActuelle.createPorteSalleVoisines(smap);
 		
-		//TODO : remove
+		//TODO : remove ... ou pas!
 		sActuelle.cases[3][5] = new CaseTeleportation();
 		sActuelle.cases[7][5] = new CaseTeleportation();
 		

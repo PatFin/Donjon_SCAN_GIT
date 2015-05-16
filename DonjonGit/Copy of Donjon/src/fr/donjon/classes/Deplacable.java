@@ -3,6 +3,8 @@ package fr.donjon.classes;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import fr.donjon.cases2.Case;
+import fr.donjon.cases2.CaseSwitch;
 import fr.donjon.utils.Vecteur;
 
 /**
@@ -55,11 +57,21 @@ public abstract class Deplacable extends Objet {
 	
 	/**
 	 * Places the object at a certain position given as a vector.
-	 * @param v the coordinates of the tile the character should be placed on.
+	 * @param v the coordinates in pixels where the character should be placed.
 	 */
 	public void setLocation(Vecteur v){
-			this.setLocation((int)v.x, (int)v.y);
+		this.setLocation((int)v.x, (int)v.y);
 	}
+	
+	/**
+	 * Places the object on the tile which coordinates in the room are given by the parameter
+	 * @param v the coordinates of the tile where the object should be placed
+	 */
+	public void setLocationCase(Vecteur v){
+		this.setLocation((int)v.x*Case.TAILLE,(int) v.y*Case.TAILLE);
+	}
+	
+	
 	
 	@Override
 	public void update(long t){
