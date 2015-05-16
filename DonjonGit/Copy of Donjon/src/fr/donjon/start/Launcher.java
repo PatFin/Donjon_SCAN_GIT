@@ -109,35 +109,70 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		new Launcher();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
+	 */
 	@Override
 	public void attaque(Orientation o) {
-		game.attaque(o);
+		if(game!=null){
+			game.attaque(o);
+		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopAttaque()
+	 */
 	@Override
 	public void stopAttaque() {
-		game.stopAttaque();
-		
+		if(game!=null){
+			game.stopAttaque();
+		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
+	 */
 	@Override
 	public void deplacement(Vecteur v) {
-		game.deplacement(v);
+		if(game!=null){
+			game.deplacement(v);
+		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
+	 */
 	@Override
 	public void utiliseObjet(int reference) {
-		game.utiliseObjet(reference);
+		if(game!=null){
+			game.utiliseObjet(reference);
+		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
+	 */
 	@Override
 	public void togglePause() {
-		game.togglePause();
+		if(game!=null){
+			game.togglePause();
+		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
+	 */
 	@Override
 	public void stopDeplacement() {
-		game.stopDeplacement();
+		if(game!=null){
+			game.stopDeplacement();
+		}
 	}
 
 }
