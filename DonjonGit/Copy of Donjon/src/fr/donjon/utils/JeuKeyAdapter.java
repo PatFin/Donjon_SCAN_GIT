@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.donjon.utils;
 
 import java.awt.event.KeyEvent;

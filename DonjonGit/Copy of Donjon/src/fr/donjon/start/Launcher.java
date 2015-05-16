@@ -4,9 +4,14 @@
 package fr.donjon.start;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import fr.donjon.Donjons.DonjonLineaire;
 import fr.donjon.Donjons.GestionnairePatrickBasique;
+import fr.donjon.utils.EcouteurClavier;
+import fr.donjon.utils.JeuKeyAdapter;
+import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
 
 /**
  * 
@@ -15,15 +20,16 @@ import fr.donjon.Donjons.GestionnairePatrickBasique;
  * @author Baptiste
  *
  */
-public class Launcher extends JFrame{
+public class Launcher extends JFrame implements EcouteurClavier{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L; 
 
-	PanelJeu game;	//Le JPanel dessinant le jeu (GamePanel)
+	JPanel actuel;
 	
+	PanelJeu game;	//Le JPanel dessinant le jeu (GamePanel)
 	EcranAccueil menu;	//Le JPanel dessinant le menu (EcranAcceuil)
 
 	/**
@@ -31,6 +37,11 @@ public class Launcher extends JFrame{
 	 */
 	public Launcher() {
 
+		this.setFocusable(true);
+		this.requestFocusInWindow();
+		this.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier personnalisé à notre PanelJeu
+		
+		
 		menu = new EcranAccueil(this);
 		
 		goToMenu();						//On affiche le menu
@@ -49,14 +60,14 @@ public class Launcher extends JFrame{
 		
 		
 		try{
-			this.game.stopGame();		//On arrete le jeu possiblement en cours
-			this.remove(game);	//On enleve le JPanel en cours d'utilisation
+			this.remove(actuel);			//On enleve le JPanel en cours d'utilisation
+			this.game.stopGame();			//On arrete le jeu possiblement en cours
 		}
 		catch (NullPointerException e){
 
 		}
 		
-		//On change de JPanel d'affichage
+		//On créé le JPanel de jeu
 		switch(mode){
 		case 0:
 			//On met un jeu linéaire
@@ -66,9 +77,11 @@ public class Launcher extends JFrame{
 			game = new PanelJeu(new GestionnairePatrickBasique(4, 3));
 		}
 		
-		this.add(game);		//Et on l'affiche
-		this.game.startGame();								//On demarre le jeu
-		this.pack();										//On adapte la taille de la fenetre
+		actuel=game;
+		
+		this.add(actuel);									//Et on l'affiche
+		game.startGame();								//On demarre le jeu
+		this.pack();									//On adapte la taille de la fenetre
 	}
 
 	/**
@@ -77,13 +90,14 @@ public class Launcher extends JFrame{
 	public void goToMenu(){
 		
 		try{
+			this.remove(actuel);
 			this.game.stopGame();
-			this.remove(game);
 		}
 		catch (NullPointerException e){
 
 		}
-		this.add(menu);
+		actuel = menu;
+		this.add(actuel);
 		this.pack();
 	}
 
@@ -93,6 +107,37 @@ public class Launcher extends JFrame{
 	 */
 	public static void main(String[] args)  {
 		new Launcher();
+	}
+
+	@Override
+	public void attaque(Orientation o) {
+		game.attaque(o);
+	}
+
+	@Override
+	public void stopAttaque() {
+		game.stopAttaque();
+		
+	}
+
+	@Override
+	public void deplacement(Vecteur v) {
+		game.deplacement(v);
+	}
+
+	@Override
+	public void utiliseObjet(int reference) {
+		game.utiliseObjet(reference);
+	}
+
+	@Override
+	public void togglePause() {
+		game.togglePause();
+	}
+
+	@Override
+	public void stopDeplacement() {
+		game.stopDeplacement();
 	}
 
 }

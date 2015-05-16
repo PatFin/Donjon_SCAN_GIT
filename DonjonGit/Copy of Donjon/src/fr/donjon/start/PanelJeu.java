@@ -15,7 +15,6 @@ import javax.swing.Timer;
 
 import fr.donjon.Donjons.GestionnaireSalle;
 import fr.donjon.utils.EcouteurClavier;
-import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 import fr.donjon.zpoubelle.Case;
@@ -50,14 +49,8 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 	 */
 	public PanelJeu(GestionnaireSalle gestion) {
 
-		this.setSize(new Dimension( 15*Case.TAILLE, 10*Case.TAILLE));
 		
 		this.setPreferredSize(new Dimension( 15*Case.TAILLE, 10*Case.TAILLE));
-
-		//On permet au panelJeu de recevoir les évènement clavier qui nous intéressent
-		this.setFocusable(true);
-		this.requestFocusInWindow();
-		this.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier personnalisé à notre PanelJeu
 		
 		ecran = new Rectangle(0,0,getWidth(),getHeight());
 
