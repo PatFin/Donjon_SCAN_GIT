@@ -1,0 +1,143 @@
+/**
+ * 
+ */
+package fr.donjon.salles;
+
+import java.util.ArrayList;
+
+import fr.donjon.cases.Case;
+import fr.donjon.cases.CaseFendue;
+import fr.donjon.cases.CasePorte;
+import fr.donjon.classes.Heros;
+import fr.donjon.classes.Personnage;
+import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Vecteur;
+
+/**
+ * 
+ * Salle qui est destinée à ne contenir que Quatre portes au maximum au points cardinaux,
+ * la gestion du changement de salle et simplifiée pour ce type de salle.
+ * 
+ * @author Baptiste
+ *
+ */
+public class SalleQuatre extends Salle {
+
+
+	public SalleQuatre(Heros h, ArrayList<Personnage> persos, Case[][] c) {
+		super(h, persos, c);
+	}
+
+	public SalleQuatre(Heros h, Case[][] cases) {
+		super(h, cases);
+	}
+
+	public SalleQuatre(int w, int h) {
+		super(w, h);
+	}
+
+	/**
+	 * Detecte les salles potentielles situ�es autours de cette instance
+	 * @param sMap le tableau de salle
+	 */
+	public void createPorteSalleVoisines(Salle[][] sMap){
+		
+		Vecteur position = detecteSalleDansTableau(sMap);
+		
+		if(position.x>0){
+			this.addDoor(Orientation.OUEST, sMap);
+		}
+		if(position.x<sMap.length-1){
+			this.addDoor(Orientation.EST,sMap);
+		}
+
+		if(position.y>0){
+			this.addDoor(Orientation.NORD, sMap);
+		}
+		if(position.y<sMap[0].length-1){
+			this.addDoor(Orientation.SUD, sMap);
+		}
+		
+	}
+	
+	/**
+	 * Cr�� une case sur un c�t� de la salle selon l'orientation
+	 * @param o Orientation de la porte � cr��
+	 * @param smap le tableau de salles du donjon
+	 */
+	public void addDoor(Orientation o, Salle[][] sMap) {
+
+		int w = cases.length;
+		int h = cases[0].length;
+		
+		//On ajoute une case porte et une case sur laquelle on peut marcher juste devant.
+		switch(o){
+		case NORD:
+			cases[(int)w/2][0] = new CasePorte(this, new Vecteur((int)w/2,1), Orientation.NORD);
+			cases[(int)w/2][1] = new CaseFendue();
+			break;
+		case SUD:
+			cases[(int)w/2][h-1] = new CasePorte(this, new Vecteur((int)w/2, h-2), Orientation.SUD);
+			cases[(int)w/2][h-2] = new CaseFendue();
+			break;
+		case EST:
+			cases[w-1][(int)h/2] = new CasePorte(this, new Vecteur(w-2, (int)h/2), Orientation.EST);
+			cases[w-2][(int)h/2] = new CaseFendue();
+			break;
+		case OUEST:
+			cases[0][(int)h/2] = new CasePorte(this, new Vecteur(1, (int)h/2), Orientation.OUEST);
+			cases[1][(int)h/2] = new CaseFendue();
+			break;
+
+		}
+		
+		super.trouverLesPortes();
+		
+		Vecteur voisin =  this.detecteSalleDansTableau(sMap).ajoute(o.getUnitVector());
+		SalleQuatre sVoisine = (SalleQuatre) sMap[(int)voisin.x][(int)voisin.y];
+		
+		if(sVoisine != null){
+			CasePorte cV = sVoisine.getPorte(o.opposite());
+			cV.setDestination(this.getPorte(o));
+			this.getPorte(o).setDestination(cV);
+		}
+		
+	}
+
+	/**
+	 * Detecte les coordonnées d'une salle dans un tableau
+	 * @param sMap le tableau de salle
+	 * @return Vecteur indiquant la position dans le tableau, (-1,-1) si non trouvée
+	 */
+	private Vecteur detecteSalleDansTableau(Salle[][] sMap){
+		Vecteur v = new Vecteur(-1,-1);
+		
+		for(int i=0; i<sMap.length; i++){
+			for(int j=0; j<sMap[0].length; j++){
+				if(sMap[i][j] == this){
+					v.setLocation(i, j);
+				}
+			}
+		}
+		
+		return v;
+	}
+	
+	/**
+	 * Donne la case porte de l'orientation donnée en parametre
+	 * 
+	 * @param o l'orientation de la porte souhaitée
+	 * 
+	 * @return La CasePorte dans l'orientation souhaitée, celle ci est unique car on est dans une SalleQuatre
+	 */
+	public CasePorte getPorte(Orientation o){
+		
+		for(CasePorte c : this.portes){
+			if(c.collisionPorte.lien.getOrientation() == o){
+				return c;
+			}
+		}
+		return null;
+	}
+
+}
