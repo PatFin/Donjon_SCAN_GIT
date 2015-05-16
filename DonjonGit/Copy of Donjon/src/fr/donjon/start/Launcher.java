@@ -8,8 +8,6 @@ import javax.swing.JFrame;
 import fr.donjon.Donjons.DonjonLineaire;
 import fr.donjon.Donjons.GestionnairePatrickBasique;
 import fr.donjon.utils.JeuKeyAdapter;
-import fr.donjon.utils.Orientation;
-import fr.donjon.utils.Vecteur;
 
 /**
  * 
@@ -104,58 +102,4 @@ public class Launcher extends JFrame{
 		new Launcher();
 	}
 
-
-	///////////////////////////////////////////////////////////////
-	///INTERFACE D'ECOUTE//////////////////////////////////////////
-	///////////////////////////////////////////////////////////////
-	
-	//On fait passer les evenements au jeu
-	
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
-	 */
-	public void attaque(Orientation o) {
-		game.attaque(o);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#stopAttaque()
-	 */
-	public void stopAttaque() {
-		game.stopAttaque();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
-	 */
-	public void deplacement(Vecteur v) {
-		game.deplacement(v);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
-	 */
-	public void utiliseObjet(int reference) {
-		game.utiliseObjet(reference);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
-	 */
-	public void togglePause() {
-		game.togglePause();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
-	 */
-	public void stopDeplacement() {
-		game.stopDeplacement();
-	}
 }
