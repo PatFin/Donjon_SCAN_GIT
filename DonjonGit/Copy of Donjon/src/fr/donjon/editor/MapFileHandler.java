@@ -68,6 +68,30 @@ public class MapFileHandler {
 		return list;
 
 	}
+	
+	/**
+	 * Teste tous les fichiers de salles personnalisées et les envoie dans la liste de return 
+	 * s'ils peuvent fonctionner. Cette méthode est notamnent utilisée dans MapGenerator.
+	 * @return la liste des descriptions des salles qui peuvent fonctionner dans un donjon
+	 */
+	public static LinkedList<SalleDescription> getWorkingMaps(){
+		LinkedList <SalleDescription> workingMaps = new LinkedList<SalleDescription>();
+		LinkedList<File> files = getMapList();
+		
+		SalleDescription s;
+		for(File f: files){
+			s = MapFileHandler.getFileToDescription(f);
+			if(s != null){
+				workingMaps.add(s);
+			}
+		}
+		
+		
+		return workingMaps;
+	}
+	
+	
+	
 
 	/**
 	 * 
