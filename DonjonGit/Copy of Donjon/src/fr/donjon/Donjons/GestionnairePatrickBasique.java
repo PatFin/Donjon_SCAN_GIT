@@ -1,4 +1,4 @@
-package fr.donjon.start;
+package fr.donjon.Donjons;
 
 import fr.donjon.cases.CaseTeleportation;
 import fr.donjon.cases.CollisionTeleportation;
@@ -6,6 +6,7 @@ import fr.donjon.classes.Heros;
 import fr.donjon.classes.Squelette;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;
+import fr.donjon.start.GestionnaireSalle;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.MapGenerator;
 import fr.donjon.utils.Vecteur;
