@@ -105,7 +105,7 @@ public abstract class Salle implements EcouteurClavier{
 	}
 
 	/**
-	 * Methode appelï¿½e par les cases portes quand le hï¿½ros marche dessus.
+	 * Methode appellée par les cases portes quand le hï¿½ros marche dessus.
 	 * Cela va appeler la mï¿½thode correspondante dans le gestionnaire de salle auquel la salle appartient.
 	 * @param l le lien de la porte sur laquelle le hï¿½ro marche
 	 */ 
@@ -143,16 +143,21 @@ public abstract class Salle implements EcouteurClavier{
 	
 	
 	/**
-	 * CrÃ©e toutes les portes dans la salle s'il peut exister une salle Ã  cotÃ© de cette instance.
-	 * Voir dans la classe SalleQuatre pour plus de prÃ©cisions
+	 * Créé toutes les portes possibles vers les salles voisines dans le tableau de salles du donjon.
 	 * 
 	 * @param sMap le tableau de salles
 	 */
-	//TODO Bouger cette mÃ©thode dans SalleQuatre et adapter le code du gestionnaire
 	public abstract void createPorteSalleVoisines(Salle[][] sMap);
 
 	/**
-	 * Prends le tableau de cases et en crÃ©e un nouveau entourÃ© de murs
+	 * Crï¿½ï¿½ une case sur un cï¿½tï¿½ de la salle selon l'orientation
+	 * @param o Orientation de la porte ï¿½ crï¿½ï¿½
+	 * @param smap le tableau de salles du donjon
+	 */
+	public abstract void addDoor(Orientation o, Salle[][] sMap);
+	
+	/**
+	 * Prends le tableau de cases et en crée un nouveau entouré de murs
 	 * 
 	 * @param c tableau de cases
 	 * @return le mÃªme tableau mais de dimensions +2 entourÃ© de cases murs
@@ -341,8 +346,9 @@ public abstract class Salle implements EcouteurClavier{
 	}
 	
 	/**
-	 * On vï¿½rifie si le nombre d'ennemis est nul et que seul le hï¿½ros contrï¿½lï¿½ par le joueur reste dans la salle.
+	 * On vérifie si le nombre d'ennemis est nul et que seul le héro controlé par le joueur reste dans la salle.
 	 * Si c'est le cas on rends le passage vers les autres salles possible
+	 * Certaines salles peuvent override cette méthode au besoin
 	 */
 	public void checkFinie(){
 		if(personnages.size() == 1 && !finie){
@@ -363,31 +369,55 @@ public abstract class Salle implements EcouteurClavier{
 	///INTERFACE ECOUTE//////////////////
 	/////////////////////////////////////
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
+	 */
 	@Override
 	public void attaque(Orientation o) {
 		this.hero.attaquer(personnages, projectiles, o);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopAttaque()
+	 */
 	@Override
 	public void stopAttaque() {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
+	 */
 	@Override
 	public void deplacement(Vecteur v) {
 		this.hero.marcher(v);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
+	 */
 	@Override
 	public void utiliseObjet(int reference) {
 		this.hero.utiliserObjet(reference);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
+	 */
 	@Override
 	public void togglePause() {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
+	 */
 	@Override
 	public void stopDeplacement() {
 		this.hero.stop();

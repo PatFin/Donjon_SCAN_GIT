@@ -2,6 +2,7 @@ package fr.donjon.Donjons;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Squelette;
+import fr.donjon.salles.EnigmeSwitch;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;
 import fr.donjon.start.GestionnaireSalle;
@@ -16,12 +17,16 @@ public class DonjonLineaire extends GestionnaireSalle{
 	private static final int SALLEWIDTH = 15;
 	private static final int SALLEHEIGHT = 10;
 
+	int nombreDeSalle;
 	/**
 	 * Constructeur d'un donjon linéaire
 	 * @param nbSalles le nombre de salles que le contient le donjon
 	 */
 	public DonjonLineaire(int nbSalles)  {
 		super(new SalleQuatre(new Heros(0,0),Salle.addWalls(MapGenerator.randomForet(5, 5))) , 0,nbSalles-1,1,nbSalles);
+		
+		this.nombreDeSalle = nbSalles;
+		
 		Salle start = this.getsActuelle();
 		start.setEcouteur(this);
 		
@@ -39,7 +44,14 @@ public class DonjonLineaire extends GestionnaireSalle{
 	@Override
 	public void fournirNouvelleSalle(Vecteur position, Link l, Salle[][] smap) {
 		//create the new room
-		SalleQuatre s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
+		SalleQuatre s;
+		
+		if((l.getSalleOrigine().roomNumber)%(int)(nombreDeSalle/2) == 1){
+			s= new EnigmeSwitch(l.getSalleOrigine().hero);
+		}else{
+			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
+		}
+		
 		s.setEcouteur(l.getSalleOrigine().ecouteur);
 
 		//put it in the array of rooms

@@ -24,14 +24,33 @@ import fr.donjon.utils.Vecteur;
 public class SalleQuatre extends Salle {
 
 
+	/**
+	 * Constructeur
+	 * 
+	 * @param h le héros controlé par le joueur
+	 * @param persos la liste des personnage présent dans la salle (h doit s'y trouver)
+	 * @param c tableau de cases composant la salle
+	 */
 	public SalleQuatre(Heros h, ArrayList<Personnage> persos, Case[][] c) {
 		super(h, persos, c);
 	}
 
+	/**
+	 * Constructeur
+	 * 
+	 * @param h héro contrôlé par le joueur
+	 * @param cases le tableau de cases composant la salle
+	 */
 	public SalleQuatre(Heros h, Case[][] cases) {
 		super(h, cases);
 	}
 
+	/**
+	 * Constructeur
+	 * 
+	 * @param w largeur de la salle
+	 * @param h hauteur de la salle
+	 */
 	public SalleQuatre(int w, int h) {
 		super(w, h);
 	}
@@ -60,10 +79,9 @@ public class SalleQuatre extends Salle {
 		
 	}
 	
-	/**
-	 * Crï¿½ï¿½ une case sur un cï¿½tï¿½ de la salle selon l'orientation
-	 * @param o Orientation de la porte ï¿½ crï¿½ï¿½
-	 * @param smap le tableau de salles du donjon
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.salles.Salle#addDoor(fr.donjon.utils.Orientation, fr.donjon.salles.Salle[][])
 	 */
 	public void addDoor(Orientation o, Salle[][] sMap) {
 
