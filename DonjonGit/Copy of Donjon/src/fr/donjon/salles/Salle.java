@@ -182,6 +182,14 @@ public abstract class Salle implements EcouteurClavier{
 
 		return cs;
 	}
+	
+	/**
+	 * Donne un vecteur pointant sur la case centrale de la salle
+	 * @return vecteur vers le centre de la salle
+	 */
+	public Vecteur getRoomCenter(){
+		return new Vecteur(cases.length/2, cases[0].length/2);
+	}
 
 	/**
 	 * 

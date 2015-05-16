@@ -3,6 +3,7 @@ package fr.donjon.classes;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import fr.donjon.cases.Case;
 import fr.donjon.utils.Vecteur;
 
 /**
@@ -65,4 +66,14 @@ public abstract class Deplacable extends Objet {
 	public void update(long t){
 
 	}
+
+	/**
+	 * Places the object on the tile which coordinates in the room are given by the parameter
+	 * @param v the coordinates of the tile where the object should be placed
+	 */
+	public void setLocationCase(Vecteur v){
+		this.setLocation((int)v.x*Case.TAILLE,(int) v.y*Case.TAILLE);
+	}
+
 }
+
