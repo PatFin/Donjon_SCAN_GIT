@@ -64,6 +64,29 @@ public class MapFileHandler {
 		return list;
 
 	}
+	
+	
+	/**
+	 * Teste tous les fichiers de salles personnalisées et les envoie dans la liste de return 
+	 * s'ils peuvent fonctionner. Cette méthode est notamnent utilisée dans MapGenerator.
+	 * @return la liste des descriptions des salles qui peuvent fonctionner dans un donjon
+	 */
+	public static LinkedList<SalleDescription> getWorkingMaps(){
+		LinkedList <SalleDescription> workingMaps = new LinkedList<SalleDescription>();
+		LinkedList<File> files = getMapList();
+		
+		SalleDescription s;
+		for(File f: files){
+			s = MapFileHandler.getFileToDescription(f);
+			if(s != null){
+				workingMaps.add(s);
+			}
+		}
+		
+		return workingMaps;
+	}
+	
+	
 
 	/**
 	 * 
@@ -132,22 +155,6 @@ public class MapFileHandler {
 			return null;
 		}
 		
-		
-		
-		
-		//TODO replace by a try/catch? //It seems to work ... Baptiste?
-		/**
-*		if(f.exists() && f.getName().endsWith(extension)){
-*
-*			int index = Integer.parseInt( f.getName().split("\\.")[0] );
-*
-*			return getSalleDescriptionFromFile(index);
-*
-*		}else{
-*			System.out.println("This file is not a readable map file ("+f.getName() + ")");
-*			return null;
-*		}
-*/
 	}
 
 	/**

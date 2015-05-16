@@ -3,7 +3,6 @@
  */
 package fr.donjon.utils;
 
-import java.io.File;
 import java.util.LinkedList;
 
 import fr.donjon.cases.Case;
@@ -12,7 +11,6 @@ import fr.donjon.cases.CaseHerbe;
 import fr.donjon.cases.CaseLave;
 import fr.donjon.cases.CaseLiane;
 import fr.donjon.cases.CaseRocher;
-import fr.donjon.cases.CaseSwitch;
 import fr.donjon.editor.MapFileHandler;
 import fr.donjon.editor.SalleDescription;
 
@@ -22,25 +20,20 @@ import fr.donjon.editor.SalleDescription;
  * @author Baptiste
  *
  */
-public class MapGenerator {
+public final class MapGenerator {
 
 	/**
-	 * 
+	 * Donne un tableau de cases généré aléatoirement ou une salle déjà existante créé avec l'éditeur.
+	 * Attention ! les paramètres ne peuvent pas changer les dimensions des salles créé avec l'éditeur!
+	 * @param w largeur du tableau
+	 * @param h hauteur du tableau
+	 * @return tableau de cases qui pourra (entre-autres) servir à créer un salle
 	 */
-	public MapGenerator() {
-
-	}
-
 	public static Case[][] randomMap(int w, int h){
 
-		LinkedList<File> files =  MapFileHandler.getMapList();
-		LinkedList<SalleDescription> sls = new LinkedList<SalleDescription>();
+		LinkedList<SalleDescription> sls = MapFileHandler.getWorkingMaps();
 		
-		for( File f : files){
-			sls.add(MapFileHandler.getFileToDescription(f));
-		}
-		
-		int r = (int) Math.random() * (3 + sls.size() );
+		int r = (int) (Math.random()*10);
 		
 		
 		if( r == 0) return randomChateauLave(w, h);
@@ -49,10 +42,20 @@ public class MapGenerator {
 		
 		else if( r == 2 ) return randomForet(w, h);
 		
-		else return sls.get( (r - 3) ).getMatrix();
+		r=(int)Math.round((Math.random()*sls.size()));
+		return sls.get(r%sls.size()).getMatrix();
 		
 	}
 
+	/**
+	 * Génère un tableau de cases de dimensions données en paramêtre. 
+	 * randomForêt propose une distribution aléatoire de cases:
+	 * CaseLiane 	proba 0.1
+	 * CaseHerbe 	proba 0.9
+	 * @param w largeur du tableau à fournir.
+	 * @param h hauteur du tableau à fournir.
+	 * @return un tableau de largeur w et hauteur h.
+	 */
 	public static Case[][] randomForet(int w, int h){
 
 		ProbabilityMap map = new ProbabilityMap();
@@ -64,24 +67,40 @@ public class MapGenerator {
 		return generateFromProbabilities(map, w, h);
 	}
 
+	
+	/**
+	 * Génère un tableau de cases de dimensions données en paramêtre. 
+	 * randomChateauLave propose une distribution aléatoire de:
+	 * CaseLave 	proba 0.1
+	 * CaseRocher 	proba 0.1
+	 * CaseDalle 	proba 0.8
+	 * @param w largeur du tableau à fournir.
+	 * @param h hauteur du tableau à fournir.
+	 * @return un tableau de largeur w et hauteur h.
+	 */
 	public static Case[][] randomChateauLave(int w, int h){
 
-		//TODO remove this
-		return fillWith(new CaseSwitch(), w, h);
-		
-		/*
 		ProbabilityMap map = new ProbabilityMap();
 		
 		map.addProba( new CaseLave() , 0.10 );
 
 		map.addProba( new CaseRocher() , 0.10 );
 
-		map.addProba( new CaseDalle() , 0.75 );
+		map.addProba( new CaseDalle() , 0.80 );
 		
 		return generateFromProbabilities(map, w, h);
-		*/
 	}
 
+	
+	/**
+	 * Génère un tableau de cases de dimensions données en paramêtre. 
+	 * randomChateauRocher propose une distribution aléatoire de:
+	 * CaseRocher 	proba 0.2
+	 * CaseDalle 	proba 0.8
+	 * @param w largeur du tableau à fournir.
+	 * @param h hauteur du tableau à fournir.
+	 * @return un tableau de largeur w et hauteur h.
+	 */
 	public static Case[][] randomChateauRochers(int w, int h){
 
 		ProbabilityMap map = new ProbabilityMap();
@@ -94,6 +113,13 @@ public class MapGenerator {
 
 	}
 
+	/**
+	 * Rempli un tableau des dimensions indiquées de la taille demandées
+	 * @param c le type de cases dont il faut remplir le tableau
+	 * @param w largeur du tableau à fournir
+	 * @param h hauteur du tableau à fournir
+	 * @return un tableau de Case "c" de largeur w hauteur h.
+	 */
 	public static Case[][] fillWith(Case c, int w, int h){
 
 		Case[][] cs = new Case[w][h];
@@ -108,6 +134,13 @@ public class MapGenerator {
 		return cs;
 	}
 
+	/**
+	 * Génère un tableau de cases aléatoires des dimensions indiquées à partir d'un ProbabilityMap
+	 * @param map contient les types de cases et leurs probabilités respectives
+	 * @param w largeur du tableau à fournir
+	 * @param h hauteur du tableau à fournir
+	 * @return un tableau aléatoire de dimensions w*h rempli de cases
+	 */
 	public static Case[][] generateFromProbabilities( ProbabilityMap map, int w, int h ){
 
 		Case[][] cs = new Case[w][h];
