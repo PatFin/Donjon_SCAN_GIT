@@ -16,6 +16,10 @@ public class DonjonLineaire extends GestionnaireSalle{
 	private static final int SALLEWIDTH = 15;
 	private static final int SALLEHEIGHT = 10;
 
+	/**
+	 * Constructeur d'un donjon linéaire
+	 * @param nbSalles le nombre de salles que le contient le donjon
+	 */
 	public DonjonLineaire(int nbSalles)  {
 		super(new SalleQuatre(new Heros(0,0),Salle.addWalls(MapGenerator.randomForet(5, 5))) , 0,nbSalles-1,1,nbSalles);
 		Salle start = this.getsActuelle();
@@ -28,7 +32,11 @@ public class DonjonLineaire extends GestionnaireSalle{
 		
 		}
 
-	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.start.GestionnaireSalle#fournirNouvelleSalle(fr.donjon.utils.Vecteur, fr.donjon.utils.Link, fr.donjon.salles.Salle[][])
+	 */
+	@Override
 	public void fournirNouvelleSalle(Vecteur position, Link l, Salle[][] smap) {
 		//create the new room
 		SalleQuatre s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
