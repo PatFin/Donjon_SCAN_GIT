@@ -62,8 +62,22 @@ public class CasePorte extends Case {
 	}
 
 
+	/**
+	 * Permet de rendre possible le passage à la salle suivante.
+	 * @param b true si on veut rendre le passage possible, false sinon.
+	 */
 	public void setPassageAutorise(boolean b){
 		collision = b ? collisionPorte : new CollisionObstacle() ;
+	}
+
+
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.cases.Case#clone()
+	 */
+	@Override
+	public Case clone() {
+		return new CasePorte();
 	}
 
 

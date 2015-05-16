@@ -7,12 +7,16 @@ public class CaseDalle extends Case{
 	
 	/**
 	 * Constructeur de cette case.
-	 * Ils'agit d'une case ordinaire qui n'a pas de comportement particulier.
+	 * Il s'agit d'une case ordinaire qui n'a pas de comportement particulier.
 	 */
 	public CaseDalle(){
 		super(image);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.cases.Case#clone()
+	 */
 	@Override
 	public Case clone() {
 		return new CaseDalle();

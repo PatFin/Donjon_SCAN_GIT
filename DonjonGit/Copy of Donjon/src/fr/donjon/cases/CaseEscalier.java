@@ -1,29 +1,21 @@
 package fr.donjon.cases;
 
-import fr.donjon.utils.Orientation;
-
-
-
 public class CaseEscalier extends Case {
 	
 	final static String image="Case_escalier.png";
 	
-	public Orientation o;
-	
 	/**
 	 * Constructeur de la classe Case_Escalier
-	 * La position du rectangle de collision est standard.
-	 * @param o l'endroit ou se trouve l'escalier dans la salle.
+	 * Il s'agit d'une case sans comportements spéciaux.
 	 */
 	public CaseEscalier() {
-		super(image, true, new CollisionObstacle());
-	}
-	
-	public CaseEscalier(Orientation o){
 		super(image);
-		this.o = o;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.cases.Case#clone()
+	 */
 	@Override
 	public Case clone() {
 		return new CaseEscalier();

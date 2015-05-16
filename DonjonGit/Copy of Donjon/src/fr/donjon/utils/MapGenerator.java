@@ -33,7 +33,7 @@ public final class MapGenerator {
 
 		LinkedList<SalleDescription> sls = MapFileHandler.getWorkingMaps();
 		
-		int r = (int) (Math.random()*10);
+		int r = (int) (Math.random()*5);
 		
 		
 		if( r == 0) return randomChateauLave(w, h);

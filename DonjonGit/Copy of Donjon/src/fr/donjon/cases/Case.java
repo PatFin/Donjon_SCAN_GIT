@@ -14,7 +14,7 @@ import fr.donjon.utils.ImageManager;
  * @author Vincent
  *
  */
-public class Case {
+public abstract class Case {
 
 	public final static int TAILLE=64;
 
@@ -28,14 +28,19 @@ public class Case {
 	ArrayList<Projectile> projs;;
 
 	/**
-	 * Constructeur de la Case 
+	 * Constructeur de la Case sans comportement spéciaux
 	 * @param ImageName le string contenant l'adresse de l'image.
-	 * @param traversable true si la case peut ï¿½tre traversï¿½e, false sinon.
 	 */
 	public Case(String src){
 		this(src, true, null);
 	}
 
+	/**
+	 * Constructeur 
+	 * @param src string contenant l'adresse de l'image
+	 * @param e booléen nécessaire pour certaines cases
+	 * @param cp lecomportement associé à la case
+	 */
 	public Case( String src, boolean e, CollisionPattern cp){
 
 		image = ImageManager.getImage(src,this.getClass().getSimpleName());
@@ -50,6 +55,14 @@ public class Case {
 		projs = new ArrayList<Projectile>();
 	}
 
+	/**
+	 * Permet de dessiner la case dans l'image de la salle 
+	 * Certaines cases aux comportements plus spécifiques peuvent override cette méthode
+	 * @param g là où on veut dessiner la case
+	 * @param t paramètre nécessaire à certaines case (animations ...)
+	 * @param x position horizontale de la case dans le tableau de case qui compose la salle.
+	 * @param y position verticale de la case dans le tableau de case qui compose la salle.
+	 */
 	public void draw(Graphics g, long t, int x, int y){
 		
 		if(image == null)return;
@@ -104,6 +117,7 @@ public class Case {
 		}
 	}
 	
+	
 	public void nonCollision(Personnage p){
 		
 		if(enabled && collision != null){
@@ -115,15 +129,22 @@ public class Case {
 		
 	}
 
-	
-	public Case clone(){
-		return null;
-	}
+	/**
+	 * Renvoi une nouvelle case du même genre que celle dont on appelle la méthode clone.
+	 * Elle est redéfinie dans les classes dérivant de Case.
+	 */
+	public abstract Case clone();
 
+	
 	public void setEnabled(boolean b){
 		this.enabled = b;
 	}
 
+	/**
+	 * Mutateur
+	 * Permet de changer le comportement de la case en fournissant un nouveau CollisionPattern.
+	 * @param cp contient le nouveau comportement de la case.
+	 */
 	public void setCollision(CollisionPattern cp){
 		this.collision = cp;
 	}
