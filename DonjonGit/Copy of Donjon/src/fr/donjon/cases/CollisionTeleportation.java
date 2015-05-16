@@ -29,7 +29,7 @@ public class CollisionTeleportation implements CollisionPattern {
 
 	private void teleport(Deplacable p){
 		p.setLocation( arrivee.limites.x + arrivee.limites.width/2 - p.image.width/2, 
-				arrivee.limites.y + arrivee.limites.height/2 - p.image.height/2 );
+				arrivee.limites.y + arrivee.limites.height/2 - p.image.height/2 -1);
 	}
 
 	@Override

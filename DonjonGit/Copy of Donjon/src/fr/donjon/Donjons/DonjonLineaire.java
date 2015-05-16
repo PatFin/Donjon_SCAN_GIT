@@ -34,10 +34,6 @@ public class DonjonLineaire extends GestionnaireSalle{
 		SalleQuatre s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
 		s.setEcouteur(l.getSalleOrigine().ecouteur);
 
-	@Override
-	public Salle fournirNouvelleSalle(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
 		//put it in the array of rooms
 		smap[(int) position.x][(int) position.y] = s;
 				
