@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import fr.donjon.Donjons.DonjonLineaire;
 import fr.donjon.Donjons.GestionnaireSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
@@ -25,6 +24,11 @@ import fr.donjon.zpoubelle.Case;
  *
  */
 public class PanelJeu extends JPanel implements EcouteurClavier{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	static int instances = 0;
 	int instance;
@@ -46,7 +50,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 	/**
 	 * 
 	 */
-	public PanelJeu() {
+	public PanelJeu(GestionnaireSalle gestion) {
 
 		this.setSize(new Dimension( 15*Case.TAILLE, 10*Case.TAILLE));
 		
@@ -56,8 +60,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 
 		timer = new Timer(timerTime, new TimerAction());
 		
-		//gestion = new GestionnairePatrickBasique(4,3);
-		gestion = new DonjonLineaire(10);
+		this.gestion = gestion;
 		
 		dessinateur = new DessinateurSalle(ecran, gestion.getsActuelle());
 		

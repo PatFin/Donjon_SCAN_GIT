@@ -5,14 +5,12 @@ package fr.donjon.start;
 
 import javax.swing.JFrame;
 
+import fr.donjon.Donjons.DonjonLineaire;
+import fr.donjon.Donjons.GestionnairePatrickBasique;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
-import fr.donjon.zpoubelle.CustomException;
-import fr.donjon.zpoubelle.GamePanel;
-import fr.donjon.zpoubelle.JeuLineaire;
-import fr.donjon.zpoubelle.JeuNonLineaire;
 import fr.donjon.zpoubelle.MyJPanel;
 
 /**
@@ -24,23 +22,23 @@ import fr.donjon.zpoubelle.MyJPanel;
  */
 public class Launcher extends JFrame implements EcouteurClavier{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	MyJPanel panActuel; //LE JPanel a utiliser 
 
-	PanelJeu gameLin;	//Le JPanel dessinant le jeu (GamePanel)
-	PanelJeu gameInf;  //Un autre JPanel qui va contenir le jeu non lin�aire
+	PanelJeu game;	//Le JPanel dessinant le jeu (GamePanel)
 	
 	MyJPanel menu;	//Le JPanel dessinant le menu (EcranAcceuil)
 
 	/**
-	 * Lanceur du jeu
-	 * @throws CustomException 
+	 * Constructeur
 	 */
 	public Launcher() {
 
-		gameLin = new PanelJeu(); 	//Ajouter par la suite un gameLin et gameHistoire
-		//TODO gameInf = new JeuNonLineaire();
-		
-		menu = new EcranAccueil(this);	//
+		menu = new EcranAccueil(this);
 		
 		goToMenu();						//On affiche le menu
 		
@@ -56,11 +54,10 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 */
 	public void startGame(int mode){
 		
-		this.gameLin.stopGame();		//On arrete les jeux possiblement en cours
-		//TODO this.gameInf.stopGame();
 		
 		try{
-			this.remove(panActuel);	//On enleve le JPanel du menu s'il existe
+			this.game.stopGame();		//On arrete le jeu possiblement en cours
+			this.remove(game);	//On enleve le JPanel en cours d'utilisation
 		}
 		catch (NullPointerException e){
 
@@ -69,22 +66,21 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		//On change de JPanel d'affichage
 		switch(mode){
 		case 0:
-			//On met un jeu lin�aire
-			gameLin = new PanelJeu(); 
+			//On met un jeu lin�aire
+			game = new PanelJeu(new DonjonLineaire(10)); 
 			break;
 		default:
-			//TODO this.panActuel = gameInf;
+			game = new PanelJeu(new GestionnairePatrickBasique(4, 3));
 		}
 		
+		this.add(game);		//Et on l'affiche
 		
-		this.add(panActuel);		//Et on l'affiche
+		game.setFocusable(true);	//Permet la réception des evenements du clavier
+		game.requestFocusInWindow(); //Pareil
 		
-		panActuel.setFocusable(true);	//Permet la réception des evenements du clavier
-		panActuel.requestFocusInWindow(); //Pareil
+		game.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier
 		
-		panActuel.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier
-		
-		this.panActuel.startGame();								//On demarre le jeu
+		this.game.startGame();								//On demarre le jeu
 		
 		this.pack();										//On met a jour la taille de la fenetre
 	}
@@ -93,28 +89,24 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 * Affiche le menu
 	 */
 	public void goToMenu(){
-		//Voir fonctionnement de startGame()
-		
 		
 		try{
-			this.panActuel.stopGame();
-			this.remove(panActuel);
+			this.game.stopGame();
+			this.remove(game);
 		}
 		catch (NullPointerException e){
 
 		}
-		this.panActuel = menu;
-		this.add(panActuel);
+		this.add(menu);
 		this.pack();
 	}
 
 	/**
-	 * @param args
-	 * @throws CustomException 
+	 * Main method which launches the program
+	 * @param args nothing required 
 	 */
 	public static void main(String[] args)  {
-		// TODO Auto-generated method stub
-		Launcher launch = new Launcher();
+		new Launcher();
 	}
 
 
@@ -124,44 +116,57 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	
 	//On fait passer les evenements au jeu
 	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
+	 */
 	@Override
 	public void attaque(Orientation o) {
-		// TODO Auto-generated method stub
-		panActuel.attaque(o);
+		game.attaque(o);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopAttaque()
+	 */
 	@Override
 	public void stopAttaque() {
-		// TODO Auto-generated method stub
-		panActuel.stopAttaque();
+		game.stopAttaque();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
+	 */
 	@Override
 	public void deplacement(Vecteur v) {
-		// TODO Auto-generated method stub
-		panActuel.deplacement(v);
+		game.deplacement(v);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
+	 */
 	@Override
 	public void utiliseObjet(int reference) {
-		// TODO Auto-generated method stub
-		panActuel.utiliseObjet(reference);
+		game.utiliseObjet(reference);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
+	 */
 	@Override
 	public void togglePause() {
-		// TODO Auto-generated method stub
-		panActuel.togglePause();
+		game.togglePause();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
+	 */
 	@Override
 	public void stopDeplacement() {
-		// TODO Auto-generated method stub
-		panActuel.stopDeplacement();
+		game.stopDeplacement();
 	}
-	
-	
-
-
-
 }
