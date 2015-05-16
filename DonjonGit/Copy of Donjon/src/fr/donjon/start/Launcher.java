@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 
 import fr.donjon.Donjons.DonjonLineaire;
 import fr.donjon.Donjons.GestionnairePatrickBasique;
-import fr.donjon.utils.JeuKeyAdapter;
 
 /**
  * 
@@ -68,14 +67,8 @@ public class Launcher extends JFrame{
 		}
 		
 		this.add(game);		//Et on l'affiche
-		
-		game.setFocusable(true);	//Permet la rÃ©ception des evenements du clavier
-		game.requestFocusInWindow(); //Idem
-		game.addKeyListener(new JeuKeyAdapter(game));	//On ajoute notre ecouteur de clavier personnalisé à notre PanelJeu
-		
 		this.game.startGame();								//On demarre le jeu
-		
-		this.pack();										//On met a jour la taille de la fenetre
+		this.pack();										//On adapte la taille de la fenetre
 	}
 
 	/**
