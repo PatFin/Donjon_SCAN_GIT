@@ -11,16 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import fr.donjon.utils.ImageManager;
-import fr.donjon.utils.Orientation;
-import fr.donjon.utils.Vecteur;
-import fr.donjon.zpoubelle.MyJPanel;
 
-public class EcranAccueil extends MyJPanel{ 
+public class EcranAccueil extends JPanel{ 
 
-	/**
-	 * TODO remplacer le paramètre launcher en ecouteur evènements launcher.
-	 * C'est plus propre!
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	// dÃ©claration de l'image
@@ -79,6 +72,9 @@ public class EcranAccueil extends MyJPanel{
 	}
 	//les actions de la souris
 
+	/**
+	 * Cette méthode décrit les opérations à faire lorsqu'on clique sur chacun des boutons.
+	 */
 	private void addListeners(){
 
 		boutonJeuLineaire.addActionListener(new ActionListener() {

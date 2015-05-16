@@ -242,7 +242,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 	@Override
 	public void togglePause() {
-		//Nothing to do, its done in game panel
+		//Do nothing
 	}
 
 	@Override

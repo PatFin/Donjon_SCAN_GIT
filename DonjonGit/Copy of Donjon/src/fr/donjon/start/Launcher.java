@@ -7,11 +7,9 @@ import javax.swing.JFrame;
 
 import fr.donjon.Donjons.DonjonLineaire;
 import fr.donjon.Donjons.GestionnairePatrickBasique;
-import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
-import fr.donjon.zpoubelle.MyJPanel;
 
 /**
  * 
@@ -20,18 +18,16 @@ import fr.donjon.zpoubelle.MyJPanel;
  * @author Baptiste
  *
  */
-public class Launcher extends JFrame implements EcouteurClavier{
+public class Launcher extends JFrame{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
-	MyJPanel panActuel; //LE JPanel a utiliser 
+	private static final long serialVersionUID = 1L; 
 
 	PanelJeu game;	//Le JPanel dessinant le jeu (GamePanel)
 	
-	MyJPanel menu;	//Le JPanel dessinant le menu (EcranAcceuil)
+	EcranAccueil menu;	//Le JPanel dessinant le menu (EcranAcceuil)
 
 	/**
 	 * Constructeur
@@ -76,9 +72,8 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		this.add(game);		//Et on l'affiche
 		
 		game.setFocusable(true);	//Permet la rÃ©ception des evenements du clavier
-		game.requestFocusInWindow(); //Pareil
-		
-		game.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier
+		game.requestFocusInWindow(); //Idem
+		game.addKeyListener(new JeuKeyAdapter(game));	//On ajoute notre ecouteur de clavier personnalisé à notre PanelJeu
 		
 		this.game.startGame();								//On demarre le jeu
 		
@@ -120,7 +115,6 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 * (non-Javadoc)
 	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
 	 */
-	@Override
 	public void attaque(Orientation o) {
 		game.attaque(o);
 	}
@@ -129,7 +123,6 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 * (non-Javadoc)
 	 * @see fr.donjon.utils.EcouteurClavier#stopAttaque()
 	 */
-	@Override
 	public void stopAttaque() {
 		game.stopAttaque();
 	}
@@ -138,7 +131,6 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 * (non-Javadoc)
 	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
 	 */
-	@Override
 	public void deplacement(Vecteur v) {
 		game.deplacement(v);
 	}
@@ -147,7 +139,6 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 * (non-Javadoc)
 	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
 	 */
-	@Override
 	public void utiliseObjet(int reference) {
 		game.utiliseObjet(reference);
 	}
@@ -156,7 +147,6 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 * (non-Javadoc)
 	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
 	 */
-	@Override
 	public void togglePause() {
 		game.togglePause();
 	}
@@ -165,7 +155,6 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 * (non-Javadoc)
 	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
 	 */
-	@Override
 	public void stopDeplacement() {
 		game.stopDeplacement();
 	}
