@@ -6,7 +6,6 @@ import fr.donjon.classes.Heros;
 import fr.donjon.classes.Squelette;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;
-import fr.donjon.start.GestionnaireSalle;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.MapGenerator;
 import fr.donjon.utils.Vecteur;
@@ -36,7 +35,7 @@ public class GestionnairePatrickBasique extends GestionnaireSalle {
 	public GestionnairePatrickBasique(int w, int h, int sX, int sY){
 		super(new SalleQuatre(new Heros(0, 0), Salle.addWalls(MapGenerator.randomForet(SALLEWIDTH, SALLEHEIGHT))),sX,sY,w, h);
 		
-		this.sActuelle.hero.setLocation(new Vecteur(100,100));
+		this.getsActuelle().hero.setLocation(new Vecteur(100,100));
 		
 		this.sActuelle.createPorteSalleVoisines(smap);
 		

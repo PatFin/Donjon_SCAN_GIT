@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import fr.donjon.Donjons.GestionnaireSalle;
 import fr.donjon.salles.Salle;
 import fr.donjon.utils.Vecteur;
 import fr.donjon.zpoubelle.Case;

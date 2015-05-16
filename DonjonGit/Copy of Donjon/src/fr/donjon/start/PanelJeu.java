@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import fr.donjon.Donjons.DonjonLineaire;
+import fr.donjon.Donjons.GestionnaireSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -58,7 +59,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		//gestion = new GestionnairePatrickBasique(4,3);
 		gestion = new DonjonLineaire(10);
 		
-		dessinateur = new DessinateurSalle(ecran, gestion.sActuelle);
+		dessinateur = new DessinateurSalle(ecran, gestion.getsActuelle());
 		
 		startGame();
 		
@@ -85,8 +86,8 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 
 		repaint();
 		
-		if(dessinateur.salle != gestion.sActuelle){
-			dessinateur.changerSalle(gestion.sActuelle);
+		if(dessinateur.salle != gestion.getsActuelle()){
+			dessinateur.changerSalle(gestion.getsActuelle());
 		}
 
 	}
@@ -106,7 +107,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
 		//On obtient les dimensions de la salle et de la fen�tre
-		Vecteur z = gestion.sActuelle.getPixelSize();
+		Vecteur z = gestion.getsActuelle().getPixelSize();
 		
 		int Width = getWidth();
 		int Height = getHeight();
@@ -118,7 +119,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 			x=(int)(Width/2-z.x/2); 
 		}else{
 			//on place la cam�ra sur le h�ros
-			x=(int)(- gestion.centreCamera.x + Width/2);
+			x=(int)(- gestion.getCentreCamera().x + Width/2);
 		}
 		
 		//Cf au dessus
@@ -126,7 +127,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		if(z.y<Height){
 			y=(int)(Height/2-z.y/2);
 		}else{
-			y=(int)(- gestion.centreCamera.y + Height/2);
+			y=(int)(- gestion.getCentreCamera().y + Height/2);
 		}
 		
 		

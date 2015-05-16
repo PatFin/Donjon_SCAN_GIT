@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.donjon.start;
+package fr.donjon.Donjons;
 
 import fr.donjon.cases.Case;
 import fr.donjon.salles.Salle;
@@ -18,9 +18,9 @@ import fr.donjon.utils.Vecteur;
 public abstract class GestionnaireSalle implements EcouteurChangementSalle, EcouteurClavier{
 
 
-	Salle[][] smap;			//le tableau de salles du donjon
+	protected Salle[][] smap;			//le tableau de salles du donjon
 
-	Salle sActuelle;		//la salle dans laquelle le h�ros se trouve
+	protected Salle sActuelle;		//la salle dans laquelle le h�ros se trouve
 
 	Vecteur position;		//le vecteur contenant les coordonn�es de la salle actuelle
 
