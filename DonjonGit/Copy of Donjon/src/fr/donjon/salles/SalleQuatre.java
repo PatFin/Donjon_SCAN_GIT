@@ -27,8 +27,8 @@ public class SalleQuatre extends Salle {
 	/**
 	 * Constructeur
 	 * 
-	 * @param h le héros controlé par le joueur
-	 * @param persos la liste des personnage présent dans la salle (h doit s'y trouver)
+	 * @param h le hï¿½ros controlï¿½ par le joueur
+	 * @param persos la liste des personnage prï¿½sent dans la salle (h doit s'y trouver)
 	 * @param c tableau de cases composant la salle
 	 */
 	public SalleQuatre(Heros h, ArrayList<Personnage> persos, Case[][] c) {
@@ -38,7 +38,7 @@ public class SalleQuatre extends Salle {
 	/**
 	 * Constructeur
 	 * 
-	 * @param h héro contrôlé par le joueur
+	 * @param h hï¿½ro contrï¿½lï¿½ par le joueur
 	 * @param cases le tableau de cases composant la salle
 	 */
 	public SalleQuatre(Heros h, Case[][] cases) {
@@ -156,6 +156,12 @@ public class SalleQuatre extends Salle {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void toggleMap() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

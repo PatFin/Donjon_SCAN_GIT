@@ -37,12 +37,13 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 
 	GestionnaireSalle gestion;
 	DessinateurSalle dessinateur;
-	
+	DessinateurGestionnaire map;
 	
 	long temps;
 	long ta = -1;
 	
 	int fps;
+	boolean showMap;
 
 	/**
 	 * 
@@ -51,14 +52,20 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 
 		
 		this.setPreferredSize(new Dimension( 15*Case.TAILLE, 10*Case.TAILLE));
+		this.setSize(new Dimension( 15*Case.TAILLE, 10*Case.TAILLE));
 		
 		ecran = new Rectangle(0,0,getWidth(),getHeight());
-
+		
+		
 		timer = new Timer(timerTime, new TimerAction());
 		
 		this.gestion = gestion;
 		
 		dessinateur = new DessinateurSalle(ecran, gestion.getsActuelle());
+		
+		map = new DessinateurGestionnaire(ecran,gestion);
+		
+		showMap = false ;
 		
 		startGame();
 		
@@ -68,7 +75,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 	}
 
 	/**
-	 * Cette méthode appelée par le timer répétitivement appelle la méthode update du gestionnaire.
+	 * Cette mï¿½thode appelï¿½e par le timer rï¿½pï¿½titivement appelle la mï¿½thode update du gestionnaire.
 	 */
 	public void update(){
 
@@ -137,6 +144,12 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		
 		//On dessine la salle 
 		g.drawImage(dessinateur.getImage(g, temps),x,y,null);
+		
+		//Dessin de la map
+		if(showMap){
+			g.drawImage(map.getImage(), 0, 0, getHeight(), getHeight(), null);
+		}
+		
 	}
 
 	/**
@@ -207,6 +220,21 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 	@Override
 	public void stopDeplacement() {
 		gestion.stopDeplacement();
+	}
+
+	@Override
+	public void toggleMap() {
+		
+		if(showMap){
+			showMap = false;
+			timer.start();
+		}
+		else {
+			showMap = true;
+			timer.stop();
+			repaint();
+		}
+		
 	}
 
 

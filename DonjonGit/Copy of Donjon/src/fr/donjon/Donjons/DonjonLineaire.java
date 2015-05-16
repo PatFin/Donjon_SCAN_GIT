@@ -18,7 +18,7 @@ public class DonjonLineaire extends GestionnaireSalle{
 
 	int nombreDeSalle;
 	/**
-	 * Constructeur d'un donjon linéaire
+	 * Constructeur d'un donjon linï¿½aire
 	 * @param nbSalles le nombre de salles que le contient le donjon
 	 */
 	public DonjonLineaire(int nbSalles)  {
@@ -63,6 +63,12 @@ public class DonjonLineaire extends GestionnaireSalle{
 		Squelette e=new Squelette(0, 0, s.hero, s.roomNumber);
 		e.setLocationCase(s.getRoomCenter());
 		s.addEnemy(e);
+		
+	}
+
+	@Override
+	public void toggleMap() {
+		// TODO Auto-generated method stub
 		
 	}
 

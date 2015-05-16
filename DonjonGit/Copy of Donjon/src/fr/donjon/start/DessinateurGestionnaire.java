@@ -3,14 +3,13 @@
  */
 package fr.donjon.start;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import fr.donjon.Donjons.GestionnaireSalle;
 import fr.donjon.salles.Salle;
-import fr.donjon.utils.Vecteur;
-import fr.donjon.zpoubelle.Case;
 
 /**
  * @author Baptiste
@@ -23,54 +22,43 @@ public class DessinateurGestionnaire {
 
 	Rectangle ecran;
 
-	BufferedImage imageSol;
-	Graphics bufferSol;
-
 	BufferedImage image;
 	Graphics buffer;
 
-	Vecteur centrage;
-
-	int salleW;
-	int salleH;
 	
 	
 	public DessinateurGestionnaire(Rectangle ecran, GestionnaireSalle g) {
 
 		this.gest = g;
 		
-		salleW = (g.sActuelle.width) * Case.TAILLE;
-		salleH = (g.sActuelle.height) * Case.TAILLE;
-		
 		this.ecran = ecran;
 		
-		image = new BufferedImage(gest.smap.length * salleW, gest.smap[0].length * salleH, BufferedImage.TYPE_INT_ARGB);
+		image = new BufferedImage(ecran.width, ecran.height, BufferedImage.TYPE_INT_ARGB);
 		buffer = image.createGraphics();
 
-		creerImageSol();
 	}
 
-	public BufferedImage getImage(Graphics g, long t){
+	public BufferedImage getImage(){
 
-		buffer.drawImage(imageSol,0,0,null);
+		int sw = (int) 500;
+		int sh = (int) 200;
 
-		return image;
-	}
-	
-	public void updateImage(){
-		creerImageSol();
-	}
-	
-
-	private void creerImageSol(){
-
-		imageSol = new BufferedImage(gest.smap.length * salleW, gest.smap[0].length * salleH, BufferedImage.TYPE_INT_ARGB);
-		bufferSol = imageSol.createGraphics();
-
+		int w = sw*gest.smap.length;
+		int h = sh*gest.smap[0].length;
+		
+		int d = w >= h ? w : h;
+		
+		image = new BufferedImage(d, d, BufferedImage.TYPE_INT_ARGB);
+		buffer = image.createGraphics();
+		
 		BufferedImage imT;
 		Graphics bufT;
 		
-		//Creating the image
+		buffer.setColor(Color.RED);
+		buffer.fillRect(0, 0, d, d);
+		
+		
+		//Parcours du gestionnaire
 		for(int y=0; y < gest.smap[0].length ;y++){
 			for(int x=0; x < gest.smap.length ; x++){
 				
@@ -78,29 +66,32 @@ public class DessinateurGestionnaire {
 					
 					Salle salle = gest.smap[x][y];
 					
-					imT = new BufferedImage(salleW, salleH, BufferedImage.TYPE_INT_ARGB);
+					imT = new BufferedImage( (int) salle.getPixelSize().x, (int) salle.getPixelSize().y,
+							BufferedImage.TYPE_INT_ARGB);
+					
+					
 					bufT = imT.createGraphics();
 					
-					
+					//Parcours des cases de la salle
 					for(int j=0 ; j < salle.cases[0].length ; j++){
 						for(int i=0 ; i < salle.cases.length ; i++){
 							if(salle.cases[i][j] !=null){
 								
-								bufT.drawImage(salle.cases[i][j].image, i*Case.TAILLE,j*Case.TAILLE, Case.TAILLE, Case.TAILLE, null);
+								salle.cases[i][j].draw(bufT,0, i, j);
 								
 							}
 						}
 					}
 					
 					
-					bufferSol.drawImage(imT, (int) (x * salleW), (int) (y*salleH), null);
+					buffer.drawImage(imT, x*sw, y*sh, sw, sh, null);
 					
 				}
 			}
 		}
+		
+		return image;
+		
 	}
 	
-	public Vecteur getSize(){
-		return new Vecteur(gest.smap.length * salleW, gest.smap[0].length * salleH);
-	}
 }

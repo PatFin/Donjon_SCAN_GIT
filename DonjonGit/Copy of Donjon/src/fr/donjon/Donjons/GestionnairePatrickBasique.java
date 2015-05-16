@@ -71,4 +71,10 @@ public class GestionnairePatrickBasique extends GestionnaireSalle {
 		
 	}
 
+	@Override
+	public void toggleMap() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

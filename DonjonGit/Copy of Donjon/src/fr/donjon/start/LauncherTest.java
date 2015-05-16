@@ -84,6 +84,15 @@ public class LauncherTest extends JFrame implements EcouteurClavier{
 	public void stopDeplacement() {
 		panel.stopDeplacement();
 	}
+
+
+
+
+	@Override
+	public void toggleMap() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

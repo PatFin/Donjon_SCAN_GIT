@@ -39,7 +39,7 @@ public class Launcher extends JFrame implements EcouteurClavier{
 
 		this.setFocusable(true);
 		this.requestFocusInWindow();
-		this.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier personnalisé à notre PanelJeu
+		this.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier personnalisï¿½ ï¿½ notre PanelJeu
 		
 		
 		menu = new EcranAccueil(this);
@@ -67,10 +67,10 @@ public class Launcher extends JFrame implements EcouteurClavier{
 
 		}
 		
-		//On créé le JPanel de jeu
+		//On crï¿½ï¿½ le JPanel de jeu
 		switch(mode){
 		case 0:
-			//On met un jeu linéaire
+			//On met un jeu linï¿½aire
 			game = new PanelJeu(new DonjonLineaire(10)); 
 			break;
 		default:
@@ -173,6 +173,11 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		if(game!=null){
 			game.stopDeplacement();
 		}
+	}
+
+	@Override
+	public void toggleMap() {
+		game.toggleMap();
 	}
 
 }

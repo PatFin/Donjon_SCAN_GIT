@@ -18,7 +18,7 @@ import fr.donjon.utils.Vecteur;
 public abstract class GestionnaireSalle implements EcouteurChangementSalle, EcouteurClavier{
 
 
-	protected Salle[][] smap;			//le tableau de salles du donjon
+	public Salle[][] smap;			//le tableau de salles du donjon
 
 	protected Salle sActuelle;		//la salle dans laquelle le h�ros se trouve
 

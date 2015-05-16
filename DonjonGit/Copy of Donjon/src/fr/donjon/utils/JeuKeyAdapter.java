@@ -22,6 +22,8 @@ public class JeuKeyAdapter implements KeyListener {
 	LinkedList<Integer> tattk;
 	LinkedList<Integer> tdepl;
 	LinkedList<Integer> tobj;
+	LinkedList<Integer> tdiv;
+	
 	LinkedList<Integer> pressed;
 	
 
@@ -37,6 +39,7 @@ public class JeuKeyAdapter implements KeyListener {
 		this.tattk = new LinkedList<Integer>();
 		this.tdepl = new LinkedList<Integer>();
 		this.tobj = new LinkedList<Integer>();
+		this.tdiv = new LinkedList<Integer>();
 		this.pressed  = new LinkedList<Integer>();
 		
 		tattk.add(38);
@@ -54,6 +57,9 @@ public class JeuKeyAdapter implements KeyListener {
 		tobj.add(51);
 		tobj.add(52);
 		tobj.add(53);
+		
+		tdiv.add(77);
+		
 	}
 
 	@Override
@@ -96,6 +102,10 @@ public class JeuKeyAdapter implements KeyListener {
 			
 			else if (tobj.contains(i)){
 				ecouteur.utiliseObjet(tobj.indexOf(i));
+			}
+			
+			else if(tdiv.contains(i)){
+				if(i == 77)ecouteur.toggleMap();
 			}
 			
 		}
