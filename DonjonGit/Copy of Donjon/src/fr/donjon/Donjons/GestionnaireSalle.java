@@ -79,10 +79,19 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 		centreCamera.setLocation(sActuelle.hero.image.x + sActuelle.hero.image.width/2,
 				sActuelle.hero.image.height/2 + sActuelle.hero.image.y);		//On recentre le vecteur centre camï¿½ra sur la position du personnage.
-		
+		this.checkHeroStillAlive();
 		this.checkDonjonFini();
 	}
 
+	/**
+	 * On vérifie que le héro est encore en vie. Si ce n'est pas le cas on retourne au menu.
+	 */
+	public void checkHeroStillAlive() {
+		if(!this.sActuelle.hero.living){
+			//TODO afficher un score ou une minifenêtre en interrompant le jeu
+			ecouteur.requestBackToMenu();
+		}
+	}
 
 	/**
 	 * Vérifie si le donjon est terminé. C'est à dire:
@@ -102,6 +111,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 				}
 			}
 		}
+		//TODO afficher un score ou une minifenêtre en interrompant le jeu
 		ecouteur.requestBackToMenu();
 	}
 
