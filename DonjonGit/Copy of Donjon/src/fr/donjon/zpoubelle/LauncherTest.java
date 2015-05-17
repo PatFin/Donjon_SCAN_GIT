@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.donjon.start;
+package fr.donjon.zpoubelle;
 
 import javax.swing.JFrame;
 

@@ -40,7 +40,7 @@ public class DessinateurGestionnaire {
 
 	public BufferedImage getImage(){
 
-		int sw = (int) 500;
+		int sw = (int) 200;
 		int sh = (int) 200;
 
 		int w = sw*gest.smap.length;
