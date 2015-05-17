@@ -45,9 +45,7 @@ public class GestionnairePatrickBasique extends GestionnaireSalle {
 		
 		sActuelle.cases[3][5].setCollision(new CollisionTeleportation(sActuelle.cases[3][5],sActuelle.cases[7][5]));
 		sActuelle.cases[7][5].setCollision(new CollisionTeleportation(sActuelle.cases[7][5],sActuelle.cases[3][5]));
-		//
 		
-		this.sActuelle.setEcouteur(this);
 		
 		//TODO create a proper enemy generation algorithm. Maybe in fournirNouvelleSalle?
 		this.sActuelle.addEnemy(new Squelette(400, 400, sActuelle.hero, 1));
@@ -55,6 +53,10 @@ public class GestionnairePatrickBasique extends GestionnaireSalle {
 		this.sActuelle.activerLesPortes(false);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.Donjons.GestionnaireSalle#fournirNouvelleSalle(fr.donjon.utils.Vecteur, fr.donjon.utils.Link, fr.donjon.salles.Salle[][])
+	 */
 	@Override
 	public void fournirNouvelleSalle(Vecteur position, Link l, Salle[][] smap) {
 		//create the new room
@@ -68,12 +70,6 @@ public class GestionnairePatrickBasique extends GestionnaireSalle {
 		
 		//we create all the possible doors to the neighbors
 		s.createPorteSalleVoisines(smap);
-		
-	}
-
-	@Override
-	public void toggleMap() {
-		// TODO Auto-generated method stub
 		
 	}
 

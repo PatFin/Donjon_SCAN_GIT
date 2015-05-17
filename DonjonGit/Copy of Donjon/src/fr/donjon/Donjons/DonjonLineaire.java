@@ -27,7 +27,6 @@ public class DonjonLineaire extends GestionnaireSalle{
 		this.nombreDeSalle = nbSalles;
 		
 		Salle start = this.getsActuelle();
-		start.setEcouteur(this);
 		
 		start.createPorteSalleVoisines(this.getSmap());
 		
@@ -63,12 +62,6 @@ public class DonjonLineaire extends GestionnaireSalle{
 		Squelette e=new Squelette(0, 0, s.hero, s.roomNumber);
 		e.setLocationCase(s.getRoomCenter());
 		s.addEnemy(e);
-		
-	}
-
-	@Override
-	public void toggleMap() {
-		// TODO Auto-generated method stub
 		
 	}
 

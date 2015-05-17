@@ -66,7 +66,9 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 		this(w,h);
 		smap[sx][sy] = s;
 		sActuelle = s;
-		this.position = new Vecteur(sx,sy);
+		//On permet à la salle d'envoyer les évènements de changement de salle à this (gestionaire)
+		sActuelle.setEcouteur(this);
+		position = new Vecteur(sx,sy);
 	}
 
 	/**
@@ -256,31 +258,64 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	//INTERFACE ECOUTEUR CLAVIER/////////
 	/////////////////////////////////////
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
+	 */
 	@Override
 	public void attaque(Orientation o) {
 		this.sActuelle.attaque(o);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopAttaque()
+	 */
 	@Override
 	public void stopAttaque() {
 		this.sActuelle.stopAttaque();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
+	 */
 	@Override
 	public void deplacement(Vecteur v) {
 		this.sActuelle.deplacement(v);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
+	 */
 	@Override
 	public void utiliseObjet(int reference) {
 		this.sActuelle.utiliseObjet(reference);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
+	 */
 	@Override
 	public void togglePause() {
-		//Do nothing
+		//do nothing. This event is handled by the PanelJeu class
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#toggleMap()
+	 */
+	@Override
+	public void toggleMap(){
+		//Do nothing, this is handled by the panelJeu class
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
+	 */
 	@Override
 	public void stopDeplacement() {
 		this.sActuelle.stopDeplacement();

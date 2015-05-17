@@ -32,6 +32,7 @@ public class EcranAccueil extends JPanel{
 	
 	private JButton boutonJeuLineaire = new JButton("Jeu LinÃ©aire",iconePlayer);
 	private JButton boutonJeuInfini=new JButton ("Jeu Infini",iconeInfinity);
+	private JButton boutonJeuTest = new JButton("Test_Basique");
 	
 	public EcouteurLauncher ecouteur;
 
@@ -41,21 +42,24 @@ public class EcranAccueil extends JPanel{
 
 		this.setPreferredSize(new Dimension(SCREENX,SCREENY));
 		
-		boutonJeuInfini.setPreferredSize(new Dimension(180, 60));
-		boutonJeuLineaire.setPreferredSize(new Dimension(180, 60));
+		Dimension d = new Dimension(180,60);
+		boutonJeuInfini.setPreferredSize(d);
+		boutonJeuLineaire.setPreferredSize(d);
+		boutonJeuTest.setPreferredSize(d);
 		
 		// lecture de l'image
 		this.im = ImageManager.getImage(srcImage, this.getClass().getSimpleName());
 
 
 		// JPANEL ET BOUTONS
-		//Ajout du bouton ï¿½ notre content pane
+		//Ajout des boutons dans notre panel
+		panel.add(boutonJeuTest);
 		panel.add(boutonJeuLineaire);
 		panel.add(boutonJeuInfini);
 		this.add(panel);
 		// Actions listener
 		this.addListeners();
-
+		
 	}
 
 	/*
@@ -78,6 +82,9 @@ public class EcranAccueil extends JPanel{
 	private void addListeners(){
 
 		boutonJeuLineaire.addActionListener(new ActionListener() {
+			/**
+			 * Si on a appuyé sur le bouton, on commande au lancher un nouveau jeu du type correspondant
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ecouteur.requestNewGame(new DonjonLineaire(10));
@@ -85,12 +92,24 @@ public class EcranAccueil extends JPanel{
 		});
 		
 		boutonJeuInfini.addActionListener(new ActionListener() {
+			/**
+			 * Idem
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ecouteur.requestNewGame(new GestionnairePatrickBasique(4, 3));
-
+				//On commande un jeu infini
+				//TODO
 			}
 		});
-
+		boutonJeuTest.addActionListener(new ActionListener(){
+			/**
+			 * Idem
+			 */
+			@Override
+			public void actionPerformed(ActionEvent e){
+				//On commande un jeu test
+				ecouteur.requestNewGame(new GestionnairePatrickBasique(4, 3));
+			}
+		});
 	}
 }

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import fr.donjon.Donjons.GestionnaireSalle;
+import fr.donjon.salles.Salle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.EcouteurLauncher;
 import fr.donjon.utils.JeuKeyAdapter;
@@ -54,7 +55,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	}
 
 	/**
-	 * Permet de dï¿½marrer le jeu
+	 * Permet de démarrer le jeu
 	 * @param mode le mode de jeu: 0 Pour jeu lineaire, default jeu non linï¿½aire
 	 */
 	public void startGame(GestionnaireSalle g){
@@ -67,7 +68,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		catch (NullPointerException e){
 
 		}
-		
+		Salle.instances=0;					//On réinitialise le nombre de salles crées
 		game = new PanelJeu(g);				//On créé le nouveau jeu
 		game.ecouteur = this;
 		
