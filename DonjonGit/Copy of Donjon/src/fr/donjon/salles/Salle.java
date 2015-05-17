@@ -358,6 +358,14 @@ public abstract class Salle implements EcouteurClavier{
 	}
 	
 	/**
+	 * Accesseur
+	 * @return la valeur du booléen finie de la salle
+	 */
+	public boolean estFinie(){
+		return finie;
+	}
+	
+	/**
 	 * Donne la taille de l'image de la salle
 	 * @return vecteur. Coordonnï¿½e x taille horizontale, y taille verticale.
 	 */

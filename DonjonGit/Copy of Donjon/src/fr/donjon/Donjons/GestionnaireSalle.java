@@ -7,6 +7,7 @@ import fr.donjon.cases.Case;
 import fr.donjon.salles.Salle;
 import fr.donjon.utils.EcouteurChangementSalle;
 import fr.donjon.utils.EcouteurClavier;
+import fr.donjon.utils.EcouteurLauncher;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -26,6 +27,8 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 	Vecteur centreCamera; 	//vecteur contenant l'emplacement du personnage dans la salle.
 							//Il est utile quand on cherche Ã  peindre la salle.
+	
+	public EcouteurLauncher ecouteur;
 
 	/**
 	 * Constructeur initialisant les dimensions du donjon
@@ -76,8 +79,31 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 		centreCamera.setLocation(sActuelle.hero.image.x + sActuelle.hero.image.width/2,
 				sActuelle.hero.image.height/2 + sActuelle.hero.image.y);		//On recentre le vecteur centre camï¿½ra sur la position du personnage.
+		
+		this.checkDonjonFini();
 	}
 
+
+	/**
+	 * Vérifie si le donjon est terminé. C'est à dire:
+	 * Si toutes les salles du tableau existent et ont été visitées (booléen fini == vrai)
+	 * Demande à ce que le menu soit rafiché si c'est le cas.
+	 */
+	public void checkDonjonFini() {
+		//We go through the array
+		for(int i=0; i<smap.length; i++){
+			for(int j=0; j<smap[0].length;j++){
+				if(smap[i][j] == null){
+					return;
+				}else{
+					if(!smap[i][j].estFinie()){
+						return;
+					}
+				}
+			}
+		}
+		ecouteur.requestBackToMenu();
+	}
 
 	/**
 	 * Change le personnage de salle vers celle situÃ©e Ã  la salle situÃ©e aux coordonnï¿½es actuelles+dir

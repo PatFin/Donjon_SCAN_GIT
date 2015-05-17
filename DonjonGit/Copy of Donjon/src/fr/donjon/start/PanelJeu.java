@@ -60,6 +60,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 		timer = new Timer(timerTime, new TimerAction());
 		
 		this.gestion = gestion;
+		gestion.ecouteur = this;
 		
 		dessinateur = new DessinateurSalle(ecran, gestion.getsActuelle());
 		
