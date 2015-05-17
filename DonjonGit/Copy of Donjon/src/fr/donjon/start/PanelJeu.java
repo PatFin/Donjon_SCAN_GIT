@@ -21,7 +21,7 @@ import fr.donjon.utils.Vecteur;
 import fr.donjon.zpoubelle.Case;
 
 
-public class PanelJeu extends JPanel implements EcouteurClavier{
+public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLauncher{
 	
 	/**
 	 * 
@@ -78,11 +78,11 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 	 * Cette m�thode appel�e par le timer r�p�titivement appelle la m�thode update du gestionnaire.
 	 */
 	public void update(){
-
-		//Shows the fps of the actual game
 		
 		//TODO remove this bit?
 		
+		//Shows the fps of the actual game
+
 		if(ta == -1)ta = System.currentTimeMillis();
 		else{
 			if(temps%900==0){//Add comment to hide the message
@@ -187,27 +187,46 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 	
 	//On fait passer les ordres au Gestionnaire et on intercepte celui pour stopper le Timer
 	
-	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
+	 */
 	@Override
 	public void attaque(Orientation o) {
 		gestion.attaque(o);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopAttaque()
+	 */
 	@Override
 	public void stopAttaque() {
 		gestion.stopAttaque();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
+	 */
 	@Override
 	public void deplacement(Vecteur v) {
 		gestion.deplacement(v);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
+	 */
 	@Override
 	public void utiliseObjet(int reference) {
 		gestion.utiliseObjet(reference);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
+	 */
 	@Override
 	public void togglePause() {
 		if(timer.isRunning()){
@@ -217,11 +236,19 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
+	 */
 	@Override
 	public void stopDeplacement() {
 		gestion.stopDeplacement();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#toggleMap()
+	 */
 	@Override
 	public void toggleMap() {
 		
@@ -235,6 +262,26 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 			repaint();
 		}
 		
+	}
+	
+	//On capte les demandes du GestionnaireSalle et on les transmets au launcher
+	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurLauncher#requestBackToMenu()
+	 */
+	@Override
+	public void requestBackToMenu() {
+		ecouteur.requestBackToMenu();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurLauncher#requestNewGame(fr.donjon.Donjons.GestionnaireSalle)
+	 */
+	@Override
+	public void requestNewGame(GestionnaireSalle g) {
+		ecouteur.requestNewGame(g);
 	}
 
 

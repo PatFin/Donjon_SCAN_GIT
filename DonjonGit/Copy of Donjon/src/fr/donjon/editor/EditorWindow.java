@@ -25,13 +25,10 @@ import fr.donjon.cases.CaseEscalier;
 import fr.donjon.cases.CaseFendue;
 import fr.donjon.cases.CaseHerbe;
 import fr.donjon.cases.CaseLave;
-import fr.donjon.cases.CaseMap;
 import fr.donjon.cases.CaseMur;
 import fr.donjon.cases.CaseRocher;
-import fr.donjon.cases.CaseSource;
 import fr.donjon.cases.CaseVide;
 import fr.donjon.cases.CaseWater;
-import fr.donjon.utils.ImageManager;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Vecteur;
 import fr.donjon.zpoubelle.SalleEssai;
@@ -47,10 +44,15 @@ import fr.donjon.zpoubelle.SimplePanel;
  */
 public class EditorWindow extends JFrame{
 
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public static void main(String[] a){
 
-		EditorWindow window = new EditorWindow("Editeur de cartes");
-
+		new EditorWindow("Editeur de cartes");
 	}
 
 	//Cadre principal

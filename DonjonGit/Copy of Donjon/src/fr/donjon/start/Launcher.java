@@ -69,6 +69,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		}
 		
 		game = new PanelJeu(g);				//On créé le nouveau jeu
+		game.ecouteur = this;
 		
 		actuel=game;
 		
@@ -185,8 +186,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	 */
 	@Override
 	public void requestBackToMenu() {
-		// TODO Auto-generated method stub
-		
+		goToMenu();
 	}
 
 	/*
@@ -195,7 +195,6 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	 */
 	@Override
 	public void requestNewGame(GestionnaireSalle g) {
-		// TODO Auto-generated method stub
 		startGame(g);
 	}
 
