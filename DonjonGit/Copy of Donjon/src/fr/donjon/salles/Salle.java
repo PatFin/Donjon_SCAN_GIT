@@ -189,6 +189,25 @@ public abstract class Salle implements EcouteurClavier{
 	}
 	
 	/**
+	 * Detecte les coordonn√©es d'une salle dans un tableau
+	 * @param sMap le tableau de salle
+	 * @return Vecteur indiquant la position dans le tableau, (-1,-1) si non trouv√©e
+	 */
+	public Vecteur detecteSalleDansTableau(Salle[][] sMap){
+		Vecteur v = new Vecteur(-1,-1);
+		
+		for(int i=0; i<sMap.length; i++){
+			for(int j=0; j<sMap[0].length; j++){
+				if(sMap[i][j] == this){
+					v.setLocation(i, j);
+				}
+			}
+		}
+		
+		return v;
+	}
+	
+	/**
 	 * Donne un vecteur pointant sur la case centrale de la salle
 	 * @return vecteur vers le centre de la salle
 	 */
@@ -287,6 +306,20 @@ public abstract class Salle implements EcouteurClavier{
 	}
 
 	/**
+	 * Indique si la salle a au moins une porte dans la direction indiquÈe en paramËtre
+	 * @param o orientation de la porte ‡ dÈtecter dans la salle
+	 * @return true si il y a une porte de l'orientation indiquÈe dans cette salle, false sinon.
+	 */
+	public boolean hasDoorInOrientation(Orientation o){
+		for(CasePorte c : this.portes){
+			if(c.collisionPorte.lien.getOrientation()==o){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
 	 * Permet d'ajouter un ennemis ÔøΩ la salle
 	 * @param e l'ennemi ÔøΩ ajouter
 	 */
@@ -363,6 +396,19 @@ public abstract class Salle implements EcouteurClavier{
 	 */
 	public boolean estFinie(){
 		return finie;
+	}
+	
+	/**
+	 * Cette mÈthode vÈrifie que toutes les portes ont une destination, c‡d une case dans une autre salle
+	 * @return true si toutes les portes de la salle ont une destination, false sinon
+	 */
+	public boolean allDoorsHaveDestination() {
+		for(CasePorte c : portes){
+			if(!c.collisionPorte.lien.hasDestination()){
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	/**

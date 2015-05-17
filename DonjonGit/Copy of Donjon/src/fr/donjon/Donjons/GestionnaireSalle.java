@@ -173,12 +173,20 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	
 	/**
 	 * MÃ©thode utilisÃ©e pour gÃ©nÃ©rer la salle suivante. 
-	 * @param position
-	 * @param l
-	 * @param smap
+	 * @param position la position dans le tableau de la nouvelle salle à fournir
+	 * @param l le lien de la salle précédente à la nouvelle salle
+	 * @param smap le tableau de salles du donjon
 	 */
 	public abstract void fournirNouvelleSalle(Vecteur position, Link l, Salle[][] smap);
 
+	/**
+	 * Donne la salle à la position indiquée par le vecteur dans le tableau de salle du donjon
+	 * @param v vecteur de position de la salle à rendre dans le tableau de salle
+	 * @return la salle à la position v. Attention, renvoi null si la salle n'a pas encore été créé.
+	 */
+	public Salle getSalle(Vecteur v){
+		return smap[(int)v.x][(int)v.y];
+	}
 	
 	/**
 	 * Accesseur

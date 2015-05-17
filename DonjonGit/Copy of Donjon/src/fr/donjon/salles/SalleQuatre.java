@@ -121,25 +121,6 @@ public class SalleQuatre extends Salle {
 		}
 		
 	}
-
-	/**
-	 * Detecte les coordonnées d'une salle dans un tableau
-	 * @param sMap le tableau de salle
-	 * @return Vecteur indiquant la position dans le tableau, (-1,-1) si non trouvée
-	 */
-	private Vecteur detecteSalleDansTableau(Salle[][] sMap){
-		Vecteur v = new Vecteur(-1,-1);
-		
-		for(int i=0; i<sMap.length; i++){
-			for(int j=0; j<sMap[0].length; j++){
-				if(sMap[i][j] == this){
-					v.setLocation(i, j);
-				}
-			}
-		}
-		
-		return v;
-	}
 	
 	/**
 	 * Donne la case porte de l'orientation donnée en parametre

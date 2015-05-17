@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import fr.donjon.Donjons.DonjonLineaire;
+import fr.donjon.Donjons.DonjonNonLineaire;
 import fr.donjon.Donjons.GestionnairePatrickBasique;
 import fr.donjon.utils.EcouteurLauncher;
 import fr.donjon.utils.ImageManager;
@@ -98,7 +99,7 @@ public class EcranAccueil extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//On commande un jeu infini
-				//TODO
+				ecouteur.requestNewGame(new DonjonNonLineaire(5, 8));
 			}
 		});
 		boutonJeuTest.addActionListener(new ActionListener(){

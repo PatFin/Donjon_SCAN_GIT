@@ -1,4 +1,7 @@
 package fr.donjon.utils;
+
+import java.util.ArrayList;
+
 /**
  * 
  * @author Vincent
@@ -31,6 +34,19 @@ public enum Orientation {
 		return a;
 	}
 	
+	/**
+	 * Generates a random orientation which is not that of the one given in parameter
+	 * @param a a non wanted Orientation
+	 * @param b a non wanted Orientation
+	 * @return any orientation but a or b
+	 */
+	public static Orientation random(Orientation a, Orientation b){
+		Orientation r;
+		do{
+			r=random();
+		}while(r==a || r==b);
+		return r;
+	}
 	
 	/**
 	 * Gives the opposite Orientation to that given
@@ -53,6 +69,15 @@ public enum Orientation {
 		default:
 			return null;
 		}
+	}
+	
+	public static ArrayList<Orientation> getOrientationList(){
+		ArrayList<Orientation> o = new ArrayList<Orientation>();
+		o.add(OUEST);
+		o.add(EST);
+		o.add(NORD);
+		o.add(SUD);
+		return o;
 	}
 	
 	public Orientation opposite(){

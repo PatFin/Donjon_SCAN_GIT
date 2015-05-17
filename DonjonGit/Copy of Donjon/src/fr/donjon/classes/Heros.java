@@ -133,6 +133,7 @@ public class Heros extends Personnage{
 	}
 
 
+	
 	@Override
 	public void utiliserObjet(int reference) {
 		inventaire.useUtilisable(reference);
