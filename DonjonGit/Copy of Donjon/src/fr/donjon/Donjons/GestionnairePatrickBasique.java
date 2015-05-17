@@ -48,7 +48,7 @@ public class GestionnairePatrickBasique extends GestionnaireSalle {
 		
 		
 		//TODO create a proper enemy generation algorithm. Maybe in fournirNouvelleSalle?
-		this.sActuelle.addEnemy(new Squelette(400, 400, sActuelle.hero, 1));
+		this.sActuelle.addEnemy(new Squelette(400, 400, sActuelle.hero, 1, sActuelle));
 		
 		this.sActuelle.activerLesPortes(false);
 	}

@@ -130,7 +130,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 		if( !(npos.x >= 0 && npos.x < smap.length && npos.y >= 0  && npos.y < smap[0].length) )return false; //On tombe en dehors du tableau de salle, on renvoi false
 		
-		if(this.getSalleAt(npos) == null){
+		if(this.getSalle(npos) == null){
 			fournirNouvelleSalle(npos, l, this.smap); //On crée une nouvelle salle et on la met dans le tableau
 		}
 		
@@ -157,18 +157,9 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	 * Change la salle actuelle � celle stu�e dans le tableau aux coordonn�es donn�es dans le vecteur
 	 * @param nouvelleSalle les coordonn�es dans le tableau de la nouvelle salle actuelle.
 	 */
-	private void setSActuelle(Vecteur pos){
+	public void setSActuelle(Vecteur pos){
 		position = pos;
 		sActuelle = smap[(int)position.x][(int)position.y];
-	}
-
-	/**
-	 * donne la salle située à la position dans le donjon donn�e par le vecteur.
-	 * @param v
-	 * @return
-	 */
-	private Salle getSalleAt(Vecteur v){
-		return smap[(int) v.x][(int) v.y];
 	}
 	
 	/**
