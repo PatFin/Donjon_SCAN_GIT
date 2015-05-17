@@ -10,6 +10,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import fr.donjon.Donjons.DonjonLineaire;
+import fr.donjon.Donjons.GestionnairePatrickBasique;
+import fr.donjon.utils.EcouteurLauncher;
 import fr.donjon.utils.ImageManager;
 
 public class EcranAccueil extends JPanel{ 
@@ -30,19 +33,16 @@ public class EcranAccueil extends JPanel{
 	private JButton boutonJeuLineaire = new JButton("Jeu Linéaire",iconePlayer);
 	private JButton boutonJeuInfini=new JButton ("Jeu Infini",iconeInfinity);
 	
-	
-	private Launcher launcher;
+	public EcouteurLauncher ecouteur;
 
 	//Constructeur de la classe EcranAccueil
 
-	public EcranAccueil (Launcher l){
+	public EcranAccueil (){
 
 		this.setPreferredSize(new Dimension(SCREENX,SCREENY));
 		
 		boutonJeuInfini.setPreferredSize(new Dimension(180, 60));
 		boutonJeuLineaire.setPreferredSize(new Dimension(180, 60));
-		
-		this.launcher = l;
 		
 		// lecture de l'image
 		this.im = ImageManager.getImage(srcImage, this.getClass().getSimpleName());
@@ -80,15 +80,14 @@ public class EcranAccueil extends JPanel{
 		boutonJeuLineaire.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				launcher.startGame(0);
-
+				ecouteur.requestNewGame(new DonjonLineaire(10));
 			}
 		});
 		
 		boutonJeuInfini.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				launcher.startGame(1);
+				ecouteur.requestNewGame(new GestionnairePatrickBasique(4, 3));
 
 			}
 		});

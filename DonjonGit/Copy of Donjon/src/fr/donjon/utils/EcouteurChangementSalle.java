@@ -1,8 +1,5 @@
 package fr.donjon.utils;
 
-
-
-
 public interface EcouteurChangementSalle {
 
 	/**

@@ -6,9 +6,9 @@ package fr.donjon.start;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import fr.donjon.Donjons.DonjonLineaire;
-import fr.donjon.Donjons.GestionnairePatrickBasique;
+import fr.donjon.Donjons.GestionnaireSalle;
 import fr.donjon.utils.EcouteurClavier;
+import fr.donjon.utils.EcouteurLauncher;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -20,7 +20,7 @@ import fr.donjon.utils.Vecteur;
  * @author Baptiste
  *
  */
-public class Launcher extends JFrame implements EcouteurClavier{
+public class Launcher extends JFrame implements EcouteurClavier, EcouteurLauncher{
 
 	/**
 	 * 
@@ -42,11 +42,12 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		this.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier personnalisï¿½ ï¿½ notre PanelJeu
 		
 		
-		menu = new EcranAccueil(this);
+		menu = new EcranAccueil();
+		menu.ecouteur = this;
 		
 		goToMenu();						//On affiche le menu
 		
-		setResizable(false);
+		setResizable(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 
@@ -56,7 +57,7 @@ public class Launcher extends JFrame implements EcouteurClavier{
 	 * Permet de dï¿½marrer le jeu
 	 * @param mode le mode de jeu: 0 Pour jeu lineaire, default jeu non linï¿½aire
 	 */
-	public void startGame(int mode){
+	public void startGame(GestionnaireSalle g){
 		
 		
 		try{
@@ -67,15 +68,7 @@ public class Launcher extends JFrame implements EcouteurClavier{
 
 		}
 		
-		//On crï¿½ï¿½ le JPanel de jeu
-		switch(mode){
-		case 0:
-			//On met un jeu linï¿½aire
-			game = new PanelJeu(new DonjonLineaire(10)); 
-			break;
-		default:
-			game = new PanelJeu(new GestionnairePatrickBasique(4, 3));
-		}
+		game = new PanelJeu(g);				//On créé le nouveau jeu
 		
 		actuel=game;
 		
@@ -175,9 +168,35 @@ public class Launcher extends JFrame implements EcouteurClavier{
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#toggleMap()
+	 */
 	@Override
 	public void toggleMap() {
-		game.toggleMap();
+		if(game!=null){
+			game.toggleMap();
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurLauncher#requestBackToMenu()
+	 */
+	@Override
+	public void requestBackToMenu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurLauncher#requestNewGame(fr.donjon.Donjons.GestionnaireSalle)
+	 */
+	@Override
+	public void requestNewGame(GestionnaireSalle g) {
+		// TODO Auto-generated method stub
+		startGame(g);
 	}
 
 }

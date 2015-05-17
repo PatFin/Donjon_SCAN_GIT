@@ -15,6 +15,7 @@ import javax.swing.Timer;
 
 import fr.donjon.Donjons.GestionnaireSalle;
 import fr.donjon.utils.EcouteurClavier;
+import fr.donjon.utils.EcouteurLauncher;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 import fr.donjon.zpoubelle.Case;
@@ -44,10 +45,9 @@ public class PanelJeu extends JPanel implements EcouteurClavier{
 	
 	int fps;
 	boolean showMap;
+	
+	EcouteurLauncher ecouteur;
 
-	/**
-	 * 
-	 */
 	public PanelJeu(GestionnaireSalle gestion) {
 
 		
