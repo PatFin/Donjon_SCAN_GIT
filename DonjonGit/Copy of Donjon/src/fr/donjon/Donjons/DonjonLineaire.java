@@ -59,7 +59,7 @@ public class DonjonLineaire extends GestionnaireSalle{
 		s.createPorteSalleVoisines(smap);
 		
 		//We add a skeleton to each room, its level being the room number
-		Squelette e=new Squelette(0, 0, s.hero, s.roomNumber);
+		Squelette e=new Squelette(0, 0, s.hero, s.roomNumber, this.getsActuelle());
 		e.setLocationCase(s.getRoomCenter());
 		s.addEnemy(e);
 		

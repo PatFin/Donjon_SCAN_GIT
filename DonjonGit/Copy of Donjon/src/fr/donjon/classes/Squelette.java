@@ -3,6 +3,7 @@ package fr.donjon.classes;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import fr.donjon.salles.Salle;
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatPersonnage;
 import fr.donjon.utils.Orientation;
@@ -19,11 +20,11 @@ public class Squelette extends Ennemis {
 	final static double COEFF = 0.3;
 	public Personnage target;
 	
-	public Squelette(int ax, int ay, Personnage cible, int level){
+	public Squelette(int ax, int ay, Personnage cible, int level, Salle room){
 		super(ax, ay, LNG, LRG, src,
 				new Rectangle(17,15,30,49), new Rectangle(22,48,20,16), true,
 				Orientation.SUD, EtatPersonnage.REPOS, Vecteur.vNull,VIT,
-				VIE, DEF , null, cible);
+				VIE, DEF , null, cible, room);
 		
 		target = cible;
 		
@@ -35,6 +36,11 @@ public class Squelette extends Ennemis {
 		animation = animationS;
 		
 		NIV = level;
+		
+		this.inventaire = new Inventaire(2, this);
+		
+		inventaire.addUtilisable(new ArmeEpee());
+		inventaire.addUtilisable(new BatonDeGlace());
 	}
 	
 	//calculer le vecteur Squellette Personnage (voir methode marche de heros)
@@ -78,13 +84,23 @@ public class Squelette extends Ennemis {
 		
 		Vecteur v = new Vecteur(dx, dy);
 		
-		if (v.getNorm() > 30) {
+		if (v.getNorm() > 300) {
 			
 			marcher(v);
 		}
+		
+		else if (v.getNorm() > 150 && v.getNorm() <= 300) {
+			
+			inventaire.useUtilisable(1);
+			
+			v = v.normalise();
+		}
+		
 		else {
 			
-			this.etat = EtatPersonnage.REPOS;
+			inventaire.useUtilisable(0);
+			attaquer(currentRoom.personnages, currentRoom.projectiles, Orientation.NORD);
+			
 		}
 	}
 
@@ -104,6 +120,14 @@ public class Squelette extends Ennemis {
 	public void attaquer(ArrayList<Personnage> cibles,
 			ArrayList<Projectile> projectiles, Orientation o) {
 		
+		int dx = target.image.x - this.image.x;
+		int dy = target.image.y - this.image.y;
+		
+		Vecteur v = new Vecteur(dx, dy);
+		
+		Orientation or = v.projectMainDirection();
+		
+		this.arme.attaquer(currentRoom.personnages, projectiles, or);
 	}
 
 	@Override
