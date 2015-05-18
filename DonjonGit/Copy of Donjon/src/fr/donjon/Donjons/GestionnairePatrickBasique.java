@@ -5,11 +5,11 @@ package fr.donjon.Donjons;
 
 import java.util.ArrayList;
 
+import fr.donjon.classes.BigBoss;
 import fr.donjon.classes.Heros;
 import fr.donjon.salles.EnigmeSwitch;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;
-import fr.donjon.utils.GameOverDialog;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.MapGenerator;
 import fr.donjon.utils.Orientation;
@@ -119,6 +119,7 @@ public class GestionnairePatrickBasique extends GestionnaireSalle{
 			s.addDoor(y, smap);
 		}
 
+		s.addEnemy(new BigBoss( 200,200 , s.hero, 1, s) );
 
 	}
 
