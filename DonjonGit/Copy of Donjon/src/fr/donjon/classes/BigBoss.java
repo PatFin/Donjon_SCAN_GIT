@@ -13,11 +13,19 @@ public class BigBoss extends Ennemis {
 	
 	final static int LNG = 128;
 	final static int LRG = 128;
-	static int VIE = 500;
-	static int DEF = 25;
-	static int VIT = 3;
+	final static int VIE = 500;
+	final static int DEF = 25;
+	final static int VIT = 4;
 	final static String src = "big_boss_map.png";
 	final static double COEFF = 0.3;
+	
+	final static int TDUR = 10000;
+	final static int TFIRE = 4000;
+	final static int TRAPR = 8000;
+	final static int TMEGA = 10000;
+	
+	private long tEcoule;
+	private long tDecal;
 	
 	/*
 	 * 
@@ -41,8 +49,12 @@ public class BigBoss extends Ennemis {
 		
 		this.inventaire = new Inventaire(2, this);
 		
-		inventaire.addUtilisable(new ArmeEpee());
 		inventaire.addUtilisable(new BatonDeFeu());
+		
+		tEcoule = 0;
+		tDecal = -1;
+		
+		inventaire.useUtilisable(0);
 	}
 	
 	//calculer le vecteur Squellette Personnage (voir methode marche de heros)
@@ -84,33 +96,33 @@ public class BigBoss extends Ennemis {
 		int dx = cible.image.x - this.image.x;
 		int dy = cible.image.y - this.image.y;
 		
-		Vecteur v = new Vecteur(dx, dy);
+		Vecteur v = new Vecteur(dx, dy).normalise();
 		
-		if (v.getNorm() > 300) {
-			
-			v = v.normalise();
-			
+		if( tEcoule < TFIRE){
+			this.vvitesse = Vecteur.vNull;
+			attaquer( currentRoom.personnages, currentRoom.projectiles, v);
+		}
+		else if( tEcoule < TRAPR){
+			marcher(v);
+		}
+		else if( tEcoule < TMEGA){
+			attaquer( currentRoom.personnages, currentRoom.projectiles, v);
 			marcher(v);
 		}
 		
-		else {
-			
-			v = v.normalise();
-			
-			attaquer(currentRoom.personnages, currentRoom.projectiles, v);
-		}
 	}
 
 
 	@Override
 	public void update(long t) {
-		
 		super.update(t);
 		
-		if (stats.vie > 0) {
-			
-			pattern();
-		}
+		if(tDecal == -1)tDecal = t;
+		
+		tEcoule = (t - tDecal)%TDUR ;
+		
+		pattern();
+		
 	}
 
 	@Override
@@ -119,7 +131,7 @@ public class BigBoss extends Ennemis {
 			
 		this.etat = EtatPersonnage.ATTAQUE;
 
-		this.arme.attaquer(currentRoom.personnages, projectiles, v);
+		this.arme.attaquer(cibles, projectiles, v);
 		
 		this.etat = EtatPersonnage.REPOS;
 	}
