@@ -41,7 +41,7 @@ public class EnnemyGenerator {
 		
 		for(int y = 0 ; y < h ; y++){
 			for(int x = 0 ; x < w ; x++){
-				if(  t%1 < 0.001 || 1 - (t%1) < 0.001  )l.add( new Squelette( (x+1)*Case.TAILLE, (y+1)*Case.TAILLE, he, 1) );
+				if(  t%1 < 0.001 || 1 - (t%1) < 0.001  )l.add( new Squelette( (x+1)*Case.TAILLE, (y+1)*Case.TAILLE, he, 1, s) );
 				t+=nh;
 				
 			}

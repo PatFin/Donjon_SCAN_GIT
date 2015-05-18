@@ -3,9 +3,11 @@ package fr.donjon.Donjons;
 import fr.donjon.cases.CaseTeleportation;
 import fr.donjon.cases.CollisionTeleportation;
 import fr.donjon.classes.Heros;
+import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Squelette;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;
+import fr.donjon.utils.EnnemyGenerator;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.MapGenerator;
 import fr.donjon.utils.Vecteur;
@@ -47,8 +49,7 @@ public class GestionnairePatrickBasique extends GestionnaireSalle {
 		sActuelle.cases[7][5].setCollision(new CollisionTeleportation(sActuelle.cases[7][5],sActuelle.cases[3][5]));
 		
 		
-		//TODO create a proper enemy generation algorithm. Maybe in fournirNouvelleSalle?
-		this.sActuelle.addEnemy(new Squelette(400, 400, sActuelle.hero, 1));
+		sActuelle.personnages.addAll(EnnemyGenerator.fillQuareSquare(sActuelle.hero, sActuelle, 10));
 		
 		this.sActuelle.activerLesPortes(false);
 	}
