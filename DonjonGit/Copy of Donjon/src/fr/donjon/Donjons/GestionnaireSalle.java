@@ -92,9 +92,15 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	 */
 	public void checkHeroStillAlive() {
 		if(!this.sActuelle.hero.living){
-			//TODO afficher un score ou une minifen�tre en interrompant le jeu
-			ecouteur.requestBackToMenu();
+			gameOverDialog();
 		}
+	}
+
+	/**
+	 * Appelle un dialog
+	 */
+	protected void gameOverDialog() {
+		new GameOverDialog(null, true, this);
 	}
 
 	/**
@@ -116,7 +122,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 			}
 		}
 		
-		new GameOverDialog(null, true, this);
+		gameOverDialog();
 	}
 
 	/**

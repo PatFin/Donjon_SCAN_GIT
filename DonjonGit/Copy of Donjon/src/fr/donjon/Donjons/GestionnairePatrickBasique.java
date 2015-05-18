@@ -9,6 +9,7 @@ import fr.donjon.classes.Heros;
 import fr.donjon.salles.EnigmeSwitch;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;
+import fr.donjon.utils.GameOverDialog;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.MapGenerator;
 import fr.donjon.utils.Orientation;
@@ -137,8 +138,7 @@ public class GestionnairePatrickBasique extends GestionnaireSalle{
 				}
 			}
 		}
-		//TODO afficher un score ou une minifen�tre en interrompant le jeu
-		ecouteur.requestBackToMenu();
+		gameOverDialog();
 	}
 
 }

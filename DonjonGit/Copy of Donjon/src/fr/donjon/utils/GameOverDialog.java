@@ -37,7 +37,7 @@ public class GameOverDialog extends JDialog {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		
-		Dimension d = new Dimension(40,20);
+		Dimension d = new Dimension(60,40);
 		
 		BQuit = new JButton("Quit");
 		BRetour = new JButton("Retour");
