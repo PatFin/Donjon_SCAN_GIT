@@ -101,13 +101,19 @@ public class BigBoss extends Ennemis {
 		if( tEcoule < TFIRE){
 			this.vvitesse = Vecteur.vNull;
 			attaquer( currentRoom.personnages, currentRoom.projectiles, v);
+			System.out.println("PH1");
 		}
 		else if( tEcoule < TRAPR){
 			marcher(v);
+			System.out.println("PH2");
 		}
 		else if( tEcoule < TMEGA){
 			attaquer( currentRoom.personnages, currentRoom.projectiles, v);
 			marcher(v);
+			System.out.println("PH3");
+		}
+		else {
+			System.out.println("PTIN");
 		}
 		
 	}
