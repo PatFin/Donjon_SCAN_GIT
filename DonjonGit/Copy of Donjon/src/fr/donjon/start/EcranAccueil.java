@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 
 import fr.donjon.Donjons.DonjonLineaire;
 import fr.donjon.Donjons.DonjonNonLineaire;
-import fr.donjon.Donjons.GestionnairePatrickBasique;
 import fr.donjon.utils.EcouteurLauncher;
 import fr.donjon.utils.ImageManager;
 
@@ -78,13 +77,13 @@ public class EcranAccueil extends JPanel{
 	//les actions de la souris
 
 	/**
-	 * Cette méthode décrit les opérations à faire lorsqu'on clique sur chacun des boutons.
+	 * Cette mï¿½thode dï¿½crit les opï¿½rations ï¿½ faire lorsqu'on clique sur chacun des boutons.
 	 */
 	private void addListeners(){
 
 		boutonJeuLineaire.addActionListener(new ActionListener() {
 			/**
-			 * Si on a appuyé sur le bouton, on commande au lancher un nouveau jeu du type correspondant
+			 * Si on a appuyï¿½ sur le bouton, on commande au lancher un nouveau jeu du type correspondant
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
