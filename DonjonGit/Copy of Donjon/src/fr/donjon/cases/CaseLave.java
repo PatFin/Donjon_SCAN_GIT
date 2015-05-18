@@ -5,6 +5,7 @@ package fr.donjon.cases;
 
 import java.awt.Graphics;
 
+import fr.donjon.classes.Personnage;
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.Vecteur;
 
@@ -16,9 +17,12 @@ import fr.donjon.utils.Vecteur;
 public class CaseLave extends Case {
 
 	final static String src = "AnimLave.png";
-	final static int DPS = 20;
+	final static int DPS = 10;
 	
 	Animation anim;
+	
+	CollisionPattern collisionE = new CollisionObstacle();
+	
 	
 	/**
 	 * @param ImageName
@@ -36,6 +40,30 @@ public class CaseLave extends Case {
 	@Override
 	public Case clone() {
 		return new CaseLave();
+	}
+	
+	@Override
+	public void inCollision(Personnage p) {
+
+		switch(p.type){
+		case ALIE:
+			super.inCollision(p);
+			break;
+		case ENNEMI:
+			collisionE.persoCollision(p);
+			break;
+		case HERO:
+			super.inCollision(p);
+			break;
+		case UNDEFINED:
+			break;
+		default:
+			break;
+		
+		
+		
+		}
+		
 	}
 
 }

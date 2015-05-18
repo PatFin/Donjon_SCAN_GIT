@@ -14,7 +14,7 @@ public class CollisionDegats implements CollisionPattern {
 
 	int dps;
 	int cumul;
-	int division = 60;
+	int division = 200;
 	
 	long time;
 	long lastTime;
@@ -28,43 +28,26 @@ public class CollisionDegats implements CollisionPattern {
 		this.time = -1;
 		this.lastTime = 0;
 		this.cumul = 0;
-
 	}
 
 	@Override
 	public void persoEnterCase(Personnage p) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void projEnterCase(Projectile p) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void persoLeaveCase(Personnage p) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void projLeaveCase(Projectile p) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void persoCollision(Personnage p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/*
-	@Override
-	public void enCollision(Personnage p) {
-
 
 
 		if( time == -1){
@@ -82,10 +65,8 @@ public class CollisionDegats implements CollisionPattern {
 
 
 		lastTime = System.currentTimeMillis();
+		
 	}
-	*/
-
-
 
 	
 

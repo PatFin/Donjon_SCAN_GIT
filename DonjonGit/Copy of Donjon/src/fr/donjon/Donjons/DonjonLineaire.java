@@ -5,6 +5,7 @@ import fr.donjon.classes.Squelette;
 import fr.donjon.salles.EnigmeSwitch;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;
+import fr.donjon.utils.EnnemyGenerator;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.MapGenerator;
 import fr.donjon.utils.Vecteur;
@@ -23,17 +24,17 @@ public class DonjonLineaire extends GestionnaireSalle{
 	 */
 	public DonjonLineaire(int nbSalles)  {
 		super(new SalleQuatre(new Heros(0,0),Salle.addWalls(MapGenerator.randomForet(5, 5))) , 0,nbSalles-1,1,nbSalles);
-		
+
 		this.nombreDeSalle = nbSalles;
-		
+
 		Salle start = this.getsActuelle();
-		
+
 		start.createPorteSalleVoisines(this.getSmap());
-		
-		//On place le h�ros au centre de la salle
+
+		//On place le héros au centre de la salle
 		start.hero.setLocationCase(start.getRoomCenter());;
-		
-		}
+
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -43,26 +44,23 @@ public class DonjonLineaire extends GestionnaireSalle{
 	public void fournirNouvelleSalle(Vecteur position, Link l, Salle[][] smap) {
 		//create the new room
 		SalleQuatre s;
-		
+
 		if((l.getSalleOrigine().roomNumber)%(int)(nombreDeSalle/2) == 1){
 			s= new EnigmeSwitch(l.getSalleOrigine().hero);
 		}else{
 			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
 		}
-		
+
 		s.setEcouteur(l.getSalleOrigine().ecouteur);
 
 		//put it in the array of rooms
 		smap[(int) position.x][(int) position.y] = s;
-				
+
 		//we create all the possible doors to the neighbors
 		s.createPorteSalleVoisines(smap);
-		
-		//We add a skeleton to each room, its level being the room number
-		Squelette e=new Squelette(0, 0, s.hero, s.roomNumber, this.getsActuelle());
-		e.setLocationCase(s.getRoomCenter());
-		s.addEnemy(e);
-		
+
+		s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 10, 100));
+
 	}
 
 }
