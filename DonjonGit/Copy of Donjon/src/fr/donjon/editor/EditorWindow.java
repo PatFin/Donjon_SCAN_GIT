@@ -173,7 +173,6 @@ public class EditorWindow extends JFrame{
 		this.setContentPane(cadre);
 		this.pack();
 		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 
 	}
