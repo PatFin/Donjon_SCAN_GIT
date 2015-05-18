@@ -72,7 +72,6 @@ public class DialogNouveau extends JDialog {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				// TODO Auto-generated method stub
 				updateText();
 			}
 		});

@@ -8,6 +8,8 @@ import fr.donjon.salles.Salle;
 import fr.donjon.utils.EcouteurChangementSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.EcouteurLauncher;
+import fr.donjon.utils.GameOverDialog;
+import fr.donjon.utils.GameOverListener;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -16,7 +18,7 @@ import fr.donjon.utils.Vecteur;
  * @author Baptiste
  *
  */
-public abstract class GestionnaireSalle implements EcouteurChangementSalle, EcouteurClavier{
+public abstract class GestionnaireSalle implements EcouteurChangementSalle, EcouteurClavier, GameOverListener{
 
 
 	public Salle[][] smap;			//le tableau de salles du donjon
@@ -113,8 +115,8 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 				}
 			}
 		}
-		//TODO afficher un score ou une minifen�tre en interrompant le jeu
-		ecouteur.requestBackToMenu();
+		
+		new GameOverDialog(null, true, this);
 	}
 
 	/**
@@ -319,4 +321,27 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	public void stopDeplacement() {
 		this.sActuelle.stopDeplacement();
 	}
+	
+	/////////////////////////////////////
+	//INTERFACE ECOUTEUR LAUNCHER////////
+	/////////////////////////////////////
+	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.GameOverListener#quit()
+	 */
+	@Override
+	public void quit(){
+		System.exit(0);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.GameOverListener#retourMenu()
+	 */
+	@Override
+	public void retourMenu(){
+		ecouteur.requestBackToMenu();
+	}
+	
 }
