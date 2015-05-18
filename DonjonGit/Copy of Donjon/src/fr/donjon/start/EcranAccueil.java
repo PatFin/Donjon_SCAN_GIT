@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 
 import fr.donjon.Donjons.DonjonLineaire;
 import fr.donjon.Donjons.DonjonNonLineaire;
+import fr.donjon.Donjons.GestionnairePatrickBasique;
+import fr.donjon.editor.EditorWindow;
 import fr.donjon.utils.EcouteurLauncher;
 import fr.donjon.utils.ImageManager;
 
@@ -29,10 +31,12 @@ public class EcranAccueil extends JPanel{
 	private JPanel panel = new JPanel();
 	ImageIcon iconePlayer = new ImageIcon(ImageManager.getImage("Player.png", getClass().getSimpleName())); // icone de l'image du joueur
 	ImageIcon iconeInfinity = new ImageIcon(ImageManager.getImage("infinity.png", getClass().getSimpleName())); // icone du sigle infini
+	ImageIcon iconeEditeur = new ImageIcon(ImageManager.getImage("mapEditor.png", getClass().getSimpleName())); // icone du sigle mapEditor
 	
 	private JButton boutonJeuLineaire = new JButton("Jeu LinÃ©aire",iconePlayer);
 	private JButton boutonJeuInfini=new JButton ("Jeu Infini",iconeInfinity);
 	private JButton boutonJeuTest = new JButton("Test_Basique");
+	private JButton boutonEditeur= new JButton("Editeur de map", iconeEditeur);
 	
 	public EcouteurLauncher ecouteur;
 
@@ -46,6 +50,7 @@ public class EcranAccueil extends JPanel{
 		boutonJeuInfini.setPreferredSize(d);
 		boutonJeuLineaire.setPreferredSize(d);
 		boutonJeuTest.setPreferredSize(d);
+		boutonEditeur.setPreferredSize(d);
 		
 		// lecture de l'image
 		this.im = ImageManager.getImage(srcImage, this.getClass().getSimpleName());
@@ -56,6 +61,7 @@ public class EcranAccueil extends JPanel{
 		panel.add(boutonJeuTest);
 		panel.add(boutonJeuLineaire);
 		panel.add(boutonJeuInfini);
+		panel.add(boutonEditeur);
 		this.add(panel);
 		// Actions listener
 		this.addListeners();
@@ -77,13 +83,13 @@ public class EcranAccueil extends JPanel{
 	//les actions de la souris
 
 	/**
-	 * Cette mï¿½thode dï¿½crit les opï¿½rations ï¿½ faire lorsqu'on clique sur chacun des boutons.
+	 * Cette méthode décrit les opérations à faire lorsqu'on clique sur chacun des boutons.
 	 */
 	private void addListeners(){
 
 		boutonJeuLineaire.addActionListener(new ActionListener() {
 			/**
-			 * Si on a appuyï¿½ sur le bouton, on commande au lancher un nouveau jeu du type correspondant
+			 * Si on a appuyé sur le bouton, on commande au lancher un nouveau jeu du type correspondant
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -109,6 +115,17 @@ public class EcranAccueil extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				//On commande un jeu test
 				ecouteur.requestNewGame(new GestionnairePatrickBasique(4, 3));
+			}
+		});
+		
+		boutonEditeur.addActionListener(new ActionListener() {
+			/**
+			 * Idem
+			 */
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//On commande l'éditeur de map
+				new EditorWindow("Editeur de cartes");
 			}
 		});
 	}
