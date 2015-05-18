@@ -5,6 +5,7 @@ package fr.donjon.Donjons;
 
 import fr.donjon.cases.Case;
 import fr.donjon.salles.Salle;
+import fr.donjon.sound.SoundLoop;
 import fr.donjon.utils.EcouteurChangementSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.EcouteurLauncher;

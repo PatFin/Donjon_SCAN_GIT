@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import fr.donjon.Donjons.GestionnaireSalle;
 import fr.donjon.salles.Salle;
+import fr.donjon.sound.SoundLoop;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.EcouteurLauncher;
 import fr.donjon.utils.JeuKeyAdapter;
@@ -33,6 +34,8 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	PanelJeu game;	//Le JPanel dessinant le jeu (GamePanel)
 	EcranAccueil menu;	//Le JPanel dessinant le menu (EcranAcceuil)
 
+	SoundLoop music;
+	
 	/**
 	 * Constructeur
 	 */
@@ -42,9 +45,10 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		this.requestFocusInWindow();
 		this.addKeyListener(new JeuKeyAdapter(this));	//On ajoute notre ecouteur de clavier personnalis� � notre PanelJeu
 		
-		
 		menu = new EcranAccueil();
 		menu.ecouteur = this;
+		
+		music = new SoundLoop(SoundLoop.music);
 		
 		goToMenu();						//On affiche le menu
 		
@@ -52,6 +56,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 
+		
 	}
 
 	/**
@@ -77,6 +82,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		this.add(actuel);									//Et on l'affiche
 		game.startGame();								//On demarre le jeu
 		this.pack();									//On adapte la taille de la fenetre
+		music.start();
 	}
 
 	/**
@@ -94,6 +100,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		actuel = menu;
 		this.add(actuel);
 		this.pack();
+		music.stop();
 	}
 
 	/**
