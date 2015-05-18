@@ -9,6 +9,7 @@ import fr.donjon.classes.Heros;
 import fr.donjon.salles.EnigmeSwitch;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;
+import fr.donjon.utils.EnnemyGenerator;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.MapGenerator;
 import fr.donjon.utils.Orientation;
@@ -55,6 +56,7 @@ public class DonjonNonLineaire extends GestionnaireSalle{
 			s= new EnigmeSwitch(l.getSalleOrigine().hero);
 		}else{
 			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
+			s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 10, 100));
 		}
 		s.setEcouteur(this);
 		smap[(int)position.x][(int)position.y] = s;
