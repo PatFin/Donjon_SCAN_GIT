@@ -18,7 +18,6 @@ public class Squelette extends Ennemis {
 	static int VIT = 3;
 	final static String src = "skeleton_map.png";
 	final static double COEFF = 0.3;
-	public Personnage target;
 	
 	public Squelette(int ax, int ay, Personnage cible, int level, Salle room){
 		super(ax, ay, LNG, LRG, src,
@@ -26,7 +25,7 @@ public class Squelette extends Ennemis {
 				Orientation.SUD, EtatPersonnage.REPOS, Vecteur.vNull,VIT,
 				VIE, DEF , null, cible, room);
 		
-		target = cible;
+		this.cible = cible;
 		
 		
 		animationN = new Animation(src, new Vecteur(64, 64),0,9,(long)(VIT/COEFF*100));
@@ -79,28 +78,33 @@ public class Squelette extends Ennemis {
 	
 	public void pattern() { // Le squelette se dirige vers sa cible
 
-		int dx = target.image.x - this.image.x;
-		int dy = target.image.y - this.image.y;
+		int dx = cible.image.x - this.image.x;
+		int dy = cible.image.y - this.image.y;
 		
 		Vecteur v = new Vecteur(dx, dy);
 		
 		if (v.getNorm() > 300) {
+			
+			v = v.normalise();
+			
+			marcher(v);
+		}
+		
+		else if (v.getNorm() < 150) {
+			
+			v = v.multiplie(-1);
+			
+			v.normalise();
 			
 			marcher(v);
 		}
 		
 		else if (v.getNorm() > 150 && v.getNorm() <= 300) {
 			
-			inventaire.useUtilisable(1);
-			
-			v = v.normalise();
-		}
-		
-		else {
-			
-			inventaire.useUtilisable(0);
+			this.arme = new BatonDeGlaceEnnemi(this);
 			attaquer(currentRoom.personnages, currentRoom.projectiles, Orientation.NORD);
 			
+			v = v.normalise();
 		}
 	}
 
@@ -120,14 +124,21 @@ public class Squelette extends Ennemis {
 	public void attaquer(ArrayList<Personnage> cibles,
 			ArrayList<Projectile> projectiles, Orientation o) {
 		
-		int dx = target.image.x - this.image.x;
-		int dy = target.image.y - this.image.y;
+		if (this.etat != EtatPersonnage.ATTAQUE) {
+			
+			this.etat = EtatPersonnage.ATTAQUE;
+		}
+		
+		int dx = cible.image.x - this.image.x;
+		int dy = cible.image.y - this.image.y;
 		
 		Vecteur v = new Vecteur(dx, dy);
 		
 		Orientation or = v.projectMainDirection();
 		
 		this.arme.attaquer(currentRoom.personnages, projectiles, or);
+		
+		this.etat = EtatPersonnage.REPOS;
 	}
 
 	@Override
