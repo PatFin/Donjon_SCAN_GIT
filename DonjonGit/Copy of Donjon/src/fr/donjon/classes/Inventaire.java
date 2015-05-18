@@ -20,8 +20,11 @@ public class Inventaire {
 	final static int iconSpacing = 2;
 	final static Color backColor = Color.GRAY;
 	final static Color objColor = Color.LIGHT_GRAY;
+	final static Color useColor = Color.CYAN;
 	
 	private int taille;
+	private int actuel;
+	private int pixelSize;
 	private ArrayList<Utilisable> utilisables;
 	private Personnage porteur;
 	
@@ -37,19 +40,23 @@ public class Inventaire {
 		utilisables = new ArrayList<Utilisable>();
 		this.taille = taille;
 		this.porteur = porteur;
+		pixelSize = taille*iconWidth + (taille+1)*iconSpacing ;
+		actuel = 0;
 	}
 	
 	public void draw(Graphics g){
 		if(taille == 0)return;
 		
-		boxOffsetLeft = porteur.image.x - (taille*iconWidth + (taille+1)*iconSpacing)/2 + porteur.image.width/2;
+		boxOffsetLeft = porteur.image.x - pixelSize/2 + porteur.image.width/2;
 		boxOffsetRight = porteur.image.y - 40;
 		
 		g.setColor(backColor);
-		g.fillRect(boxOffsetLeft, boxOffsetRight, taille*iconWidth + (taille+1)*iconSpacing, iconWidth + 2*iconSpacing);
+		g.fillRect(boxOffsetLeft, boxOffsetRight, pixelSize, iconWidth + 2*iconSpacing);
 		
-		g.setColor(objColor);
+		
 		for(int i = 0 ; i < taille ; i++){
+			if(i == actuel)g.setColor(useColor);
+			else g.setColor(objColor); 
 			g.fillRect( boxOffsetLeft + i * iconWidth + (i+1)*iconSpacing, boxOffsetRight + iconSpacing, iconWidth, iconWidth);
 			if(i < utilisables.size())g.drawImage(utilisables.get(i).getIcon(), boxOffsetLeft + i * iconWidth + (i+1)*iconSpacing, boxOffsetRight+  iconSpacing, iconWidth, iconWidth,null);
 		}
@@ -82,11 +89,18 @@ public class Inventaire {
 		
 		if(ref > (utilisables.size() - 1))return false;
 		
-		if(utilisables.get(ref).utilise(porteur) > 0) utilisables.remove(ref);
+		actuel = ref;
 		
-		
+		if(utilisables.get(ref).utilise(porteur) > 0){
+			utilisables.remove(ref);
+			
+		}
 		
 		return true;
 	}
 
+	public int getSize(){
+		return pixelSize ;
+	}
+	
 }

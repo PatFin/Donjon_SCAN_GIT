@@ -113,7 +113,9 @@ public abstract class Personnage extends Deplacable{
 
 		}
 		
-		g.fillRect( (int)getCentre().x - stats.vie/2, (int)getCentre().y - image.height/2 - 15, stats.vie, 10);
+		int pourcent = (stats.vie * 112) /100;
+		
+		g.fillRect( (int)getCentre().x - pourcent/2, (int)getCentre().y - image.height/2 - 15, pourcent, 10);
 		
 		
 	}

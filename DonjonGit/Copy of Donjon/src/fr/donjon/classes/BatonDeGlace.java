@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatArme;
-import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
 /**
@@ -20,7 +19,7 @@ public class BatonDeGlace extends Arme{
 	final static int DMG = 0;
 	final static int DUR = 200;
 	final static String src = "hero_map.png";
-	final static String icSrc = "IceBallIcon.png";
+	final static String icSrc = "IceStaff.png";
 
 
 	Vecteur c = new Vecteur(0,0);

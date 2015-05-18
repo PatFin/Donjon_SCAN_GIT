@@ -17,16 +17,16 @@ import fr.donjon.utils.Vecteur;
  */
 public class BouleDeFeu extends Projectile{
 
-	final static int DGT = 20;
-	final static int VIT = 12;
-	final static int DIM = 64;
+	final static int DGT = 11;
+	final static int VIT = 15;
+	final static int DIM = 40;
 	final static int VITA = 100;
 	
 	final static String src = "FireBall.png";
 	
 
 	public BouleDeFeu(int ax, int ay , Vecteur vvitesse) {
-		super(ax, ay, DIM, DIM, src, new Rectangle(20,20, DIM-40, DIM-40), new Rectangle(20,20, DIM-40, DIM-40),
+		super(ax, ay, DIM, DIM, src, new Rectangle(15,15, DIM-30, DIM-30), new Rectangle(15,15, DIM-30, DIM-30),
 				true, vvitesse, VIT, Type.ENNEMI, DGT);
 		
 		Orientation ori = Vecteur.projectMainDirection(vvitesse);
