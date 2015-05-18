@@ -84,10 +84,10 @@ public class JeuKeyAdapter implements KeyListener {
 		for( Integer i : pressed ){
 			
 			if(tattk.contains(i)){
-				if(tattk.get(0) == i)ecouteur.attaque(Orientation.NORD);
-				else if(tattk.get(1) == i)ecouteur.attaque(Orientation.SUD);
-				else if(tattk.get(2) == i)ecouteur.attaque(Orientation.EST);
-				else if(tattk.get(3) == i)ecouteur.attaque(Orientation.OUEST);
+				if(tattk.get(0) == i)ecouteur.attaque(Vecteur.vNord);
+				else if(tattk.get(1) == i)ecouteur.attaque(Vecteur.vSud);
+				else if(tattk.get(2) == i)ecouteur.attaque(Vecteur.vEst);
+				else if(tattk.get(3) == i)ecouteur.attaque(Vecteur.vOuest);
 			}
 			
 			else if(tdepl.contains(i)){

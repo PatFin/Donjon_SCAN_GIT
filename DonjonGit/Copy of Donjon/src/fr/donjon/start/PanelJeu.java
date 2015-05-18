@@ -193,8 +193,8 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
 	 */
 	@Override
-	public void attaque(Orientation o) {
-		gestion.attaque(o);
+	public void attaque(Vecteur v) {
+		gestion.attaque(v);
 	}
 
 	/*
