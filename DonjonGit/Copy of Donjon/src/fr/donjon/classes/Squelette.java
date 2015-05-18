@@ -99,7 +99,7 @@ public class Squelette extends Ennemis {
 			marcher(v);
 		}
 		
-		else if ((v.getNorm() > 150 && v.getNorm() <= 300) && (t % 900 == 0)) {
+		else if ((v.getNorm() > 150 && v.getNorm() <= 300) && (t % 900 == 0)) { //TODO implement choosing interval as a function of level. Have a random number at which et attacks : t% fct(level) ==(int)(fct(level)*Math.random)
 			
 			this.arme = new BatonDeFeu(this);
 			
