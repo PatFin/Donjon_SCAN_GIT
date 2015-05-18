@@ -18,7 +18,7 @@ import fr.donjon.utils.Vecteur;
 public class BouleDeFeu extends Projectile{
 
 	final static int DGT = 11;
-	final static int VIT = 15;
+	final static int VIT = 12;
 	final static int DIM = 40;
 	final static int VITA = 100;
 	

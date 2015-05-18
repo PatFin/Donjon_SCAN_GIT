@@ -76,7 +76,7 @@ public class Squelette extends Ennemis {
 		}
 	}
 	
-	public void pattern() { // Le squelette se dirige vers sa cible
+	public void pattern(long t) {
 
 		int dx = cible.image.x - this.image.x;
 		int dy = cible.image.y - this.image.y;
@@ -99,7 +99,7 @@ public class Squelette extends Ennemis {
 			marcher(v);
 		}
 		
-		else if (v.getNorm() > 150 && v.getNorm() <= 300) {
+		else if ((v.getNorm() > 150 && v.getNorm() <= 300) && (t % 900 == 0)) {
 			
 			this.arme = new BatonDeFeu(this);
 			
@@ -117,7 +117,7 @@ public class Squelette extends Ennemis {
 		
 		if (stats.vie > 0) {
 			
-			pattern();
+			pattern(t);
 		}
 	}
 
