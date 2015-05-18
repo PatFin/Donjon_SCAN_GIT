@@ -264,8 +264,8 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
 	 */
 	@Override
-	public void attaque(Orientation o) {
-		this.sActuelle.attaque(o);
+	public void attaque(Vecteur v) {
+		this.sActuelle.attaque(v);
 	}
 
 	/*

@@ -55,7 +55,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	}
 
 	/**
-	 * Permet de démarrer le jeu
+	 * Permet de dï¿½marrer le jeu
 	 * @param mode le mode de jeu: 0 Pour jeu lineaire, default jeu non linï¿½aire
 	 */
 	public void startGame(GestionnaireSalle g){
@@ -68,8 +68,8 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		catch (NullPointerException e){
 
 		}
-		Salle.instances=0;					//On réinitialise le nombre de salles crées
-		game = new PanelJeu(g);				//On créé le nouveau jeu
+		Salle.instances=0;					//On rï¿½initialise le nombre de salles crï¿½es
+		game = new PanelJeu(g);				//On crï¿½ï¿½ le nouveau jeu
 		game.ecouteur = this;
 		
 		actuel=game;
@@ -109,9 +109,9 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
 	 */
 	@Override
-	public void attaque(Orientation o) {
+	public void attaque(Vecteur v) {
 		if(game!=null){
-			game.attaque(o);
+			game.attaque(v);
 		}
 	}
 

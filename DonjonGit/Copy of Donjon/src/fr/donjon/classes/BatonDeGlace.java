@@ -60,29 +60,9 @@ public class BatonDeGlace extends Arme{
 
 	@Override
 	public void attaquer(ArrayList<Personnage> personnage,
-			ArrayList<Projectile> proj, Orientation o) {
+			ArrayList<Projectile> proj, Vecteur v) {
 		
-		super.attaquer(personnage, proj, o);
-		
-		Vecteur v = Vecteur.vNord;
-
-		switch(o){
-		case EST:
-			v = Vecteur.vEst;
-			break;
-		case NORD:
-			v = Vecteur.vNord;
-			break;
-		case OUEST:
-			v = Vecteur.vOuest;
-			break;
-		case SUD:
-			v = Vecteur.vSud;
-			break;
-		default:
-			break;
-
-		}
+		super.attaquer(personnage, proj, v);
 		
 		projectiles.add(new BouleDeGlace(lanceur.image.x, lanceur.image.y, v));
 

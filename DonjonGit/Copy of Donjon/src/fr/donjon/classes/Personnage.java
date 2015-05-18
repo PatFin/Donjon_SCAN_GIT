@@ -177,7 +177,7 @@ public abstract class Personnage extends Deplacable{
 	 * @param projectiles	Tableau de projectiles de la salle 
 	 * @param o				Orientation de l'attaque
 	 */
-	public abstract void attaquer(ArrayList<Personnage> cibles, ArrayList<Projectile> projectiles, Orientation o );
+	public abstract void attaquer(ArrayList<Personnage> cibles, ArrayList<Projectile> projectiles, Vecteur v);
 
 	/**
 	 * A modifier par la suite

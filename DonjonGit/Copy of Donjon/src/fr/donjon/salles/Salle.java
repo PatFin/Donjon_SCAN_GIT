@@ -105,7 +105,7 @@ public abstract class Salle implements EcouteurClavier{
 	}
 
 	/**
-	 * Methode appellée par les cases portes quand le hï¿½ros marche dessus.
+	 * Methode appellï¿½e par les cases portes quand le hï¿½ros marche dessus.
 	 * Cela va appeler la mï¿½thode correspondante dans le gestionnaire de salle auquel la salle appartient.
 	 * @param l le lien de la porte sur laquelle le hï¿½ro marche
 	 */ 
@@ -143,7 +143,7 @@ public abstract class Salle implements EcouteurClavier{
 	
 	
 	/**
-	 * Créé toutes les portes possibles vers les salles voisines dans le tableau de salles du donjon.
+	 * Crï¿½ï¿½ toutes les portes possibles vers les salles voisines dans le tableau de salles du donjon.
 	 * 
 	 * @param sMap le tableau de salles
 	 */
@@ -157,7 +157,7 @@ public abstract class Salle implements EcouteurClavier{
 	public abstract void addDoor(Orientation o, Salle[][] sMap);
 	
 	/**
-	 * Prends le tableau de cases et en crée un nouveau entouré de murs
+	 * Prends le tableau de cases et en crï¿½e un nouveau entourï¿½ de murs
 	 * 
 	 * @param c tableau de cases
 	 * @return le mÃªme tableau mais de dimensions +2 entourÃ© de cases murs
@@ -306,9 +306,9 @@ public abstract class Salle implements EcouteurClavier{
 	}
 
 	/**
-	 * Indique si la salle a au moins une porte dans la direction indiquée en paramètre
-	 * @param o orientation de la porte à détecter dans la salle
-	 * @return true si il y a une porte de l'orientation indiquée dans cette salle, false sinon.
+	 * Indique si la salle a au moins une porte dans la direction indiquï¿½e en paramï¿½tre
+	 * @param o orientation de la porte ï¿½ dï¿½tecter dans la salle
+	 * @return true si il y a une porte de l'orientation indiquï¿½e dans cette salle, false sinon.
 	 */
 	public boolean hasDoorInOrientation(Orientation o){
 		for(CasePorte c : this.portes){
@@ -379,9 +379,9 @@ public abstract class Salle implements EcouteurClavier{
 	}
 	
 	/**
-	 * On vérifie si le nombre d'ennemis est nul et que seul le héro controlé par le joueur reste dans la salle.
+	 * On vï¿½rifie si le nombre d'ennemis est nul et que seul le hï¿½ro controlï¿½ par le joueur reste dans la salle.
 	 * Si c'est le cas on rends le passage vers les autres salles possible
-	 * Certaines salles peuvent override cette méthode au besoin
+	 * Certaines salles peuvent override cette mï¿½thode au besoin
 	 */
 	public void checkFinie(){
 		if(personnages.size() == 1 && !finie){
@@ -392,14 +392,14 @@ public abstract class Salle implements EcouteurClavier{
 	
 	/**
 	 * Accesseur
-	 * @return la valeur du booléen finie de la salle
+	 * @return la valeur du boolï¿½en finie de la salle
 	 */
 	public boolean estFinie(){
 		return finie;
 	}
 	
 	/**
-	 * Cette méthode vérifie que toutes les portes ont une destination, càd une case dans une autre salle
+	 * Cette mï¿½thode vï¿½rifie que toutes les portes ont une destination, cï¿½d une case dans une autre salle
 	 * @return true si toutes les portes de la salle ont une destination, false sinon
 	 */
 	public boolean allDoorsHaveDestination() {
@@ -428,8 +428,8 @@ public abstract class Salle implements EcouteurClavier{
 	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
 	 */
 	@Override
-	public void attaque(Orientation o) {
-		this.hero.attaquer(personnages, projectiles, o);
+	public void attaque(Vecteur v) {
+		this.hero.attaquer(personnages, projectiles, v);
 	}
 
 	/*

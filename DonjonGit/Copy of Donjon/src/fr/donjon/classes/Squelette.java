@@ -102,9 +102,10 @@ public class Squelette extends Ennemis {
 		else if (v.getNorm() > 150 && v.getNorm() <= 300) {
 			
 			this.arme = new BatonDeGlaceEnnemi(this);
-			attaquer(currentRoom.personnages, currentRoom.projectiles, Orientation.NORD);
 			
 			v = v.normalise();
+			
+			attaquer(currentRoom.personnages, currentRoom.projectiles, v);
 		}
 	}
 
@@ -122,21 +123,11 @@ public class Squelette extends Ennemis {
 
 	@Override
 	public void attaquer(ArrayList<Personnage> cibles,
-			ArrayList<Projectile> projectiles, Orientation o) {
-		
-		if (this.etat != EtatPersonnage.ATTAQUE) {
+			ArrayList<Projectile> projectiles, Vecteur v) {
 			
-			this.etat = EtatPersonnage.ATTAQUE;
-		}
-		
-		int dx = cible.image.x - this.image.x;
-		int dy = cible.image.y - this.image.y;
-		
-		Vecteur v = new Vecteur(dx, dy);
-		
-		Orientation or = v.projectMainDirection();
-		
-		this.arme.attaquer(currentRoom.personnages, projectiles, or);
+		this.etat = EtatPersonnage.ATTAQUE;
+
+		this.arme.attaquer(currentRoom.personnages, projectiles, v);
 		
 		this.etat = EtatPersonnage.REPOS;
 	}

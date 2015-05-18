@@ -9,6 +9,7 @@ import fr.donjon.utils.EtatArme;
 import fr.donjon.utils.ImageManager;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Utilisable;
+import fr.donjon.utils.Vecteur;
 
 /**
  * 
@@ -109,14 +110,14 @@ public abstract class Arme implements Utilisable{
 	 * @param projectiles	Si l'arme lance des projectiles elle l'ajoute a cette liste
 	 */
 	public void attaquer(ArrayList<Personnage> personnage,
-			ArrayList<Projectile> proj, Orientation o){
+			ArrayList<Projectile> proj, Vecteur v){
 		
 		//L'attaque demarre et on regle la bonne animation selon la direction
 		this.etat = EtatArme.RUNNING;
-		this.o = o;
+		this.o = v.projectMainDirection();
 		this.projectiles = proj;
 		this.cibles = personnage;
-		this.lanceur.o = o;
+		this.lanceur.o = v.projectMainDirection();
 
 		switch(o){
 		case NORD :

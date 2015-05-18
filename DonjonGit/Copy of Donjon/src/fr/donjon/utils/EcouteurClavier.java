@@ -15,7 +15,7 @@ public interface EcouteurClavier {
 	 * Fait attaquer le h�ros contr�l� par le joueur
 	 * @param o
 	 */
-	public void attaque(Orientation o);
+	public void attaque(Vecteur v);
 	
 	/**
 	 * Fait arr�ter d'attaquer le h�ro contr�l� par le joueur quand celui-ci relache les touches d'attaques.

@@ -120,7 +120,7 @@ public class Heros extends Personnage{
 	 * L'attaque pourra ajouter des projectiles sur le terrain
 	 */
 	public void attaquer(ArrayList<Personnage> personnage,
-			ArrayList<Projectile> projectiles, Orientation o) {
+			ArrayList<Projectile> projectiles, Vecteur v) {
 		
 		//S'il attaque deja on ne fait rien
 		if(this.etat == EtatPersonnage.ATTAQUE)return;
@@ -128,7 +128,7 @@ public class Heros extends Personnage{
 		//Lancement de l'attaque
 		this.etat = EtatPersonnage.ATTAQUE;
 		
-		this.arme.attaquer(personnage, projectiles,o);
+		this.arme.attaquer(personnage, projectiles,v);
 
 	}
 
