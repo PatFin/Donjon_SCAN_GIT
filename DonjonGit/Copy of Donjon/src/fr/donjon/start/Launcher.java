@@ -48,7 +48,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		menu = new EcranAccueil();
 		menu.ecouteur = this;
 		
-		music = new SoundLoop(SoundLoop.music);
+		music = new SoundLoop(SoundLoop.GOT);
 		
 		goToMenu();						//On affiche le menu
 		

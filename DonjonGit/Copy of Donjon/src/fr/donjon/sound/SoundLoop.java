@@ -19,7 +19,9 @@ import javax.sound.sampled.*;
 public class SoundLoop{
 
 	
-	public final static String music = "Ressources/Sounds/RPG Theme.wav";
+	public final static String STARWARS = "Ressources/Sounds/RPG Theme.wav";
+	
+	public final static String GOT = "Ressources/sounds/Main Theme.aif";
 	
 	Clip audioClip;
 	

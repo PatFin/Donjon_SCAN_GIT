@@ -297,7 +297,7 @@ public abstract class Salle implements EcouteurClavier{
 		}
 		
 		for(int i = 0 ; i< projectiles.size() ; i++){
-			if(!projectiles.get(i).living)projectiles.remove(projectiles.get(i));
+			if(!projectiles.get(i).living)projectiles.remove(projectiles.get(i)); //on retire les projectiles qui sont "mort".
 		}
 
 		checkFinie();

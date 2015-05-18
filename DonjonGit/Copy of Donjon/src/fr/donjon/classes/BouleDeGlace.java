@@ -82,7 +82,7 @@ public class BouleDeGlace extends Projectile{
 
 
 		p.receiveDammages(degats);
-		//living = false;
+		living = false;
 		
 	}
 

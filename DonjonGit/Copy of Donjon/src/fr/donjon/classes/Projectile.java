@@ -49,6 +49,10 @@ public abstract class Projectile extends Deplacable {
 		this.living = true;
 	}
 
+	/**
+	 * Doit affecter le personnage avec des dégats spécifiques au projectile.
+	 * @param p le personnage touché par le projectile
+	 */
 	public abstract void inCollision(Personnage p);
 
 

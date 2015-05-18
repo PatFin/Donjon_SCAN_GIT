@@ -82,6 +82,7 @@ public class BouleDeFeu extends Projectile{
 
 
 		p.receiveDammages(degats);
+		this.living=false;
 	}
 
 }
