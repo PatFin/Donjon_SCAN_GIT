@@ -101,7 +101,7 @@ public class Squelette extends Ennemis {
 		
 		else if (v.getNorm() > 150 && v.getNorm() <= 300) {
 			
-			this.arme = new BatonDeGlaceEnnemi(this);
+			this.arme = new BatonDeFeu(this);
 			
 			v = v.normalise();
 			

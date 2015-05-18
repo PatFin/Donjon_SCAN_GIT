@@ -3,13 +3,11 @@ package fr.donjon.classes;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import fr.donjon.classes.Arme;
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatArme;
-import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
-public class BatonDeGlaceEnnemi extends Arme {
+public class BatonDeFeu extends Arme {
 
 	final static int DMG = 0;
 	final static int DUR = 200;
@@ -22,7 +20,7 @@ public class BatonDeGlaceEnnemi extends Arme {
 	/**
 	 * Objet sans porteur
 	 */
-	public BatonDeGlaceEnnemi(){
+	public BatonDeFeu(){
 		super(icSrc);
 	}
 
@@ -30,7 +28,7 @@ public class BatonDeGlaceEnnemi extends Arme {
 	 * 
 	 * @param lanceur
 	 */
-	public BatonDeGlaceEnnemi(Personnage lanceur) {
+	public BatonDeFeu(Personnage lanceur) {
 		super(lanceur, DMG, DUR);
 
 		animationN = new Animation(src, new Vecteur(64, 64),8,6,DUR); 
@@ -57,7 +55,7 @@ public class BatonDeGlaceEnnemi extends Arme {
 		
 		super.attaquer(personnage, proj, v);
 		
-		projectiles.add(new BouleDeGlace(lanceur.image.x, lanceur.image.y, v));
+		projectiles.add(new BouleDeFeu(lanceur.image.x, lanceur.image.y, v));
 		
 	}
 
@@ -78,7 +76,7 @@ public class BatonDeGlaceEnnemi extends Arme {
 
 	@Override
 	public int utilise(Personnage p) {
-		p.arme = new BatonDeGlace(p);
+		p.arme = new BatonDeFeu(p);
 		return 0;
 	}
 }
