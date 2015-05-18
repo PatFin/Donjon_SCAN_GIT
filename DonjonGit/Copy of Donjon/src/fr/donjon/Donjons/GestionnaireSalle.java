@@ -66,7 +66,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 		this(w,h);
 		smap[sx][sy] = s;
 		sActuelle = s;
-		//On permet à la salle d'envoyer les évènements de changement de salle à this (gestionaire)
+		//On permet ï¿½ la salle d'envoyer les ï¿½vï¿½nements de changement de salle ï¿½ this (gestionaire)
 		sActuelle.setEcouteur(this);
 		position = new Vecteur(sx,sy);
 	}
@@ -86,19 +86,19 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
-	 * On vérifie que le héro est encore en vie. Si ce n'est pas le cas on retourne au menu.
+	 * On vï¿½rifie que le hï¿½ro est encore en vie. Si ce n'est pas le cas on retourne au menu.
 	 */
 	public void checkHeroStillAlive() {
 		if(!this.sActuelle.hero.living){
-			//TODO afficher un score ou une minifenêtre en interrompant le jeu
+			//TODO afficher un score ou une minifenï¿½tre en interrompant le jeu
 			ecouteur.requestBackToMenu();
 		}
 	}
 
 	/**
-	 * Vérifie si le donjon est terminé. C'est à dire:
-	 * Si toutes les salles du tableau existent et ont été visitées (booléen fini == vrai)
-	 * Demande à ce que le menu soit rafiché si c'est le cas.
+	 * Vï¿½rifie si le donjon est terminï¿½. C'est ï¿½ dire:
+	 * Si toutes les salles du tableau existent et ont ï¿½tï¿½ visitï¿½es (boolï¿½en fini == vrai)
+	 * Demande ï¿½ ce que le menu soit rafichï¿½ si c'est le cas.
 	 */
 	public void checkDonjonFini() {
 		//We go through the array
@@ -113,7 +113,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 				}
 			}
 		}
-		//TODO afficher un score ou une minifenêtre en interrompant le jeu
+		//TODO afficher un score ou une minifenï¿½tre en interrompant le jeu
 		ecouteur.requestBackToMenu();
 	}
 
@@ -130,7 +130,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 		if( !(npos.x >= 0 && npos.x < smap.length && npos.y >= 0  && npos.y < smap[0].length) )return false; //On tombe en dehors du tableau de salle, on renvoi false
 		
-		if(this.getSalleAt(npos) == null){
+		if(this.getSalle(npos) == null){
 			fournirNouvelleSalle(npos, l, this.smap); //On crÃ©e une nouvelle salle et on la met dans le tableau
 		}
 		
@@ -157,32 +157,23 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	 * Change la salle actuelle ï¿½ celle stuï¿½e dans le tableau aux coordonnï¿½es donnï¿½es dans le vecteur
 	 * @param nouvelleSalle les coordonnï¿½es dans le tableau de la nouvelle salle actuelle.
 	 */
-	private void setSActuelle(Vecteur pos){
+	public void setSActuelle(Vecteur pos){
 		position = pos;
 		sActuelle = smap[(int)position.x][(int)position.y];
-	}
-
-	/**
-	 * donne la salle situÃ©e Ã  la position dans le donjon donnï¿½e par le vecteur.
-	 * @param v
-	 * @return
-	 */
-	private Salle getSalleAt(Vecteur v){
-		return smap[(int) v.x][(int) v.y];
 	}
 	
 	/**
 	 * MÃ©thode utilisÃ©e pour gÃ©nÃ©rer la salle suivante. 
-	 * @param position la position dans le tableau de la nouvelle salle à fournir
-	 * @param l le lien de la salle précédente à la nouvelle salle
+	 * @param position la position dans le tableau de la nouvelle salle ï¿½ fournir
+	 * @param l le lien de la salle prï¿½cï¿½dente ï¿½ la nouvelle salle
 	 * @param smap le tableau de salles du donjon
 	 */
 	public abstract void fournirNouvelleSalle(Vecteur position, Link l, Salle[][] smap);
 
 	/**
-	 * Donne la salle à la position indiquée par le vecteur dans le tableau de salle du donjon
-	 * @param v vecteur de position de la salle à rendre dans le tableau de salle
-	 * @return la salle à la position v. Attention, renvoi null si la salle n'a pas encore été créé.
+	 * Donne la salle ï¿½ la position indiquï¿½e par le vecteur dans le tableau de salle du donjon
+	 * @param v vecteur de position de la salle ï¿½ rendre dans le tableau de salle
+	 * @return la salle ï¿½ la position v. Attention, renvoi null si la salle n'a pas encore ï¿½tï¿½ crï¿½ï¿½.
 	 */
 	public Salle getSalle(Vecteur v){
 		return smap[(int)v.x][(int)v.y];
