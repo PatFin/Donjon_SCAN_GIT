@@ -11,13 +11,18 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import fr.donjon.cases.Case;
+import fr.donjon.cases.CaseBloquante;
 import fr.donjon.cases.CaseDalle;
 import fr.donjon.cases.CaseEscalier;
 import fr.donjon.cases.CaseFendue;
+import fr.donjon.cases.CaseGlass;
 import fr.donjon.cases.CaseHerbe;
 import fr.donjon.cases.CaseLave;
+import fr.donjon.cases.CaseLiane;
 import fr.donjon.cases.CaseMur;
 import fr.donjon.cases.CaseRocher;
+import fr.donjon.cases.CaseSwitch;
+import fr.donjon.cases.CaseTeleportation;
 import fr.donjon.cases.CaseVide;
 import fr.donjon.cases.CaseWater;
 
@@ -67,8 +72,8 @@ public class MapFileHandler {
 	
 	
 	/**
-	 * Teste tous les fichiers de salles personnalisées et les envoie dans la liste de return 
-	 * s'ils peuvent fonctionner. Cette méthode est notamnent utilisée dans MapGenerator.
+	 * Teste tous les fichiers de salles personnalisï¿½es et les envoie dans la liste de return 
+	 * s'ils peuvent fonctionner. Cette mï¿½thode est notamnent utilisï¿½e dans MapGenerator.
 	 * @return la liste des descriptions des salles qui peuvent fonctionner dans un donjon
 	 */
 	public static LinkedList<SalleDescription> getWorkingMaps(){
@@ -86,8 +91,6 @@ public class MapFileHandler {
 		return workingMaps;
 	}
 	
-	
-
 	/**
 	 * 
 	 * Allows to get a list of SalleDescription from a list of indexes
@@ -327,15 +330,20 @@ public class MapFileHandler {
 	private static LinkedList<Case> getCasesList(){
 
 		LinkedList<Case> listCases = new LinkedList<Case>();
-
+		
 		listCases.add(new CaseDalle());
 		listCases.add(new CaseEscalier());
 		listCases.add(new CaseFendue());
+		listCases.add(new CaseGlass());	
 		listCases.add(new CaseHerbe());
 		listCases.add(new CaseMur());
+		listCases.add(new CaseLiane());
 		listCases.add(new CaseRocher());
+		listCases.add(new CaseSwitch());
+		listCases.add(new CaseTeleportation());
 		listCases.add(new CaseLave());
 		listCases.add(new CaseWater());
+		listCases.add(new CaseBloquante());	
 		listCases.add(new CaseVide());
 
 		

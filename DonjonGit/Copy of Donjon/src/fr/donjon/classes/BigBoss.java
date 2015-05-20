@@ -19,10 +19,10 @@ public class BigBoss extends Ennemis {
 	final static String src = "big_boss_map.png";
 	final static double COEFF = 0.3;
 	
-	final static int TDUR = 10000;
-	final static int TFIRE = 4000;
+	final static int TDUR = 15000;
+	final static int TFIRE = 5000;
 	final static int TRAPR = 8000;
-	final static int TMEGA = 10000;
+	final static int TMEGA = 15000;
 	
 	private long tEcoule;
 	private long tDecal;
@@ -37,7 +37,6 @@ public class BigBoss extends Ennemis {
 				VIE, DEF , null, cible, room);
 		
 		this.cible = cible;
-		this.arme = new BatonDeFeu(this);
 		
 		animationN = new Animation(src, new Vecteur(64, 64),0,9,(long)(VIT/COEFF*100));
 		animationO = new Animation(src, new Vecteur(64, 64),1,9,(long)(VIT/COEFF*100));
@@ -49,7 +48,7 @@ public class BigBoss extends Ennemis {
 		
 		this.inventaire = new Inventaire(2, this);
 		
-		inventaire.addUtilisable(new BatonDeFeu());
+		inventaire.addUtilisable(new BatonDeDark(this, 100));
 		
 		tEcoule = 0;
 		tDecal = -1;
@@ -101,19 +100,22 @@ public class BigBoss extends Ennemis {
 		if( tEcoule < TFIRE){
 			this.vvitesse = Vecteur.vNull;
 			attaquer( currentRoom.personnages, currentRoom.projectiles, v);
-			System.out.println("PH1");
 		}
 		else if( tEcoule < TRAPR){
 			marcher(v);
-			System.out.println("PH2");
 		}
 		else if( tEcoule < TMEGA){
-			attaquer( currentRoom.personnages, currentRoom.projectiles, v);
+			
+			if(tEcoule%500 != 0)return;
+			
+			int amount = 20;
+			double angle = Math.PI * 2 / amount;
+			
+			for(double a = 0 ; a < Math.PI*2 ; a += angle){
+				attaquer( currentRoom.personnages, currentRoom.projectiles, new Vecteur(Math.cos(a),Math.sin(a)));
+			}
+			
 			marcher(v);
-			System.out.println("PH3");
-		}
-		else {
-			System.out.println("PTIN");
 		}
 		
 	}

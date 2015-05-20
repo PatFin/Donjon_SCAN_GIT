@@ -20,13 +20,18 @@ import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
 
 import fr.donjon.cases.Case;
+import fr.donjon.cases.CaseBloquante;
 import fr.donjon.cases.CaseDalle;
 import fr.donjon.cases.CaseEscalier;
 import fr.donjon.cases.CaseFendue;
+import fr.donjon.cases.CaseGlass;
 import fr.donjon.cases.CaseHerbe;
 import fr.donjon.cases.CaseLave;
+import fr.donjon.cases.CaseLiane;
 import fr.donjon.cases.CaseMur;
 import fr.donjon.cases.CaseRocher;
+import fr.donjon.cases.CaseSwitch;
+import fr.donjon.cases.CaseTeleportation;
 import fr.donjon.cases.CaseVide;
 import fr.donjon.cases.CaseWater;
 import fr.donjon.utils.JeuKeyAdapter;
@@ -96,11 +101,16 @@ public class EditorWindow extends JFrame{
 		listCases.add(new CaseDalle());
 		listCases.add(new CaseEscalier());
 		listCases.add(new CaseFendue());
+		listCases.add(new CaseGlass());	
 		listCases.add(new CaseHerbe());
 		listCases.add(new CaseMur());
+		listCases.add(new CaseLiane());
 		listCases.add(new CaseRocher());
+		listCases.add(new CaseSwitch());
+		listCases.add(new CaseTeleportation());
 		listCases.add(new CaseLave());
 		listCases.add(new CaseWater());
+		listCases.add(new CaseBloquante());	
 		listCases.add(new CaseVide());
 		
 		//TODO

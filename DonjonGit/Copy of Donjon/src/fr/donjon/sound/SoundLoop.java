@@ -35,7 +35,7 @@ public class SoundLoop{
 	 * @param audioFilePath Path of the audio file.
 	 */
 	public SoundLoop(String FilePath) {
-		File audioFile = new File(FilePath);
+		File audioFile = new File(STARWARS);
 
 		try {
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
@@ -62,7 +62,7 @@ public class SoundLoop{
 	}
 	
 	/**
-	 * Permet d'arrêter la musique
+	 * Permet d'arrï¿½ter la musique
 	 */
 	public void stop(){
 		audioClip.stop();

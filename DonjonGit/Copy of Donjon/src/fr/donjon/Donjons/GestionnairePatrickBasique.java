@@ -5,11 +5,14 @@ package fr.donjon.Donjons;
 
 import java.util.ArrayList;
 
+import fr.donjon.cases.Case;
 import fr.donjon.classes.BigBoss;
 import fr.donjon.classes.Heros;
+import fr.donjon.editor.MapFileHandler;
 import fr.donjon.salles.EnigmeSwitch;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;
+import fr.donjon.utils.EnnemyGenerator;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.MapGenerator;
 import fr.donjon.utils.Orientation;
@@ -52,11 +55,18 @@ public class GestionnairePatrickBasique extends GestionnaireSalle{
 		SalleQuatre s;
 		int r =(int) (Math.random()*100);
 
-		if(r<15){
+		if(r<0){ //TODO change back to 15%
 			s= new EnigmeSwitch(l.getSalleOrigine().hero);
-		}else{
-			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
 		}
+		else if(r < 100){
+			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapFileHandler.getSalleDescriptionFromFile(1000).getMatrix()));
+			s.addEnemy(new BigBoss( (int)s.getRoomCenter().x*Case.TAILLE, (int)s.getRoomCenter().y*Case.TAILLE , s.hero, 1, s) );
+		}
+		else{
+			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
+			//s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 20, 200));
+		}
+		
 		s.setEcouteur(this);
 		smap[(int)position.x][(int)position.y] = s;
 
@@ -119,8 +129,7 @@ public class GestionnairePatrickBasique extends GestionnaireSalle{
 			s.addDoor(y, smap);
 		}
 
-		s.addEnemy(new BigBoss( 200,200 , s.hero, 1, s) );
-
+		
 	}
 
 	/*
