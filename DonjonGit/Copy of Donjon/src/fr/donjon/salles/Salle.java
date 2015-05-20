@@ -121,14 +121,17 @@ public abstract class Salle implements EcouteurClavier{
 	 * méthode activerLesPortes
 	 */
 	public void trouverLesPortes(){
-
+		
+		ArrayList<CasePorte> a = new ArrayList<CasePorte>();
+		
 		for(int y = 0 ; y < height ; y++){
 			for(int x = 0 ; x < width ; x++){
 				if(cases[x][y].getClass().getSimpleName().equals("CasePorte")){
-					portes.add((CasePorte) cases[x][y]);
+					a.add((CasePorte) cases[x][y]);
 				}
 			}
 		}
+		this.portes = a;
 	}
 
 	/**
@@ -466,6 +469,15 @@ public abstract class Salle implements EcouteurClavier{
 	@Override
 	public void togglePause() {
 
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#toggleMap()
+	 */
+	@Override
+	public void toggleMap() {
+		// Do nothing.
 	}
 
 	/*

@@ -1,7 +1,6 @@
 package fr.donjon.Donjons;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.classes.Squelette;
 import fr.donjon.salles.EnigmeSwitch;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;

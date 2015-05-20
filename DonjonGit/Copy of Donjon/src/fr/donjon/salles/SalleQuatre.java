@@ -139,10 +139,5 @@ public class SalleQuatre extends Salle {
 		return null;
 	}
 
-	@Override
-	public void toggleMap() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

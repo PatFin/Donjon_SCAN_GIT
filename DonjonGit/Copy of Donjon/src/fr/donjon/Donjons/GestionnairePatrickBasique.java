@@ -10,6 +10,7 @@ import fr.donjon.classes.BigBoss;
 import fr.donjon.classes.Heros;
 import fr.donjon.editor.MapFileHandler;
 import fr.donjon.salles.EnigmeSwitch;
+import fr.donjon.salles.EnigmeTeleporteur;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;
 import fr.donjon.utils.EnnemyGenerator;
@@ -55,8 +56,11 @@ public class GestionnairePatrickBasique extends GestionnaireSalle{
 		SalleQuatre s;
 		int r =(int) (Math.random()*100);
 
-		if(r<0){ //TODO change back to 15%
+		if(r<15){ //TODO change back to 15%
 			s= new EnigmeSwitch(l.getSalleOrigine().hero);
+		}
+		else if(r<30){
+			s=new EnigmeTeleporteur(l.getSalleOrigine().hero);
 		}
 		else if(r < 100){
 			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapFileHandler.getSalleDescriptionFromFile(1000).getMatrix()));

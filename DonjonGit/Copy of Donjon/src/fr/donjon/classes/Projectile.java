@@ -3,7 +3,6 @@
  */
 package fr.donjon.classes;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import fr.donjon.utils.Animation;
