@@ -19,6 +19,7 @@ public class BatonDeDark extends Arme {
 	Vecteur c = new Vecteur(0,0);
 
 	int size;
+	int speed;
 	
 	/**
 	 * Objet sans porteur
@@ -31,10 +32,11 @@ public class BatonDeDark extends Arme {
 	 * 
 	 * @param lanceur
 	 */
-	public BatonDeDark(Personnage lanceur, int size) {
+	public BatonDeDark(Personnage lanceur, int size, int speed) {
 		super(lanceur, DMG, DUR);
 
 		this.size = size;
+		this.speed = speed;
 		
 		animationN = new Animation(src, new Vecteur(64, 64),6,7,DUR); 
 		animationO = new Animation(src, new Vecteur(64, 64),7,7,DUR);
@@ -62,7 +64,7 @@ public class BatonDeDark extends Arme {
 		
 		super.attaquer(personnage, proj, v);
 		
-		projectiles.add(new BouleDeDark(lanceur.image.x, lanceur.image.y, v, size));
+		projectiles.add(new BouleDeDark(lanceur.image.x, lanceur.image.y, v, size,speed));
 		
 	}
 
@@ -83,7 +85,7 @@ public class BatonDeDark extends Arme {
 
 	@Override
 	public int utilise(Personnage p) {
-		p.arme = new BatonDeDark(p, size);
+		p.arme = new BatonDeDark(p, size,speed);
 		return 0;
 	}
 }
