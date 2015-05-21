@@ -19,6 +19,9 @@ public class Squelette extends Ennemis {
 	final static String src = "skeleton_map.png";
 	final static double COEFF = 0.3;
 	
+	private int shootDelay;		//delay so that the skeleton fires every (shootDelay)
+	private int timerShoot; 	//Random integer so that all the skeleton don not fire all at the same time.
+	
 	public Squelette(int ax, int ay, Personnage cible, int level, Salle room){
 		super(ax, ay, LNG, LRG, src,
 				new Rectangle(17,15,30,49), new Rectangle(22,48,20,16), true,
@@ -35,6 +38,8 @@ public class Squelette extends Ennemis {
 		animation = animationS;
 		
 		NIV = level;
+		shootDelay = (int)(100/1+NIV);
+		timerShoot = (int)(Math.random()*shootDelay);
 		
 		this.inventaire = new Inventaire(2, this);
 		
@@ -88,24 +93,22 @@ public class Squelette extends Ennemis {
 			v = v.normalise();
 			
 			marcher(v);
-		}
-		
-		else if (v.getNorm() < 150) {
+		}else if (v.getNorm() < 150) {
 			
 			v = v.multiplie(-1);
 			
 			v.normalise();
 			
 			marcher(v);
-		}
-		
-		else if ((v.getNorm() > 150 && v.getNorm() <= 300) && (t % 900 == 0)) { //TODO implement choosing interval as a function of level. Have a random number at which et attacks : t% fct(level) ==(int)(fct(level)*Math.random)
-			
+		}else if ((t % shootDelay == timerShoot)) { 
+			// (v.getNorm() > 150 && v.getNorm() <= 300) && (t % shootDelay == timerShoot)
 			this.arme = new BatonDeFeu(this);
 			
 			v = v.normalise();
 			
 			attaquer(currentRoom.personnages, currentRoom.projectiles, v);
+		}else{
+			this.etat = EtatPersonnage.REPOS;
 		}
 	}
 

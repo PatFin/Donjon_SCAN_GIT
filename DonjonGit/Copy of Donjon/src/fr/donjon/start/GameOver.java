@@ -1,5 +1,6 @@
 package fr.donjon.start;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -82,8 +83,11 @@ public class GameOver extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
+		g.setColor(Color.black);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		
 		if (hero!=null) {
-			g.drawImage (hero, 0, 0, this);	
+			g.drawImage (hero, (int)(getWidth()/2)-(hero.getWidth(null)/2), (int)(getHeight()/2)-(hero.getHeight(null)/2), this);	
 		}
 	}
 }

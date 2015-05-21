@@ -13,7 +13,6 @@ import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.EcouteurLauncher;
 import fr.donjon.utils.GameOverListener;
 import fr.donjon.utils.JeuKeyAdapter;
-import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
 /**
@@ -52,11 +51,8 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		
 		goToMenu();						//On affiche le menu
 		
-		setResizable(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-
-		
 	}
 
 	/**
@@ -83,6 +79,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		game.startGame();								//On demarre le jeu
 		this.pack();									//On adapte la taille de la fenetre
 		music.start();
+		this.setResizable(true);
 	}
 
 	/**
@@ -100,6 +97,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		actuel = menu;
 		this.add(actuel);
 		this.pack();
+		this.setResizable(false);
 		music.stop();
 		repaint();
 	}
@@ -117,6 +115,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		actuel =  g;
 		this.add(actuel);
 		this.pack();
+		this.setResizable(false);
 		music.stop();
 		repaint();
 	}
