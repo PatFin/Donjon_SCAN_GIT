@@ -21,7 +21,13 @@ public class CasePorte extends Case {
 
 	public CasePorte() {
 		super(src);
-		this.setCollision(new CollisionObstacle());
+		this.setCollision(null);
+	}
+	
+	@Override
+	public void setCollisionBoxLocation(int x, int y) {
+		super.setCollisionBoxLocation(x, y);
+		this.setCollision(new CollisionObstacle(limites));
 	}
 
 
@@ -33,7 +39,7 @@ public class CasePorte extends Case {
 	 */
 	public CasePorte(Salle s, Vecteur palier, Orientation o) {
 		super(src);
-		this.setCollision(new CollisionObstacle());
+		this.setCollision(new CollisionObstacle(limites));
 		this.collisionPorte = new CollisionPorte(s, palier, o);
 	}
 
@@ -44,7 +50,7 @@ public class CasePorte extends Case {
 	 */
 	public CasePorte(Link l){
 		super(src);
-		this.setCollision(new CollisionObstacle());
+		this.setCollision(new CollisionObstacle(limites));
 		this.collisionPorte = new CollisionPorte(l);
 	}
 
@@ -63,11 +69,11 @@ public class CasePorte extends Case {
 
 
 	/**
-	 * Permet de rendre possible le passage à la salle suivante.
+	 * Permet de rendre possible le passage ï¿½ la salle suivante.
 	 * @param b true si on veut rendre le passage possible, false sinon.
 	 */
 	public void setPassageAutorise(boolean b){
-		collision = b ? collisionPorte : new CollisionObstacle() ;
+		collision = b ? collisionPorte : new CollisionObstacle(limites) ;
 	}
 
 

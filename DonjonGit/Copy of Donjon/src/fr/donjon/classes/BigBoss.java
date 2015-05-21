@@ -165,11 +165,16 @@ public class BigBoss extends Ennemis {
 
 		this.arme.attaquer(cibles, projectiles, v);
 
-		//this.etat = EtatPersonnage.REPOS;
 	}
 
 	@Override
 	public void utiliserObjet(int reference) {
 
+	}
+
+
+	@Override
+	public void collide(Personnage p) {
+		this.setLocation(lPos);
 	}
 }

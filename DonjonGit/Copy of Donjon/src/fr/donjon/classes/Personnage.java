@@ -77,7 +77,6 @@ public abstract class Personnage extends Deplacable{
 		this.lPos = new Vecteur(ax, ay);
 	}
 
-
 	@Override
 	public void draw(long t, Graphics g) {
 
@@ -199,5 +198,6 @@ public abstract class Personnage extends Deplacable{
 		if(stats.vie <= 0) living = false;
 	}
 
+	public abstract void collide(Personnage p);
 	
 }

@@ -3,8 +3,12 @@
  */
 package fr.donjon.cases;
 
+import java.awt.Rectangle;
+
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
+import fr.donjon.utils.Type;
+import fr.donjon.utils.Vecteur;
 
 /**
  * @author Baptiste
@@ -12,11 +16,12 @@ import fr.donjon.classes.Projectile;
  */
 public class CollisionObstacle implements CollisionPattern {
 
-	/**
-	 * 
-	 */
-	public CollisionObstacle() {
-		
+	Rectangle l;
+	
+	
+
+	public CollisionObstacle(Rectangle l) {
+		this.l = l;
 	}
 
 
@@ -38,13 +43,26 @@ public class CollisionObstacle implements CollisionPattern {
 
 	@Override
 	public void projLeaveCase(Projectile p) {
-		
+
 	}
 
 
 	@Override
 	public void persoCollision(Personnage p) {
-		p.setLocation(p.lPos);
+		
+		if(p.type == Type.ENNEMI){
+
+			Vecteur v = new Vecteur( p.image.x + p.image.width/2 - (l.x + l.width/2),
+					p.image.y + p.image.height/2 - (l.y + l.height/2));
+			
+			v = v.normalise();
+			
+			p.vvitesse = v;
+		} 
+		else {
+			p.setLocation(p.lPos);
+		}
+
 	}
 
 }

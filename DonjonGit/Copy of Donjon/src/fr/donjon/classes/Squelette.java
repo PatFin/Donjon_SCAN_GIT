@@ -7,6 +7,7 @@ import fr.donjon.salles.Salle;
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatPersonnage;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Type;
 import fr.donjon.utils.Vecteur;
 
 public class Squelette extends Ennemis {
@@ -44,7 +45,9 @@ public class Squelette extends Ennemis {
 		this.inventaire = new Inventaire(2, this);
 		
 		inventaire.addUtilisable(new ArmeEpee());
-		inventaire.addUtilisable(new BatonDeGlace());
+		inventaire.addUtilisable(new BatonDeFeu(this));
+		
+		inventaire.useUtilisable(1);
 	}
 	
 	//calculer le vecteur Squellette Personnage (voir methode marche de heros)
@@ -102,7 +105,6 @@ public class Squelette extends Ennemis {
 			marcher(v);
 		}else if ((t % shootDelay == timerShoot)) { 
 			// (v.getNorm() > 150 && v.getNorm() <= 300) && (t % shootDelay == timerShoot)
-			this.arme = new BatonDeFeu(this);
 			
 			v = v.normalise();
 			
@@ -138,5 +140,16 @@ public class Squelette extends Ennemis {
 	@Override
 	public void utiliserObjet(int reference) {
 		
+	}
+
+	@Override
+	public void collide(Personnage p) {
+		if(p.type == Type.HERO)this.setLocation(lPos);
+		else {
+			Vecteur axis = new Vecteur( this.image.x + this.image.width/2 - (p.image.x + p.image.width/2),
+					this.image.y + this.image.height/2 - (p.image.y + p.image.height/2) );
+			
+			this.marcher(axis.normalise());
+		}
 	}
 }

@@ -48,7 +48,7 @@ public class DonjonLineaire extends GestionnaireSalle{
 			s= new EnigmeSwitch(l.getSalleOrigine().hero);
 		}else{
 			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
-			s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 10, 100));
+			s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 30, 100));
 		}
 
 		s.setEcouteur(l.getSalleOrigine().ecouteur);

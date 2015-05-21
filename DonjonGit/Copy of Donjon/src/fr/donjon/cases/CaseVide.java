@@ -6,7 +6,13 @@ public class CaseVide extends Case {
 	final static String ImageName = "Black.png";
 	
 	public CaseVide() {
-		super(ImageName, true, new CollisionObstacle());
+		super(ImageName, true, null);
+	}
+	
+	@Override
+	public void setCollisionBoxLocation(int x, int y) {
+		super.setCollisionBoxLocation(x, y);
+		this.setCollision(new CollisionObstacle(limites));
 	}
 	
 	@Override

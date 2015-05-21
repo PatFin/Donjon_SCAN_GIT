@@ -50,4 +50,7 @@ public abstract class Ennemis extends Personnage{
 	@Override
 	abstract public void attaquer(ArrayList<Personnage> cibles,
 			ArrayList<Projectile> projectiles, Vecteur v);
+
+	
+
 }

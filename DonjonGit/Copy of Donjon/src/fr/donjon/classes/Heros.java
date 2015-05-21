@@ -140,6 +140,12 @@ public class Heros extends Personnage{
 	}
 
 
+	@Override
+	public void collide(Personnage p) {
+		this.setLocation(lPos);
+	}
+
+
 
 
 }

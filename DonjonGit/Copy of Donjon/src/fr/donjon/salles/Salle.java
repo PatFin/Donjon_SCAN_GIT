@@ -14,6 +14,7 @@ import fr.donjon.utils.EcouteurChangementSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
+import fr.donjon.utils.Type;
 import fr.donjon.utils.Vecteur;
 
 /**
@@ -267,8 +268,8 @@ public abstract class Salle implements EcouteurClavier{
 					Personnage p2 = personnages.get(j);
 					if(z.collisionDecor.intersects(p2.collisionDecor)){
 						if(!update)return;
-						z.setLocation((int)z.lPos.x, (int) z.lPos.y);
-						p2.setLocation((int)p2.lPos.x, (int) p2.lPos.y);
+						p2.collide(z);
+						z.collide(p2);
 					}
 				}
 

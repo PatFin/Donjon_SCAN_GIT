@@ -21,7 +21,7 @@ public class CaseLave extends Case {
 	
 	Animation anim;
 	
-	CollisionPattern collisionE = new CollisionObstacle();
+	CollisionPattern collisionE;
 	
 	
 	/**
@@ -30,11 +30,18 @@ public class CaseLave extends Case {
 	public CaseLave() {
 		super(src,true, new CollisionDegats(DPS));
 		this.anim = new Animation(src, new Vecteur(64,64), 0, 3, 500);
+		collisionE = new CollisionObstacle(limites);
 	}
 	
 	@Override
 	public void draw(Graphics g, long t, int x, int y) {
 		anim.drawAnim(x*TAILLE, y*TAILLE, TAILLE, TAILLE, g, t);
+	}
+	
+	@Override
+	public void setCollisionBoxLocation(int x, int y) {
+		super.setCollisionBoxLocation(x, y);
+		collisionE = new CollisionObstacle(limites);
 	}
 	
 	@Override
