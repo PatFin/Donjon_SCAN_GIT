@@ -54,7 +54,7 @@ public class DessinateurGestionnaire {
 		BufferedImage imT;
 		Graphics bufT;
 		
-		buffer.setColor(Color.RED);
+		buffer.setColor(Color.black);
 		buffer.fillRect(0, 0, d, d);
 		
 		
