@@ -24,8 +24,7 @@ public class BigBoss extends Ennemis {
 	final static int TRAPR = 8000;
 	final static int TMEGA = 15000;
 
-	int phase;
-
+	private int phase;
 	private long tEcoule;
 	private long tDecal;
 
@@ -34,7 +33,7 @@ public class BigBoss extends Ennemis {
 	 */
 	public BigBoss(int ax, int ay, Personnage cible, int level, Salle room){
 		super(ax, ay, LNG, LRG, src,
-				new Rectangle(34,30,60,98), new Rectangle(44,96,40,32), true,
+				new Rectangle(34*LNG/128,30*LNG/128,60*LNG/128,98*LNG/128), new Rectangle(44*LNG/128,96*LNG/128,40*LNG/128,32*LNG/128), true,
 				Orientation.SUD, EtatPersonnage.REPOS, Vecteur.vNull,VIT,
 				VIE, DEF , null, cible, room);
 
@@ -59,7 +58,7 @@ public class BigBoss extends Ennemis {
 		inventaire.useUtilisable(0);
 	}
 
-	//calculer le vecteur Squellette Personnage (voir methode marche de heros)
+
 	public void marcher(Vecteur v){
 
 		//Si le personnage attaque, ne pas le faire se deplacer
@@ -95,14 +94,16 @@ public class BigBoss extends Ennemis {
 
 	public void pattern(long t) { // Le squelette se dirige vers sa cible
 
-		int dx = cible.image.x - this.image.x;
-		int dy = cible.image.y - this.image.y;
+		int dx = cible.image.x + cible.image.width/2 - (this.image.x  + this.image.width/2) ;
+		int dy = cible.image.y + cible.image.height/2 - (this.image.y + this.image.height/2) ;
 
 		Vecteur v = new Vecteur(dx, dy).normalise();
 
 		if( tEcoule < TFIRE){
 			this.vvitesse = Vecteur.vNull;
+			
 			if(t%120 != 0)return;
+			
 			attaquer( currentRoom.personnages, currentRoom.projectiles, v);
 		}
 		else if( tEcoule < TRAPR){
@@ -110,6 +111,8 @@ public class BigBoss extends Ennemis {
 		}
 		else if( tEcoule < TMEGA){
 
+			marcher(v);
+			
 			if(t%500 != 0)return;
 
 			int amount = 20;
@@ -119,7 +122,6 @@ public class BigBoss extends Ennemis {
 				attaquer( currentRoom.personnages, currentRoom.projectiles, new Vecteur(Math.cos(a),Math.sin(a)));
 			}
 
-			marcher(v);
 		}
 
 	}
@@ -134,9 +136,8 @@ public class BigBoss extends Ennemis {
 		tEcoule = (t - tDecal)%TDUR ;
 
 		if( phase !=  (int)stats.vie/(VIE/3)  ){
-			System.out.println("entering phase:  "+(int)stats.vie/(VIE/3));
 			phase = (int)stats.vie/(VIE/3);
-
+			
 			switch(phase){
 			case 2:
 				arme = new BatonDeDark(this, 75, 7);
@@ -164,7 +165,7 @@ public class BigBoss extends Ennemis {
 
 		this.arme.attaquer(cibles, projectiles, v);
 
-		this.etat = EtatPersonnage.REPOS;
+		//this.etat = EtatPersonnage.REPOS;
 	}
 
 	@Override

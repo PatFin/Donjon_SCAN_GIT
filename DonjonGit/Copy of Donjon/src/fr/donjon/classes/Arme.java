@@ -64,9 +64,10 @@ public abstract class Arme implements Utilisable{
 	 */
 	public void paint(Graphics g, long t){
 		
+		int T = lanceur.image.width;
 		//Si l'annimation est terminee le personnage passe au repos et on redemarre l'anim de l'arme
-		if(animation.drawOnce(this.lanceur.image.x, this.lanceur.image.y, Heros.LNG, Heros.LRG, g, t)){
-			animation.drawImage(this.lanceur.image.x, this.lanceur.image.y, Heros.LNG, Heros.LRG, g, 0);
+		if(animation.drawOnce(this.lanceur.image.x, this.lanceur.image.y, T, T, g, t)){
+			animation.drawImage(this.lanceur.image.x, this.lanceur.image.y,T, T, g, 0);
 			this.stopAttaquer();
 			animation.restart();
 		}

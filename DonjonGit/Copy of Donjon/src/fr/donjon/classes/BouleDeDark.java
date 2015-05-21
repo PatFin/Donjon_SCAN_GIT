@@ -19,18 +19,17 @@ public class BouleDeDark extends Projectile{
 
 	final static int DGT = 15;
 	final static int VITA = 100;
+	final static String src = "DarkBall.png";
+	
 	
 	int size;
 	int speed;
 	
-	final static String src = "DarkBall.png";
 	
-
 	public BouleDeDark(int ax, int ay , Vecteur vvitesse, int size, int speed) {
-		super(ax, ay, size, size, src, new Rectangle(15*(size/40),15*(size/40), size-30*(size/40), size-30*(size/40)), new Rectangle(15*(size/40),15*(size/40), size-30*(size/40), size-30*(size/40)),
+		super(ax - size/2, ay - size/2, size, size, src, new Rectangle(15*(size/40),15*(size/40), size-30*(size/40), size-30*(size/40)), new Rectangle(15*(size/40),15*(size/40), size-30*(size/40), size-30*(size/40)),
 				true, vvitesse, speed, Type.ENNEMI, (int)(((double)size/65.0) * 12) );
 		
-		System.out.println(""+degats);
 		this.size = size;
 		this.speed = speed;
 		

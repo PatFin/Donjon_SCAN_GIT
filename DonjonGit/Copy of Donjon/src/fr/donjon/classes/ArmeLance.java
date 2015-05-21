@@ -24,7 +24,7 @@ public class ArmeLance extends Arme {
 	final static String icSrc = "spear.png";
 
 	final static int zoneWidth = 20;
-	final static int zoneHeight = 50;
+	final static int zoneHeight = 60;
 	final static int decalageZoneX = 0;
 	final static int decalageZoneY = 10; 
 

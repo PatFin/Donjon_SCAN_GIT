@@ -58,7 +58,7 @@ public class BatonDeFeu extends Arme {
 		
 		super.attaquer(personnage, proj, v);
 		
-		projectiles.add(new BouleDeFeu(lanceur.image.x, lanceur.image.y, v));
+		projectiles.add(new BouleDeFeu(lanceur.image.x + lanceur.image.width/2, lanceur.image.y+ lanceur.image.height/2, v));
 		
 	}
 
