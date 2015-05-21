@@ -11,6 +11,7 @@ import fr.donjon.salles.Salle;
 import fr.donjon.sound.SoundLoop;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.EcouteurLauncher;
+import fr.donjon.utils.GameOverListener;
 import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -22,7 +23,7 @@ import fr.donjon.utils.Vecteur;
  * @author Baptiste
  *
  */
-public class Launcher extends JFrame implements EcouteurClavier, EcouteurLauncher{
+public class Launcher extends JFrame implements EcouteurClavier, EcouteurLauncher, GameOverListener{
 
 	/**
 	 * 
@@ -33,7 +34,6 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	
 	PanelJeu game;	//Le JPanel dessinant le jeu (GamePanel)
 	EcranAccueil menu;	//Le JPanel dessinant le menu (EcranAcceuil)
-
 	SoundLoop music;
 	
 	/**
@@ -101,6 +101,24 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		this.add(actuel);
 		this.pack();
 		music.stop();
+		repaint();
+	}
+	
+	public void goToGameOver(Boolean win) {
+		try{
+			this.remove(actuel);
+			this.game.stopGame();
+		}
+		catch (NullPointerException e){
+
+		}
+		GameOver g = new GameOver(win);
+		g.listener = this;
+		actuel =  g;
+		this.add(actuel);
+		this.pack();
+		music.stop();
+		repaint();
 	}
 
 	/**
@@ -204,6 +222,21 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	@Override
 	public void requestNewGame(GestionnaireSalle g) {
 		startGame(g);
+	}
+
+	@Override
+	public void requestGameOver(Boolean win) {
+		goToGameOver(win);
+	}
+
+	@Override
+	public void quit() {
+		System.exit(0);
+	}
+
+	@Override
+	public void retourMenu() {
+		goToMenu();
 	}
 
 }

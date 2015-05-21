@@ -8,7 +8,6 @@ import fr.donjon.salles.Salle;
 import fr.donjon.utils.EcouteurChangementSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.EcouteurLauncher;
-import fr.donjon.utils.GameOverDialog;
 import fr.donjon.utils.GameOverListener;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
@@ -92,15 +91,8 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	 */
 	public void checkHeroStillAlive() {
 		if(!this.sActuelle.hero.living){
-			gameOverDialog();
+			ecouteur.requestGameOver(false);
 		}
-	}
-
-	/**
-	 * Appelle un dialog
-	 */
-	protected void gameOverDialog() {
-		new GameOverDialog(null, true, this);
 	}
 
 	/**
@@ -121,8 +113,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 				}
 			}
 		}
-		
-		gameOverDialog();
+		ecouteur.requestGameOver(true);
 	}
 
 	/**
@@ -338,7 +329,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	 */
 	@Override
 	public void quit(){
-		System.exit(0);
+		
 	}
 	
 	/*

@@ -13,7 +13,6 @@ import fr.donjon.salles.EnigmeSwitch;
 import fr.donjon.salles.EnigmeTeleporteur;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;
-import fr.donjon.utils.EnnemyGenerator;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.MapGenerator;
 import fr.donjon.utils.Orientation;
@@ -152,7 +151,7 @@ public class GestionnairePatrickBasique extends GestionnaireSalle{
 				}
 			}
 		}
-		gameOverDialog();
+		ecouteur.requestGameOver(true);
 	}
 
 }

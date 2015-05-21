@@ -16,7 +16,6 @@ import javax.swing.Timer;
 import fr.donjon.Donjons.GestionnaireSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.EcouteurLauncher;
-import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 import fr.donjon.zpoubelle.Case;
 
@@ -283,6 +282,11 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 	@Override
 	public void requestNewGame(GestionnaireSalle g) {
 		ecouteur.requestNewGame(g);
+	}
+
+	@Override
+	public void requestGameOver(Boolean win) {
+		ecouteur.requestGameOver(win);
 	}
 
 

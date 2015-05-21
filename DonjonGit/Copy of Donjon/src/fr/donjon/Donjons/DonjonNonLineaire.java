@@ -139,7 +139,7 @@ public class DonjonNonLineaire extends GestionnaireSalle{
 				}
 			}
 		}
-		gameOverDialog();
+		ecouteur.requestGameOver(true);
 	}
 	
 }
