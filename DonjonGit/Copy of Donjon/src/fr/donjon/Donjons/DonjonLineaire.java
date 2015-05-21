@@ -1,5 +1,6 @@
 package fr.donjon.Donjons;
 
+import fr.donjon.cases.Case;
 import fr.donjon.classes.Heros;
 import fr.donjon.salles.EnigmeSwitch;
 import fr.donjon.salles.Salle;
@@ -48,7 +49,7 @@ public class DonjonLineaire extends GestionnaireSalle{
 			s= new EnigmeSwitch(l.getSalleOrigine().hero);
 		}else{
 			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
-			s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 30, 100));
+			s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 20, 100 ));
 		}
 
 		s.setEcouteur(l.getSalleOrigine().ecouteur);
