@@ -11,7 +11,7 @@ public class EnigmeSwitch extends SalleQuatre {
 
 	private static final int HEIGHT = 3; 	//hauteur de la salle
 	private static final int WIDTH = 7; 	//largeur de la salle
-	private static int NUMBERSWITCHES = 5;	//nombre d'interrupteur à mettre dans la salle
+	private static int NUMBERSWITCHES = 3;	//nombre d'interrupteur à mettre dans la salle
 	
 	boolean[] code;							//contient la combinaison qui autorise le passage
 	CaseSwitch[] interrupteur;				//contient les interrupteurs situ�s dans la salle
@@ -43,7 +43,7 @@ public class EnigmeSwitch extends SalleQuatre {
 	 */
 	@Override
 	public void checkFinie(){
-		if(personnages.size() == 1 && !finie && codeCorrect()){
+		if(personnages.size() == 1 && codeCorrect()){
 			finie = true;
 			activerLesPortes(true);
 		}
@@ -54,8 +54,7 @@ public class EnigmeSwitch extends SalleQuatre {
 	 * @return true si la combinaison est correcte, false sinon
 	 */
 	private boolean codeCorrect() {
-		return true;
-		/*
+		
 		for(int i=0; i<this.code.length; i++){
 			if(code[i]!= interrupteur[i].isActivated()){
 				return false;
@@ -63,7 +62,7 @@ public class EnigmeSwitch extends SalleQuatre {
 		}
 		
 		return true;
-		*/
+		
 	}
 	
 	/**

@@ -5,6 +5,7 @@ package fr.donjon.salles;
 
 import fr.donjon.cases.Case;
 import fr.donjon.cases.CaseDalle;
+import fr.donjon.cases.CaseMur;
 import fr.donjon.cases.CasePorte;
 import fr.donjon.cases.CaseTeleportation;
 import fr.donjon.cases.CaseVide;
@@ -68,7 +69,7 @@ public class EnigmeTeleporteur extends SalleQuatre {
 	 * @return an 2D array of Case.
 	 */
 	public static Case[][] generateRoomTiles(){
-		Case[][] tiles = Salle.addWalls(MapGenerator.fillWith(new CaseVide(), HEIGHT, WIDTH));
+		Case[][] tiles = Salle.addWalls(MapGenerator.fillWith(new CaseMur(), HEIGHT, WIDTH));
 		return tiles;
 	}
 
