@@ -87,6 +87,8 @@ public abstract class Personnage extends Deplacable{
 		switch(etat){
 		case ATTAQUE:
 			arme.paint(g, t);
+			//TODO remove this bit
+			System.out.println("On a dessiné l'anim d'attaque!!");
 			break;
 		case DEPLACEMENT:
 			animation.drawAnim(image.x, image.y, image.width, image.height, g, t);	//Dessin de l'animation

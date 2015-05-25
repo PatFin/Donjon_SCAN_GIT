@@ -50,10 +50,10 @@ public class ArmePoingSquelette extends Arme{
 
 		Vecteur v = new Vecteur(64, 64);
 		
-		animationN = new Animation(src, v,4,6,DUR); 
-		animationO = new Animation(src, v,5,6,DUR);
-		animationS = new Animation(src, v,6,6,DUR);
-		animationE = new Animation(src, v,7,6,DUR);
+		animationN = new Animation(ArmePoingSquelette.src, v,4,6,DUR); 
+		animationO = new Animation(ArmePoingSquelette.src, v,5,6,DUR);
+		animationS = new Animation(ArmePoingSquelette.src, v,6,6,DUR);
+		animationE = new Animation(ArmePoingSquelette.src, v,7,6,DUR);
 		animation = animationS;
 
 		this.persoTouches = new LinkedList<Personnage>();

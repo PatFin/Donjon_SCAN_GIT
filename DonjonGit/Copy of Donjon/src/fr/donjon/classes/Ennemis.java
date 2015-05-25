@@ -43,9 +43,6 @@ public abstract class Ennemis extends Personnage{
 			this.etat = EtatPersonnage.ATTAQUE;
 		}
 		this.arme.attaquer(currentRoom.personnages, projectiles, v);
-			
-		this.etat = EtatPersonnage.REPOS;
-		
 	}
 
 	

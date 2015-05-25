@@ -46,7 +46,7 @@ public class Squelette extends Ennemis {
 		timerShoot = (int)(Math.random()*shootDelay);
 	}
 	
-	//calculer le vecteur Squellette Personnage (voir methode marche de heros)
+
 	public void marcher(Vecteur v){
 		
 		//Si le personnage attaque, ne pas le faire se deplacer
@@ -104,6 +104,7 @@ public class Squelette extends Ennemis {
 			}else if (t % shootDelay == timerShoot) { 
 				v = v.normalise();
 				this.arme = baton;
+				this.etat= EtatPersonnage.ATTAQUE;
 				attaquer(currentRoom.personnages, currentRoom.projectiles, v);
 			}else{
 				this.etat = EtatPersonnage.REPOS;
@@ -119,7 +120,6 @@ public class Squelette extends Ennemis {
 				marcher(v);
 			}else if(t % shootDelay == timerShoot){
 				
-				System.out.println("A l'attaque !!!");
 				this.arme = poing;
 				
 				v = v.normalise();

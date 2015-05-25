@@ -34,14 +34,14 @@ public class ArmeEpee extends Arme{
 	Vecteur c = new Vecteur(0,0);
 
 	/**
-	 * Objet sans porteur
+	 * Constructeur pour objet sans porteur
 	 */
 	public ArmeEpee(){
 		super(icSrc);
 	}
 	
 	/**
-	 * 
+	 * Constructeur
 	 * @param lanceur
 	 */
 	public ArmeEpee(Personnage lanceur) {
@@ -56,13 +56,10 @@ public class ArmeEpee extends Arme{
 		this.persoTouches = new LinkedList<Personnage>();
 	}
 
-	@Override
-	public void paint(Graphics g, long t) {
-		//g.setColor(Color.CYAN);
-		//g.fillRect(zoneDommages.x, zoneDommages.y, zoneDommages.width, zoneDommages.height);
-		super.paint(g, t);
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.classes.Arme#stopAttaquer()
+	 */
 	@Override
 	public void stopAttaquer() {
 		//Pas d'anim de finition
@@ -82,6 +79,10 @@ public class ArmeEpee extends Arme{
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.classes.Arme#updateBounds()
+	 */
 	@Override
 	protected void updateBounds() {
 
