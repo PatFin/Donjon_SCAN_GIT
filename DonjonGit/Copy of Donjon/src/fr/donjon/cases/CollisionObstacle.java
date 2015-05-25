@@ -24,6 +24,10 @@ public class CollisionObstacle implements CollisionPattern {
 		this.l = l;
 	}
 
+	@Override
+	public String toString(){
+		return "Obstacle";
+	}
 
 	@Override
 	public void persoEnterCase(Personnage p) {

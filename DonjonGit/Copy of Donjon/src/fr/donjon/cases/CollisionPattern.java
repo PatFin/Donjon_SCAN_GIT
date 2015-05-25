@@ -14,4 +14,6 @@ public interface CollisionPattern {
 	public void projLeaveCase(Projectile p);
 	
 	public void persoLeaveCase(Personnage p);
+	
+	public String toString();
 }

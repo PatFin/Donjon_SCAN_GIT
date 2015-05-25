@@ -23,6 +23,10 @@ public class CollisionVitesse implements CollisionPattern {
 	}
 
 
+	@Override
+	public String toString(){
+		return "Vitesse";
+	}
 	
 	@Override
 	public void persoEnterCase(Personnage p) {

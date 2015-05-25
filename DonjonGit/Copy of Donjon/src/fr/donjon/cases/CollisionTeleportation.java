@@ -35,6 +35,11 @@ public class CollisionTeleportation implements CollisionPattern {
 	}
 
 	@Override
+	public String toString(){
+		return "Teleportation";
+	}
+	
+	@Override
 	public void persoEnterCase(Personnage p) {
 		teleportSound.playOnce();
 		teleport(p);

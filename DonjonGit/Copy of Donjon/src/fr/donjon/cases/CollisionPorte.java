@@ -41,6 +41,10 @@ public class CollisionPorte implements CollisionPattern {
 		lien.getSalleOrigine().passerLaPorte(lien);
 	}
 
+	@Override
+	public String toString(){
+		return "Porte";
+	}
 
 	@Override
 	public void projEnterCase(Projectile p) {

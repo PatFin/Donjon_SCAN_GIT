@@ -4,6 +4,7 @@
 package fr.donjon.Donjons;
 
 import fr.donjon.cases.Case;
+import fr.donjon.cases.CasePorte;
 import fr.donjon.salles.Salle;
 import fr.donjon.sound.SoundLoop;
 import fr.donjon.utils.EcouteurChangementSalle;
@@ -82,6 +83,10 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 		sActuelle.update(t);	//On raffarichit uniquement la salle actuelle, inutile de faire bouger les ennemis dans tout le donjon.
 
+		for(CasePorte c : sActuelle.portes){
+			System.out.println(c.collision);
+		}
+		
 		centreCamera.setLocation(sActuelle.hero.image.x + sActuelle.hero.image.width/2,
 				sActuelle.hero.image.height/2 + sActuelle.hero.image.y);		//On recentre le vecteur centre camï¿½ra sur la position du personnage.
 		this.checkHeroStillAlive();
@@ -127,9 +132,9 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 		
 		sActuelle.update = false;
 		
-		Vecteur npos = position.ajoute(l.getOrientation().getUnitVector()); //les coordonnÃ©es de la prochaine salleActuelle dans le tableau.
+		Vecteur npos = position.ajoute(l.getOrientation().getUnitVector()); //les coordonnées de la prochaine salleActuelle dans le tableau.
 
-		if( !(npos.x >= 0 && npos.x < smap.length && npos.y >= 0  && npos.y < smap[0].length) )return false; //On tombe en dehors du tableau de salle, on renvoi false
+		if( !(npos.x >= 0 && npos.x < smap.length && npos.y >= 0  && npos.y < smap[0].length) )return false; //On tombe en dehors du tableau de salle, on renvoi false. Il s'agit d'une sécurité supplémentaire par desuus celle de la création des portes.
 		
 		if(this.getSalle(npos) == null){
 			fournirNouvelleSalle(npos, l, this.smap); //On crÃ©e une nouvelle salle et on la met dans le tableau
@@ -141,7 +146,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 		
 		sActuelle.update = true;
 		
-		return true;		//On a bien changÃ© de salle, on renvoie true
+		return true;		//On a bien changé de salle, on renvoie true
 	}
 
 	/**

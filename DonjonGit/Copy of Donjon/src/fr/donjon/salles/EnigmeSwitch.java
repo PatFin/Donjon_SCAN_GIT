@@ -44,7 +44,7 @@ public class EnigmeSwitch extends SalleQuatre {
 	 */
 	@Override
 	public void checkFinie(){
-		if(personnages.size() == 1 && codeCorrect()){
+		if(personnages.size() == 1 && codeCorrect() && !finie){
 			finie = true;
 			activerLesPortes(true);
 		}

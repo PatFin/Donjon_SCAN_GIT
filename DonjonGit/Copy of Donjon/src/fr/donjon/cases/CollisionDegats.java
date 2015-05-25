@@ -42,6 +42,10 @@ public class CollisionDegats implements CollisionPattern {
 	public void persoLeaveCase(Personnage p) {
 	}
 
+	public String toString(){
+		return "Dégats";
+	}
+	
 	@Override
 	public void projLeaveCase(Projectile p) {
 	}

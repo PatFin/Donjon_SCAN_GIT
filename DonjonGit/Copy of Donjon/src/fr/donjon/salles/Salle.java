@@ -309,7 +309,6 @@ public abstract class Salle implements EcouteurClavier{
 		}
 
 		checkFinie();
-
 		sortCharacters();
 	}
 
