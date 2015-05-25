@@ -142,10 +142,11 @@ public abstract class Salle implements EcouteurClavier{
 	 * @param a true si on veut rendre le passage possible, false sinon.
 	 */
 	public void activerLesPortes(boolean a){
-		Salle.doorOpens.playOnce(); //We play a sound to notice the player the doors have benn opened.
-		
 		for(CasePorte c : this.portes){
-			c.setPassageAutorise(a);
+			if((c.collision.toString()=="Porte" ^ a)){
+				Salle.doorOpens.playOnce(); //We play a sound to notice the player the doors have benn opened.
+				c.setPassageAutorise(a);
+			}
 		}
 	}
 	
@@ -391,7 +392,7 @@ public abstract class Salle implements EcouteurClavier{
 	 * Certaines salles peuvent override cette m�thode au besoin
 	 */
 	public void checkFinie(){
-		if(personnages.size() == 1 && !finie){
+		if(personnages.size() == 1){
 			finie = true;
 			activerLesPortes(true);
 		}

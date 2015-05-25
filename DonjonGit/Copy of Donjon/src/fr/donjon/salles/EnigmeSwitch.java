@@ -1,7 +1,6 @@
 package fr.donjon.salles;
 
 import fr.donjon.cases.CaseDalle;
-import fr.donjon.cases.CaseMur;
 import fr.donjon.cases.CaseSwitch;
 import fr.donjon.classes.Heros;
 import fr.donjon.utils.MapGenerator;
@@ -33,7 +32,7 @@ public class EnigmeSwitch extends SalleQuatre {
 			this.cases[(int)(c.x-NUMBERSWITCHES/2)+i][(int)c.y] = s;
 			interrupteur[i] = s;
 		}
-		//On gï¿½nï¿½re un code
+		//On génère un code
 		generateCode();
 		
 	}
@@ -44,10 +43,9 @@ public class EnigmeSwitch extends SalleQuatre {
 	 */
 	@Override
 	public void checkFinie(){
-		if(personnages.size() == 1 && codeCorrect() && !finie){
-			finie = true;
-			activerLesPortes(true);
-		}
+		boolean b = (personnages.size() == 1 && codeCorrect());
+		finie = b;
+		activerLesPortes(b);
 	}
 
 	/**
