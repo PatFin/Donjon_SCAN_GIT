@@ -69,7 +69,6 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		catch (NullPointerException e){
 
 		}
-		Salle.instances=0;					//On r�initialise le nombre de salles cr�es
 		game = new PanelJeu(g);				//On cr�� le nouveau jeu
 		game.ecouteur = this;
 		

@@ -14,6 +14,7 @@ import fr.donjon.Donjons.DonjonLineaire;
 import fr.donjon.Donjons.DonjonNonLineaire;
 import fr.donjon.Donjons.GestionnairePatrickBasique;
 import fr.donjon.editor.EditorWindow;
+import fr.donjon.salles.Salle;
 import fr.donjon.utils.EcouteurLauncher;
 import fr.donjon.utils.ImageManager;
 
@@ -93,6 +94,9 @@ public class EcranAccueil extends JPanel{
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//On réinitialise le nombre de salles
+				Salle.instances = 0;
+				
 				ecouteur.requestNewGame(new DonjonLineaire(10));
 			}
 		});
@@ -103,6 +107,9 @@ public class EcranAccueil extends JPanel{
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//On réinitialise le nombre de salles
+				Salle.instances = 0;
+				
 				//On commande un jeu infini
 				ecouteur.requestNewGame(new DonjonNonLineaire(5, 8));
 			}
@@ -113,6 +120,9 @@ public class EcranAccueil extends JPanel{
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e){
+				//On réinitialise le nombre de salles
+				Salle.instances = 0;
+				
 				//On commande un jeu test
 				ecouteur.requestNewGame(new GestionnairePatrickBasique(4, 3));
 			}

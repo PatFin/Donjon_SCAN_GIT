@@ -84,7 +84,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 		sActuelle.update(t);	//On raffarichit uniquement la salle actuelle, inutile de faire bouger les ennemis dans tout le donjon.
 
 		for(CasePorte c : sActuelle.portes){
-			System.out.println(c.collision);
+			System.out.println((this.sActuelle.roomNumber)+""+(c.collision));
 		}
 		
 		centreCamera.setLocation(sActuelle.hero.image.x + sActuelle.hero.image.width/2,
@@ -137,7 +137,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 		if( !(npos.x >= 0 && npos.x < smap.length && npos.y >= 0  && npos.y < smap[0].length) )return false; //On tombe en dehors du tableau de salle, on renvoi false. Il s'agit d'une sécurité supplémentaire par desuus celle de la création des portes.
 		
 		if(this.getSalle(npos) == null){
-			fournirNouvelleSalle(npos, l, this.smap); //On crÃ©e une nouvelle salle et on la met dans le tableau
+			fournirNouvelleSalle(npos, l, this.smap); //On créé une nouvelle salle et on la met dans le tableau
 		}
 		
 		sActuelle.hero.setLocation(l.getDestinationVecteur().multiplie(Case.TAILLE));
