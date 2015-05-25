@@ -136,14 +136,13 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 		if( !(npos.x >= 0 && npos.x < smap.length && npos.y >= 0  && npos.y < smap[0].length) )return false; //On tombe en dehors du tableau de salle, on renvoi false. Il s'agit d'une sécurité supplémentaire par desuus celle de la création des portes.
 		
+		//On créé une nouvelle salle et on la met dans le tableau si elle n'existe pas déjà.
 		if(this.getSalle(npos) == null){
-			fournirNouvelleSalle(npos, l, this.smap); //On créé une nouvelle salle et on la met dans le tableau
+			fournirNouvelleSalle(npos, l, this.smap); 
 		}
 		
-		sActuelle.hero.setLocation(l.getDestinationVecteur().multiplie(Case.TAILLE));
-		
 		setSActuelle(npos);
-		
+		sActuelle.hero.setLocation(l.getDestinationVecteur().multiplie(Case.TAILLE));
 		sActuelle.update = true;
 		
 		return true;		//On a bien changé de salle, on renvoie true
@@ -254,6 +253,10 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	//INTERFACE ECOUTEUR CHANGEMENT SALLE//
 	///////////////////////////////////////
 	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurChangementSalle#changerDeSalle(fr.donjon.utils.Link)
+	 */
 	@Override
 	public void changerDeSalle(Link l) {
 		doorSound.playOnce();

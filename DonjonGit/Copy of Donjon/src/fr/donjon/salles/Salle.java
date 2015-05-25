@@ -15,7 +15,6 @@ import fr.donjon.utils.EcouteurChangementSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
-import fr.donjon.utils.Type;
 import fr.donjon.utils.Vecteur;
 
 /**

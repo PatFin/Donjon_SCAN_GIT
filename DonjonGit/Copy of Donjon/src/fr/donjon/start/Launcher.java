@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import fr.donjon.Donjons.GestionnaireSalle;
-import fr.donjon.salles.Salle;
 import fr.donjon.sound.SoundLoop;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.EcouteurLauncher;
