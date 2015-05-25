@@ -10,6 +10,7 @@ import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
+import fr.donjon.sound.SoundLoop;
 import fr.donjon.utils.EcouteurChangementSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
@@ -43,6 +44,8 @@ public abstract class Salle implements EcouteurClavier{
 
 	boolean finie;
 	public boolean update;
+	
+	private static SoundLoop doorOpens = new SoundLoop(SoundLoop.DOOROPENS);
 
 	/**
 	 * Construit une salle vide
@@ -140,6 +143,7 @@ public abstract class Salle implements EcouteurClavier{
 	 * @param a true si on veut rendre le passage possible, false sinon.
 	 */
 	public void activerLesPortes(boolean a){
+		Salle.doorOpens.playOnce();
 		for(int i=0; i<portes.size(); i++){
 			portes.get(i).setPassageAutorise(a);
 		}

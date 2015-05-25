@@ -23,6 +23,8 @@ public class SoundLoop{
 	public final static String GOT = "Ressources/sounds/Main Theme.aif";
 	public final static String DOOR = "Ressources/sounds/doorClose_4.wav";
 	public final static String CLIC = "Ressources/sounds/metalClick.wav";
+	public final static String DOOROPENS = "Ressources/sounds/metalLatch.wav";
+	public final static String TELEPORT = "Ressources/sounds/shoot.wav";
 	
 	Clip audioClip;
 	

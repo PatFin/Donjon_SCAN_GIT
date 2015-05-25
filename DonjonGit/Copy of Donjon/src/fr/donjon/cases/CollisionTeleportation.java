@@ -3,12 +3,14 @@ package fr.donjon.cases;
 import fr.donjon.classes.Deplacable;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Projectile;
+import fr.donjon.sound.SoundLoop;
 
 public class CollisionTeleportation implements CollisionPattern {
 
 	Case arrivee;
 	Case depart;
 
+	private final static SoundLoop teleportSound = new SoundLoop(SoundLoop.TELEPORT); 
 	/**
 	 * Constructeur vide
 	 */
@@ -34,12 +36,14 @@ public class CollisionTeleportation implements CollisionPattern {
 
 	@Override
 	public void persoEnterCase(Personnage p) {
+		teleportSound.playOnce();
 		teleport(p);
 		arrivee.persos.add(p);
 	}
 
 	@Override
 	public void projEnterCase(Projectile p) {
+		teleportSound.playOnce();
 		teleport(p);
 		arrivee.projs.add(p);
 	}
