@@ -23,6 +23,9 @@ public class Squelette extends Ennemis {
 	private int shootDelay;		//delay so that the skeleton fires every (shootDelay)
 	private int timerShoot; 	//Random integer so that all the skeleton don not fire all at the same time.
 	
+	Arme poing = new ArmePoingSquelette(this);
+	Arme baton = new BatonDeFeu(this);
+	
 	public Squelette(int ax, int ay, Personnage cible, int level, Salle room){
 		super(ax, ay, LNG, LRG, src,
 				new Rectangle(17,15,30,49), new Rectangle(22,48,20,16), true,
@@ -38,16 +41,9 @@ public class Squelette extends Ennemis {
 		animationE = new Animation(src, new Vecteur(64, 64),3,9,(long)(VIT/COEFF*100));
 		animation = animationS;
 		
-		NIV = level;
+		NIV = currentRoom.roomNumber;
 		shootDelay = (int)(100/1+NIV);
 		timerShoot = (int)(Math.random()*shootDelay);
-		
-		this.inventaire = new Inventaire(2, this);
-		
-		inventaire.addUtilisable(new ArmeEpee());
-		inventaire.addUtilisable(new BatonDeFeu(this));
-		
-		inventaire.useUtilisable(1);
 	}
 	
 	//calculer le vecteur Squellette Personnage (voir methode marche de heros)
@@ -91,26 +87,55 @@ public class Squelette extends Ennemis {
 		
 		Vecteur v = new Vecteur(dx, dy);
 		
-		if (v.getNorm() > 300) {
+		if (NIV >= 2) {
 			
-			v = v.normalise();
+			if (v.getNorm() > 300) {
+				
+				v = v.normalise();
+				
+				marcher(v);
+			}else if (v.getNorm() < 150) {
+				
+				v = v.multiplie(-1);
+				
+				v.normalise();
+				
+				marcher(v);
+			}else if ((t % shootDelay == timerShoot)) { 
+				// (v.getNorm() > 150 && v.getNorm() <= 300) && (t % shootDelay == timerShoot)
+				
+				v = v.normalise();
+				
+				this.arme = baton;
+				
+				attaquer(currentRoom.personnages, currentRoom.projectiles, v);
+			}else{
+				this.etat = EtatPersonnage.REPOS;
+			}
+		}
+		
+		else if (NIV < 2) {
 			
-			marcher(v);
-		}else if (v.getNorm() < 150) {
+			if (v.getNorm() > 30) {
+				
+				v = v.normalise();
+				
+				marcher(v);
+			}
 			
-			v = v.multiplie(-1);
+			else if ((t % shootDelay == timerShoot)) {
+				
+				this.arme = poing;
+				
+				v = v.normalise();
+				
+				attaquer(currentRoom.personnages, currentRoom.projectiles, v);
+			}
 			
-			v.normalise();
-			
-			marcher(v);
-		}else if ((t % shootDelay == timerShoot)) { 
-			// (v.getNorm() > 150 && v.getNorm() <= 300) && (t % shootDelay == timerShoot)
-			
-			v = v.normalise();
-			
-			attaquer(currentRoom.personnages, currentRoom.projectiles, v);
-		}else{
-			this.etat = EtatPersonnage.REPOS;
+			else {
+				
+				this.etat = EtatPersonnage.REPOS;
+			}
 		}
 	}
 
