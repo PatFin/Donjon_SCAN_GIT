@@ -7,10 +7,10 @@ import fr.donjon.sound.SoundLoop;
 
 public class CollisionTeleportation implements CollisionPattern {
 
+	private final static SoundLoop teleportSound = new SoundLoop(SoundLoop.TELEPORT);
 	Case arrivee;
-	Case depart;
 
-	private final static SoundLoop teleportSound = new SoundLoop(SoundLoop.TELEPORT); 
+	Case depart; 
 	/**
 	 * Constructeur vide
 	 */
@@ -35,8 +35,9 @@ public class CollisionTeleportation implements CollisionPattern {
 	}
 
 	@Override
-	public String toString(){
-		return "Teleportation";
+	public void persoCollision(Personnage p) {
+		// TODO Auto-generated method stub
+
 	}
 	
 	@Override
@@ -47,16 +48,16 @@ public class CollisionTeleportation implements CollisionPattern {
 	}
 
 	@Override
+	public void persoLeaveCase(Personnage p) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
 	public void projEnterCase(Projectile p) {
 		teleportSound.playOnce();
 		teleport(p);
 		arrivee.projs.add(p);
-	}
-
-	@Override
-	public void persoLeaveCase(Personnage p) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -66,9 +67,8 @@ public class CollisionTeleportation implements CollisionPattern {
 	}
 
 	@Override
-	public void persoCollision(Personnage p) {
-		// TODO Auto-generated method stub
-
+	public String toString(){
+		return "Teleportation";
 	}
 
 

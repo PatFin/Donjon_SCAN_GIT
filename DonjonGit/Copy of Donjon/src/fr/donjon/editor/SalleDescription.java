@@ -12,26 +12,13 @@ import fr.donjon.cases.Case;
 public class SalleDescription {
 
 	
-	Case[][] matrix;
-	int width;
 	int height;
 	int index;
+	Case[][] matrix;
 	String name;
+	int width;
 	
 	
-	public SalleDescription(String[] matrix, String width, String height,
-			String name, String index) {
-		super();
-		
-		this.width = Integer.parseInt(width);
-		this.height = Integer.parseInt(height);
-		this.name = name;
-		this.index = Integer.parseInt(index);
-		this.matrix = getMatrixFromString(matrix);
-	}
-	
-	
-
 	public SalleDescription(Case[][] matrix, int width, int height, int index,
 			String name) {
 		super();
@@ -48,8 +35,33 @@ public class SalleDescription {
 			}
 		}
 	}
+	
+	
+
+	public SalleDescription(String[] matrix, String width, String height,
+			String name, String index) {
+		super();
+		
+		this.width = Integer.parseInt(width);
+		this.height = Integer.parseInt(height);
+		this.name = name;
+		this.index = Integer.parseInt(index);
+		this.matrix = getMatrixFromString(matrix);
+	}
 
 
+
+	public int getHeight() {
+		return height;
+	}
+	
+	public int getIndex() {
+		return index;
+	}
+
+	public Case[][] getMatrix() {
+		return matrix;
+	}
 
 	public Case[][] getMatrixFromString(String[] str){
 		
@@ -66,48 +78,37 @@ public class SalleDescription {
 		
 		return tab;
 	}
-	
-	public Case[][] getMatrix() {
-		return matrix;
-	}
 
-	public void setMatrix(Case[][] matrix) {
-		this.matrix = matrix;
+	public String getName() {
+		return name;
 	}
 
 	public int getWidth() {
 		return width;
 	}
 
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
 	public void setHeight(int height) {
 		this.height = height;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getIndex() {
-		return index;
 	}
 
 	public void setIndex(int index) {
 		this.index = index;
 	}
 
+	public void setMatrix(Case[][] matrix) {
+		this.matrix = matrix;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
 	
+	@Override
 	public String toString(){
 		
 		return "Name: "+name + "\n" +

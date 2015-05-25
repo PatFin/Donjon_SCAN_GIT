@@ -16,20 +16,20 @@ import fr.donjon.utils.Utilisable;
  */
 public class Inventaire {
 
-	final static int iconWidth = 20;
-	final static int iconSpacing = 2;
 	final static Color backColor = Color.GRAY;
+	final static int iconSpacing = 2;
+	final static int iconWidth = 20;
 	final static Color objColor = Color.LIGHT_GRAY;
 	final static Color useColor = Color.CYAN;
 	
-	private int taille;
-	private int actuel;
-	private int pixelSize;
-	private ArrayList<Utilisable> utilisables;
-	private Personnage porteur;
-	
 	int boxOffsetLeft;
 	int boxOffsetRight;
+	private int actuel;
+	private int pixelSize;
+	private Personnage porteur;
+	
+	private int taille;
+	private ArrayList<Utilisable> utilisables;
 	
 	/**
 	 * Crée un inventaire avec une taille définie
@@ -42,6 +42,22 @@ public class Inventaire {
 		this.porteur = porteur;
 		pixelSize = taille*iconWidth + (taille+1)*iconSpacing ;
 		actuel = 0;
+	}
+	
+	/**
+	 * Permet d'ajouter un utilisable a l'inventaire
+	 * 
+	 * @param u L'objet utilisant l'interface utilisable
+	 * @return	Renvoie tru si l'objet a été ajouté, false s'il n'y a plus de place;
+	 */
+	public boolean addUtilisable(Utilisable u){
+		
+		if(utilisables.size() < taille){
+			utilisables.add(u);
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public void draw(Graphics g){
@@ -63,22 +79,10 @@ public class Inventaire {
 		
 	}
 	
-	/**
-	 * Permet d'ajouter un utilisable a l'inventaire
-	 * 
-	 * @param u L'objet utilisant l'interface utilisable
-	 * @return	Renvoie tru si l'objet a été ajouté, false s'il n'y a plus de place;
-	 */
-	public boolean addUtilisable(Utilisable u){
-		
-		if(utilisables.size() < taille){
-			utilisables.add(u);
-			return true;
-		}
-		
-		return false;
+	public int getSize(){
+		return pixelSize ;
 	}
-	
+
 	/**
 	 * Permet d'utiliser un objet de l'inventaire
 	 * 
@@ -97,10 +101,6 @@ public class Inventaire {
 		}
 		
 		return true;
-	}
-
-	public int getSize(){
-		return pixelSize ;
 	}
 	
 }

@@ -19,8 +19,8 @@ import fr.donjon.utils.Vecteur;
 public class BouleDeDark extends Projectile{
 
 	final static int DGT = 15;
-	final static int VITA = 100;
 	final static String src = "DarkBall.png";
+	final static int VITA = 100;
 	
 	
 	int size;
@@ -29,7 +29,7 @@ public class BouleDeDark extends Projectile{
 	
 	public BouleDeDark(int ax, int ay , Vecteur vvitesse, int size, int speed) {
 		super(ax - size/2, ay - size/2, size, size, src, new Rectangle(15*(size/40),15*(size/40), size-30*(size/40), size-30*(size/40)), new Rectangle(15*(size/40),15*(size/40), size-30*(size/40), size-30*(size/40)),
-				true, vvitesse, speed, Type.ENNEMI, (int)(((double)size/65.0) * 12) );
+				true, vvitesse, speed, Type.ENNEMI, (int)((size/65.0) * 12) );
 		
 		this.size = size;
 		this.speed = speed;
@@ -69,6 +69,16 @@ public class BouleDeDark extends Projectile{
 
 
 	@Override
+	public void inCollision(Personnage p) {
+		
+		if(!living) return;
+		if(p.type == this.type)return;
+
+		p.receiveDammages(degats);
+		this.living=false;
+	}
+
+	@Override
 	public void update(long t) {
 		
 		if(!living)return;
@@ -77,16 +87,6 @@ public class BouleDeDark extends Projectile{
 		
 		setLocation( (int)pos.x, (int)pos.y );
 		
-	}
-
-	@Override
-	public void inCollision(Personnage p) {
-		
-		if(!living) return;
-		if(p.type == this.type)return;
-
-		p.receiveDammages(degats);
-		this.living=false;
 	}
 
 }

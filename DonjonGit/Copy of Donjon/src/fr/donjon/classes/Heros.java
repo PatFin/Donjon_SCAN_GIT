@@ -18,20 +18,20 @@ import fr.donjon.utils.Vecteur;
  */
 public class Heros extends Personnage{
 
-	public final static int LNG = 64;
-	final static int LRG = 64;
-	final static int VIE = 100;
-	final static int DEF = 10;
-	final static int VIT = 7;
-	final static String src = "hero_map.png";
 	final static double COEFF = 1;
+	final static int DEF = 10;
+	final static int LRG = 64;
+	final static String src = "hero_map.png";
+	final static int VIE = 100;
+	final static int VIT = 7;
+	public final static int LNG = 64;
 	
 
 	/**
 	 * Constructeur
 	 * 
-	 * @param ax Position x position horizontale du héro dans la salle (en pixels)
-	 * @param ay Position y position verticale du héro dans la salle (en pixels)
+	 * @param ax Position x position horizontale du hï¿½ro dans la salle (en pixels)
+	 * @param ay Position y position verticale du hï¿½ro dans la salle (en pixels)
 	 */
 	public Heros(int ax, int ay){
 		super(ax, ay, LNG, LRG, src,
@@ -55,10 +55,37 @@ public class Heros extends Personnage{
 	}
 
 
+	/**
+	 * Methode qui lance l'attaque du hÃ©ros sur une/des cible(s)
+	 * L'attaque pourra ajouter des projectiles sur le terrain
+	 */
+	@Override
+	public void attaquer(ArrayList<Personnage> personnage,
+			ArrayList<Projectile> projectiles, Vecteur v) {
+		
+		//S'il attaque deja on ne fait rien
+		if(this.etat == EtatPersonnage.ATTAQUE)return;
+		
+		//Lancement de l'attaque
+		this.etat = EtatPersonnage.ATTAQUE;
+		this.arme.attaquer(personnage, projectiles,v);
+
+	}
+
+	/**
+	 * If the hero is colliding with another character, we want to put it back to its previous position
+	 */
+	@Override
+	public void collide(Personnage p) {
+		this.setLocation(lPos);
+	}
+
+	
 	/*
 	 * (non-Javadoc)
 	 * @see fr.donjon.classes.Personnage#draw(long, java.awt.Graphics)
 	 */
+	@Override
 	public void draw(long t, Graphics g) {
 
 		//Only the Heros has to draw the inventaire
@@ -70,6 +97,8 @@ public class Heros extends Personnage{
 		
 	}
 
+
+	
 	/**
 	 * Demarre le deplacement du personnage dans une direction
 	 * @param v Direction de deplacement du personnage
@@ -95,37 +124,10 @@ public class Heros extends Personnage{
 		}
 	}
 
-	
-	/**
-	 * Methode qui lance l'attaque du hÃ©ros sur une/des cible(s)
-	 * L'attaque pourra ajouter des projectiles sur le terrain
-	 */
-	public void attaquer(ArrayList<Personnage> personnage,
-			ArrayList<Projectile> projectiles, Vecteur v) {
-		
-		//S'il attaque deja on ne fait rien
-		if(this.etat == EtatPersonnage.ATTAQUE)return;
-		
-		//Lancement de l'attaque
-		this.etat = EtatPersonnage.ATTAQUE;
-		this.arme.attaquer(personnage, projectiles,v);
 
-	}
-
-
-	
 	@Override
 	public void utiliserObjet(int reference) {
 		inventaire.useUtilisable(reference);
-	}
-
-
-	/**
-	 * If the hero is colliding with another character, we want to put it back to its previous position
-	 */
-	@Override
-	public void collide(Personnage p) {
-		this.setLocation(lPos);
 	}
 
 }

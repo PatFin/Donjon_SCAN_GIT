@@ -14,12 +14,12 @@ public abstract class Objet {
 	
 	
 	String nom;					//Nom de l'objet
-	public Rectangle image;			//Rectangle contenant l'image
+	Rectangle offArm;			//Offsets du rectangle armes
+	Rectangle offCol;			//Offsets du rectangle collisions
+	Boolean toDisplay; 			//largeur du rectangle
 	public Rectangle collisionArmes;	//Rectangle pour collision avec les armes  
 	public Rectangle collisionDecor; 	//Rectangle contenant la boite de collision de l'objet
-	Rectangle offCol;			//Offsets du rectangle collisions
-	Rectangle offArm;			//Offsets du rectangle armes
-	Boolean toDisplay; 			//largeur du rectangle
+	public Rectangle image;			//Rectangle contenant l'image
 	
 	
 	/**
@@ -41,6 +41,8 @@ public abstract class Objet {
 		this.toDisplay=toDisplay;
 	}
 	
+	public abstract void draw(long  t, Graphics g);
+	
 	/**
 	 * A redéfinir dans les classes filles en fonction de si on s'intéresse au rectangle de collision pour les armes ou le décor
 	 * @param o l'autre objet
@@ -50,12 +52,10 @@ public abstract class Objet {
 		return r.intersects(this.collisionDecor);	
 	}
 	
-	public abstract void update(long t);
-	
-    public abstract void draw(long  t, Graphics g);
-    
     public Vecteur getCentre(){
     	return new Vecteur(this.image.x + this.image.width/2, this.image.y + this.image.height/2);
     }
+    
+    public abstract void update(long t);
     
 }

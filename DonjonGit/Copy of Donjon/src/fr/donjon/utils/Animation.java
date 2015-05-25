@@ -9,31 +9,31 @@ import java.awt.Image;
 /**
  * @author Baptiste
  *
- *	Cette classe permet de gérer le defilement des animations
+ *	Cette classe permet de gï¿½rer le defilement des animations
  *	a partir d'une image contenant les images successives a la suite (voir map.png par exemple)
  */
 
 public class Animation{
 
-	Image im; //L'image globale
+	long duration; //La durï¿½e de l'animation
 
-	long duration; //La durée de l'animation
 	long frameDuration; //La duree d'affichage d'une image
-	int nb; //Le nombre d'images composant l'animation
-	int line; //La ligne correspondant à l'animation sur l'image globale
+	Image im; //L'image globale
 	boolean isFinished; //Definit si l'anim est terminee ou non
-	long timeStart; //Temps auquel a demarree l'anim
-	
+	int line; //La ligne correspondant ï¿½ l'animation sur l'image globale
+	int nb; //Le nombre d'images composant l'animation
 	Vecteur taille; //La taille d'une image dans l'animation
+	
 	Vecteur temp; //Vecteur temporaire se deplacant sur l'image globale
+	long timeStart; //Temps auquel a demarree l'anim
 
 	/**
 	 * 
 	 * @param source 	Image source
-	 * @param taille 	Taille de l'image animée
+	 * @param taille 	Taille de l'image animï¿½e
 	 * @param line 		Ligne sur laquelle se trouve l'anim sur l'image globale	
 	 * @param nb		Le nombre d'images composant l'animation
-	 * @param duration	Durée d'affichage de l'animation
+	 * @param duration	Durï¿½e d'affichage de l'animation
 	 */
 	public Animation(String source, Vecteur taille, int line, int nb, long duration){
 
@@ -45,11 +45,11 @@ public class Animation{
 		this.nb = nb;
 		this.duration = duration;
 		this.isFinished = false;
-		this.timeStart = -1;		//-1 si l'animation n'as jamais été demarree
+		this.timeStart = -1;		//-1 si l'animation n'as jamais ï¿½tï¿½ demarree
 
-		this.frameDuration = (long) duration/nb;
+		this.frameDuration = duration/nb;
 
-		//On se place en x=0 et au y correspondant à la ligne de l'animation a afficher
+		//On se place en x=0 et au y correspondant ï¿½ la ligne de l'animation a afficher
 		temp = new Vecteur(0, line*taille.y);
 
 	}
@@ -58,12 +58,12 @@ public class Animation{
 	 * 
 	 * Cette methode permet de jouer une animation en boucle
 	 * 
-	 * @param x Coordonnée x
-	 * @param y	Coordonnée y
+	 * @param x Coordonnï¿½e x
+	 * @param y	Coordonnï¿½e y
 	 * @param w	Largeur image
 	 * @param h	Longueur image
-	 * @param g	Graphics associé au buffer
-	 * @param t	Temps écoulé
+	 * @param g	Graphics associï¿½ au buffer
+	 * @param t	Temps ï¿½coulï¿½
 	 */
 	public void drawAnim(int x, int y, int w, int h, Graphics g, long t){
 
@@ -73,15 +73,39 @@ public class Animation{
 		//Si l'anim n'as jamais ete demaree on regle timeStart
 		if(timeStart == -1)timeStart = t;
 
-		//Calcul coordonnée x de l'image
+		//Calcul coordonnï¿½e x de l'image
 		temp.x = (int) (((t-timeStart)/(double)duration )*nb)*taille.x ;
 
 		//Dessin image
-		g.drawImage(im, (int) x, (int) y,
-				(int) x+w,(int) y+h, 
+		g.drawImage(im, x, y,
+				x+w,y+h, 
 				(int) temp.x,(int) temp.y,
 				(int) (temp.x+taille.x), (int) (temp.y+taille.y), null);
 
+
+	}
+
+	/**
+	 * 
+	 * Permet de dessiner une seule image de l'animation
+	 * 
+	 * @param x
+	 * @param y
+	 * @param w
+	 * @param h
+	 * @param g
+	 * @param ima Image a dessiner 
+	 */
+	public void drawImage(int x, int y, int w, int h, Graphics g, int ima){
+
+		//Calcul coordonnï¿½e x de l'image
+		temp.x = ima*taille.x;
+
+		//Dessin image
+		g.drawImage(im, x, y,
+				x+w,y+h, 
+				(int) temp.x,(int) temp.y,
+				(int) (temp.x+taille.x), (int) (temp.y+taille.y), null);
 
 	}
 
@@ -111,12 +135,12 @@ public class Animation{
 			isFinished = true;
 		}
 
-		//Calcul coordonnée x de l'image
+		//Calcul coordonnï¿½e x de l'image
 		temp.x = (int) (((t-timeStart)/(double)duration )*nb)*taille.x ;
 
 		//Dessin image
-		g.drawImage(im, (int) x, (int) y,
-				(int) x+w,(int) y+h, 
+		g.drawImage(im, x, y,
+				x+w,y+h, 
 				(int) temp.x,(int) temp.y,
 				(int) (temp.x+taille.x), (int) (temp.y+taille.y), null);
 
@@ -131,30 +155,6 @@ public class Animation{
 		
 		isFinished = false;
 		timeStart = -1;
-	}
-
-	/**
-	 * 
-	 * Permet de dessiner une seule image de l'animation
-	 * 
-	 * @param x
-	 * @param y
-	 * @param w
-	 * @param h
-	 * @param g
-	 * @param ima Image a dessiner 
-	 */
-	public void drawImage(int x, int y, int w, int h, Graphics g, int ima){
-
-		//Calcul coordonnée x de l'image
-		temp.x = ima*taille.x;
-
-		//Dessin image
-		g.drawImage(im, (int) x, (int) y,
-				(int) x+w,(int) y+h, 
-				(int) temp.x,(int) temp.y,
-				(int) (temp.x+taille.x), (int) (temp.y+taille.y), null);
-
 	}
 
 }

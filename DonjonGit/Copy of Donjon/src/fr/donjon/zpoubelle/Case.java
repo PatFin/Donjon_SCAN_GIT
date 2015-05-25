@@ -16,8 +16,8 @@ public class Case {
 	public final static int TAILLE=64;
 	
 	
-	public Image image;
 	public Rectangle collision;
+	public Image image;
 	/**
 	 * Constructeur de la Case 
 	 * @param ImageName le string contenant l'adresse de l'image.
@@ -30,6 +30,27 @@ public class Case {
 		this.collision=new Rectangle(Case.TAILLE,Case.TAILLE);
 	}
 
+	@Override
+	public Case clone(){
+		return null;
+	}
+
+	/**
+	 * Empty method 
+	 * It's purpose is to change the value of a boolean that determines whether a tile can be stepped on or not.
+	 * The class Case_porte overrides this method.
+	 */
+	public void enablePassage(){
+		
+	}
+	
+	/**
+	 * Methode vide. Les cases qui d�rivent de Case peuvent l'override selon leur besoin.
+	 * @param z Le personnage qui marche sur la case.
+	 */
+	public void inCollision(Personnage p) {
+	}
+	
 	/**
 	 * Positionne le rectangle de collision qui va d�clencher la methode inCollision.
 	 * Par d�fault le rectangle de collision recouvre toute la case.
@@ -38,26 +59,6 @@ public class Case {
 	 */
 	public void setCollisionBoxLocation(int horizontal, int vertical){
 		this.collision.setLocation(Case.TAILLE*horizontal, Case.TAILLE*vertical);
-	}
-
-	/**
-	 * Methode vide. Les cases qui d�rivent de Case peuvent l'override selon leur besoin.
-	 * @param z Le personnage qui marche sur la case.
-	 */
-	public void inCollision(Personnage p) {
-	}
-	
-	public Case clone(){
-		return null;
-	}
-	
-	/**
-	 * Empty method 
-	 * It's purpose is to change the value of a boolean that determines whether a tile can be stepped on or not.
-	 * The class Case_porte overrides this method.
-	 */
-	public void enablePassage(){
-		
 	}
 	
 }

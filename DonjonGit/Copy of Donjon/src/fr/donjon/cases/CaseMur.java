@@ -21,14 +21,14 @@ public class CaseMur extends Case{
 	}
 	
 	@Override
-	public void setCollisionBoxLocation(int x, int y) {
-		super.setCollisionBoxLocation(x, y);
-		this.setCollision(new CollisionObstacle(limites));
+	public Case clone() {
+		return new CaseMur();
 	}
 	
 	@Override
-	public Case clone() {
-		return new CaseMur();
+	public void setCollisionBoxLocation(int x, int y) {
+		super.setCollisionBoxLocation(x, y);
+		this.setCollision(new CollisionObstacle(limites));
 	}
 	
 	

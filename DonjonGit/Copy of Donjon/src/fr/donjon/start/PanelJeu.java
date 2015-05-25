@@ -23,29 +23,43 @@ import fr.donjon.zpoubelle.Case;
 public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLauncher{
 	
 	/**
+	 * Classe interne du timer
+	 * On anime la salle et on incr�mente la variable temps
+	 */
+	public class TimerAction implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e){
+			update();
+			temps +=timerTime;
+		}
+
+	}
+	
+	static int instances = 0;
+	final static int timerTime = 30;
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	static int instances = 0;
-	int instance;
 
-	final static int timerTime = 30;
-
-	public Rectangle ecran;
-	Timer timer;
-
-	GestionnaireSalle gestion;
 	DessinateurSalle dessinateur;
-	DessinateurGestionnaire map;
-	
-	long temps;
-	long ta = -1;
-	
+	EcouteurLauncher ecouteur;
+
 	int fps;
+	GestionnaireSalle gestion;
+	int instance;
+	
+	DessinateurGestionnaire map;
 	boolean showMap;
 	
-	EcouteurLauncher ecouteur;
+	long ta = -1;
+	long temps;
+	
+	Timer timer;
+
+	public Rectangle ecran;
 
 	public PanelJeu(GestionnaireSalle gestion) {
 
@@ -74,35 +88,24 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 
 	}
 
-	/**
-	 * Cette m�thode appel�e par le timer r�p�titivement appelle la m�thode update du gestionnaire.
+
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
 	 */
-	public void update(){
-		
-		//TODO remove this bit?
-		
-		//Shows the fps of the actual game
-
-		if(ta == -1)ta = System.currentTimeMillis();
-		else{
-			if(temps%900==0){//Add comment to hide the message
-				fps =  (int) (1000/(System.currentTimeMillis() - ta));
-				//System.out.println(""+fps);
-			}
-			ta = System.currentTimeMillis();
-		}
-		
-
-		gestion.update(temps);
-
-		repaint();
-		
-		if(dessinateur.salle != gestion.getsActuelle()){
-			dessinateur.changerSalle(gestion.getsActuelle());
-		}
-
+	@Override
+	public void attaque(Vecteur v) {
+		gestion.attaque(v);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
+	 */
+	@Override
+	public void deplacement(Vecteur v) {
+		gestion.deplacement(v);
+	}
 
 	/**
 	 * Dessine la salle du donjon actuelle.
@@ -151,32 +154,14 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 		}
 		
 	}
-
-	/**
-	 * Lance le jeu
-	 */
-	public void startGame(){
-		this.timer.start();
-	}
-
-	/**
-	 * Met le jeu en pause
-	 */
-	public void stopGame(){
-		this.timer.stop();
-	}
 	
-	/**
-	 * Classe interne du timer
-	 * On anime la salle et on incr�mente la variable temps
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurLauncher#requestBackToMenu()
 	 */
-	public class TimerAction implements ActionListener{
-
-		public void actionPerformed(ActionEvent e){
-			update();
-			temps +=timerTime;
-		}
-
+	@Override
+	public void requestBackToMenu() {
+		ecouteur.requestBackToMenu();
 	}
 	
 	
@@ -187,13 +172,25 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 	
 	//On fait passer les ordres au Gestionnaire et on intercepte celui pour stopper le Timer
 	
+	@Override
+	public void requestGameOver(Boolean win) {
+		ecouteur.requestGameOver(win);
+	}
+
 	/*
 	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
+	 * @see fr.donjon.utils.EcouteurLauncher#requestNewGame(fr.donjon.Donjons.GestionnaireSalle)
 	 */
 	@Override
-	public void attaque(Vecteur v) {
-		gestion.attaque(v);
+	public void requestNewGame(GestionnaireSalle g) {
+		ecouteur.requestNewGame(g);
+	}
+
+	/**
+	 * Lance le jeu
+	 */
+	public void startGame(){
+		this.timer.start();
 	}
 
 	/*
@@ -207,42 +204,18 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 
 	/*
 	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
-	 */
-	@Override
-	public void deplacement(Vecteur v) {
-		gestion.deplacement(v);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
-	 */
-	@Override
-	public void utiliseObjet(int reference) {
-		gestion.utiliseObjet(reference);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
-	 */
-	@Override
-	public void togglePause() {
-		if(timer.isRunning()){
-			this.stopGame();
-		}else{
-			this.startGame();
-		}
-	}
-	
-	/*
-	 * (non-Javadoc)
 	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
 	 */
 	@Override
 	public void stopDeplacement() {
 		gestion.stopDeplacement();
+	}
+	
+	/**
+	 * Met le jeu en pause
+	 */
+	public void stopGame(){
+		this.timer.stop();
 	}
 
 	/*
@@ -268,25 +241,53 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 	
 	/*
 	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurLauncher#requestBackToMenu()
+	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
 	 */
 	@Override
-	public void requestBackToMenu() {
-		ecouteur.requestBackToMenu();
+	public void togglePause() {
+		if(timer.isRunning()){
+			this.stopGame();
+		}else{
+			this.startGame();
+		}
+	}
+
+	/**
+	 * Cette m�thode appel�e par le timer r�p�titivement appelle la m�thode update du gestionnaire.
+	 */
+	public void update(){
+		
+		//TODO remove this bit?
+		
+		//Shows the fps of the actual game
+
+		if(ta == -1)ta = System.currentTimeMillis();
+		else{
+			if(temps%900==0){//Add comment to hide the message
+				fps =  (int) (1000/(System.currentTimeMillis() - ta));
+				//System.out.println(""+fps);
+			}
+			ta = System.currentTimeMillis();
+		}
+		
+
+		gestion.update(temps);
+
+		repaint();
+		
+		if(dessinateur.salle != gestion.getsActuelle()){
+			dessinateur.changerSalle(gestion.getsActuelle());
+		}
+
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurLauncher#requestNewGame(fr.donjon.Donjons.GestionnaireSalle)
+	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
 	 */
 	@Override
-	public void requestNewGame(GestionnaireSalle g) {
-		ecouteur.requestNewGame(g);
-	}
-
-	@Override
-	public void requestGameOver(Boolean win) {
-		ecouteur.requestGameOver(win);
+	public void utiliseObjet(int reference) {
+		gestion.utiliseObjet(reference);
 	}
 
 

@@ -24,16 +24,16 @@ public class DialogSauvegarder extends JDialog{
 
 	Box content;
 
-	JLabel jlName;
-	JLabel jlIndex;
-
-	JTextField tfName;
-	JTextField tfIndex;
-
 	JButton jbCancel;
 	JButton jbSauvegarder;
 
-	DialogListener listener;	
+	JLabel jlIndex;
+	JLabel jlName;
+
+	DialogListener listener;
+	JTextField tfIndex;
+
+	JTextField tfName;	
 
 	/**
 	 * 
@@ -119,6 +119,11 @@ public class DialogSauvegarder extends JDialog{
 
 	}
 
+	private void cancelBox(){
+		listener.onCancel();
+		this.setVisible(false);
+	}
+
 	private void validateBox(){
 
 		String name = tfName.getText();
@@ -136,11 +141,6 @@ public class DialogSauvegarder extends JDialog{
 		
 		
 		listener.onValidate(name,index);
-		this.setVisible(false);
-	}
-
-	private void cancelBox(){
-		listener.onCancel();
 		this.setVisible(false);
 	}
 

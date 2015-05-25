@@ -16,10 +16,10 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class Ennemis extends Personnage{
 	
-	Personnage cible;
-	Salle currentRoom;
-	
 	static int NIV;
+	Personnage cible;
+	
+	Salle currentRoom;
 	
 	// Ajouter des Animations ici directement ?
 	

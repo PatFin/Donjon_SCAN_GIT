@@ -25,33 +25,6 @@ public class CollisionObstacle implements CollisionPattern {
 	}
 
 	@Override
-	public String toString(){
-		return "Obstacle";
-	}
-
-	@Override
-	public void persoEnterCase(Personnage p) {
-	}
-
-
-	@Override
-	public void projEnterCase(Projectile p) {
-		p.living = false;
-	}
-
-
-	@Override
-	public void persoLeaveCase(Personnage p) {
-	}
-
-
-	@Override
-	public void projLeaveCase(Projectile p) {
-
-	}
-
-
-	@Override
 	public void persoCollision(Personnage p) {
 		
 		if(p.type == Type.ENNEMI){
@@ -67,6 +40,33 @@ public class CollisionObstacle implements CollisionPattern {
 			p.setLocation(p.lPos);
 		}
 
+	}
+
+	@Override
+	public void persoEnterCase(Personnage p) {
+	}
+
+
+	@Override
+	public void persoLeaveCase(Personnage p) {
+	}
+
+
+	@Override
+	public void projEnterCase(Projectile p) {
+		p.living = false;
+	}
+
+
+	@Override
+	public void projLeaveCase(Projectile p) {
+
+	}
+
+
+	@Override
+	public String toString(){
+		return "Obstacle";
 	}
 
 }

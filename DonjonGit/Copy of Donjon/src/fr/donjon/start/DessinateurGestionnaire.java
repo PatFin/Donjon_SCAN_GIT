@@ -18,12 +18,12 @@ import fr.donjon.salles.Salle;
 public class DessinateurGestionnaire {
 
 
-	GestionnaireSalle gest;
+	Graphics buffer;
 
 	Rectangle ecran;
 
+	GestionnaireSalle gest;
 	BufferedImage image;
-	Graphics buffer;
 
 	
 	
@@ -40,8 +40,8 @@ public class DessinateurGestionnaire {
 
 	public BufferedImage getImage(){
 
-		int sw = (int) 200;
-		int sh = (int) 200;
+		int sw = 200;
+		int sh = 200;
 
 		int w = sw*gest.smap.length;
 		int h = sh*gest.smap[0].length;

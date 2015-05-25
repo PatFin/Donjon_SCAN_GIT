@@ -23,18 +23,7 @@ public class CaseBloquante extends CaseSource {
 		this.setCollision(new CollisionPattern() {
 			
 			@Override
-			public void projLeaveCase(Projectile p) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void projEnterCase(Projectile p) {
-				p.living = false;
-			}
-			
-			@Override
-			public void persoLeaveCase(Personnage p) {
+			public void persoCollision(Personnage p) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -46,7 +35,18 @@ public class CaseBloquante extends CaseSource {
 			}
 			
 			@Override
-			public void persoCollision(Personnage p) {
+			public void persoLeaveCase(Personnage p) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void projEnterCase(Projectile p) {
+				p.living = false;
+			}
+			
+			@Override
+			public void projLeaveCase(Projectile p) {
 				// TODO Auto-generated method stub
 				
 			}

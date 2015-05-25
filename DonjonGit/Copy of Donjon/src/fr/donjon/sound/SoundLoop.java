@@ -19,11 +19,11 @@ import javax.sound.sampled.*;
 public class SoundLoop{
 
 	
-	public final static String STARWARS = "Ressources/Sounds/RPG Theme.wav";
-	public final static String GOT = "Ressources/sounds/Main Theme.aif";
-	public final static String DOOR = "Ressources/sounds/doorClose_4.wav";
 	public final static String CLIC = "Ressources/sounds/metalClick.wav";
+	public final static String DOOR = "Ressources/sounds/doorClose_4.wav";
 	public final static String DOOROPENS = "Ressources/sounds/metalLatch.wav";
+	public final static String GOT = "Ressources/sounds/Main Theme.aif";
+	public final static String STARWARS = "Ressources/Sounds/RPG Theme.wav";
 	public final static String TELEPORT = "Ressources/sounds/shoot.wav";
 	
 	Clip audioClip;
@@ -65,11 +65,11 @@ public class SoundLoop{
 	}
 	
 	/**
-	 * Permet d'arr�ter la musique
+	 * Permet de lancer la musique
 	 */
-	public void stop(){
-		audioClip.stop();
-		audioClip.setMicrosecondPosition(0);
+	public void loop(){
+		audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+		audioClip.start();
 	}
 	
 	/**
@@ -81,10 +81,10 @@ public class SoundLoop{
 	}
 	
 	/**
-	 * Permet de lancer la musique
+	 * Permet d'arr�ter la musique
 	 */
-	public void loop(){
-		audioClip.loop(Clip.LOOP_CONTINUOUSLY);
-		audioClip.start();
+	public void stop(){
+		audioClip.stop();
+		audioClip.setMicrosecondPosition(0);
 	}
 }

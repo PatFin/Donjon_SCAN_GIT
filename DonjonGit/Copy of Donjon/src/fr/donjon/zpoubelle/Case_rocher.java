@@ -26,20 +26,20 @@ public class Case_rocher extends Case_Obstacle {
 	
 	@Override
 	/**
-	 * Positionne le rectangle de collision associ� � la case.
-	 */
-	public void setCollisionBoxLocation(int horizontal, int vertical) {
-		
-		this.collision = new Rectangle(Case.TAILLE*horizontal+16, Case.TAILLE*vertical+16, Case.TAILLE/2, Case.TAILLE/2);
-	}
-
-	@Override
-	/**
 	 * Au cas ou les personnage essaie de traverser le rectangle (interdit) de la case, 
 	 * il est remis � la limite de la case.
 	 */
 	public void inCollision(Personnage z) {
 		
 		super.inCollision(z);
+	}
+
+	@Override
+	/**
+	 * Positionne le rectangle de collision associ� � la case.
+	 */
+	public void setCollisionBoxLocation(int horizontal, int vertical) {
+		
+		this.collision = new Rectangle(Case.TAILLE*horizontal+16, Case.TAILLE*vertical+16, Case.TAILLE/2, Case.TAILLE/2);
 	}
 }

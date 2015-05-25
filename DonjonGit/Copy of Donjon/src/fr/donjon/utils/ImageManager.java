@@ -11,8 +11,8 @@ import fr.donjon.cases.CaseMap;
 
 public class ImageManager {
 
-	final static String path = "Ressources/Images/";
 	static HashMap<String,Image> map = new HashMap<String, Image>();
+	final static String path = "Ressources/Images/";
 
 	public static CaseMap map1 = new CaseMap("case_map_1.png", 32);
 

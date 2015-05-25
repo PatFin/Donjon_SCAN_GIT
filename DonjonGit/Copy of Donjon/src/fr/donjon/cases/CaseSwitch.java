@@ -20,15 +20,7 @@ public class CaseSwitch extends CaseSource {
 		setCollision(new CollisionPattern() {
 			
 			@Override
-			public void projLeaveCase(Projectile p) {
-			}
-			
-			@Override
-			public void projEnterCase(Projectile p) {
-			}
-			
-			@Override
-			public void persoLeaveCase(Personnage p) {
+			public void persoCollision(Personnage p) {
 			}
 			
 			@Override
@@ -40,20 +32,20 @@ public class CaseSwitch extends CaseSource {
 			}
 			
 			@Override
-			public void persoCollision(Personnage p) {
+			public void persoLeaveCase(Personnage p) {
+			}
+			
+			@Override
+			public void projEnterCase(Projectile p) {
+			}
+			
+			@Override
+			public void projLeaveCase(Projectile p) {
 			}
 		});
 		
 	}
 
-	/**
-	 * Renvoie la valeur de l'interrupteur
-	 * @return true/false 
-	 */
-	public boolean isActivated(){
-		return positionInMap == pos1 ? false : true;
-	}
-	
 	/*
 	 * (non-Javadoc)
 	 * @see fr.donjon.cases.CaseSource#clone()
@@ -61,6 +53,14 @@ public class CaseSwitch extends CaseSource {
 	@Override
 	public Case clone(){
 		return new CaseSwitch();
+	}
+	
+	/**
+	 * Renvoie la valeur de l'interrupteur
+	 * @return true/false 
+	 */
+	public boolean isActivated(){
+		return positionInMap == pos1 ? false : true;
 	}
 	
 }

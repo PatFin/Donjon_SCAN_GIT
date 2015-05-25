@@ -18,16 +18,16 @@ public class CollisionPorte implements CollisionPattern {
 
 	public Link lien;
 	
+	public CollisionPorte(Link l) {
+		lien=l;
+	}
+
+	
 	/**
 	 * 
 	 */
 	public CollisionPorte(Salle s, Vecteur palier, Orientation o) {
 		lien = new Link(s,palier,o);
-	}
-
-	
-	public CollisionPorte(Link l) {
-		lien=l;
 	}
 
 
@@ -42,8 +42,7 @@ public class CollisionPorte implements CollisionPattern {
 	}
 
 	@Override
-	public String toString(){
-		return "Porte";
+	public void persoLeaveCase(Personnage p) {
 	}
 
 	@Override
@@ -58,7 +57,8 @@ public class CollisionPorte implements CollisionPattern {
 
 
 	@Override
-	public void persoLeaveCase(Personnage p) {
+	public String toString(){
+		return "Porte";
 	}
 
 }

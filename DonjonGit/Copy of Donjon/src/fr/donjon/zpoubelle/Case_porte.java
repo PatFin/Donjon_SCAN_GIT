@@ -17,6 +17,14 @@ public abstract class Case_porte extends Case_Obstacle {
 		this.enabled = enabled;
 	}
 	
+	/**
+	 * 
+	 */
+	@Override
+	public void enablePassage(){
+		this.enabled=true;
+	}
+	
 	@Override
 	public void inCollision(Personnage p) {
 		switch(p.type){
@@ -41,13 +49,5 @@ public abstract class Case_porte extends Case_Obstacle {
 			break;
 		}
 		
-	}
-	
-	/**
-	 * 
-	 */
-	@Override
-	public void enablePassage(){
-		this.enabled=true;
 	}
 }

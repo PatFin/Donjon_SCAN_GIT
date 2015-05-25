@@ -12,22 +12,22 @@ import fr.donjon.utils.Vecteur;
 
 public class BigBoss extends Ennemis {
 
+	final static double COEFF = 0.3;
+	final static int DEF = 25;
 	final static int LNG = 128;
 	final static int LRG = 128;
-	final static int VIE = 500;
-	final static int DEF = 25;
-	final static int VIT = 4;
 	final static String src = "big_boss_map.png";
-	final static double COEFF = 0.3;
-
 	final static int TDUR = 15000;
 	final static int TFIRE = 5000;
-	final static int TRAPR = 8000;
+
 	final static int TMEGA = 15000;
+	final static int TRAPR = 8000;
+	final static int VIE = 500;
+	final static int VIT = 4;
 
 	private int phase;
-	private long tEcoule;
 	private long tDecal;
+	private long tEcoule;
 
 	/*
 	 * 
@@ -57,6 +57,22 @@ public class BigBoss extends Ennemis {
 		tDecal = -1;
 
 		inventaire.useUtilisable(0);
+	}
+
+
+	@Override
+	public void attaquer(ArrayList<Personnage> cibles,
+			ArrayList<Projectile> projectiles, Vecteur v) {
+
+		this.etat = EtatPersonnage.ATTAQUE;
+
+		this.arme.attaquer(cibles, projectiles, v);
+
+	}
+
+	@Override
+	public void collide(Personnage p) {
+		this.setLocation(lPos);
 	}
 
 
@@ -127,7 +143,6 @@ public class BigBoss extends Ennemis {
 
 	}
 
-
 	@Override
 	public void update(long t) {
 		super.update(t);
@@ -136,8 +151,8 @@ public class BigBoss extends Ennemis {
 
 		tEcoule = (t - tDecal)%TDUR ;
 
-		if( phase !=  (int)stats.vie/(VIE/3)  ){
-			phase = (int)stats.vie/(VIE/3);
+		if( phase !=  stats.vie/(VIE/3)  ){
+			phase = stats.vie/(VIE/3);
 			
 			switch(phase){
 			case 2:
@@ -158,24 +173,9 @@ public class BigBoss extends Ennemis {
 
 	}
 
-	@Override
-	public void attaquer(ArrayList<Personnage> cibles,
-			ArrayList<Projectile> projectiles, Vecteur v) {
-
-		this.etat = EtatPersonnage.ATTAQUE;
-
-		this.arme.attaquer(cibles, projectiles, v);
-
-	}
 
 	@Override
 	public void utiliserObjet(int reference) {
 
-	}
-
-
-	@Override
-	public void collide(Personnage p) {
-		this.setLocation(lPos);
 	}
 }

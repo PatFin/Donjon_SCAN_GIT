@@ -18,28 +18,24 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class Arme implements Utilisable{
 
-	Personnage lanceur; //Permet la syncro avec le personnage lanceur 
-	Orientation o;		//Orientation de l'attaque
-	EtatArme etat;		//Etat de l'attaque (finie ou pas)
-
-	String iconSrc;
-	
-	Animation animationN;
-	Animation animationS;
-	Animation animationE;
-	Animation animationO;
 	Animation animation;	//Animation utilisée courrament
+	Animation animationE;
+	Animation animationN;
 
+	Animation animationO;
+	
+	Animation animationS;
 	int degats;			//Degats bruts ou par seconde selon le type d'attaque
 	long duree;			//Duree de l'attaque
+	EtatArme etat;		//Etat de l'attaque (finie ou pas)
+	String iconSrc;
+
+	Personnage lanceur; //Permet la syncro avec le personnage lanceur 
+	Orientation o;		//Orientation de l'attaque
 
 	protected ArrayList<Personnage> cibles; //Liste des cibles potentielles
 	protected ArrayList<Projectile> projectiles;	//Listes des projectiles
 
-	
-	public Arme(String iconSrc){
-			this.iconSrc = iconSrc;
-	}
 	
 	/**
 	 * 
@@ -54,59 +50,15 @@ public abstract class Arme implements Utilisable{
 		this.etat = EtatArme.FINISHED; //On cree juste l'arme sans attaquer
 		this.duree = duree;
 	}
-
-	/**
-	 * 
-	 * Cette methode dessine l'animation du personnage lors de l'attaque
-	 * 
-	 * @param g
-	 * @param t
-	 */
-	public void draw(Graphics g, long t){
-		
-		int T = lanceur.image.width;
-		
-		//Si l'annimation est terminee le personnage passe au repos et on redemarre l'anim de l'arme
-		if(animation.drawOnce(this.lanceur.image.x, this.lanceur.image.y, T, T, g, t)){
-			
-			animation.drawImage(this.lanceur.image.x, this.lanceur.image.y,T, T, g, 0);
-			this.stopAttaquer();
-			animation.restart();
-		}
-		
-	}
-
-	/**
-	 * 
-	 * Mise a jour de l'arme, coordonnée etc
-	 * 
-	 * @param t
-	 */
-	public void update(long t){
-
-		switch(etat){
-
-		case FINISHED: 
-			lanceur.stopAttaque();
-			break;
-		case FINISHING : 
-			updateBounds();
-			giveDammages();
-			break;
-		case RUNNING :
-			updateBounds();
-			giveDammages();
-			break;
-
-		}
-
-		
-	}
 	
+	public Arme(String iconSrc){
+			this.iconSrc = iconSrc;
+	}
+
 	protected abstract void giveDammages();
-	
-	protected abstract void updateBounds();
 
+	protected abstract void updateBounds();
+	
 	/**
 	 * 
 	 * @param cibles		La fonction ataque de l'arme définit les cibles touchées
@@ -138,15 +90,63 @@ public abstract class Arme implements Utilisable{
 		}
 
 	}
+	
+	/**
+	 * 
+	 * Cette methode dessine l'animation du personnage lors de l'attaque
+	 * 
+	 * @param g
+	 * @param t
+	 */
+	public void draw(Graphics g, long t){
+		
+		int T = lanceur.image.width;
+		
+		//Si l'annimation est terminee le personnage passe au repos et on redemarre l'anim de l'arme
+		if(animation.drawOnce(this.lanceur.image.x, this.lanceur.image.y, T, T, g, t)){
+			
+			animation.drawImage(this.lanceur.image.x, this.lanceur.image.y,T, T, g, 0);
+			this.stopAttaquer();
+			animation.restart();
+		}
+		
+	}
+
+	@Override
+	public Image getIcon() {
+		return ImageManager.getImage(iconSrc, this.getClass().getSimpleName());
+	}
 
 	public void stopAttaquer(){
 		this.etat = EtatArme.FINISHING;
 	}
 	
 	
-	@Override
-	public Image getIcon() {
-		return ImageManager.getImage(iconSrc, this.getClass().getSimpleName());
+	/**
+	 * 
+	 * Mise a jour de l'arme, coordonnée etc
+	 * 
+	 * @param t
+	 */
+	public void update(long t){
+
+		switch(etat){
+
+		case FINISHED: 
+			lanceur.stopAttaque();
+			break;
+		case FINISHING : 
+			updateBounds();
+			giveDammages();
+			break;
+		case RUNNING :
+			updateBounds();
+			giveDammages();
+			break;
+
+		}
+
+		
 	}
 
 }

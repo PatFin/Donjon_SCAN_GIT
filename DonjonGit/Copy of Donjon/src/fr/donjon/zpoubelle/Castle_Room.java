@@ -4,7 +4,6 @@ import java.awt.Rectangle;
 import java.util.EnumMap;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -15,6 +14,30 @@ import fr.donjon.utils.Vecteur;
 public class Castle_Room extends SalleAbs {
 
 
+	/**
+	 * Empty constructor
+	 */
+	public Castle_Room(){
+		super();
+	}
+	
+	/**
+	 * @param p Le hero control� par le joueur.
+	 * @param lien le lien de lasalle pr�c�dente vers celle-ci.
+	 * @throws CustomException 
+	 */
+	public Castle_Room(Heros h, Link l) throws CustomException{
+		super(SalleAbs.ecran, h);
+		
+		generateRoom();
+		setDoorPlaces();
+		
+		this.addDoorToPrevRoom(l);
+		
+		this.generateEnnemis();
+		this.generateImage();
+	}
+	
 	/**
 	 * Constructor called when this is the first room of the dungeon
 	 * @param ecran contains the space available to the room
@@ -36,91 +59,6 @@ public class Castle_Room extends SalleAbs {
 		hero.setLocation((int)v.x*Case.TAILLE, (int)v.y*Case.TAILLE);
 	}
 	
-	/**
-	 * @param p Le hero control� par le joueur.
-	 * @param lien le lien de lasalle pr�c�dente vers celle-ci.
-	 * @throws CustomException 
-	 */
-	public Castle_Room(Heros h, Link l) throws CustomException{
-		super(SalleAbs.ecran, h);
-		
-		generateRoom();
-		setDoorPlaces();
-		
-		this.addDoorToPrevRoom(l);
-		
-		this.generateEnnemis();
-		this.generateImage();
-	}
-	
-	/**
-	 * Empty constructor
-	 */
-	public Castle_Room(){
-		super();
-	}
-	
-	@Override
-	public void addDoor(Orientation o, boolean enabled){
-		Vecteur v = porte.get(o);
-		
-		//We change the tiles depending on the orientation of the door.
-		switch(o){
-		case NORD:
-			this.cases[(int)v.x][(int)v.y] = new Porte_escalier(enabled);
-			this.cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
-			this.cases[(int)v.x][(int)v.y+2] = new Case_dalle_sol();
-			break;
-		case SUD:
-			this.cases[(int)v.x][(int)v.y] = new Porte_escalier(enabled);
-			this.cases[(int)v.x][(int)v.y-1] = new Case_dalle_sol();
-			break;
-		case OUEST:
-			this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(enabled);
-			this.cases[(int)v.x+1][(int)v.y] = new Case_dalle_sol();
-			this.cases[(int)v.x][(int)v.y-1] = new Case_mur();
-			break;
-		case EST:
-			this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(enabled);
-			this.cases[(int)v.x-1][(int)v.y] = new Case_dalle_sol();
-			this.cases[(int)v.x][(int)v.y-1] = new Case_mur();
-		}
-		
-		//The link is created in the superclass (SalleAbs)
-		super.addDoor(o, enabled);
-	}
-	
-	@Override
-	public void addDoorToPrevRoom(Link l) {
-		//We change the tiles of the door.
-		Vecteur v = porte.get(Orientation.opposite(l.orientation));
-		
-		switch(Orientation.opposite(l.orientation)){
-		case NORD:
-			this.cases[(int)v.x][(int)v.y] = new Porte_escalier(true);
-			this.cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
-			this.cases[(int)v.x][(int)v.y+2] = new Case_dalle_sol();
-			break;
-		case SUD:
-			this.cases[(int)v.x][(int)v.y] = new Porte_escalier(true);
-			this.cases[(int)v.x][(int)v.y-1] = new Case_dalle_sol();
-			break;
-		case OUEST:
-			this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(true);
-			this.cases[(int)v.x+1][(int)v.y] = new Case_dalle_sol();
-			this.cases[(int)v.x][(int)v.y-1] = new Case_mur();
-			break;
-		case EST:
-			this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(true);
-			this.cases[(int)v.x-1][(int)v.y] = new Case_dalle_sol();
-			this.cases[(int)v.x][(int)v.y-1] = new Case_mur();
-		}
-		
-		//Link created in the mother class.
-		super.addDoorToPrevRoom(l);
-	}
-	
-
 	@Override
 	protected void generateRoom() {
 		
@@ -152,7 +90,7 @@ public class Castle_Room extends SalleAbs {
 		//Filling the sides with black tiles.
 		super.fillEmptyWithVoid();
 	}
-
+	
 	@Override
 	protected void setDoorPlaces() {
 		this.porte = new EnumMap<Orientation, Vecteur>(Orientation.class);
@@ -169,17 +107,78 @@ public class Castle_Room extends SalleAbs {
 		destination.put(Orientation.OUEST, new Vecteur(1,cases[0].length/2+2));
 		destination.put(Orientation.EST, new Vecteur(cases.length-2,cases[0].length/2-1));
 	}
-
+	
 
 	@Override
-	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) throws CustomException {
-		return new Castle_Room(ecran, h, o);
+	public void addDoor(Orientation o, boolean enabled){
+		Vecteur v = porte.get(o);
+		
+		//We change the tiles depending on the orientation of the door.
+		switch(o){
+		case NORD:
+			this.cases[(int)v.x][(int)v.y] = new Porte_escalier(enabled);
+			this.cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
+			this.cases[(int)v.x][(int)v.y+2] = new Case_dalle_sol();
+			break;
+		case SUD:
+			this.cases[(int)v.x][(int)v.y] = new Porte_escalier(enabled);
+			this.cases[(int)v.x][(int)v.y-1] = new Case_dalle_sol();
+			break;
+		case OUEST:
+			this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(enabled);
+			this.cases[(int)v.x+1][(int)v.y] = new Case_dalle_sol();
+			this.cases[(int)v.x][(int)v.y-1] = new Case_mur();
+			break;
+		case EST:
+			this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(enabled);
+			this.cases[(int)v.x-1][(int)v.y] = new Case_dalle_sol();
+			this.cases[(int)v.x][(int)v.y-1] = new Case_mur();
+		}
+		
+		//The link is created in the superclass (SalleAbs)
+		super.addDoor(o, enabled);
+	}
+
+	@Override
+	public void addDoorToPrevRoom(Link l) {
+		//We change the tiles of the door.
+		Vecteur v = porte.get(Orientation.opposite(l.orientation));
+		
+		switch(Orientation.opposite(l.orientation)){
+		case NORD:
+			this.cases[(int)v.x][(int)v.y] = new Porte_escalier(true);
+			this.cases[(int)v.x][(int)v.y+1] = new Case_dalle_sol();
+			this.cases[(int)v.x][(int)v.y+2] = new Case_dalle_sol();
+			break;
+		case SUD:
+			this.cases[(int)v.x][(int)v.y] = new Porte_escalier(true);
+			this.cases[(int)v.x][(int)v.y-1] = new Case_dalle_sol();
+			break;
+		case OUEST:
+			this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(true);
+			this.cases[(int)v.x+1][(int)v.y] = new Case_dalle_sol();
+			this.cases[(int)v.x][(int)v.y-1] = new Case_mur();
+			break;
+		case EST:
+			this.cases[(int)v.x][(int)v.y] = new Porte_Dalle_Sol(true);
+			this.cases[(int)v.x-1][(int)v.y] = new Case_dalle_sol();
+			this.cases[(int)v.x][(int)v.y-1] = new Case_mur();
+		}
+		
+		//Link created in the mother class.
+		super.addDoorToPrevRoom(l);
 	}
 
 
 	@Override
 	public SalleAbs clone(Heros h, Link l) throws CustomException {
 		return new Castle_Room(h, l);
+	}
+
+
+	@Override
+	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) throws CustomException {
+		return new Castle_Room(ecran, h, o);
 	}
 
 }

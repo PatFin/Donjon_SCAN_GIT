@@ -1,7 +1,6 @@
 package fr.donjon.classes;
 
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 
 import fr.donjon.utils.Animation;
@@ -13,8 +12,8 @@ public class BatonDeFeu extends Arme {
 
 	final static int DMG = 0;
 	final static int DUR = 200;
-	final static String src = "skeleton_map.png";
 	final static String icSrc = "IceBallIcon.png";
+	final static String src = "skeleton_map.png";
 
 
 	Vecteur c = new Vecteur(0,0);
@@ -43,8 +42,13 @@ public class BatonDeFeu extends Arme {
 
 
 	@Override
-	public void stopAttaquer() {
-		this.etat = EtatArme.FINISHED;
+	protected void giveDammages() {
+
+	}
+
+	@Override
+	protected void updateBounds() {
+
 	}
 
 	@Override
@@ -60,13 +64,8 @@ public class BatonDeFeu extends Arme {
 	}
 
 	@Override
-	protected void giveDammages() {
-
-	}
-
-	@Override
-	protected void updateBounds() {
-
+	public void stopAttaquer() {
+		this.etat = EtatArme.FINISHED;
 	}
 
 	////////////////////////////////

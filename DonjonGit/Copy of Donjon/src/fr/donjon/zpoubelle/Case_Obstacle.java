@@ -24,6 +24,7 @@ public abstract class Case_Obstacle extends Case {
 	 * Le personnage z est repouss� � le limite du rectangle de collision. 
 	 * @param z Le personnage en collision avec la case
 	 */
+	@Override
 	public void inCollision(Personnage p) {
 		p.setLocation((int)p.lPos.x, (int) p.lPos.y);	
 	}

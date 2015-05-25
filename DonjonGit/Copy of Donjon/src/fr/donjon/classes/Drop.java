@@ -15,10 +15,10 @@ import fr.donjon.utils.Utilisable;
  *
  */
 public class Drop extends Objet implements Utilisable {
+	final static int largeur=64;
+	final static int longueur=64;
 	Image imageObjet;
 	boolean utilise; // pour savoir si l'objet � �t� utilis� ou non
-	final static int longueur=64;
-	final static int largeur=64;
 
 	/**
 	 * @param ax
@@ -38,11 +38,17 @@ public class Drop extends Objet implements Utilisable {
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.donjon.utils.Utilisable#utilise(fr.donjon.classes.Personnage)
+	 * @see fr.donjon.classes.Objet#draw(long, java.awt.Graphics)
 	 */
 	@Override
-	public int utilise(Personnage p) {
-		return 1;
+	public void draw(long t, Graphics g) {
+		if(utilise){
+			return;
+			
+		}
+		g.drawImage(imageObjet, image.x, image.y, image.width, image.height, null);
+		
+
 	}
 
 	/* (non-Javadoc)
@@ -62,17 +68,11 @@ public class Drop extends Objet implements Utilisable {
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.donjon.classes.Objet#draw(long, java.awt.Graphics)
+	 * @see fr.donjon.utils.Utilisable#utilise(fr.donjon.classes.Personnage)
 	 */
 	@Override
-	public void draw(long t, Graphics g) {
-		if(utilise){
-			return;
-			
-		}
-		g.drawImage(imageObjet, image.x, image.y, image.width, image.height, null);
-		
-
+	public int utilise(Personnage p) {
+		return 1;
 	}
 	
 

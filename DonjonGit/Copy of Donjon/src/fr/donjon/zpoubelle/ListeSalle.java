@@ -4,7 +4,7 @@ import fr.donjon.utils.Orientation;
 
 /**
  * 
- * Permet la gestion d'une liste de SalleElement qui représente une Salle
+ * Permet la gestion d'une liste de SalleElement qui reprï¿½sente une Salle
  * ainsi que le liens avec les autres Salles
  * 
  * @author Baptiste
@@ -12,8 +12,16 @@ import fr.donjon.utils.Orientation;
  */
 public class ListeSalle {
 
-	private SalleElement root;		//La première salle crée
 	private SalleElement current;	//La salle actuelle 
+	private SalleElement root;		//La premiï¿½re salle crï¿½e
+
+	/**
+	 * Initialisation avec une Salle
+	 * @param s
+	 */
+	public ListeSalle(Salle s){
+		this(new SalleElement(s));
+	}
 
 	/**
 	 * Initialisation avec un SalleElement
@@ -25,20 +33,12 @@ public class ListeSalle {
 	}
 
 	/**
-	 * Initialisation avec une Salle
-	 * @param s
-	 */
-	public ListeSalle(Salle s){
-		this(new SalleElement(s));
-	}
-
-	/**
 	 * Ajoute une Salle dans une direction et bouge vers cette salle getCurrent() renvoie la nouvelle Salle
 	 * 
-	 * @param se	L'élément a ajouter
+	 * @param se	L'ï¿½lï¿½ment a ajouter
 	 * @param o		La direction de la nouvelle salle
 	 * 
-	 * @return 		Renvoie true si il n'y avait pas de salle a l'endroit ou l'on insère la nouvelle salle, renvoie false dans le cas contraire, dans ca cas la salle n'est pas ajoutée;
+	 * @return 		Renvoie true si il n'y avait pas de salle a l'endroit ou l'on insï¿½re la nouvelle salle, renvoie false dans le cas contraire, dans ca cas la salle n'est pas ajoutï¿½e;
 	 */
 	public boolean addElement(SalleElement se, Orientation o){
 
@@ -76,6 +76,14 @@ public class ListeSalle {
 		return hasWorked;
 	}
 
+	public SalleElement getCurrent() {
+		return current;
+	}
+	
+	public SalleElement getRoot() {
+		return root;
+	}
+
 	/**
 	 * 
 	 * Change la salle courrante en bougeant dans une direction
@@ -106,9 +114,13 @@ public class ListeSalle {
 
 		return c;
 	}
-	
-	public SalleElement getRoot() {
-		return root;
+
+	/**
+	 * Permet de modifier un element tout en gardant ses liens a jout
+	 * @param newSE
+	 */
+	public void setCurrent(SalleElement newSE) {
+		this.current.setSalle(newSE.getSalle());
 	}
 
 	/**
@@ -117,18 +129,6 @@ public class ListeSalle {
 	 */
 	public void setRoot(SalleElement newSE) {
 		this.root.setSalle(newSE.getSalle());
-	}
-
-	public SalleElement getCurrent() {
-		return current;
-	}
-
-	/**
-	 * Permet de modifier un element tout en gardant ses liens a jout
-	 * @param newSE
-	 */
-	public void setCurrent(SalleElement newSE) {
-		this.current.setSalle(newSE.getSalle());
 	}
 
 	

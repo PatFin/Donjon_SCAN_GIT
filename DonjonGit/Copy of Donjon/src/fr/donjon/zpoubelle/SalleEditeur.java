@@ -6,7 +6,6 @@ import java.util.EnumMap;
 import fr.donjon.cases.Case;
 import fr.donjon.classes.Heros;
 import fr.donjon.editor.SalleDescription;
-import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
@@ -15,9 +14,27 @@ import fr.donjon.utils.Vecteur;
 
 public class SalleEditeur extends SalleAbs {
 
-	SalleDescription s;
 	EnumMap<Orientation, Case_porte> porte_case;
+	SalleDescription s;
 	
+	
+	/**
+	 * Constructeur quand on veut cr�er une nouvelle instance de ce genre de salle
+	 * @param h le h�ros control� par le joueur
+	 * @param l le lien de la salle pr�c�dente vers cette nouvelle salle
+	 * @throws CustomException 
+	 */
+	public SalleEditeur(Heros h, Link l, SalleDescription s) throws CustomException {
+		super(ecran, h);
+		this.s = s;
+
+		generateRoom();
+		setDoorPlaces();
+		
+		this.addDoorToPrevRoom(l);
+		
+		this.generateEnnemis();
+	}
 	
 	/**
 	 * Constructeur de la premi�re salle qui n'a qu'une seule porte vers une autre salle
@@ -47,24 +64,6 @@ public class SalleEditeur extends SalleAbs {
 		Vecteur v = this.getCenter();
 		hero.setLocation((int)v.x*Case.TAILLE, (int)v.y*Case.TAILLE);
 	}
-	
-	/**
-	 * Constructeur quand on veut cr�er une nouvelle instance de ce genre de salle
-	 * @param h le h�ros control� par le joueur
-	 * @param l le lien de la salle pr�c�dente vers cette nouvelle salle
-	 * @throws CustomException 
-	 */
-	public SalleEditeur(Heros h, Link l, SalleDescription s) throws CustomException {
-		super(ecran, h);
-		this.s = s;
-
-		generateRoom();
-		setDoorPlaces();
-		
-		this.addDoorToPrevRoom(l);
-		
-		this.generateEnnemis();
-	}
 
 	
 	/**
@@ -81,6 +80,33 @@ public class SalleEditeur extends SalleAbs {
 		generateRoom();
 		setDoorPlaces();
 		
+	}
+
+	private Vecteur getAvailableCaseNear(Vecteur v){
+		Vecteur a = new Vecteur(-1,-1);
+		for(int i=-1; i<2;i=i+2){
+			try{
+				if(!(cases[(int)v.x][(int)v.y+i] instanceof Case_Obstacle)){
+					a.setLocation((int)v.x,(int)v.y +i);
+					break;
+				}
+				
+				
+			}catch(Exception e){
+				//catches a potential out of bound exception
+			}
+			
+			try{
+				if(!(cases[(int)v.x+i][(int)v.y] instanceof Case_Obstacle)){
+					a.setLocation((int)v.x+i,(int)v.y);
+					break;
+				}
+				
+			}catch(Exception e){
+				//catches a potential out of bound exception
+			}
+		}
+		return a;
 	}
 
 	@Override
@@ -111,7 +137,7 @@ public class SalleEditeur extends SalleAbs {
 		}
 
 	}
-
+	
 	@Override
 	protected void setDoorPlaces() throws CustomException {
 		//We go through the array of description and detect a door
@@ -160,33 +186,6 @@ public class SalleEditeur extends SalleAbs {
 		
 	}
 	
-	private Vecteur getAvailableCaseNear(Vecteur v){
-		Vecteur a = new Vecteur(-1,-1);
-		for(int i=-1; i<2;i=i+2){
-			try{
-				if(!(cases[(int)v.x][(int)v.y+i] instanceof Case_Obstacle)){
-					a.setLocation((int)v.x,(int)v.y +i);
-					break;
-				}
-				
-				
-			}catch(Exception e){
-				//catches a potential out of bound exception
-			}
-			
-			try{
-				if(!(cases[(int)v.x+i][(int)v.y] instanceof Case_Obstacle)){
-					a.setLocation((int)v.x+i,(int)v.y);
-					break;
-				}
-				
-			}catch(Exception e){
-				//catches a potential out of bound exception
-			}
-		}
-		return a;
-	}
-	
 	@Override
 	public void addDoor(Orientation o, boolean enabled){
 		Vecteur v = porte.get(o);
@@ -206,13 +205,13 @@ public class SalleEditeur extends SalleAbs {
 	
 
 	@Override
-	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) throws CustomException {
-		return new SalleEditeur(ecran, h, o,this.s);
+	public SalleAbs clone(Heros h, Link l) throws CustomException {
+		return new SalleEditeur(h,l, this.s);
 	}
 
 	@Override
-	public SalleAbs clone(Heros h, Link l) throws CustomException {
-		return new SalleEditeur(h,l, this.s);
+	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) throws CustomException {
+		return new SalleEditeur(ecran, h, o,this.s);
 	}
 
 }

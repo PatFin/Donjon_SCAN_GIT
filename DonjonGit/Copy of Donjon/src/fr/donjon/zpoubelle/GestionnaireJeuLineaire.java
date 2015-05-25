@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 import fr.donjon.classes.Heros;
 import fr.donjon.editor.MapFileHandler;
-import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.zpoubelle.Castle_Room;

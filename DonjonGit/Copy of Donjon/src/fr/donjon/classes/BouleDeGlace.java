@@ -19,11 +19,11 @@ import fr.donjon.utils.Vecteur;
 public class BouleDeGlace extends Projectile{
 
 	final static int DGT = 30;
-	final static int VIT = 12;
 	final static int DIM = 64;
-	final static int VITA = 100;
-	
 	final static String src = "IceBall.png";
+	final static int VIT = 12;
+	
+	final static int VITA = 100;
 	
 
 	public BouleDeGlace(int ax, int ay , Vecteur vvitesse) {
@@ -65,17 +65,6 @@ public class BouleDeGlace extends Projectile{
 
 
 	@Override
-	public void update(long t) {
-		
-		if(!living)return;
-		
-		Vecteur pos = new Vecteur(image.x, image.y).ajoute(vvitesse.multiplie(vitDeplacement));
-		
-		setLocation( (int)pos.x, (int)pos.y );
-		
-	}
-
-	@Override
 	public void inCollision(Personnage p) {
 		
 		if(!living) return;
@@ -84,6 +73,17 @@ public class BouleDeGlace extends Projectile{
 
 		p.receiveDammages(degats);
 		living = false;
+		
+	}
+
+	@Override
+	public void update(long t) {
+		
+		if(!living)return;
+		
+		Vecteur pos = new Vecteur(image.x, image.y).ajoute(vvitesse.multiplie(vitDeplacement));
+		
+		setLocation( (int)pos.x, (int)pos.y );
 		
 	}
 

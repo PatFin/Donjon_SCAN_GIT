@@ -12,8 +12,8 @@ public class Enigme_teleportation extends SalleAbs {
 	
 	
 	
-	Orientation porteOrigine;			//Contient l'emplacement de la porte d'origine de la salle
 	Orientation porteDestination;		//Contient l'emplacement de la porte destination de la salle
+	Orientation porteOrigine;			//Contient l'emplacement de la porte d'origine de la salle
 	
 	Vecteur v0;
 	Vecteur v1;
@@ -21,6 +21,12 @@ public class Enigme_teleportation extends SalleAbs {
 	Vecteur v3;
 	
 	
+	/**
+	 * Empty constructor
+	 */
+	public Enigme_teleportation() {
+	}
+
 	public Enigme_teleportation(Heros h, Link l) {
 		super(SalleAbs.ecran, h);
 		
@@ -35,11 +41,19 @@ public class Enigme_teleportation extends SalleAbs {
 	}
 
 	/**
-	 * Empty constructor
+	 * We do not generate enemies in this room.
+	 * The method is overridden for safety purposes.
 	 */
-	public Enigme_teleportation() {
+	@Override
+	protected void generateEnnemis() {	
 	}
 
+	
+	
+	
+	
+	
+	
 	/**
 	 * creates the tiles of the room.
 	 */
@@ -105,12 +119,26 @@ public class Enigme_teleportation extends SalleAbs {
 		fillEmptyWithVoid();
 		
 	}
+	
+	
+	
+	@Override
+	protected void setDoorPlaces() {
+		this.porte=new EnumMap<Orientation, Vecteur>(Orientation.class);
+		
+		this.porte.put(Orientation.NORD, new Vecteur(cases.length/2,0));
+		this.porte.put(Orientation.SUD, new Vecteur(cases.length/2,cases[0].length-1));
+		this.porte.put(Orientation.EST, new Vecteur(cases.length-1,cases[0].length/2));
+		this.porte.put(Orientation.OUEST, new Vecteur(0,cases[0].length/2));
+		
+		this.destination= new EnumMap<Orientation, Vecteur>(Orientation.class);
+		
+		this.destination.put(Orientation.NORD, new Vecteur(cases.length/2,1));
+		this.destination.put(Orientation.SUD, new Vecteur(cases.length/2,cases[0].length-2));
+		this.destination.put(Orientation.OUEST, new Vecteur(1,cases[0].length/2));
+		this.destination.put(Orientation.EST, new Vecteur(cases.length-2,cases[0].length/2));
 
-	
-	
-	
-	
-	
+	}
 	
 	/**
 	 * Overrides the SalleAbs method.
@@ -152,45 +180,17 @@ public class Enigme_teleportation extends SalleAbs {
 	}
 	
 	
-	
-	@Override
-	protected void setDoorPlaces() {
-		this.porte=new EnumMap<Orientation, Vecteur>(Orientation.class);
-		
-		this.porte.put(Orientation.NORD, new Vecteur(cases.length/2,0));
-		this.porte.put(Orientation.SUD, new Vecteur(cases.length/2,cases[0].length-1));
-		this.porte.put(Orientation.EST, new Vecteur(cases.length-1,cases[0].length/2));
-		this.porte.put(Orientation.OUEST, new Vecteur(0,cases[0].length/2));
-		
-		this.destination= new EnumMap<Orientation, Vecteur>(Orientation.class);
-		
-		this.destination.put(Orientation.NORD, new Vecteur(cases.length/2,1));
-		this.destination.put(Orientation.SUD, new Vecteur(cases.length/2,cases[0].length-2));
-		this.destination.put(Orientation.OUEST, new Vecteur(1,cases[0].length/2));
-		this.destination.put(Orientation.EST, new Vecteur(cases.length-2,cases[0].length/2));
 
-	}
-	
-	/**
-	 * We do not generate enemies in this room.
-	 * The method is overridden for safety purposes.
-	 */
 	@Override
-	protected void generateEnnemis() {	
+	public SalleAbs clone(Heros h, Link l) {
+		return new Enigme_teleportation(h,l);
 	}
-	
-	
 
 	@Override
 	public SalleAbs clone(Rectangle ecran, Heros h, Orientation o) {
 		//cette salle ne peut �tre la premi�re salle du donjon
 		//A la place on met donc une salle type "Castle_Room".
 		return new Castle_Room(ecran, h, o);
-	}
-
-	@Override
-	public SalleAbs clone(Heros h, Link l) {
-		return new Enigme_teleportation(h,l);
 	}
 
 }

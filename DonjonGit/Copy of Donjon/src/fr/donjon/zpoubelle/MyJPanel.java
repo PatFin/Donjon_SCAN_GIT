@@ -10,12 +10,12 @@ public abstract class MyJPanel extends JPanel implements EcouteurClavier {
 		super();
 	}
 
-	public void stopGame() {
+	public void startGame() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void startGame() {
+	public void stopGame() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -8,7 +8,7 @@ package fr.donjon.utils;
  *
  */
 public enum EtatPersonnage {
-	REPOS,DEPLACEMENT,ATTAQUE;
+	ATTAQUE,DEPLACEMENT,REPOS;
 
 }
 

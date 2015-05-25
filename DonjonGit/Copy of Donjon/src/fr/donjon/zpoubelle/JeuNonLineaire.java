@@ -1,7 +1,5 @@
 package fr.donjon.zpoubelle;
 
-import fr.donjon.utils.CustomException;
-
 public class JeuNonLineaire extends GamePanel {
 
 	public JeuNonLineaire() throws CustomException {

@@ -21,17 +21,17 @@ import fr.donjon.zpoubelle.Case;
 public class DessinateurSalle {
 
 
-	Salle salle;
-
-	Rectangle ecran;
-
-	BufferedImage imageSol;
-	Graphics bufferSol;
-
-	BufferedImage image;
 	Graphics buffer;
 
+	Graphics bufferSol;
+
 	Vecteur centrage;
+	Rectangle ecran;
+
+	BufferedImage image;
+	BufferedImage imageSol;
+
+	Salle salle;
 
 	/**
 	 * 
@@ -47,6 +47,46 @@ public class DessinateurSalle {
 		buffer = image.createGraphics();
 
 		creerImageSol();
+	}
+
+	private void creerImageSol(){
+
+		for(int y=0;y<salle.cases[0].length;y++){
+			for(int x=0;x<salle.cases.length;x++){
+				
+				this.salle.cases[x][y].setCollisionBoxLocation(x, y);
+			}
+		}
+		
+		
+		/*
+		imageSol = new BufferedImage(salle.cases.length * Case.TAILLE, salle.cases[0].length * Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
+		bufferSol = imageSol.createGraphics();
+
+		//Creating the image
+		for(int y=0;y<salle.cases[0].length;y++){
+			for(int x=0;x<salle.cases.length;x++){
+				if(salle.cases[x][y] !=null){
+					//The image is being created
+					bufferSol.drawImage(salle.cases[x][y].image, x*Case.TAILLE,y*Case.TAILLE, Case.TAILLE, Case.TAILLE, null);
+
+					this.salle.cases[x][y].setCollisionBoxLocation(x, y);
+				}
+			}
+		}
+		
+		*/
+	}
+	
+	public void changerSalle(Salle s){
+		
+		this.salle = s;
+		
+		image = new BufferedImage(salle.cases.length * Case.TAILLE, salle.cases[0].length * Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
+		buffer = image.createGraphics();
+		
+		creerImageSol();
+		
 	}
 
 	public BufferedImage getImage(Graphics g, long t){
@@ -83,46 +123,6 @@ public class DessinateurSalle {
 
 		return image;
 
-	}
-	
-	public void changerSalle(Salle s){
-		
-		this.salle = s;
-		
-		image = new BufferedImage(salle.cases.length * Case.TAILLE, salle.cases[0].length * Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
-		buffer = image.createGraphics();
-		
-		creerImageSol();
-		
-	}
-
-	private void creerImageSol(){
-
-		for(int y=0;y<salle.cases[0].length;y++){
-			for(int x=0;x<salle.cases.length;x++){
-				
-				this.salle.cases[x][y].setCollisionBoxLocation(x, y);
-			}
-		}
-		
-		
-		/*
-		imageSol = new BufferedImage(salle.cases.length * Case.TAILLE, salle.cases[0].length * Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
-		bufferSol = imageSol.createGraphics();
-
-		//Creating the image
-		for(int y=0;y<salle.cases[0].length;y++){
-			for(int x=0;x<salle.cases.length;x++){
-				if(salle.cases[x][y] !=null){
-					//The image is being created
-					bufferSol.drawImage(salle.cases[x][y].image, x*Case.TAILLE,y*Case.TAILLE, Case.TAILLE, Case.TAILLE, null);
-
-					this.salle.cases[x][y].setCollisionBoxLocation(x, y);
-				}
-			}
-		}
-		
-		*/
 	}
 	
 	public Vecteur getSize(){

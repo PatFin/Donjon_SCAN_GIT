@@ -16,27 +16,27 @@ import fr.donjon.utils.ImageManager;
 
 public class GameOver extends JPanel {
 
+	final static String alive = "Player_Up.png";
+	
+	final static String dead = "Player_Dead.png";
+	static String looseMessage = "Oops! Looks like you died. You made it to room "+Salle.instances+" though!";
+	
+	static String winMessage = "Congratulations! You went through "+Salle.instances+" rooms without a single scratch!";
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	JButton BQuit;
+	
+	JButton BRetour;
+	Image hero;
+	
+	GameOverListener listener;	
+	String message;
 	
 	final int SCREENX=800; // LONGUEUR FENETRE
 	final int SCREENY=600; // LARGEUR FENETRE
-	
-	Image hero;
-	
-	final static String alive = "Player_Up.png";
-	final static String dead = "Player_Dead.png";
-	
-	static String looseMessage = "Oops! Looks like you died. You made it to room "+Salle.instances+" though!";
-	static String winMessage = "Congratulations! You went through "+Salle.instances+" rooms without a single scratch!";
-	
-	JButton BQuit;	
-	JButton BRetour;
-	
-	String message;
-	GameOverListener listener;
 	
 	public GameOver(boolean win){
 		super();
@@ -94,9 +94,9 @@ public class GameOver extends JPanel {
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
 		if (hero!=null) {
-			g.drawImage (hero, (int)(getWidth()/2)-(hero.getWidth(null)/2), (int)(getHeight()/2)-(hero.getHeight(null)/2), this);	
+			g.drawImage (hero, getWidth()/2-(hero.getWidth(null)/2), getHeight()/2-(hero.getHeight(null)/2), this);	
 		}
 		g.setColor(Color.white);
-		g.drawString(message,(int) (getWidth() - message.length()*5)/2,(int) getHeight()/2 + 10 + hero.getHeight(null));
+		g.drawString(message,(getWidth() - message.length()*5)/2,getHeight()/2 + 10 + hero.getHeight(null));
 	}
 }

@@ -1,8 +1,6 @@
 package fr.donjon.classes;
 
 import java.awt.Rectangle;
-import java.util.ArrayList;
-
 import fr.donjon.salles.Salle;
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatPersonnage;
@@ -12,19 +10,19 @@ import fr.donjon.utils.Vecteur;
 
 public class Squelette extends Ennemis {
 	
+	final static double COEFF = 0.3;
+	static int DEF = 5;
 	final static int LNG = 64;
 	final static int LRG = 64;
-	static int VIE = 50;
-	static int DEF = 5;
-	static int VIT = 3;
 	final static String src = "skeleton_map.png";
-	final static double COEFF = 0.3;
+	static int VIE = 50;
+	static int VIT = 3;
+	
+	Arme baton = new BatonDeFeu(this);
+	Arme poing = new ArmePoingSquelette(this);
 	
 	private int shootDelay;		//delay so that the skeleton fires every (shootDelay)
 	private int timerShoot; 	//Random integer so that all the skeleton don not fire all at the same time.
-	
-	Arme poing = new ArmePoingSquelette(this);
-	Arme baton = new BatonDeFeu(this);
 	
 	public Squelette(int ax, int ay, Personnage cible, int level, Salle room){
 		super(ax, ay, LNG, LRG, src,
@@ -42,11 +40,22 @@ public class Squelette extends Ennemis {
 		animation = animationS;
 		
 		NIV = currentRoom.roomNumber;
-		shootDelay = (int)(100/1+NIV);
+		shootDelay = 100/1+NIV;
 		timerShoot = (int)(Math.random()*shootDelay);
 	}
 	
 
+	@Override
+	public void collide(Personnage p) {
+		if(p.type == Type.HERO)this.setLocation(lPos);
+		else {
+			Vecteur axis = new Vecteur( this.image.x + this.image.width/2 - (p.image.x + p.image.width/2),
+					this.image.y + this.image.height/2 - (p.image.y + p.image.height/2) );
+			
+			this.marcher(axis.normalise());
+		}
+	}
+	
 	public void marcher(Vecteur v){
 		
 		//Si le personnage attaque, ne pas le faire se deplacer
@@ -79,7 +88,8 @@ public class Squelette extends Ennemis {
 			this.animation = animationS;
 		}
 	}
-	
+
+
 	public void pattern(long t) {
 
 		int dx = cible.image.x - this.image.x;
@@ -132,7 +142,6 @@ public class Squelette extends Ennemis {
 		}
 	}
 
-
 	@Override
 	public void update(long t) {
 		
@@ -147,16 +156,5 @@ public class Squelette extends Ennemis {
 	@Override
 	public void utiliserObjet(int reference) {
 		
-	}
-
-	@Override
-	public void collide(Personnage p) {
-		if(p.type == Type.HERO)this.setLocation(lPos);
-		else {
-			Vecteur axis = new Vecteur( this.image.x + this.image.width/2 - (p.image.x + p.image.width/2),
-					this.image.y + this.image.height/2 - (p.image.y + p.image.height/2) );
-			
-			this.marcher(axis.normalise());
-		}
 	}
 }

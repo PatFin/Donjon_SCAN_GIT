@@ -23,16 +23,16 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 
 	private static SoundLoop doorSound = new SoundLoop(SoundLoop.DOOR);
-	public Salle[][] smap;			//le tableau de salles du donjon
-
-	protected Salle sActuelle;		//la salle dans laquelle le hï¿½ros se trouve
+	Vecteur centreCamera; 	//vecteur contenant l'emplacement du personnage dans la salle.
+							//Il est utile quand on cherche Ã  peindre la salle.
 
 	Vecteur position;		//le vecteur contenant les coordonnï¿½es de la salle actuelle
 
-	Vecteur centreCamera; 	//vecteur contenant l'emplacement du personnage dans la salle.
-							//Il est utile quand on cherche Ã  peindre la salle.
-	
+	protected Salle sActuelle;		//la salle dans laquelle le hï¿½ros se trouve
+
 	public EcouteurLauncher ecouteur;
+	
+	public Salle[][] smap;			//le tableau de salles du donjon
 
 	/**
 	 * Constructeur initialisant les dimensions du donjon
@@ -75,31 +75,48 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 		position = new Vecteur(sx,sy);
 	}
 
-	/**
-	 * MÃ©thode raffraichissant la salle actuelle
-	 * @param t le temps qui s'est ï¿½coulï¿½ depuis le dï¿½but du jeu, paramï¿½tre nï¿½cessaire aux animations et autres.
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
 	 */
-	public void update (long t){
-
-		sActuelle.update(t);	//On raffarichit uniquement la salle actuelle, inutile de faire bouger les ennemis dans tout le donjon.
-
-		for(CasePorte c : sActuelle.portes){
-			System.out.println((this.sActuelle.roomNumber)+""+(c.collision));
-		}
-		
-		centreCamera.setLocation(sActuelle.hero.image.x + sActuelle.hero.image.width/2,
-				sActuelle.hero.image.height/2 + sActuelle.hero.image.y);		//On recentre le vecteur centre camï¿½ra sur la position du personnage.
-		this.checkHeroStillAlive();
-		this.checkDonjonFini();
+	@Override
+	public void attaque(Vecteur v) {
+		this.sActuelle.attaque(v);
 	}
 
 	/**
-	 * On vï¿½rifie que le hï¿½ro est encore en vie. Si ce n'est pas le cas on retourne au menu.
+	 * Change le personnage de salle vers celle situÃ©e Ã  la salle situÃ©e aux coordonnï¿½es actuelles+dir
+	 * @param l lien de la salle actuelle vers la nouvelle salle actuelle
+	 * @return true si le changement a ï¿½tï¿½ effectuï¿½, false sinon.
 	 */
-	public void checkHeroStillAlive() {
-		if(!this.sActuelle.hero.living){
-			ecouteur.requestGameOver(false);
+	public boolean changementSalle(Link l){
+		
+		sActuelle.update = false;
+		
+		Vecteur npos = position.ajoute(l.getOrientation().getUnitVector()); //les coordonnï¿½es de la prochaine salleActuelle dans le tableau.
+
+		if( !(npos.x >= 0 && npos.x < smap.length && npos.y >= 0  && npos.y < smap[0].length) )return false; //On tombe en dehors du tableau de salle, on renvoi false. Il s'agit d'une sï¿½curitï¿½ supplï¿½mentaire par desuus celle de la crï¿½ation des portes.
+		
+		//On crï¿½ï¿½ une nouvelle salle et on la met dans le tableau si elle n'existe pas dï¿½jï¿½.
+		if(this.getSalle(npos) == null){
+			fournirNouvelleSalle(npos, l, this.smap); 
 		}
+		
+		setSActuelle(npos);
+		sActuelle.hero.setLocation(l.getDestinationVecteur().multiplie(Case.TAILLE));
+		sActuelle.update = true;
+		
+		return true;		//On a bien changï¿½ de salle, on renvoie true
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurChangementSalle#changerDeSalle(fr.donjon.utils.Link)
+	 */
+	@Override
+	public void changerDeSalle(Link l) {
+		doorSound.playOnce();
+		this.changementSalle(l);
 	}
 
 	/**
@@ -124,47 +141,21 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
-	 * Change le personnage de salle vers celle situÃ©e Ã  la salle situÃ©e aux coordonnï¿½es actuelles+dir
-	 * @param l lien de la salle actuelle vers la nouvelle salle actuelle
-	 * @return true si le changement a ï¿½tï¿½ effectuï¿½, false sinon.
+	 * On vï¿½rifie que le hï¿½ro est encore en vie. Si ce n'est pas le cas on retourne au menu.
 	 */
-	public boolean changementSalle(Link l){
-		
-		sActuelle.update = false;
-		
-		Vecteur npos = position.ajoute(l.getOrientation().getUnitVector()); //les coordonnées de la prochaine salleActuelle dans le tableau.
-
-		if( !(npos.x >= 0 && npos.x < smap.length && npos.y >= 0  && npos.y < smap[0].length) )return false; //On tombe en dehors du tableau de salle, on renvoi false. Il s'agit d'une sécurité supplémentaire par desuus celle de la création des portes.
-		
-		//On créé une nouvelle salle et on la met dans le tableau si elle n'existe pas déjà.
-		if(this.getSalle(npos) == null){
-			fournirNouvelleSalle(npos, l, this.smap); 
+	public void checkHeroStillAlive() {
+		if(!this.sActuelle.hero.living){
+			ecouteur.requestGameOver(false);
 		}
-		
-		setSActuelle(npos);
-		sActuelle.hero.setLocation(l.getDestinationVecteur().multiplie(Case.TAILLE));
-		sActuelle.update = true;
-		
-		return true;		//On a bien changé de salle, on renvoie true
-	}
-
-	/**
-	 * Changes the current room to the one directly located on the (Orientation) of it in the matrix
-	 * 
-	 * @param o the orientation from the current room to the next one in the matrix.
-	 */
-	public void setSActuelle(Orientation o){
-		position = position.ajoute(Orientation.getUnitVector(o));
-		setSActuelle(position);
 	}
 	
-	/**
-	 * Change la salle actuelle ï¿½ celle stuï¿½e dans le tableau aux coordonnï¿½es donnï¿½es dans le vecteur
-	 * @param nouvelleSalle les coordonnï¿½es dans le tableau de la nouvelle salle actuelle.
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
 	 */
-	public void setSActuelle(Vecteur pos){
-		position = pos;
-		sActuelle = smap[(int)position.x][(int)position.y];
+	@Override
+	public void deplacement(Vecteur v) {
+		this.sActuelle.deplacement(v);
 	}
 	
 	/**
@@ -176,28 +167,19 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	public abstract void fournirNouvelleSalle(Vecteur position, Link l, Salle[][] smap);
 
 	/**
-	 * Donne la salle ï¿½ la position indiquï¿½e par le vecteur dans le tableau de salle du donjon
-	 * @param v vecteur de position de la salle ï¿½ rendre dans le tableau de salle
-	 * @return la salle ï¿½ la position v. Attention, renvoi null si la salle n'a pas encore ï¿½tï¿½ crï¿½ï¿½.
+	 * Accesseur
+	 * @return the centreCamera
 	 */
-	public Salle getSalle(Vecteur v){
-		return smap[(int)v.x][(int)v.y];
+	public Vecteur getCentreCamera() {
+		return centreCamera;
 	}
 	
 	/**
 	 * Accesseur
-	 * @return the smap
+	 * @return the position
 	 */
-	public Salle[][] getSmap() {
-		return smap;
-	}
-
-	/**
-	 * Mutateur
-	 * @param smap the smap to set
-	 */
-	public void setSmap(Salle[][] smap) {
-		this.smap = smap;
+	public Vecteur getPosition() {
+		return position;
 	}
 
 	/**
@@ -209,35 +191,38 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	}
 
 	/**
-	 * Mutateur
-	 * @param sActuelle the sActuelle to set
+	 * Donne la salle ï¿½ la position indiquï¿½e par le vecteur dans le tableau de salle du donjon
+	 * @param v vecteur de position de la salle ï¿½ rendre dans le tableau de salle
+	 * @return la salle ï¿½ la position v. Attention, renvoi null si la salle n'a pas encore ï¿½tï¿½ crï¿½ï¿½.
 	 */
-	public void setsActuelle(Salle sActuelle) {
-		this.sActuelle = sActuelle;
+	public Salle getSalle(Vecteur v){
+		return smap[(int)v.x][(int)v.y];
 	}
 
 	/**
 	 * Accesseur
-	 * @return the position
+	 * @return the smap
 	 */
-	public Vecteur getPosition() {
-		return position;
+	public Salle[][] getSmap() {
+		return smap;
 	}
 
-	/**
-	 * Mutateur
-	 * @param position the position to set
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.GameOverListener#quit()
 	 */
-	public void setPosition(Vecteur position) {
-		this.position = position;
+	@Override
+	public void quit(){
+		
 	}
 
-	/**
-	 * Accesseur
-	 * @return the centreCamera
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.GameOverListener#retourMenu()
 	 */
-	public Vecteur getCentreCamera() {
-		return centreCamera;
+	@Override
+	public void retourMenu(){
+		ecouteur.requestBackToMenu();
 	}
 
 	/**
@@ -247,33 +232,57 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	public void setCentreCamera(Vecteur centreCamera) {
 		this.centreCamera = centreCamera;
 	}
+
+	/**
+	 * Mutateur
+	 * @param position the position to set
+	 */
+	public void setPosition(Vecteur position) {
+		this.position = position;
+	}
 	
 	
 	///////////////////////////////////////
 	//INTERFACE ECOUTEUR CHANGEMENT SALLE//
 	///////////////////////////////////////
 	
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurChangementSalle#changerDeSalle(fr.donjon.utils.Link)
+	/**
+	 * Mutateur
+	 * @param sActuelle the sActuelle to set
 	 */
-	@Override
-	public void changerDeSalle(Link l) {
-		doorSound.playOnce();
-		this.changementSalle(l);
+	public void setsActuelle(Salle sActuelle) {
+		this.sActuelle = sActuelle;
 	}
 	
 	/////////////////////////////////////
 	//INTERFACE ECOUTEUR CLAVIER/////////
 	/////////////////////////////////////
 
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
+	/**
+	 * Changes the current room to the one directly located on the (Orientation) of it in the matrix
+	 * 
+	 * @param o the orientation from the current room to the next one in the matrix.
 	 */
-	@Override
-	public void attaque(Vecteur v) {
-		this.sActuelle.attaque(v);
+	public void setSActuelle(Orientation o){
+		position = position.ajoute(Orientation.getUnitVector(o));
+		setSActuelle(position);
+	}
+
+	/**
+	 * Change la salle actuelle ï¿½ celle stuï¿½e dans le tableau aux coordonnï¿½es donnï¿½es dans le vecteur
+	 * @param nouvelleSalle les coordonnï¿½es dans le tableau de la nouvelle salle actuelle.
+	 */
+	public void setSActuelle(Vecteur pos){
+		position = pos;
+		sActuelle = smap[(int)position.x][(int)position.y];
+	}
+
+	/**
+	 * Mutateur
+	 * @param smap the smap to set
+	 */
+	public void setSmap(Salle[][] smap) {
+		this.smap = smap;
 	}
 
 	/*
@@ -287,29 +296,11 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 
 	/*
 	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
+	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
 	 */
 	@Override
-	public void deplacement(Vecteur v) {
-		this.sActuelle.deplacement(v);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
-	 */
-	@Override
-	public void utiliseObjet(int reference) {
-		this.sActuelle.utiliseObjet(reference);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
-	 */
-	@Override
-	public void togglePause() {
-		//do nothing. This event is handled by the PanelJeu class
+	public void stopDeplacement() {
+		this.sActuelle.stopDeplacement();
 	}
 
 	/*
@@ -323,33 +314,42 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	
 	/*
 	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#stopDeplacement()
+	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
 	 */
 	@Override
-	public void stopDeplacement() {
-		this.sActuelle.stopDeplacement();
+	public void togglePause() {
+		//do nothing. This event is handled by the PanelJeu class
 	}
 	
 	/////////////////////////////////////
 	//INTERFACE ECOUTEUR LAUNCHER////////
 	/////////////////////////////////////
 	
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.GameOverListener#quit()
+	/**
+	 * MÃ©thode raffraichissant la salle actuelle
+	 * @param t le temps qui s'est ï¿½coulï¿½ depuis le dï¿½but du jeu, paramï¿½tre nï¿½cessaire aux animations et autres.
 	 */
-	@Override
-	public void quit(){
+	public void update (long t){
+
+		sActuelle.update(t);	//On raffarichit uniquement la salle actuelle, inutile de faire bouger les ennemis dans tout le donjon.
+
+		for(CasePorte c : sActuelle.portes){
+			System.out.println((this.sActuelle.roomNumber)+""+(c.collision));
+		}
 		
+		centreCamera.setLocation(sActuelle.hero.image.x + sActuelle.hero.image.width/2,
+				sActuelle.hero.image.height/2 + sActuelle.hero.image.y);		//On recentre le vecteur centre camï¿½ra sur la position du personnage.
+		this.checkHeroStillAlive();
+		this.checkDonjonFini();
 	}
 	
 	/*
 	 * (non-Javadoc)
-	 * @see fr.donjon.utils.GameOverListener#retourMenu()
+	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
 	 */
 	@Override
-	public void retourMenu(){
-		ecouteur.requestBackToMenu();
+	public void utiliseObjet(int reference) {
+		this.sActuelle.utiliseObjet(reference);
 	}
 	
 }

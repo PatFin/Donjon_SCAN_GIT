@@ -4,7 +4,6 @@ import java.util.EnumMap;
 import java.util.LinkedList;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.utils.CustomException;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
 import fr.donjon.zpoubelle.Castle_Room;
@@ -34,6 +33,31 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 		//On initialise la liste des salles avec la premi�re
 		this.listeSalles = new LinkedList<SalleAbs>();
 		this.listeSalles.add(firstRoom);
+	}
+
+	/**
+	 * Gives the list of all the available doors in the orientation given.
+	 * @param o the orientation of the doors
+	 * @return linkedlist of links that have the orientation given in parameter.
+	 */
+	private LinkedList<Link> getAvailableDoors(Orientation o){
+		LinkedList<Link> a = new LinkedList<Link>();
+		
+		//we go through all the rooms ans count the available doors that have no destination yet.
+		for(int i=0;i<listeSalles.size();i++){
+			
+			Link z=listeSalles.get(i).link.get(o);
+			
+			//We avoid a nullPointerException
+			if(z!=null){
+				//If the link has no destination yet.
+				if(!z.hasDestination()){
+					a.add(z);
+				}
+			}
+		}
+		
+		return a;
 	}
 
 	@Override
@@ -199,31 +223,6 @@ public class GestionnaireJeuInfini extends Gestionnaire {
 		//we create the image an add the room to the list of rooms.
 		s.generateImage();
 		listeSalles.add(s);
-	}
-
-	/**
-	 * Gives the list of all the available doors in the orientation given.
-	 * @param o the orientation of the doors
-	 * @return linkedlist of links that have the orientation given in parameter.
-	 */
-	private LinkedList<Link> getAvailableDoors(Orientation o){
-		LinkedList<Link> a = new LinkedList<Link>();
-		
-		//we go through all the rooms ans count the available doors that have no destination yet.
-		for(int i=0;i<listeSalles.size();i++){
-			
-			Link z=listeSalles.get(i).link.get(o);
-			
-			//We avoid a nullPointerException
-			if(z!=null){
-				//If the link has no destination yet.
-				if(!z.hasDestination()){
-					a.add(z);
-				}
-			}
-		}
-		
-		return a;
 	}
 	
 }

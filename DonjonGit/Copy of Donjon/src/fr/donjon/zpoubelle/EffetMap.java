@@ -93,17 +93,6 @@ public class EffetMap<K, V> extends HashMap<String, Effet> {
 
 	
 	/**
-	 * Supprime l'entrée de la liste associé a la clé
-	 * 
-	 * @param key La clé a supprimer de la liste
-	 */
-	public void removeEffect(String key){
-
-		//remove(key);
-
-	}
-
-	/**
 	 * Renvoie la somme des effets de la liste,
 	 * les évènements inactifs ne sont pas sommés à moins d'avoir
 	 * leur attribut ignoreEtat valant "true".
@@ -127,6 +116,17 @@ public class EffetMap<K, V> extends HashMap<String, Effet> {
 		
 
 		return e1;
+	}
+
+	/**
+	 * Supprime l'entrée de la liste associé a la clé
+	 * 
+	 * @param key La clé a supprimer de la liste
+	 */
+	public void removeEffect(String key){
+
+		//remove(key);
+
 	}
 
 }

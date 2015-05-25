@@ -1,7 +1,6 @@
 package fr.donjon.classes;
 
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 
 import fr.donjon.utils.Animation;
@@ -12,8 +11,8 @@ public class BatonDeDark extends Arme {
 
 	final static int DMG = 0;
 	final static int DUR = 500;
-	final static String src = "big_boss_map.png";
 	final static String icSrc = "DarkBall.png";
+	final static String src = "big_boss_map.png";
 
 
 	Vecteur c = new Vecteur(0,0);
@@ -47,8 +46,13 @@ public class BatonDeDark extends Arme {
 	}
 
 	@Override
-	public void stopAttaquer() {
-		this.etat = EtatArme.FINISHED;
+	protected void giveDammages() {
+
+	}
+
+	@Override
+	protected void updateBounds() {
+
 	}
 
 	@Override
@@ -63,13 +67,8 @@ public class BatonDeDark extends Arme {
 	}
 
 	@Override
-	protected void giveDammages() {
-
-	}
-
-	@Override
-	protected void updateBounds() {
-
+	public void stopAttaquer() {
+		this.etat = EtatArme.FINISHED;
 	}
 
 	////////////////////////////////

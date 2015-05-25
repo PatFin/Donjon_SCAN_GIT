@@ -11,8 +11,8 @@ import fr.donjon.cases.Case;
  */
 public class CaseProbability {
 
-	double proba;
 	Case pCase;
+	double proba;
 	
 	public CaseProbability(double proba, Case pCase) {
 		super();

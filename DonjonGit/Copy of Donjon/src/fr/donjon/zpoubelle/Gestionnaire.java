@@ -6,7 +6,6 @@ package fr.donjon.zpoubelle;
 import java.util.LinkedList;
 
 import fr.donjon.classes.Heros;
-import fr.donjon.utils.CustomException;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
@@ -23,9 +22,9 @@ import fr.donjon.zpoubelle.SalleAbs;
 public abstract class Gestionnaire implements EcouteurClavier {
 
 	GamePanel game;									//Le jeu qui g�re l'affichage de la Salle.
+	public SalleAbs currentRoom;					//La salle actuelle.
 	public LinkedList<SalleAbs> listeSalles;		//La liste des salles du donjon.
 	public LinkedList<SalleAbs> sallesDisponibles;	//La liste des salles dans lesquelles on peut piocher pour g�n�rer la salle suivante.
-	public SalleAbs currentRoom;					//La salle actuelle.
 	
 	public Gestionnaire(GamePanel game) {
 		this.game = game;
@@ -33,18 +32,20 @@ public abstract class Gestionnaire implements EcouteurClavier {
 	
 	
 	/**
-	 * Method called when the link has no destination set yet.
-	 * It creates a new room selected randomly in the available rooms.
-	 * @param l the link which destination is the new room.
+	 * This method checks if all the enemies in the room have been killed or not.
+	 * @return true if all the enemies are dead (they don't appear in the list of characters of the current room), false otherwise.
 	 */
-	public abstract void createNextRoom(Link l);
-	
-	/**
-	 * Renvoie la salle dans laquelle le h�ro se trouve actuellement
-	 * @return 
-	 */
-	public SalleAbs getCurrentRoom(){
-		return currentRoom;
+	protected boolean allEnnemiesKilled(){
+		boolean b=true;
+		for(int i=0; i<currentRoom.personnage.size();i++){
+			if(currentRoom.personnage.get(i).type == Type.ENNEMI){
+				b=false;
+				//System.out.println("There are "+currentRoom.personnage.size()+" characters in the room.");
+				break;
+			}
+		}
+		
+		return b;
 	}
 	
 	/**
@@ -60,6 +61,44 @@ public abstract class Gestionnaire implements EcouteurClavier {
 		return sallesDisponibles.get(r).clone(h, l);
 	}
 	
+	/**
+	 * Enables all the door of the current room
+	 */
+	protected void enableAllDoors(){
+		enableDoor(Orientation.NORD);
+		enableDoor(Orientation.SUD);
+		enableDoor(Orientation.EST);
+		enableDoor(Orientation.OUEST);
+	}
+	
+	
+	
+	/**
+	 * Enables the door of the current room as the orientation given in parameter
+	 * @param o the position of the door to be enabled in the current room.
+	 */
+	protected void enableDoor(Orientation o){
+		//we check if the link exists
+		Link l = this.currentRoom.link.get(o);
+		if(l!=null){
+			
+			//The link is enabled.
+			l.enabled=true;
+			
+			//The tile is enabled.
+			Vecteur v = currentRoom.porte.get(o);
+			currentRoom.getCase(v).enablePassage();
+		}
+		
+		
+	}
+	
+	@Override
+	public void attaque(Orientation o) {
+		this.currentRoom.attaque(o);
+	} 
+	
+	
 	
 	
 	public void changerDeSalle(Link l){
@@ -71,6 +110,31 @@ public abstract class Gestionnaire implements EcouteurClavier {
 		this.currentRoom = l.destinationSalle;
 	}
 	
+	/**
+	 * Method called when the link has no destination set yet.
+	 * It creates a new room selected randomly in the available rooms.
+	 * @param l the link which destination is the new room.
+	 */
+	public abstract void createNextRoom(Link l);
+	
+	@Override
+	public void deplacement(Vecteur v) {
+		this.currentRoom.deplacement(v);
+	}
+	
+	/**
+	 * Renvoie la salle dans laquelle le h�ro se trouve actuellement
+	 * @return 
+	 */
+	public SalleAbs getCurrentRoom(){
+		return currentRoom;
+	}
+	
+	/////////////////////////////////////
+	//INTERFACE ECOUTEUR CLAVIER/////////
+	/////////////////////////////////////
+
+
 	/**
 	 * Gives the orientation of the door on which the player is stepping on (if door availabe)
 	 * @return null if we don't have to change of room, the orientation of the door in the room otherwise.
@@ -106,11 +170,23 @@ public abstract class Gestionnaire implements EcouteurClavier {
 		}
 		
 		
-	} 
-	
-	
-	
-	
+	}
+
+	@Override
+	public void stopAttaque() {
+		this.currentRoom.stopAttaque();
+	}
+
+	@Override
+	public void stopDeplacement() {
+		this.currentRoom.stopDeplacement();
+	}
+
+	@Override
+	public void togglePause() {
+		//Nothing to do, its done in game panel
+	}
+
 	/**
 	 * Updates the current room and checks the need for change of Room
 	 * @param temps parameter used for the objects in the room.
@@ -130,87 +206,10 @@ public abstract class Gestionnaire implements EcouteurClavier {
 		}
 		
 	}
-	
-	/**
-	 * This method checks if all the enemies in the room have been killed or not.
-	 * @return true if all the enemies are dead (they don't appear in the list of characters of the current room), false otherwise.
-	 */
-	protected boolean allEnnemiesKilled(){
-		boolean b=true;
-		for(int i=0; i<currentRoom.personnage.size();i++){
-			if(currentRoom.personnage.get(i).type == Type.ENNEMI){
-				b=false;
-				//System.out.println("There are "+currentRoom.personnage.size()+" characters in the room.");
-				break;
-			}
-		}
-		
-		return b;
-	}
-	
-	/**
-	 * Enables all the door of the current room
-	 */
-	protected void enableAllDoors(){
-		enableDoor(Orientation.NORD);
-		enableDoor(Orientation.SUD);
-		enableDoor(Orientation.EST);
-		enableDoor(Orientation.OUEST);
-	}
-	
-	/**
-	 * Enables the door of the current room as the orientation given in parameter
-	 * @param o the position of the door to be enabled in the current room.
-	 */
-	protected void enableDoor(Orientation o){
-		//we check if the link exists
-		Link l = this.currentRoom.link.get(o);
-		if(l!=null){
-			
-			//The link is enabled.
-			l.enabled=true;
-			
-			//The tile is enabled.
-			Vecteur v = currentRoom.porte.get(o);
-			currentRoom.getCase(v).enablePassage();
-		}
-		
-		
-	}
-	
-	/////////////////////////////////////
-	//INTERFACE ECOUTEUR CLAVIER/////////
-	/////////////////////////////////////
-
-
-	@Override
-	public void attaque(Orientation o) {
-		this.currentRoom.attaque(o);
-	}
-
-	@Override
-	public void stopAttaque() {
-		this.currentRoom.stopAttaque();
-	}
-
-	@Override
-	public void deplacement(Vecteur v) {
-		this.currentRoom.deplacement(v);
-	}
 
 	@Override
 	public void utiliseObjet(int reference) {
 		this.currentRoom.utiliseObjet(reference);
-	}
-
-	@Override
-	public void togglePause() {
-		//Nothing to do, its done in game panel
-	}
-
-	@Override
-	public void stopDeplacement() {
-		this.currentRoom.stopDeplacement();
 	}
 
 

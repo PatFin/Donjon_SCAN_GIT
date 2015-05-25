@@ -15,10 +15,10 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class Projectile extends Deplacable {
 
-	public boolean living;
-	int degats;
 	Animation anim;
+	int degats;
 	Type type;
+	public boolean living;
 
 	/**
 	 * 
@@ -48,20 +48,21 @@ public abstract class Projectile extends Deplacable {
 		this.living = true;
 	}
 
+	@Override
+	public boolean enCollision(Rectangle r) {
+		return super.enCollision(r);
+	}
+
+
 	/**
-	 * Doit affecter le personnage avec des dégats spécifiques au projectile.
-	 * @param p le personnage touché par le projectile
+	 * Doit affecter le personnage avec des dï¿½gats spï¿½cifiques au projectile.
+	 * @param p le personnage touchï¿½ par le projectile
 	 */
 	public abstract void inCollision(Personnage p);
 
 
 	@Override
 	abstract public void update(long t);
-
-
-	public boolean enCollision(Rectangle r) {
-		return super.enCollision(r);
-	}
 
 
 

@@ -14,8 +14,8 @@ import fr.donjon.utils.Vecteur;
  */
 public class CaseSource extends Case {
 
-	Vecteur positionInMap;
 	CaseMap map = ImageManager.map1;
+	Vecteur positionInMap;
 	
 	/**
 	 * @param src
@@ -26,13 +26,13 @@ public class CaseSource extends Case {
 	}
 
 	@Override
-	public void draw(Graphics g, long t, int x, int y) {
-		map.drawPosition(g, x, y, positionInMap);
+	public Case clone() {
+		return new CaseSource(this.positionInMap);
 	}
 	
 	 @Override
-	public Case clone() {
-		return new CaseSource(this.positionInMap);
+	public void draw(Graphics g, long t, int x, int y) {
+		map.drawPosition(g, x, y, positionInMap);
 	}
 
 }

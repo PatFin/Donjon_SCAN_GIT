@@ -12,12 +12,12 @@ import fr.donjon.classes.Projectile;
  */
 public class CollisionDegats implements CollisionPattern {
 
-	int dps;
 	int cumul;
 	int division = 200;
+	int dps;
 	
-	long time;
 	long lastTime;
+	long time;
 
 	/**
 	 * 
@@ -28,26 +28,6 @@ public class CollisionDegats implements CollisionPattern {
 		this.time = -1;
 		this.lastTime = 0;
 		this.cumul = 0;
-	}
-
-	@Override
-	public void persoEnterCase(Personnage p) {
-	}
-
-	@Override
-	public void projEnterCase(Projectile p) {
-	}
-
-	@Override
-	public void persoLeaveCase(Personnage p) {
-	}
-
-	public String toString(){
-		return "Dégats";
-	}
-	
-	@Override
-	public void projLeaveCase(Projectile p) {
 	}
 
 	@Override
@@ -70,6 +50,27 @@ public class CollisionDegats implements CollisionPattern {
 
 		lastTime = System.currentTimeMillis();
 		
+	}
+
+	@Override
+	public void persoEnterCase(Personnage p) {
+	}
+
+	@Override
+	public void persoLeaveCase(Personnage p) {
+	}
+
+	@Override
+	public void projEnterCase(Projectile p) {
+	}
+	
+	@Override
+	public void projLeaveCase(Projectile p) {
+	}
+
+	@Override
+	public String toString(){
+		return "Dï¿½gats";
 	}
 
 	

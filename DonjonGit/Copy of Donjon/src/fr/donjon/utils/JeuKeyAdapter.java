@@ -14,17 +14,17 @@ import java.util.LinkedList;
  */
 public class JeuKeyAdapter implements KeyListener {
 
-	private EcouteurClavier ecouteur;	//La classe qui attend un retour sur evenement
-
 	boolean attaque;
+
 	boolean deplacement;
+	LinkedList<Integer> pressed;
 
 	LinkedList<Integer> tattk;
 	LinkedList<Integer> tdepl;
-	LinkedList<Integer> tobj;
 	LinkedList<Integer> tdiv;
+	LinkedList<Integer> tobj;
 	
-	LinkedList<Integer> pressed;
+	private EcouteurClavier ecouteur;	//La classe qui attend un retour sur evenement
 	
 
 	/**
@@ -62,20 +62,6 @@ public class JeuKeyAdapter implements KeyListener {
 		
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		int code = e.getKeyCode();
-		if(!pressed.contains(code))pressed.add(code);
-		handleEvent();
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		Integer code = e.getKeyCode();
-		if(pressed.contains(code))pressed.remove(code);
-		handleEvent();
-	}
-	
 	private void handleEvent(){
 		
 		Vecteur vit = new Vecteur(0,0);
@@ -112,6 +98,20 @@ public class JeuKeyAdapter implements KeyListener {
 		
 		if(arret)ecouteur.stopDeplacement();
 		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int code = e.getKeyCode();
+		if(!pressed.contains(code))pressed.add(code);
+		handleEvent();
+	}
+	
+	@Override
+	public void keyReleased(KeyEvent e) {
+		Integer code = e.getKeyCode();
+		if(pressed.contains(code))pressed.remove(code);
+		handleEvent();
 	}
 	
 

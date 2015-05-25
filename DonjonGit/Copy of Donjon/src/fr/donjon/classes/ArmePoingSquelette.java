@@ -3,8 +3,6 @@
  */
 package fr.donjon.classes;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
@@ -19,20 +17,20 @@ import fr.donjon.utils.Vecteur;
  */
 public class ArmePoingSquelette extends Arme{
 
+	final static int decalageZoneX = 10;
+	final static int decalageZoneY = 10;
 	final static int DMG = 20;
 	final static int DUR = 200;
-	final static String src = "skeleton_map.png";
-	final static String icSrc = null;
 	
-	final static int zoneWidth = 35;
+	final static String icSrc = null;
+	final static String src = "skeleton_map.png";
 	final static int zoneHeight = 20;
-	final static int decalageZoneX = 10;
-	final static int decalageZoneY = 10; 
+	final static int zoneWidth = 35; 
 
-	private Rectangle zoneDommages = new Rectangle(0,0, zoneWidth, zoneHeight);
+	Vecteur c = new Vecteur(0,0);
 	private LinkedList<Personnage> persoTouches;
 	
-	Vecteur c = new Vecteur(0,0);
+	private Rectangle zoneDommages = new Rectangle(0,0, zoneWidth, zoneHeight);
 
 	/**
 	 * Objet sans porteur
@@ -57,13 +55,6 @@ public class ArmePoingSquelette extends Arme{
 		animation = animationS;
 
 		this.persoTouches = new LinkedList<Personnage>();
-	}
-
-	@Override
-	public void stopAttaquer() {
-		//Pas d'anim de finition
-		this.etat = EtatArme.FINISHED;
-		this.persoTouches.clear();
 	}
 
 	@Override
@@ -103,6 +94,13 @@ public class ArmePoingSquelette extends Arme{
 
 		}
 
+	}
+
+	@Override
+	public void stopAttaquer() {
+		//Pas d'anim de finition
+		this.etat = EtatArme.FINISHED;
+		this.persoTouches.clear();
 	}
 
 	////////////////////////////////

@@ -8,15 +8,15 @@ import java.awt.event.ActionListener;
 
 /**
  * Interface permettant de gerer le clik sur un CaseButton (JButton)
- * afin de changer la brosse du PanelEdition associé
+ * afin de changer la brosse du PanelEdition associï¿½
  * 
  * @author Baptiste
  *
  */
 public class CaseButtonListener implements ActionListener {
 
-	PanelEdition pan;	//Le PanelEdition associé
-	CaseButton button;	//Le CaseButton associé
+	CaseButton button;	//Le CaseButton associï¿½
+	PanelEdition pan;	//Le PanelEdition associï¿½
 	
 	/**
 	 * 
@@ -30,8 +30,9 @@ public class CaseButtonListener implements ActionListener {
 	/**
 	 * Redefinition de la methode de ActionListener (clik sur le boutton)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
-		//On change la case dessinée par la brosse
+		//On change la case dessinï¿½e par la brosse
 		pan.changeCase(button.c);
 	}
 	

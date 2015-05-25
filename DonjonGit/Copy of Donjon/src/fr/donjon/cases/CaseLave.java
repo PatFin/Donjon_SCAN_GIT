@@ -16,8 +16,8 @@ import fr.donjon.utils.Vecteur;
  */
 public class CaseLave extends Case {
 
-	final static String src = "AnimLave.png";
 	final static int DPS = 10;
+	final static String src = "AnimLave.png";
 	
 	Animation anim;
 	
@@ -34,19 +34,13 @@ public class CaseLave extends Case {
 	}
 	
 	@Override
-	public void draw(Graphics g, long t, int x, int y) {
-		anim.drawAnim(x*TAILLE, y*TAILLE, TAILLE, TAILLE, g, t);
-	}
-	
-	@Override
-	public void setCollisionBoxLocation(int x, int y) {
-		super.setCollisionBoxLocation(x, y);
-		collisionE = new CollisionObstacle(limites);
-	}
-	
-	@Override
 	public Case clone() {
 		return new CaseLave();
+	}
+	
+	@Override
+	public void draw(Graphics g, long t, int x, int y) {
+		anim.drawAnim(x*TAILLE, y*TAILLE, TAILLE, TAILLE, g, t);
 	}
 	
 	@Override
@@ -71,6 +65,12 @@ public class CaseLave extends Case {
 		
 		}
 		
+	}
+	
+	@Override
+	public void setCollisionBoxLocation(int x, int y) {
+		super.setCollisionBoxLocation(x, y);
+		collisionE = new CollisionObstacle(limites);
 	}
 
 }

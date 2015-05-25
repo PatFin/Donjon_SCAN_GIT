@@ -13,7 +13,6 @@ import fr.donjon.classes.Heros;
 import fr.donjon.classes.Objet;
 import fr.donjon.classes.Personnage;
 import fr.donjon.classes.Squelette;
-import fr.donjon.utils.CustomException;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.Link;
 import fr.donjon.utils.Orientation;
@@ -27,21 +26,29 @@ public abstract class SalleAbs implements EcouteurClavier {
 	public static Rectangle ecran;							//Contains the available space to put the room.
 	public static int numberOfRooms=0;						//The total number of rooms.
 
-	public int roomNumber;									//The unique number associated with a room.
-	public EnumMap<Orientation,Link> link;					//The list of links to other rooms.
-	public EnumMap<Orientation,Vecteur> destination;		//The list of the spawn places in the room when coming from another room.
-	public EnumMap<Orientation,Vecteur> porte;				//the list of the positions of the potential doors of the room.
-
-	public Case[][] cases; 									//2D array containing the tyles composing the room.
-	public ArrayList <Personnage> personnage; 				//Contains the character of the room (Ennemis and Heros).
-	public Heros hero;										//The character the player controls.
-
-	public BufferedImage imageSalle;  						//Contains the image of the room without the objects.
-	public Graphics bufferImageSalle;            			//Graphical space associated to imageSalle.
-
 	public BufferedImage buffer1;							//Buffer used in the draw method.
-	public Graphics monG;									//Graphical space associated to buffer1.
+	public Graphics bufferImageSalle;            			//Graphical space associated to imageSalle.
+	public Case[][] cases; 									//2D array containing the tyles composing the room.
+	public EnumMap<Orientation,Vecteur> destination;		//The list of the spawn places in the room when coming from another room.
 
+	public Heros hero;										//The character the player controls.
+	public BufferedImage imageSalle;  						//Contains the image of the room without the objects.
+	public EnumMap<Orientation,Link> link;					//The list of links to other rooms.
+
+	public Graphics monG;									//Graphical space associated to buffer1.
+	public ArrayList <Personnage> personnage; 				//Contains the character of the room (Ennemis and Heros).
+
+	public EnumMap<Orientation,Vecteur> porte;				//the list of the positions of the potential doors of the room.
+	public int roomNumber;									//The unique number associated with a room.
+
+
+	/**
+	 * Empty constructor
+	 * Used in the "gestionnaire" to have a list of rooms to be played.
+	 */
+	public SalleAbs(){
+
+	}
 
 	/**
 	 * Constructor
@@ -64,18 +71,56 @@ public abstract class SalleAbs implements EcouteurClavier {
 		buffer1 =new BufferedImage(ecran.width,ecran.height,BufferedImage.TYPE_INT_ARGB);
 		monG = buffer1.getGraphics();
 	}
-
-	/**
-	 * Empty constructor
-	 * Used in the "gestionnaire" to have a list of rooms to be played.
-	 */
-	public SalleAbs(){
-
-	}
 	
 
-	protected abstract void generateRoom() throws CustomException;
-	protected abstract void setDoorPlaces() throws CustomException;
+	/**
+	 * This method sorts the characters in increasing y coordinate.
+	 * It is used in the paint method such that the characters at 
+	 * the bottom of the room are painted on top of those which are 
+	 * above them and not the contrary.
+	 */
+	private void sortCharacters(){
+		//Putting the elements in an array
+		Personnage [] a = new Personnage[personnage.size()];
+		
+		for(int i=0; i<a.length;i++){
+			a[i] = personnage.get(i);
+		}
+
+		//Bubble sort algorithm
+		for(int j=0; j<a.length-1;j++){
+			for(int i=0;i<a.length-j-1;i++){
+				if(a[i].collisionDecor.y>a[i+1].collisionDecor.y){
+					Personnage temp = a[i];
+					a[i]=a[i+1];
+					a[i+1]=temp;
+				}
+			}
+		}
+
+		//Putting the element back into the list.
+		this.personnage = new ArrayList<Personnage>();
+		for(int i=0;i<a.length;i++){
+			this.personnage.add(a[i]);
+		}
+
+	}
+	/**
+	 * This method fills the empty parts of the cases
+	 * array with Case_void(). It comes in handy when
+	 * declaring the array of the room.
+	 */
+	protected void fillEmptyWithVoid(){
+		for(int x=0; x<cases.length;x++){
+			for(int y=0;y<cases[0].length;y++){
+
+				if(cases[x][y]==null){
+					cases[x][y]=new Case_void();
+					cases[x][y].setCollisionBoxLocation(y, x);
+				}
+			}
+		}
+	}
 
 	/**
 	 * The general method to add enemis to a room.
@@ -123,36 +168,21 @@ public abstract class SalleAbs implements EcouteurClavier {
 
 	}
 
+	protected abstract void generateRoom() throws CustomException;
+
+
+
 	/**
-	 * Gives the instance of Case located at the position given by v as a parameter.
-	 * @param v Position vector of the tile in the room.
-	 * @return the tile at position v in the room.
+	 * This method gives the intersection point of the doors.
+	 * @return Vecteur where the paths should intersect.
 	 */
-	public Case getCase(Vecteur v){
-		return cases[(int)v.x][(int)v.y];
+	protected Vecteur getCenter(){
+		double xIntersect = porte.get(Orientation.NORD).x;
+		double yIntersect = porte.get(Orientation.EST).y;
+		return new Vecteur(xIntersect, yIntersect);
 	}
 
-
-
-	/**
-	 * Returns a new Room 
-	 * @param ecran the space available for the game.
-	 * @param h the hero the player controls.
-	 * @param o the orientation of the door to the next room.
-	 * @return a new room.
-	 * @throws CustomException 
-	 */
-	public abstract SalleAbs clone(Rectangle ecran, Heros h, Orientation o) throws CustomException;
-
-	/**
-	 * Returns a new Room
-	 * @param h the hero controlled by the character.
-	 * @param l the link from the previous room to this one.
-	 * @param o the orientation of the link to the next one.
-	 * @return a new room.
-	 * @throws CustomException 
-	 */
-	public abstract SalleAbs clone(Heros h, Link l) throws CustomException;
+	protected abstract void setDoorPlaces() throws CustomException;
 
 	/**
 	 * This method creates a link to another room in the
@@ -174,6 +204,138 @@ public abstract class SalleAbs implements EcouteurClavier {
 		Orientation a = Orientation.opposite(l.orientation);
 
 		this.link.put(a, new Link(l.origineSalle, l.origineSalle.destination.get(l.orientation), this, this.porte.get(a), a, true));
+	}
+
+	/**
+	 * Adds the enemy given as a parameter to the room.
+	 * @param e the enemy to be added.
+	 */
+	public void addEnemy(Ennemis e) {
+		personnage.add(e);
+	}
+
+	/**
+	 * Method inherited from EcouteurClavier
+	 */
+	@Override
+	public void attaque(Orientation o) {
+		this.hero.attaquer(personnage, null, o);
+	}
+
+	/**
+	 * Returns a new Room
+	 * @param h the hero controlled by the character.
+	 * @param l the link from the previous room to this one.
+	 * @param o the orientation of the link to the next one.
+	 * @return a new room.
+	 * @throws CustomException 
+	 */
+	public abstract SalleAbs clone(Heros h, Link l) throws CustomException;
+
+	/**
+	 * Returns a new Room 
+	 * @param ecran the space available for the game.
+	 * @param h the hero the player controls.
+	 * @param o the orientation of the door to the next room.
+	 * @return a new room.
+	 * @throws CustomException 
+	 */
+	public abstract SalleAbs clone(Rectangle ecran, Heros h, Orientation o) throws CustomException;
+
+	/**
+	 * Method inherited from EcouteurClavier
+	 */
+	@Override
+	public void deplacement(Vecteur v) {
+		this.hero.marcher(v);
+	}
+
+	/**
+	 * This method draws the room.
+	 * @param t time parameter used by the characters to get the corresponding image.
+	 * @param g the graphical space where the room will be drawn.
+	 */
+	public void draw(long t, Graphics g){
+
+		//We put the room image first
+		monG.drawImage(imageSalle,0,0,null);
+
+		//We add the room number at the top left hand corner
+		//This is not necessary for the game to work properly
+		monG.setColor(Color.white);
+		monG.drawString("Salle "+this.roomNumber, 20, 20);
+
+
+
+		//We display the characters
+		for(int i=0;i<personnage.size();i++){
+			Objet z=personnage.get(i);
+			if(z!=null){
+				z.draw(t,monG);
+			}
+		}
+
+		//Finally send everything at the destination
+		g.drawImage(buffer1, ecran.x, ecran.y, null);
+	}
+
+	/**
+	 * This method generates the image of the room.
+	 * It takes the image of each tyle contained in the 
+	 * cases[][] array and stiches them together.
+	 */
+	public void generateImage(){
+
+		//Initializing the graphic tools 
+		imageSalle = new BufferedImage(ecran.width,ecran.height, BufferedImage.TYPE_INT_RGB);
+		bufferImageSalle = imageSalle.createGraphics();
+
+		//Creating the image
+		for(int y=0;y<cases[0].length;y++){
+			for(int x=0;x<cases.length;x++){
+				if(cases[x][y] !=null){
+					//The image is being created
+					bufferImageSalle.drawImage(cases[x][y].image, x*Case.TAILLE,y*Case.TAILLE, Case.TAILLE, Case.TAILLE, null);
+
+					//One places the collision box of the Case at the correct position
+
+					this.cases[x][y].setCollisionBoxLocation(x, y);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Gives the instance of Case located at the position given by v as a parameter.
+	 * @param v Position vector of the tile in the room.
+	 * @return the tile at position v in the room.
+	 */
+	public Case getCase(Vecteur v){
+		return cases[(int)v.x][(int)v.y];
+	}
+
+	/**
+	 * Method inherited from EcouteurClavier
+	 */
+	@Override
+	public void stopAttaque() {
+
+	}
+
+	/**
+	 * Method inherited from EcouteurClavier
+	 */
+	@Override
+	public void stopDeplacement() {
+		this.hero.stop();
+	}
+
+	/**
+	 * Method inherited from EcouteurClavier
+	 */
+	@Override
+	public void togglePause() {
+
 	}
 
 	/**
@@ -218,174 +380,11 @@ public abstract class SalleAbs implements EcouteurClavier {
 	}
 
 	/**
-	 * This method generates the image of the room.
-	 * It takes the image of each tyle contained in the 
-	 * cases[][] array and stiches them together.
-	 */
-	public void generateImage(){
-
-		//Initializing the graphic tools 
-		imageSalle = new BufferedImage(ecran.width,ecran.height, BufferedImage.TYPE_INT_RGB);
-		bufferImageSalle = imageSalle.createGraphics();
-
-		//Creating the image
-		for(int y=0;y<cases[0].length;y++){
-			for(int x=0;x<cases.length;x++){
-				if(cases[x][y] !=null){
-					//The image is being created
-					bufferImageSalle.drawImage(cases[x][y].image, x*Case.TAILLE,y*Case.TAILLE, Case.TAILLE, Case.TAILLE, null);
-
-					//One places the collision box of the Case at the correct position
-
-					this.cases[x][y].setCollisionBoxLocation(x, y);
-				}
-			}
-		}
-	}
-
-	/**
-	 * This method draws the room.
-	 * @param t time parameter used by the characters to get the corresponding image.
-	 * @param g the graphical space where the room will be drawn.
-	 */
-	public void draw(long t, Graphics g){
-
-		//We put the room image first
-		monG.drawImage(imageSalle,0,0,null);
-
-		//We add the room number at the top left hand corner
-		//This is not necessary for the game to work properly
-		monG.setColor(Color.white);
-		monG.drawString("Salle "+this.roomNumber, 20, 20);
-
-
-
-		//We display the characters
-		for(int i=0;i<personnage.size();i++){
-			Objet z=personnage.get(i);
-			if(z!=null){
-				z.draw(t,monG);
-			}
-		}
-
-		//Finally send everything at the destination
-		g.drawImage(buffer1, ecran.x, ecran.y, null);
-	}
-
-	/**
-	 * Adds the enemy given as a parameter to the room.
-	 * @param e the enemy to be added.
-	 */
-	public void addEnemy(Ennemis e) {
-		personnage.add(e);
-	}
-
-	/**
-	 * This method sorts the characters in increasing y coordinate.
-	 * It is used in the paint method such that the characters at 
-	 * the bottom of the room are painted on top of those which are 
-	 * above them and not the contrary.
-	 */
-	private void sortCharacters(){
-		//Putting the elements in an array
-		Personnage [] a = new Personnage[personnage.size()];
-		
-		for(int i=0; i<a.length;i++){
-			a[i] = personnage.get(i);
-		}
-
-		//Bubble sort algorithm
-		for(int j=0; j<a.length-1;j++){
-			for(int i=0;i<a.length-j-1;i++){
-				if(a[i].collisionDecor.y>a[i+1].collisionDecor.y){
-					Personnage temp = a[i];
-					a[i]=a[i+1];
-					a[i+1]=temp;
-				}
-			}
-		}
-
-		//Putting the element back into the list.
-		this.personnage = new ArrayList<Personnage>();
-		for(int i=0;i<a.length;i++){
-			this.personnage.add(a[i]);
-		}
-
-	}
-
-	/**
-	 * This method fills the empty parts of the cases
-	 * array with Case_void(). It comes in handy when
-	 * declaring the array of the room.
-	 */
-	protected void fillEmptyWithVoid(){
-		for(int x=0; x<cases.length;x++){
-			for(int y=0;y<cases[0].length;y++){
-
-				if(cases[x][y]==null){
-					cases[x][y]=new Case_void();
-					cases[x][y].setCollisionBoxLocation(y, x);
-				}
-			}
-		}
-	}
-
-	/**
-	 * This method gives the intersection point of the doors.
-	 * @return Vecteur where the paths should intersect.
-	 */
-	protected Vecteur getCenter(){
-		double xIntersect = porte.get(Orientation.NORD).x;
-		double yIntersect = porte.get(Orientation.EST).y;
-		return new Vecteur(xIntersect, yIntersect);
-	}
-
-	/**
-	 * Method inherited from EcouteurClavier
-	 */
-	@Override
-	public void attaque(Orientation o) {
-		this.hero.attaquer(personnage, null, o);
-	}
-
-	/**
-	 * Method inherited from EcouteurClavier
-	 */
-	@Override
-	public void stopAttaque() {
-
-	}
-
-	/**
-	 * Method inherited from EcouteurClavier
-	 */
-	@Override
-	public void deplacement(Vecteur v) {
-		this.hero.marcher(v);
-	}
-
-	/**
 	 * Method inherited from EcouteurClavier
 	 */
 	@Override
 	public void utiliseObjet(int reference) {
 		this.hero.utiliserObjet(reference);
-	}
-
-	/**
-	 * Method inherited from EcouteurClavier
-	 */
-	@Override
-	public void togglePause() {
-
-	}
-
-	/**
-	 * Method inherited from EcouteurClavier
-	 */
-	@Override
-	public void stopDeplacement() {
-		this.hero.stop();
 	}
 
 }

@@ -10,14 +10,14 @@ public class CaseVide extends Case {
 	}
 	
 	@Override
-	public void setCollisionBoxLocation(int x, int y) {
-		super.setCollisionBoxLocation(x, y);
-		this.setCollision(new CollisionObstacle(limites));
+	public Case clone() {
+		return new CaseVide();
 	}
 	
 	@Override
-	public Case clone() {
-		return new CaseVide();
+	public void setCollisionBoxLocation(int x, int y) {
+		super.setCollisionBoxLocation(x, y);
+		this.setCollision(new CollisionObstacle(limites));
 	}
 	
 	

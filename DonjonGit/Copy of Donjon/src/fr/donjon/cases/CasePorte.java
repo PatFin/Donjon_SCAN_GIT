@@ -24,10 +24,15 @@ public class CasePorte extends Case {
 		this.setCollision(null);
 	}
 	
-	@Override
-	public void setCollisionBoxLocation(int x, int y) {
-		super.setCollisionBoxLocation(x, y);
+	/**
+	 * Constructeur utilisé quand on crée le lien réciproque de la nouvelle salleActuelle vers la salle précédente.
+	 * On connait alors le lien de A->B. 
+	 * @param l le lien reciproque de B->A (voir méthode static de Link)
+	 */
+	public CasePorte(Link l){
+		super(src);
 		this.setCollision(new CollisionObstacle(limites));
+		this.collisionPorte = new CollisionPorte(l);
 	}
 
 
@@ -43,17 +48,21 @@ public class CasePorte extends Case {
 		this.collisionPorte = new CollisionPorte(s, palier, o);
 	}
 
-	/**
-	 * Constructeur utilisé quand on crée le lien réciproque de la nouvelle salleActuelle vers la salle précédente.
-	 * On connait alors le lien de A->B. 
-	 * @param l le lien reciproque de B->A (voir méthode static de Link)
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.cases.Case#clone()
 	 */
-	public CasePorte(Link l){
-		super(src);
-		this.setCollision(new CollisionObstacle(limites));
-		this.collisionPorte = new CollisionPorte(l);
+	@Override
+	public Case clone() {
+		return new CasePorte();
 	}
 
+
+	@Override
+	public void setCollisionBoxLocation(int x, int y) {
+		super.setCollisionBoxLocation(x, y);
+		this.setCollision(new CollisionObstacle(limites));
+	}
 
 	/**
 	 * Methode utilis�e pour cr�er le lien vers la salle suivante.
@@ -62,6 +71,7 @@ public class CasePorte extends Case {
 	public void setDestination(CasePorte des){
 		this.collisionPorte.lien.setDestination(des.collisionPorte.lien.getSalleOrigine(), des.collisionPorte.lien.getPalier());
 	}
+
 
 	public void setDestination(Salle s, Vecteur des){
 		this.collisionPorte.lien.setDestination(s, des);
@@ -74,16 +84,6 @@ public class CasePorte extends Case {
 	 */
 	public void setPassageAutorise(boolean b){
 		collision = b ? collisionPorte : new CollisionObstacle(limites) ;
-	}
-
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.cases.Case#clone()
-	 */
-	@Override
-	public Case clone() {
-		return new CasePorte();
 	}
 
 

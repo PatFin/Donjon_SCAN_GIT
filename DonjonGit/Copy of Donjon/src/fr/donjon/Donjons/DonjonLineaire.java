@@ -1,6 +1,5 @@
 package fr.donjon.Donjons;
 
-import fr.donjon.cases.Case;
 import fr.donjon.classes.Heros;
 import fr.donjon.salles.EnigmeSwitch;
 import fr.donjon.salles.Salle;
@@ -14,8 +13,8 @@ import fr.donjon.utils.Vecteur;
 
 public class DonjonLineaire extends GestionnaireSalle{
 
-	private static final int SALLEWIDTH = 15;
 	private static final int SALLEHEIGHT = 10;
+	private static final int SALLEWIDTH = 15;
 
 	int nombreDeSalle;
 	/**
@@ -45,7 +44,7 @@ public class DonjonLineaire extends GestionnaireSalle{
 		//create the new room
 		SalleQuatre s;
 
-		if((l.getSalleOrigine().roomNumber)%(int)(nombreDeSalle/2) == 1){
+		if((l.getSalleOrigine().roomNumber)%(nombreDeSalle/2) == 1){
 			s= new EnigmeSwitch(l.getSalleOrigine().hero);
 		}else{
 			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));

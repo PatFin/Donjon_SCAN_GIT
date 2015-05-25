@@ -54,6 +54,99 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		setVisible(true);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
+	 */
+	@Override
+	public void attaque(Vecteur v) {
+		if(game!=null){
+			game.attaque(v);
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
+	 */
+	@Override
+	public void deplacement(Vecteur v) {
+		if(game!=null){
+			game.deplacement(v);
+		}
+	}
+	
+	public void goToGameOver(Boolean win) {
+		try{
+			this.remove(actuel);
+			this.game.stopGame();
+		}
+		catch (NullPointerException e){
+
+		}
+		GameOver g = new GameOver(win);
+		g.listener = this;
+		actuel =  g;
+		this.add(actuel);
+		this.pack();
+		this.setResizable(false);
+		music.stop();
+		repaint();
+	}
+
+	/**
+	 * Affiche le menu
+	 */
+	public void goToMenu(){
+		
+		try{
+			this.remove(actuel);
+			this.game.stopGame();
+		}
+		catch (NullPointerException e){
+
+		}
+		actuel = menu;
+		this.add(actuel);
+		this.pack();
+		this.setResizable(false);
+		music.stop();
+		repaint();
+	}
+
+	@Override
+	public void quit() {
+		System.exit(0);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurLauncher#requestBackToMenu()
+	 */
+	@Override
+	public void requestBackToMenu() {
+		goToMenu();
+	}
+
+	@Override
+	public void requestGameOver(Boolean win) {
+		goToGameOver(win);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurLauncher#requestNewGame(fr.donjon.Donjons.GestionnaireSalle)
+	 */
+	@Override
+	public void requestNewGame(GestionnaireSalle g) {
+		startGame(g);
+	}
+
+	@Override
+	public void retourMenu() {
+		goToMenu();
+	}
+
 	/**
 	 * Permet de d�marrer le jeu
 	 * @param mode le mode de jeu: 0 Pour jeu lineaire, default jeu non lin�aire
@@ -80,63 +173,6 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		this.setResizable(true);
 	}
 
-	/**
-	 * Affiche le menu
-	 */
-	public void goToMenu(){
-		
-		try{
-			this.remove(actuel);
-			this.game.stopGame();
-		}
-		catch (NullPointerException e){
-
-		}
-		actuel = menu;
-		this.add(actuel);
-		this.pack();
-		this.setResizable(false);
-		music.stop();
-		repaint();
-	}
-	
-	public void goToGameOver(Boolean win) {
-		try{
-			this.remove(actuel);
-			this.game.stopGame();
-		}
-		catch (NullPointerException e){
-
-		}
-		GameOver g = new GameOver(win);
-		g.listener = this;
-		actuel =  g;
-		this.add(actuel);
-		this.pack();
-		this.setResizable(false);
-		music.stop();
-		repaint();
-	}
-
-	/**
-	 * Main method which launches the program
-	 * @param args nothing required 
-	 */
-	public static void main(String[] args)  {
-		new Launcher();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#attaque(fr.donjon.utils.Orientation)
-	 */
-	@Override
-	public void attaque(Vecteur v) {
-		if(game!=null){
-			game.attaque(v);
-		}
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * @see fr.donjon.utils.EcouteurClavier#stopAttaque()
@@ -145,39 +181,6 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	public void stopAttaque() {
 		if(game!=null){
 			game.stopAttaque();
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#deplacement(fr.donjon.utils.Vecteur)
-	 */
-	@Override
-	public void deplacement(Vecteur v) {
-		if(game!=null){
-			game.deplacement(v);
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
-	 */
-	@Override
-	public void utiliseObjet(int reference) {
-		if(game!=null){
-			game.utiliseObjet(reference);
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
-	 */
-	@Override
-	public void togglePause() {
-		if(game!=null){
-			game.togglePause();
 		}
 	}
 
@@ -205,35 +208,32 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 
 	/*
 	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurLauncher#requestBackToMenu()
+	 * @see fr.donjon.utils.EcouteurClavier#togglePause()
 	 */
 	@Override
-	public void requestBackToMenu() {
-		goToMenu();
+	public void togglePause() {
+		if(game!=null){
+			game.togglePause();
+		}
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see fr.donjon.utils.EcouteurLauncher#requestNewGame(fr.donjon.Donjons.GestionnaireSalle)
+	 * @see fr.donjon.utils.EcouteurClavier#utiliseObjet(int)
 	 */
 	@Override
-	public void requestNewGame(GestionnaireSalle g) {
-		startGame(g);
+	public void utiliseObjet(int reference) {
+		if(game!=null){
+			game.utiliseObjet(reference);
+		}
 	}
 
-	@Override
-	public void requestGameOver(Boolean win) {
-		goToGameOver(win);
-	}
-
-	@Override
-	public void quit() {
-		System.exit(0);
-	}
-
-	@Override
-	public void retourMenu() {
-		goToMenu();
+	/**
+	 * Main method which launches the program
+	 * @param args nothing required 
+	 */
+	public static void main(String[] args)  {
+		new Launcher();
 	}
 
 }

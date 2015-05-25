@@ -20,24 +20,24 @@ import fr.donjon.utils.Vecteur;
 
 public abstract class Personnage extends Deplacable{
 
-	public Orientation o;
-	EtatPersonnage etat;
-	Arme arme;
-	Inventaire inventaire;
-
-	public Effet stats;		//les stats du personnage (vie, atk,...)
-
-	public Type type;
-	public boolean living;	//Etat vivant/mort du perso
-
 	Animation animation;
-	Animation animationN;
-	Animation animationS;
 	Animation animationE;
+	Animation animationN;
 	Animation animationO;
 
-	public Vecteur lPos;
+	Animation animationS;
+
+	Arme arme;
+	EtatPersonnage etat;
+
+	Inventaire inventaire;
 	Vecteur tPos = new Vecteur(0,0);
+	public boolean living;	//Etat vivant/mort du perso
+	public Vecteur lPos;
+	public Orientation o;
+
+	public Effet stats;		//les stats du personnage (vie, atk,...)
+	public Type type;
 
 	/**
 	 * 
@@ -78,6 +78,18 @@ public abstract class Personnage extends Deplacable{
 	}
 
 	
+	/**
+	 * 
+	 * 	Methode permettant � un personnage d'attaquer
+	 * 
+	 * @param cibles		Cibles potentielles de l'attaque
+	 * @param projectiles	Tableau de projectiles de la salle 
+	 * @param o				Orientation de l'attaque
+	 */
+	public abstract void attaquer(ArrayList<Personnage> cibles, ArrayList<Projectile> projectiles, Vecteur v);
+
+	public abstract void collide(Personnage p);
+
 	@Override
 	public void draw(long t, Graphics g) {
 
@@ -120,6 +132,37 @@ public abstract class Personnage extends Deplacable{
 		
 	}
 
+	/**
+	 * Permet au perso de recevoir un certain nombre de dommage,
+	 * calcule les dommages subits en fonction de l'armure et met a jour
+	 * l'état du personnage.
+	 * 
+	 * @param amount Nombre de dommages a distribuer
+	 */
+	public void receiveDammages(int amount){
+		stats.vie -= amount <= stats.def ? 0 : amount - stats.def ;
+		if(stats.vie <= 0) living = false;
+	}
+
+	public void stop(){
+		if(etat==EtatPersonnage.DEPLACEMENT){
+			this.etat = EtatPersonnage.REPOS;
+			this.vvitesse = Vecteur.vNull;
+		}
+		else if( etat == EtatPersonnage.ATTAQUE){
+			this.vvitesse = Vecteur.vNull;
+		}
+	}
+
+	public void stopAttaque(){
+		if(this.vvitesse == Vecteur.vNull){
+			this.etat = EtatPersonnage.REPOS;
+		}
+		else this.etat = EtatPersonnage.DEPLACEMENT;
+
+		if(arme != null)arme.stopAttaquer();
+	}
+
 	@Override
 	public void update(long t) {
 
@@ -152,53 +195,10 @@ public abstract class Personnage extends Deplacable{
 		
 	}
 
-	public void stop(){
-		if(etat==EtatPersonnage.DEPLACEMENT){
-			this.etat = EtatPersonnage.REPOS;
-			this.vvitesse = Vecteur.vNull;
-		}
-		else if( etat == EtatPersonnage.ATTAQUE){
-			this.vvitesse = Vecteur.vNull;
-		}
-	}
-
-	public void stopAttaque(){
-		if(this.vvitesse == Vecteur.vNull){
-			this.etat = EtatPersonnage.REPOS;
-		}
-		else this.etat = EtatPersonnage.DEPLACEMENT;
-
-		if(arme != null)arme.stopAttaquer();
-	}
-
-	/**
-	 * 
-	 * 	Methode permettant � un personnage d'attaquer
-	 * 
-	 * @param cibles		Cibles potentielles de l'attaque
-	 * @param projectiles	Tableau de projectiles de la salle 
-	 * @param o				Orientation de l'attaque
-	 */
-	public abstract void attaquer(ArrayList<Personnage> cibles, ArrayList<Projectile> projectiles, Vecteur v);
-
 	/**
 	 * A modifier par la suite
 	 * @param reference
 	 */
 	public abstract void utiliserObjet(int reference);
-
-	/**
-	 * Permet au perso de recevoir un certain nombre de dommage,
-	 * calcule les dommages subits en fonction de l'armure et met a jour
-	 * l'état du personnage.
-	 * 
-	 * @param amount Nombre de dommages a distribuer
-	 */
-	public void receiveDammages(int amount){
-		stats.vie -= amount <= stats.def ? 0 : amount - stats.def ;
-		if(stats.vie <= 0) living = false;
-	}
-
-	public abstract void collide(Personnage p);
 	
 }

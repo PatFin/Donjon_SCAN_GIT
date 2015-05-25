@@ -55,10 +55,55 @@ public class SalleQuatre extends Salle {
 		super(w, h);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.salles.Salle#addDoor(fr.donjon.utils.Orientation, fr.donjon.salles.Salle[][])
+	 */
+	@Override
+	public void addDoor(Orientation o, Salle[][] sMap) {
+
+		int w = cases.length;
+		int h = cases[0].length;
+		
+		//On ajoute une case porte et une case sur laquelle on peut marcher juste devant.
+		switch(o){
+		case NORD:
+			cases[w/2][0] = new CasePorte(this, new Vecteur(w/2,1), Orientation.NORD);
+			cases[w/2][1] = new CaseFendue();
+			break;
+		case SUD:
+			cases[w/2][h-1] = new CasePorte(this, new Vecteur(w/2, h-2), Orientation.SUD);
+			cases[w/2][h-2] = new CaseFendue();
+			break;
+		case EST:
+			cases[w-1][h/2] = new CasePorte(this, new Vecteur(w-2, h/2), Orientation.EST);
+			cases[w-2][h/2] = new CaseFendue();
+			break;
+		case OUEST:
+			cases[0][h/2] = new CasePorte(this, new Vecteur(1, h/2), Orientation.OUEST);
+			cases[1][h/2] = new CaseFendue();
+			break;
+
+		}
+		
+		super.trouverLesPortes();
+		
+		Vecteur voisin =  this.detecteSalleDansTableau(sMap).ajoute(o.getUnitVector());
+		SalleQuatre sVoisine = (SalleQuatre) sMap[(int)voisin.x][(int)voisin.y];
+		
+		if(sVoisine != null){
+			CasePorte cV = sVoisine.getPorte(o.opposite());
+			cV.setDestination(this.getPorte(o));
+			this.getPorte(o).setDestination(cV);
+		}
+		
+	}
+	
 	/**
 	 * Detecte les salles potentielles situ�es autours de cette instance
 	 * @param sMap le tableau de salle
 	 */
+	@Override
 	public void createPorteSalleVoisines(Salle[][] sMap){
 		
 		Vecteur position = detecteSalleDansTableau(sMap);
@@ -75,49 +120,6 @@ public class SalleQuatre extends Salle {
 		}
 		if(position.y<sMap[0].length-1){
 			this.addDoor(Orientation.SUD, sMap);
-		}
-		
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.salles.Salle#addDoor(fr.donjon.utils.Orientation, fr.donjon.salles.Salle[][])
-	 */
-	public void addDoor(Orientation o, Salle[][] sMap) {
-
-		int w = cases.length;
-		int h = cases[0].length;
-		
-		//On ajoute une case porte et une case sur laquelle on peut marcher juste devant.
-		switch(o){
-		case NORD:
-			cases[(int)w/2][0] = new CasePorte(this, new Vecteur((int)w/2,1), Orientation.NORD);
-			cases[(int)w/2][1] = new CaseFendue();
-			break;
-		case SUD:
-			cases[(int)w/2][h-1] = new CasePorte(this, new Vecteur((int)w/2, h-2), Orientation.SUD);
-			cases[(int)w/2][h-2] = new CaseFendue();
-			break;
-		case EST:
-			cases[w-1][(int)h/2] = new CasePorte(this, new Vecteur(w-2, (int)h/2), Orientation.EST);
-			cases[w-2][(int)h/2] = new CaseFendue();
-			break;
-		case OUEST:
-			cases[0][(int)h/2] = new CasePorte(this, new Vecteur(1, (int)h/2), Orientation.OUEST);
-			cases[1][(int)h/2] = new CaseFendue();
-			break;
-
-		}
-		
-		super.trouverLesPortes();
-		
-		Vecteur voisin =  this.detecteSalleDansTableau(sMap).ajoute(o.getUnitVector());
-		SalleQuatre sVoisine = (SalleQuatre) sMap[(int)voisin.x][(int)voisin.y];
-		
-		if(sVoisine != null){
-			CasePorte cV = sVoisine.getPorte(o.opposite());
-			cV.setDestination(this.getPorte(o));
-			this.getPorte(o).setDestination(cV);
 		}
 		
 	}

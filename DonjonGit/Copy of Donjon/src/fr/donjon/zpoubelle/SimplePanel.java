@@ -28,14 +28,13 @@ public class SimplePanel extends GamePanel {
 	}
 
 	@Override
-	public void update() {
-		salle.update(temps);
-		repaint();
+	public void attaque(Orientation o) {
+		salle.attaque(o);
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		salle.draw(temps, g);
+	public void deplacement(Vecteur v) {
+		salle.deplacement(v);
 	}
 
 	///////////////////////////////////////////////////////
@@ -45,8 +44,8 @@ public class SimplePanel extends GamePanel {
 	//On fait passer les ordres au Gestionnaire et on intercepte celui pour stopper le Timer
 
 	@Override
-	public void attaque(Orientation o) {
-		salle.attaque(o);
+	public void paint(Graphics g) {
+		salle.draw(temps, g);
 	}
 
 	@Override
@@ -55,13 +54,8 @@ public class SimplePanel extends GamePanel {
 	}
 
 	@Override
-	public void deplacement(Vecteur v) {
-		salle.deplacement(v);
-	}
-
-	@Override
-	public void utiliseObjet(int reference) {
-		salle.utiliseObjet(reference);
+	public void stopDeplacement() {
+		salle.stopDeplacement();
 	}
 
 	@Override
@@ -71,8 +65,14 @@ public class SimplePanel extends GamePanel {
 	}
 
 	@Override
-	public void stopDeplacement() {
-		salle.stopDeplacement();
+	public void update() {
+		salle.update(temps);
+		repaint();
+	}
+
+	@Override
+	public void utiliseObjet(int reference) {
+		salle.utiliseObjet(reference);
 	}
 
 

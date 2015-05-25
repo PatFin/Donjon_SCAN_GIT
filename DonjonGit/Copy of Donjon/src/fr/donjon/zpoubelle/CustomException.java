@@ -20,10 +20,6 @@ public class CustomException extends Exception {
 		super(arg0);
 	}
 
-	public CustomException(Throwable cause) {
-		super(cause);
-	}
-
 	public CustomException(String message, Throwable cause) {
 		super(message, cause);
 	}
@@ -32,6 +28,10 @@ public class CustomException extends Exception {
 			boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		
+	}
+
+	public CustomException(Throwable cause) {
+		super(cause);
 	}
 
 }

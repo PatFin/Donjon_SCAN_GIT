@@ -21,6 +21,17 @@ public class Tele_dalle_sol extends Case_dalle_sol {
 		this.enabled=enabled;
 	}
 	
+	public void disableTeleportation(){
+		this.enabled=false;
+	}
+
+	/**
+	 * Autorise le transfer sur la case destination
+	 */
+	public void enableTeleportaion(){
+		this.enabled=true;
+	}
+	
 	/**
 	 * Si le personnage marche sur cette case, alors on le place sur la case de destination
 	 */
@@ -31,24 +42,13 @@ public class Tele_dalle_sol extends Case_dalle_sol {
 		}
 		//else, on ne fait rien, le personnage marche sur la case librement.
 	}
-
+	
 	/**
 	 * Mutateur
 	 * @param v Vecteur vers la nouvelle case de destination
 	 */
 	public void setDestination(Vecteur v){
 		this.destination = v;
-	}
-	
-	/**
-	 * Autorise le transfer sur la case destination
-	 */
-	public void enableTeleportaion(){
-		this.enabled=true;
-	}
-	
-	public void disableTeleportation(){
-		this.enabled=false;
 	}
 	
 }

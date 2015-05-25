@@ -42,10 +42,9 @@ public class LauncherTest extends JFrame implements EcouteurClavier{
 
 	
 
-	public static void main(String[] args) {
-		
-		LauncherTest t = new LauncherTest();
-
+	@Override
+	public void attaque(Orientation o) {
+		panel.attaque(o);
 	}
 
 
@@ -56,8 +55,8 @@ public class LauncherTest extends JFrame implements EcouteurClavier{
 	//On fait passer les evenements au jeu
 	
 	@Override
-	public void attaque(Orientation o) {
-		panel.attaque(o);
+	public void deplacement(Vecteur v) {
+		panel.deplacement(v);
 	}
 
 	@Override
@@ -66,13 +65,14 @@ public class LauncherTest extends JFrame implements EcouteurClavier{
 	}
 
 	@Override
-	public void deplacement(Vecteur v) {
-		panel.deplacement(v);
+	public void stopDeplacement() {
+		panel.stopDeplacement();
 	}
 
 	@Override
-	public void utiliseObjet(int reference) {
-		panel.utiliseObjet(reference);
+	public void toggleMap() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -81,17 +81,17 @@ public class LauncherTest extends JFrame implements EcouteurClavier{
 	}
 
 	@Override
-	public void stopDeplacement() {
-		panel.stopDeplacement();
+	public void utiliseObjet(int reference) {
+		panel.utiliseObjet(reference);
 	}
 
 
 
 
-	@Override
-	public void toggleMap() {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) {
 		
+		LauncherTest t = new LauncherTest();
+
 	}
 	
 	

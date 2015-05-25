@@ -39,6 +39,42 @@ public class SalleInteractive extends Salle implements EcouteurClavier{
 	}
 	
 	@Override
+	public void attaque(Orientation o) {
+		// TODO Auto-generated method stub
+		hero.attaquer(null, null, o);
+	}
+	
+	
+
+	/////////////////////////////////////
+	//INTERFACE D'ECOUTE/////////////////
+	/////////////////////////////////////
+
+
+	@Override
+	public void deplacement(Vecteur v) {
+		// TODO Auto-generated method stub
+		hero.marcher(v);
+	}
+
+	@Override
+	public void stopAttaque() {
+		hero.stopAttaque();
+	}
+
+	@Override
+	public void stopDeplacement() {
+		// TODO Auto-generated method stub
+		hero.stop();
+	}
+
+	@Override
+	public void togglePause() {
+		// TODO Auto-generated method stub
+		//Nothing to do, its done in game panel
+	}
+
+	@Override
 	public void update(long temps) {
 		// TODO Auto-generated method stub
 		super.update(temps);
@@ -55,47 +91,11 @@ public class SalleInteractive extends Salle implements EcouteurClavier{
 		}
 		
 	}
-	
-	
-
-	/////////////////////////////////////
-	//INTERFACE D'ECOUTE/////////////////
-	/////////////////////////////////////
-
-
-	@Override
-	public void attaque(Orientation o) {
-		// TODO Auto-generated method stub
-		hero.attaquer(null, null, o);
-	}
-
-	@Override
-	public void stopAttaque() {
-		hero.stopAttaque();
-	}
-
-	@Override
-	public void deplacement(Vecteur v) {
-		// TODO Auto-generated method stub
-		hero.marcher(v);
-	}
 
 	@Override
 	public void utiliseObjet(int reference) {
 		// TODO Auto-generated method stub
 		hero.utiliserObjet(reference);
-	}
-
-	@Override
-	public void togglePause() {
-		// TODO Auto-generated method stub
-		//Nothing to do, its done in game panel
-	}
-
-	@Override
-	public void stopDeplacement() {
-		// TODO Auto-generated method stub
-		hero.stop();
 	}
 	
 	

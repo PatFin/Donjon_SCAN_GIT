@@ -6,11 +6,11 @@ package fr.donjon.utils;
  */
 public class Vecteur {
 	
-	public static final Vecteur vNord  = new Vecteur(0,-1);
-	public static final Vecteur vSud  = new Vecteur(0,1);
 	public static final Vecteur vEst  = new Vecteur(1,0);
-	public static final Vecteur vOuest  = new Vecteur(-1,0);
+	public static final Vecteur vNord  = new Vecteur(0,-1);
 	public static final Vecteur vNull  = new Vecteur(0,0);
+	public static final Vecteur vOuest  = new Vecteur(-1,0);
+	public static final Vecteur vSud  = new Vecteur(0,1);
 	
 	public double x, y;
 	
@@ -25,15 +25,6 @@ public class Vecteur {
 	}
 	
 	/**
-	 * Méthode permettant de multiplier un vecteur par un scalaire a
-	 * @param a
-	 * @return u
-	 */
-	public Vecteur multiplie (double a){
-		return new Vecteur(a*x, a*y);
-	}
-	
-	/**
 	 * Méthode permettant d'additionner le vecteur "w" à un autre vecteur
 	 * @param w
 	 * @return u
@@ -42,20 +33,38 @@ public class Vecteur {
 		return new Vecteur(this.x+w.x, this.y+w.y);
 	}
 	
+	public void display() { // M�thode affichant les coordonn�es du vecteur dans la console
+		
+		System.out.println("(" + x + ", " + y + ")");
+	}
+	
+	public double getNorm(){
+		return Math.sqrt( Math.pow(this.x, 2) + Math.pow(this.y, 2) );
+	}
+	
+	/**
+	 * Méthode permettant de multiplier un vecteur par un scalaire a
+	 * @param a
+	 * @return u
+	 */
+	public Vecteur multiplie (double a){
+		return new Vecteur(a*x, a*y);
+	}
+	
 	public Vecteur normalise(){
 		if(getNorm() == 0)return this;
 		else return this.multiplie(1/getNorm());
 	
 	}
 	
+	public Orientation projectMainDirection(){
+		return projectMainDirection(this);
+	}
+	
 	public Vecteur setLocation(double x, double y){
 		this.x = x;
 		this.y = y;
 		return this;
-	}
-	
-	public double getNorm(){
-		return Math.sqrt( Math.pow(this.x, 2) + Math.pow(this.y, 2) );
 	}
 	
 	@Override
@@ -82,14 +91,5 @@ public class Vecteur {
 	public static Orientation projectMainDirection(Vecteur from, Vecteur to){
 		Vecteur v = new Vecteur(to.x-from.x, to.y-from.y);
 		return projectMainDirection(v);
-	}
-	
-	public Orientation projectMainDirection(){
-		return projectMainDirection(this);
-	}
-	
-	public void display() { // M�thode affichant les coordonn�es du vecteur dans la console
-		
-		System.out.println("(" + x + ", " + y + ")");
 	}
 }

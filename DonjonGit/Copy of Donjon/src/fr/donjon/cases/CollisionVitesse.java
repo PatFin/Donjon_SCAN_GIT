@@ -24,8 +24,7 @@ public class CollisionVitesse implements CollisionPattern {
 
 
 	@Override
-	public String toString(){
-		return "Vitesse";
+	public void persoCollision(Personnage p) {
 	}
 	
 	@Override
@@ -36,14 +35,14 @@ public class CollisionVitesse implements CollisionPattern {
 
 
 	@Override
-	public void projEnterCase(Projectile p) {
-		
+	public void persoLeaveCase(Personnage p) {
+		p.stats.vit -= vitesse;
 	}
 
 
 	@Override
-	public void persoLeaveCase(Personnage p) {
-		p.stats.vit -= vitesse;
+	public void projEnterCase(Projectile p) {
+		
 	}
 
 
@@ -54,7 +53,8 @@ public class CollisionVitesse implements CollisionPattern {
 	}
 
 	@Override
-	public void persoCollision(Personnage p) {
+	public String toString(){
+		return "Vitesse";
 	}
 
 }

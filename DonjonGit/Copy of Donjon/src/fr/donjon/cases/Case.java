@@ -18,17 +18,17 @@ public abstract class Case {
 
 	public final static int TAILLE=64;
 
-	public Image image;
-	public Rectangle limites;
-
 	boolean enabled;
+	ArrayList<Personnage> persos;
+
+	ArrayList<Projectile> projs;
 	public CollisionPattern collision;
 	
-	ArrayList<Personnage> persos;
-	ArrayList<Projectile> projs;;
+	public Image image;
+	public Rectangle limites;;
 
 	/**
-	 * Constructeur de la Case sans comportement spéciaux
+	 * Constructeur de la Case sans comportement spï¿½ciaux
 	 * @param ImageName le string contenant l'adresse de l'image.
 	 */
 	public Case(String src){
@@ -38,8 +38,8 @@ public abstract class Case {
 	/**
 	 * Constructeur 
 	 * @param src string contenant l'adresse de l'image
-	 * @param e booléen nécessaire pour certaines cases
-	 * @param cp lecomportement associé à la case
+	 * @param e boolï¿½en nï¿½cessaire pour certaines cases
+	 * @param cp lecomportement associï¿½ ï¿½ la case
 	 */
 	public Case( String src, boolean e, CollisionPattern cp){
 
@@ -56,10 +56,17 @@ public abstract class Case {
 	}
 
 	/**
+	 * Renvoi une nouvelle case du mï¿½me genre que celle dont on appelle la mï¿½thode clone.
+	 * Elle est redï¿½finie dans les classes dï¿½rivant de Case.
+	 */
+	@Override
+	public abstract Case clone();
+	
+	/**
 	 * Permet de dessiner la case dans l'image de la salle 
-	 * Certaines cases aux comportements plus spécifiques peuvent override cette méthode
-	 * @param g là où on veut dessiner la case
-	 * @param t paramètre nécessaire à certaines case (animations ...)
+	 * Certaines cases aux comportements plus spï¿½cifiques peuvent override cette mï¿½thode
+	 * @param g lï¿½ oï¿½ on veut dessiner la case
+	 * @param t paramï¿½tre nï¿½cessaire ï¿½ certaines case (animations ...)
 	 * @param x position horizontale de la case dans le tableau de case qui compose la salle.
 	 * @param y position verticale de la case dans le tableau de case qui compose la salle.
 	 */
@@ -69,16 +76,6 @@ public abstract class Case {
 		
 		g.drawImage(image, TAILLE*x, TAILLE*y , TAILLE, TAILLE, null);
 		
-	}
-	
-	/**
-	 * Positionne le rectangle de collision qui va dï¿½clencher la methode inCollision.
-	 * Par dï¿½fault le rectangle de collision recouvre toute la case.
-	 * @param vertical index de l'array 2D de la salle.
-	 * @param horizontal index de l'array 2D de la salle.
-	 */
-	public void setCollisionBoxLocation(int x, int y){
-		this.limites.setLocation(Case.TAILLE*x, Case.TAILLE*y);
 	}
 
 	/**
@@ -97,17 +94,6 @@ public abstract class Case {
 		
 	}
 	
-	public void nonCollision(Projectile p){
-		
-		if(enabled && collision != null){
-			if(projs.contains(p)){
-				collision.projLeaveCase(p);
-				projs.remove(p);
-			}
-		}
-		
-	}
-	
 	public void inCollision(Projectile p){
 		if(enabled && collision != null){
 			if(!projs.contains(p)){
@@ -116,7 +102,6 @@ public abstract class Case {
 			}
 		}
 	}
-	
 	
 	public void nonCollision(Personnage p){
 		
@@ -128,16 +113,17 @@ public abstract class Case {
 		}
 		
 	}
-
-	/**
-	 * Renvoi une nouvelle case du même genre que celle dont on appelle la méthode clone.
-	 * Elle est redéfinie dans les classes dérivant de Case.
-	 */
-	public abstract Case clone();
-
 	
-	public void setEnabled(boolean b){
-		this.enabled = b;
+	
+	public void nonCollision(Projectile p){
+		
+		if(enabled && collision != null){
+			if(projs.contains(p)){
+				collision.projLeaveCase(p);
+				projs.remove(p);
+			}
+		}
+		
 	}
 
 	/**
@@ -147,6 +133,21 @@ public abstract class Case {
 	 */
 	public void setCollision(CollisionPattern cp){
 		this.collision = cp;
+	}
+
+	
+	/**
+	 * Positionne le rectangle de collision qui va dï¿½clencher la methode inCollision.
+	 * Par dï¿½fault le rectangle de collision recouvre toute la case.
+	 * @param vertical index de l'array 2D de la salle.
+	 * @param horizontal index de l'array 2D de la salle.
+	 */
+	public void setCollisionBoxLocation(int x, int y){
+		this.limites.setLocation(Case.TAILLE*x, Case.TAILLE*y);
+	}
+
+	public void setEnabled(boolean b){
+		this.enabled = b;
 	}
 
 }

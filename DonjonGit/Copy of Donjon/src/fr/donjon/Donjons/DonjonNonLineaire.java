@@ -21,26 +21,45 @@ import fr.donjon.utils.Vecteur;
  */
 public class DonjonNonLineaire extends GestionnaireSalle{
 
-	private static final int SALLEWIDTH = 10;
 	private static final int SALLEHEIGHT = 7;
+	private static final int SALLEWIDTH = 10;
 	
 	/**
-	 * Constructeur d'un donjon non linéaire
-	 * @param width largeur du donjon souhaité
-	 * @param height hauteur du donjon souhaité
+	 * Constructeur d'un donjon non linï¿½aire
+	 * @param width largeur du donjon souhaitï¿½
+	 * @param height hauteur du donjon souhaitï¿½
 	 */
 	public DonjonNonLineaire(int width, int height){
-		super(new SalleQuatre(new Heros(0,0), Salle.addWalls(MapGenerator.randomForet(5, 5))),(int) width/2, height-1, width, height);
+		super(new SalleQuatre(new Heros(0,0), Salle.addWalls(MapGenerator.randomForet(5, 5))),width/2, height-1, width, height);
 		
-		//On place le héro au centre de la 1°salle
+		//On place le hï¿½ro au centre de la 1ï¿½salle
 		this.sActuelle.hero.setLocationCase(sActuelle.getRoomCenter());
 		
-		//On ajoute une porte vers le nord de la première salle
+		//On ajoute une porte vers le nord de la premiï¿½re salle
 		this.sActuelle.addDoor(Orientation.NORD, this.smap);
 		
 		
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.Donjons.GestionnaireSalle#checkDonjonFini()
+	 */
+	@Override
+	public void checkDonjonFini(){
+		//We go through the array
+		for(int i=0; i<smap.length; i++){
+			for(int j=0; j<smap[0].length;j++){
+				if(!(smap[i][j] == null)){
+					if(!smap[i][j].estFinie() || !smap[i][j].allDoorsHaveDestination()){
+						return;
+					}
+				}
+			}
+		}
+		ecouteur.requestGameOver(true);
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see fr.donjon.Donjons.GestionnaireSalle#fournirNouvelleSalle(fr.donjon.utils.Vecteur, fr.donjon.utils.Link, fr.donjon.salles.Salle[][])
@@ -61,17 +80,17 @@ public class DonjonNonLineaire extends GestionnaireSalle{
 		s.setEcouteur(this);
 		smap[(int)position.x][(int)position.y] = s;
 		
-		//On créé les portes vers les autres salles
-		//On décide des portes à ouvrir ou pas pour la suite
+		//On crï¿½ï¿½ les portes vers les autres salles
+		//On dï¿½cide des portes ï¿½ ouvrir ou pas pour la suite
 		
 		ArrayList<Orientation> mustCreateDoor = new ArrayList<Orientation>();
 		ArrayList<Orientation> canCreateDoor = new ArrayList<Orientation>();
 		
-		//D'abord la porte vers la salle précédente
+		//D'abord la porte vers la salle prï¿½cï¿½dente
 		Orientation o = l.getOrientation().opposite();
 		mustCreateDoor.add(o);
 		
-		//On regarde autour de la salle si des salles existent déjà et ont une porte vers la nouvelle.
+		//On regarde autour de la salle si des salles existent dï¿½jï¿½ et ont une porte vers la nouvelle.
 		for(Orientation z : Orientation.getOrientationList()){
 			if(z!=o){
 				try{
@@ -80,15 +99,15 @@ public class DonjonNonLineaire extends GestionnaireSalle{
 						mustCreateDoor.add(z);
 					}
 				}catch(NullPointerException e){
-					//La salle n'a pas encore été créé auparavant
+					//La salle n'a pas encore ï¿½tï¿½ crï¿½ï¿½ auparavant
 					canCreateDoor.add(z);
 				}catch(ArrayIndexOutOfBoundsException e){
-					//On est sur le bord du donjon, il n'y a plus de salles sur ce côté 
+					//On est sur le bord du donjon, il n'y a plus de salles sur ce cï¿½tï¿½ 
 				}
 			}
 		}
 		
-		//On détermine combien de portes et lesquelles parmi celles possibles on va créer
+		//On dï¿½termine combien de portes et lesquelles parmi celles possibles on va crï¿½er
 		
 		if(!canCreateDoor.isEmpty()){
 			r=(int)(Math.random()*6*43);
@@ -115,31 +134,12 @@ public class DonjonNonLineaire extends GestionnaireSalle{
 			}
 		}
 		
-		//On créé les portes
+		//On crï¿½ï¿½ les portes
 		for(Orientation y: mustCreateDoor){
 			s.addDoor(y, smap);
 		}
 		
 		
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.Donjons.GestionnaireSalle#checkDonjonFini()
-	 */
-	@Override
-	public void checkDonjonFini(){
-		//We go through the array
-		for(int i=0; i<smap.length; i++){
-			for(int j=0; j<smap[0].length;j++){
-				if(!(smap[i][j] == null)){
-					if(!smap[i][j].estFinie() || !smap[i][j].allDoorsHaveDestination()){
-						return;
-					}
-				}
-			}
-		}
-		ecouteur.requestGameOver(true);
 	}
 	
 }

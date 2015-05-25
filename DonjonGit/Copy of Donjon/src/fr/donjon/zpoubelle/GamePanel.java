@@ -23,23 +23,33 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 
-	static int instances = 0;
-	int instance;
+	public class TimerAction implements ActionListener{
 
-	static final int LARGEUR = 15;
+		@Override
+		public void actionPerformed(ActionEvent e){
+			update();
+			temps +=timerTime;
+		}
+
+	}
 	static final int HAUTEUR = 9;
+
+	static int instances = 0;
+	static final int LARGEUR = 15;
 	final static int timerTime = 30;
 
 	BufferedImage arrierePlan;
 	Graphics buffer;
-	protected Gestionnaire gestionnaire;
-
-	public Rectangle ecran;
-	Timer timer;
-
-	long temps;
+	int instance;
 
 	long ta = -1;
+	long temps;
+
+	Timer timer;
+
+	protected Gestionnaire gestionnaire;
+	public Rectangle ecran;
+
 	/**
 	 * Permet de creer un JPanel contenant le jeu
 	 * @param s	La salle a dessiner
@@ -69,12 +79,62 @@ public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 		buffer = arrierePlan.getGraphics();
 	}
 
+	@Override
+	public void attaque(Orientation o) {
+		gestionnaire.attaque(o);
+	}
+
+
+	@Override
+	public void deplacement(Vecteur v) {
+		gestionnaire.deplacement(v);
+	}
+
 	/**
 	 * Dessin de la salle dans le JPanel
 	 */
+	@Override
 	public void paint(Graphics g){
 
 		this.gestionnaire.currentRoom.draw(temps, g);
+	}
+
+	/**
+	 * Permet de d�marrer l'actualisation du jeu (par d�faut en pause)
+	 */
+	@Override
+	public void startGame(){
+		this.timer.start();
+	}
+	
+	///////////////////////////////////////////////////////
+	//INTERFACE D'ECOUTE///////////////////////////////////
+	///////////////////////////////////////////////////////
+	
+	//On fait passer les ordres au Gestionnaire et on intercepte celui pour stopper le Timer
+	
+	@Override
+	public void stopAttaque() {
+		gestionnaire.stopAttaque();
+	}
+
+	@Override
+	public void stopDeplacement() {
+		gestionnaire.stopDeplacement();
+	}
+
+	/**
+	 * Met en pause le jeu
+	 */
+	@Override
+	public void stopGame(){
+		this.timer.stop();
+	}
+
+	@Override
+	public void togglePause() {
+		if(timer.isRunning())timer.stop();
+		else timer.start();
 	}
 
 	/**
@@ -95,66 +155,10 @@ public abstract class GamePanel extends MyJPanel implements EcouteurClavier{
 		this.gestionnaire.update(temps);
 		repaint();
 	}
-
-
-	/**
-	 * Permet de d�marrer l'actualisation du jeu (par d�faut en pause)
-	 */
-	public void startGame(){
-		this.timer.start();
-	}
-
-	/**
-	 * Met en pause le jeu
-	 */
-	public void stopGame(){
-		this.timer.stop();
-	}
-
-	public class TimerAction implements ActionListener{
-
-		public void actionPerformed(ActionEvent e){
-			update();
-			temps +=timerTime;
-		}
-
-	}
 	
-	///////////////////////////////////////////////////////
-	//INTERFACE D'ECOUTE///////////////////////////////////
-	///////////////////////////////////////////////////////
-	
-	//On fait passer les ordres au Gestionnaire et on intercepte celui pour stopper le Timer
-	
-	@Override
-	public void attaque(Orientation o) {
-		gestionnaire.attaque(o);
-	}
-
-	@Override
-	public void stopAttaque() {
-		gestionnaire.stopAttaque();
-	}
-
-	@Override
-	public void deplacement(Vecteur v) {
-		gestionnaire.deplacement(v);
-	}
-
 	@Override
 	public void utiliseObjet(int reference) {
 		gestionnaire.utiliseObjet(reference);
-	}
-
-	@Override
-	public void togglePause() {
-		if(timer.isRunning())timer.stop();
-		else timer.start();
-	}
-	
-	@Override
-	public void stopDeplacement() {
-		gestionnaire.stopDeplacement();
 	}
 
 	

@@ -13,13 +13,13 @@ import fr.donjon.utils.Vecteur;
 
 public class SqueletteFeu extends Ennemis {
 
+	final static double COEFF = 0.3;
+	static int DEF = 5;
 	final static int LNG = 64;
 	final static int LRG = 64;
-	static int VIE = 75;
-	static int DEF = 5;
-	static int VIT = 2;
 	final static String src = "skeletonfeu_map.png";
-	final static double COEFF = 0.3;
+	static int VIE = 75;
+	static int VIT = 2;
 
 
 	public SqueletteFeu(int ax, int ay, Personnage cible, int level, Salle room){
@@ -46,6 +46,29 @@ public class SqueletteFeu extends Ennemis {
 
 		inventaire.useUtilisable(1);
 	}
+
+	@Override
+	public void attaquer(ArrayList<Personnage> cibles,
+			ArrayList<Projectile> projectiles, Vecteur v) {
+
+		this.etat = EtatPersonnage.ATTAQUE;
+
+		this.arme.attaquer(currentRoom.personnages, projectiles, v);
+
+		this.etat = EtatPersonnage.REPOS;
+	}
+
+	@Override
+	public void collide(Personnage p) {
+		if(p.type == Type.HERO)this.setLocation(lPos);
+		else {
+			Vecteur axis = new Vecteur( this.image.x + this.image.width/2 - (p.image.x + p.image.width/2),
+					this.image.y + this.image.height/2 - (p.image.y + p.image.height/2) );
+
+			this.marcher(axis.normalise());
+		}
+	}
+
 
 	//calculer le vecteur Squellette Personnage (voir methode marche de heros)
 	public void marcher(Vecteur v){
@@ -111,7 +134,6 @@ public class SqueletteFeu extends Ennemis {
 		
 	}
 
-
 	@Override
 	public void update(long t) {
 
@@ -124,29 +146,7 @@ public class SqueletteFeu extends Ennemis {
 	}
 
 	@Override
-	public void attaquer(ArrayList<Personnage> cibles,
-			ArrayList<Projectile> projectiles, Vecteur v) {
-
-		this.etat = EtatPersonnage.ATTAQUE;
-
-		this.arme.attaquer(currentRoom.personnages, projectiles, v);
-
-		this.etat = EtatPersonnage.REPOS;
-	}
-
-	@Override
 	public void utiliserObjet(int reference) {
 
-	}
-
-	@Override
-	public void collide(Personnage p) {
-		if(p.type == Type.HERO)this.setLocation(lPos);
-		else {
-			Vecteur axis = new Vecteur( this.image.x + this.image.width/2 - (p.image.x + p.image.width/2),
-					this.image.y + this.image.height/2 - (p.image.y + p.image.height/2) );
-
-			this.marcher(axis.normalise());
-		}
 	}
 }

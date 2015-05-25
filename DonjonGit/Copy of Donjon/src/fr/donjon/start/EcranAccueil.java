@@ -20,24 +20,24 @@ import fr.donjon.utils.ImageManager;
 
 public class EcranAccueil extends JPanel{ 
 
-	private static final long serialVersionUID = 1L;
+	final static String srcImage = "BackgroundMenu.jpg"; // FICHIER SOURCE POUR CHARGER L'IMAGE
 	
+	private static final long serialVersionUID = 1L;
+	ImageIcon iconeEditeur = new ImageIcon(ImageManager.getImage("mapEditor.png", getClass().getSimpleName())); // icone du sigle mapEditor
+	ImageIcon iconeInfinity = new ImageIcon(ImageManager.getImage("infinity.png", getClass().getSimpleName())); // icone du sigle infini
+	ImageIcon iconePlayer = new ImageIcon(ImageManager.getImage("Player.png", getClass().getSimpleName())); // icone de l'image du joueur
+
 	// dÃ©claration de l'image
 	Image im; // IMAGE
-	final static String srcImage = "BackgroundMenu.jpg"; // FICHIER SOURCE POUR CHARGER L'IMAGE
 	final int SCREENX=800; // LONGUEUR FENETRE
 	final int SCREENY=600; // LARGEUR FENETRE
-
+	private JButton boutonEditeur= new JButton("Editeur de map", iconeEditeur);
+	
+	private JButton boutonJeuInfini=new JButton ("Jeu Infini",iconeInfinity);
+	private JButton boutonJeuLineaire = new JButton("Jeu Linï¿½aire",iconePlayer);
+	private JButton boutonJeuTutoriel = new JButton("Tutoriel");
 	// dÃ©claration des boutons et du panel et de l'icone pour le bouton
 	private JPanel panel = new JPanel();
-	ImageIcon iconePlayer = new ImageIcon(ImageManager.getImage("Player.png", getClass().getSimpleName())); // icone de l'image du joueur
-	ImageIcon iconeInfinity = new ImageIcon(ImageManager.getImage("infinity.png", getClass().getSimpleName())); // icone du sigle infini
-	ImageIcon iconeEditeur = new ImageIcon(ImageManager.getImage("mapEditor.png", getClass().getSimpleName())); // icone du sigle mapEditor
-	
-	private JButton boutonJeuLineaire = new JButton("Jeu Linéaire",iconePlayer);
-	private JButton boutonJeuInfini=new JButton ("Jeu Infini",iconeInfinity);
-	private JButton boutonJeuTutoriel = new JButton("Tutoriel");
-	private JButton boutonEditeur= new JButton("Editeur de map", iconeEditeur);
 	
 	public EcouteurLauncher ecouteur;
 
@@ -69,32 +69,18 @@ public class EcranAccueil extends JPanel{
 		
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
-	 */
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		
-		if (im!=null) {
-			g.drawImage (im, 0, 0, this);	
-		}
-	}
-	//les actions de la souris
-
 	/**
-	 * Cette méthode décrit les opérations à faire lorsqu'on clique sur chacun des boutons.
+	 * Cette mï¿½thode dï¿½crit les opï¿½rations ï¿½ faire lorsqu'on clique sur chacun des boutons.
 	 */
 	private void addListeners(){
 
 		boutonJeuLineaire.addActionListener(new ActionListener() {
 			/**
-			 * Si on a appuyé sur le bouton, on commande au lancher un nouveau jeu du type correspondant
+			 * Si on a appuyï¿½ sur le bouton, on commande au lancher un nouveau jeu du type correspondant
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//On réinitialise le nombre de salles
+				//On rï¿½initialise le nombre de salles
 				Salle.instances = 0;
 				
 				ecouteur.requestNewGame(new DonjonLineaire(10));
@@ -107,7 +93,7 @@ public class EcranAccueil extends JPanel{
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//On réinitialise le nombre de salles
+				//On rï¿½initialise le nombre de salles
 				Salle.instances = 0;
 				
 				//On commande un jeu infini
@@ -120,7 +106,7 @@ public class EcranAccueil extends JPanel{
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e){
-				//On réinitialise le nombre de salles
+				//On rï¿½initialise le nombre de salles
 				Salle.instances = 0;
 				
 				//On commande un jeu test
@@ -134,9 +120,23 @@ public class EcranAccueil extends JPanel{
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//On commande l'éditeur de map
+				//On commande l'ï¿½diteur de map
 				new EditorWindow("Editeur de cartes");
 			}
 		});
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		if (im!=null) {
+			g.drawImage (im, 0, 0, this);	
+		}
+	}
+	//les actions de la souris
 }

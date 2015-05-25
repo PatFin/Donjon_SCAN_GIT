@@ -4,8 +4,6 @@
 package fr.donjon.utils;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-
 import fr.donjon.cases.Case;
 
 /**
@@ -23,6 +21,20 @@ public class ProbabilityMap {
 	 */
 	public ProbabilityMap() {
 		probs = new ArrayList<CaseProbability>();
+	}
+
+	private void sortArray(){
+
+		/*probs.sort(new Comparator<CaseProbability>() {
+
+			@Override
+			public int compare(CaseProbability o1, CaseProbability o2) {
+
+				return  Double.compare(o1.proba, o2.proba);
+			}
+
+
+		});*/
 	}
 
 	public boolean addProba( Case c, double prob){
@@ -59,20 +71,6 @@ public class ProbabilityMap {
 
 		return probs.get(probs.size() - 1).pCase.clone();
 
-	}
-
-	private void sortArray(){
-
-		/*probs.sort(new Comparator<CaseProbability>() {
-
-			@Override
-			public int compare(CaseProbability o1, CaseProbability o2) {
-
-				return  Double.compare(o1.proba, o2.proba);
-			}
-
-
-		});*/
 	}
 
 	/*

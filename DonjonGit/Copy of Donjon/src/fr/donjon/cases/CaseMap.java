@@ -16,11 +16,11 @@ import fr.donjon.utils.Vecteur;
  */
 public class CaseMap {
 
-	public int w;
-	public int h;
-
-	Image source ;
 	int mapCut ;
+	Image source ;
+
+	public int h;
+	public int w;
 	
 	/**
 	 * 
@@ -29,8 +29,8 @@ public class CaseMap {
 		this.source = ImageManager.getImage(src, this.getClass().getSimpleName());
 		this.mapCut = cut;
 		
-		w = (int) source.getWidth(null)/mapCut;
-		h = (int) source.getHeight(null)/mapCut;
+		w = source.getWidth(null)/mapCut;
+		h = source.getHeight(null)/mapCut;
 	}
 	
 	public void drawPosition(Graphics g, int x, int y, Vecteur position){

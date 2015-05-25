@@ -27,17 +27,17 @@ import fr.donjon.utils.Vecteur;
  */
 public class DialogNouveau extends JDialog {
 
-	Box content; //Le contenu graphique du JDialog
-
-	JSlider sWidth;	//Slider largeur
-	JSlider sHeight;//Slider hauteur
-
-	JButton BCreer;	
 	JButton BAnnuler;
 
-	String titleText = "Grille 15x10"; //Texte a afficher dans la fenêtre
+	JButton BCreer;
+	Box content; //Le contenu graphique du JDialog
 
-	DialogListener listener;			//La classe attendant un résultat du JDialog (et implementant DialogListener)
+	DialogListener listener;			//La classe attendant un rï¿½sultat du JDialog (et implementant DialogListener)	
+	JSlider sHeight;//Slider hauteur
+
+	JSlider sWidth;	//Slider largeur
+
+	String titleText = "Grille 15x10"; //Texte a afficher dans la fenï¿½tre
 
 	/**
 	 * 
@@ -45,8 +45,8 @@ public class DialogNouveau extends JDialog {
 	 * 
 	 * @param parent	Le panel qui contient le JDialog
 	 * @param title		Le titre a afficher
-	 * @param modal		Modalité de la boite	
-	 * @param l			La classe ecoutant le résultat
+	 * @param modal		Modalitï¿½ de la boite	
+	 * @param l			La classe ecoutant le rï¿½sultat
 	 */
 	public DialogNouveau(JFrame parent, String title, boolean modal, DialogListener l){
 		super(parent,title,modal);
@@ -77,7 +77,7 @@ public class DialogNouveau extends JDialog {
 		});
 
 		//Buttons
-		BCreer = new JButton("Créer");
+		BCreer = new JButton("Crï¿½er");
 		BAnnuler = new JButton("Annuler");
 		BCreer.addActionListener(new ActionListener() {
 
@@ -107,7 +107,7 @@ public class DialogNouveau extends JDialog {
 		Box box2 = Box.createHorizontalBox();
 		box2.add(Box.createHorizontalStrut(5));	//Expace vide
 		box2.add(BAnnuler);
-		box2.add(Box.createHorizontalGlue());	//Boutons ecartés au maximum
+		box2.add(Box.createHorizontalGlue());	//Boutons ecartï¿½s au maximum
 		box2.add(BCreer);
 		box2.add(Box.createHorizontalStrut(5)); //Espace vide
 
@@ -124,6 +124,12 @@ public class DialogNouveau extends JDialog {
 
 	}
 
+	private void cancelBox(){
+		
+		listener.onCancel(); 	//On previent
+		setVisible(false);		//On dï¿½saffiche
+	}
+
 	/**
 	 * Met a jout le texte de la bordure en fonction de la valeur des Sliders
 	 */
@@ -134,18 +140,12 @@ public class DialogNouveau extends JDialog {
 	}
 
 	/**
-	 * Gère l'appui sur le boutton valider
+	 * Gï¿½re l'appui sur le boutton valider
 	 */
 	private void validateBox(){
 		
-		listener.onValidate(new Vecteur(sWidth.getValue(), sHeight.getValue())); 	//On previent l'écouteur
+		listener.onValidate(new Vecteur(sWidth.getValue(), sHeight.getValue())); 	//On previent l'ï¿½couteur
 		setVisible(false);															//On fait disparaitre le JDialog
-	}
-
-	private void cancelBox(){
-		
-		listener.onCancel(); 	//On previent
-		setVisible(false);		//On désaffiche
 	}
 
 }

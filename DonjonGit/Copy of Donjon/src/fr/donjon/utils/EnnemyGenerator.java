@@ -48,6 +48,26 @@ public class EnnemyGenerator {
 		return l;
 	}
 
+	public static ArrayList<Ennemis> generateCircle( Heros he, Salle s, int amount, int radius){
+
+		ArrayList<Ennemis> l = new ArrayList<Ennemis>();
+
+		double angle = Math.PI*2/amount ;
+
+		Vecteur pc = s.getRoomCenter().multiplie(Case.TAILLE);
+
+		Vecteur np = new Vecteur(0,0);
+
+		for(double i = 0 ; i < 2*Math.PI ; i+=angle){
+
+			np = pc.ajoute((new Vecteur( Math.cos(i), Math.sin(i) )).multiplie(radius));
+
+			l.add( new Squelette( (int)np.x, (int)np.y, he, 1, s) );
+		}
+
+		return l;
+	}
+
 	public static ArrayList<Ennemis> generateOverLave(Heros he, Salle s, float proba){
 
 		float w = (s.cases.length - 2) ;
@@ -72,26 +92,6 @@ public class EnnemyGenerator {
 
 			if(r <= proba) l.add( new Squelette(c.limites.x + Case.TAILLE/2 , c.limites.y + Case.TAILLE/2, he,1 ,s) );
 
-		}
-
-		return l;
-	}
-
-	public static ArrayList<Ennemis> generateCircle( Heros he, Salle s, int amount, int radius){
-
-		ArrayList<Ennemis> l = new ArrayList<Ennemis>();
-
-		double angle = Math.PI*2/amount ;
-
-		Vecteur pc = s.getRoomCenter().multiplie(Case.TAILLE);
-
-		Vecteur np = new Vecteur(0,0);
-
-		for(double i = 0 ; i < 2*Math.PI ; i+=angle){
-
-			np = pc.ajoute((new Vecteur( Math.cos(i), Math.sin(i) )).multiplie(radius));
-
-			l.add( new Squelette( (int)np.x, (int)np.y, he, 1, s) );
 		}
 
 		return l;

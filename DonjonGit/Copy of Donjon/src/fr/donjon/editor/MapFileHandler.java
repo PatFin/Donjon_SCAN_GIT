@@ -33,9 +33,9 @@ import fr.donjon.cases.CaseWater;
  */
 public class MapFileHandler {
 
-	final static String pathMaps = "files/maps/" ;
-	final static String extension = "djmap";
 	final static String absolutePath = (new File("")).getAbsolutePath();
+	final static String extension = "djmap";
+	final static String pathMaps = "files/maps/" ;
 	
 	/**
 	 * Don't use it, its a static class
@@ -45,119 +45,110 @@ public class MapFileHandler {
 
 	/**
 	 * 
-	 * Crates the directory for the maps if it does not exist and retreive 
-	 * all the files with .djmap extension in a list of File 
+	 * Creates a list containing the different cases of the game
 	 * 
-	 * @return	The list of files corresponding tp a map file
+	 * @return	The LinkedList containing all the Case
 	 */
-	public static LinkedList<File> getMapList(){
+	private static LinkedList<Case> getCasesList(){
 
-		File f = new File(pathMaps);
-		LinkedList<File> list = new LinkedList<File>();
+		LinkedList<Case> listCases = new LinkedList<Case>();
+		
+		listCases.add(new CaseDalle());
+		listCases.add(new CaseEscalier());
+		listCases.add(new CaseFendue());
+		listCases.add(new CaseGlass());	
+		listCases.add(new CaseHerbe());
+		listCases.add(new CaseMur());
+		listCases.add(new CaseLiane());
+		listCases.add(new CaseRocher());
+		listCases.add(new CaseSwitch());
+		listCases.add(new CaseTeleportation());
+		listCases.add(new CaseLave());
+		listCases.add(new CaseWater());
+		listCases.add(new CaseBloquante());	
+		listCases.add(new CaseVide());
 
-		if(!f.exists()){
-			System.out.println("Directory created");
-			f.mkdirs();
-		}
-
-		for( File fl : f.listFiles()){
-			if(fl.getName().endsWith(extension)){
-				list.add(fl);
-			}
-		}
-
-		return list;
+		
+		return listCases;
 
 	}
 	
 	
 	/**
-	 * Teste tous les fichiers de salles personnalis�es et les envoie dans la liste de return 
-	 * s'ils peuvent fonctionner. Cette m�thode est notamnent utilis�e dans MapGenerator.
-	 * @return la liste des descriptions des salles qui peuvent fonctionner dans un donjon
+	 * 
+	 * Create the head of the file, it corresponds to the caracteristics
+	 * of a SalleDescription
+	 * 
+	 * @param name	The name of the map
+	 * @param mat	The matrix of Case 
+	 * @param index	The unique index of the map
+	 * @return		The head as a String
 	 */
-	public static LinkedList<SalleDescription> getWorkingMaps(){
-		LinkedList <SalleDescription> workingMaps = new LinkedList<SalleDescription>();
-		LinkedList<File> files = getMapList();
-		
-		SalleDescription s;
-		for(File f: files){
-			s = MapFileHandler.getFileToDescription(f);
-			if(s != null){
-				workingMaps.add(s);
-			}
-		}
-		
-		return workingMaps;
+	private static String getHeadOfMapFile(String name, Case[][] mat, int index){
+
+		return 	name + "-" + 
+				index + "-" +
+				mat.length + "-" + 
+				mat[0].length + ";";
+
 	}
 	
 	/**
 	 * 
-	 * Allows to get a list of SalleDescription from a list of indexes
+	 * Associates a unique index to a Case, it creates the list of available Case
+	 * and uses the index from this list to get the unique index.
 	 * 
-	 * @param indexes	The list of indexes as an Integer array
-	 * @return			The list of SalleDescription
+	 * @param c		The Case we want the corresponding index of 
+	 * @return		The index associated to the Case
 	 */
-	public static LinkedList<SalleDescription> getGroupOfMaps(int[] indexes){
+	private static int getIndexFromCase(Case c){
 
-		LinkedList<File> files = getMapList();
-		LinkedList<SalleDescription> sds = new LinkedList<SalleDescription>();
-		LinkedList<SalleDescription> group = new LinkedList<SalleDescription>(); 
+		String name = c.getClass().getName();
 
-		for( File f : files){
-			sds.add(getFileToDescription(f));
+		LinkedList<Case> list = getCasesList();
+
+		for(int i = 0 ; i < list.size() ; i++ ){
+
+			if(name == list.get(i).getClass().getName() )return i;
+
 		}
 
-		for(SalleDescription sd : sds){
-			for(int index : indexes){
-				if(index == sd.index)group.add(sd);
+		return -1;
+
+	}
+
+	/**
+	 * 
+	 * Return the relative path to a file map
+	 * ex: "files/maps/01.djmap" 
+	 * 
+	 * @param index	The specified index
+	 * @return	The path as a String
+	 */
+	private static String getMapFilePath(int index){
+
+		return pathMaps + index + "."  + extension;
+	}
+
+	/**
+	 * 
+	 * Change the matrix of Cases into a String description to write on a file
+	 * 
+	 * @param mat	The matrix to transform
+	 * @return		The String description
+	 */
+	private static String getMatrixToString(Case[][] mat){
+
+		String ms = "";
+
+		for(int y = 0 ; y < mat[0].length ; y++){
+			for(int x = 0 ; x < mat.length ; x++ ){
+				ms += getIndexFromCase(mat[x][y]) + "-";
 			}
 		}
 
-		return group;
-	}
+		return ms;
 
-	/**
-	 * 
-	 * Return the existing indexes of map in the standard directory
-	 * 
-	 * @return The int table containing the existing indexes
-	 */
-	public static int[] getExistingIndexes(){
-
-		LinkedList<File> files = getMapList();
-		LinkedList<SalleDescription> sds = new LinkedList<SalleDescription>();
-
-		for(File f : files){
-			if( getFileToDescription(f)!= null) sds.add(getFileToDescription(f));
-		}
-
-		int[] idxs = new int[sds.size()];
-
-		for(SalleDescription sd : sds){
-			idxs[sds.indexOf(sd)] = sd.index;
-		}
-
-		return idxs;
-	}
-
-	/**
-	 * 	Returns a SalleDescription from a File
-	 * 
-	 * @param f	The file to read
-	 * @return	The SalleDescription of the file or null if the file is not readable
-	 */
-	public static SalleDescription getFileToDescription(File f){
-
-		try{
-			int index = Integer.parseInt( f.getName().split("\\.")[0] );
-
-			return getSalleDescriptionFromFile(index);
-		}catch(Exception e){
-			System.out.println("This file is not a readable map file ("+f.getName() + ")");
-			return null;
-		}
-		
 	}
 
 	/**
@@ -236,6 +227,118 @@ public class MapFileHandler {
 	}
 
 	/**
+	 * 
+	 * It returns the Case associated to an index
+	 * 
+	 * @param index	The index of the case
+	 * @return		The Case associated to the index, return by default a Case_void if the Case is null
+	 */
+	public static Case getCaseFromIndex(int index){
+
+		LinkedList<Case> list = getCasesList();
+
+		Case c = list.get(index).clone();
+
+		return c == null ? new CaseVide() : c;
+	}
+
+	/**
+	 * 
+	 * Return the existing indexes of map in the standard directory
+	 * 
+	 * @return The int table containing the existing indexes
+	 */
+	public static int[] getExistingIndexes(){
+
+		LinkedList<File> files = getMapList();
+		LinkedList<SalleDescription> sds = new LinkedList<SalleDescription>();
+
+		for(File f : files){
+			if( getFileToDescription(f)!= null) sds.add(getFileToDescription(f));
+		}
+
+		int[] idxs = new int[sds.size()];
+
+		for(SalleDescription sd : sds){
+			idxs[sds.indexOf(sd)] = sd.index;
+		}
+
+		return idxs;
+	}
+
+	/**
+	 * 	Returns a SalleDescription from a File
+	 * 
+	 * @param f	The file to read
+	 * @return	The SalleDescription of the file or null if the file is not readable
+	 */
+	public static SalleDescription getFileToDescription(File f){
+
+		try{
+			int index = Integer.parseInt( f.getName().split("\\.")[0] );
+
+			return getSalleDescriptionFromFile(index);
+		}catch(Exception e){
+			System.out.println("This file is not a readable map file ("+f.getName() + ")");
+			return null;
+		}
+		
+	}
+
+	/**
+	 * 
+	 * Allows to get a list of SalleDescription from a list of indexes
+	 * 
+	 * @param indexes	The list of indexes as an Integer array
+	 * @return			The list of SalleDescription
+	 */
+	public static LinkedList<SalleDescription> getGroupOfMaps(int[] indexes){
+
+		LinkedList<File> files = getMapList();
+		LinkedList<SalleDescription> sds = new LinkedList<SalleDescription>();
+		LinkedList<SalleDescription> group = new LinkedList<SalleDescription>(); 
+
+		for( File f : files){
+			sds.add(getFileToDescription(f));
+		}
+
+		for(SalleDescription sd : sds){
+			for(int index : indexes){
+				if(index == sd.index)group.add(sd);
+			}
+		}
+
+		return group;
+	}
+
+	/**
+	 * 
+	 * Crates the directory for the maps if it does not exist and retreive 
+	 * all the files with .djmap extension in a list of File 
+	 * 
+	 * @return	The list of files corresponding tp a map file
+	 */
+	public static LinkedList<File> getMapList(){
+
+		File f = new File(pathMaps);
+		LinkedList<File> list = new LinkedList<File>();
+
+		if(!f.exists()){
+			System.out.println("Directory created");
+			f.mkdirs();
+		}
+
+		for( File fl : f.listFiles()){
+			if(fl.getName().endsWith(extension)){
+				list.add(fl);
+			}
+		}
+
+		return list;
+
+	}
+
+	/**
 	 * Returns a SalleDescription object from the file with the corresponding index
 	 * 
 	 * @param index	The index of the file to be read
@@ -269,125 +372,22 @@ public class MapFileHandler {
 	}
 
 	/**
-	 * 
-	 * Create the head of the file, it corresponds to the caracteristics
-	 * of a SalleDescription
-	 * 
-	 * @param name	The name of the map
-	 * @param mat	The matrix of Case 
-	 * @param index	The unique index of the map
-	 * @return		The head as a String
+	 * Teste tous les fichiers de salles personnalis�es et les envoie dans la liste de return 
+	 * s'ils peuvent fonctionner. Cette m�thode est notamnent utilis�e dans MapGenerator.
+	 * @return la liste des descriptions des salles qui peuvent fonctionner dans un donjon
 	 */
-	private static String getHeadOfMapFile(String name, Case[][] mat, int index){
-
-		return 	name + "-" + 
-				index + "-" +
-				mat.length + "-" + 
-				mat[0].length + ";";
-
-	}
-
-	/**
-	 * 
-	 * Change the matrix of Cases into a String description to write on a file
-	 * 
-	 * @param mat	The matrix to transform
-	 * @return		The String description
-	 */
-	private static String getMatrixToString(Case[][] mat){
-
-		String ms = "";
-
-		for(int y = 0 ; y < mat[0].length ; y++){
-			for(int x = 0 ; x < mat.length ; x++ ){
-				ms += getIndexFromCase(mat[x][y]) + "-";
+	public static LinkedList<SalleDescription> getWorkingMaps(){
+		LinkedList <SalleDescription> workingMaps = new LinkedList<SalleDescription>();
+		LinkedList<File> files = getMapList();
+		
+		SalleDescription s;
+		for(File f: files){
+			s = MapFileHandler.getFileToDescription(f);
+			if(s != null){
+				workingMaps.add(s);
 			}
 		}
-
-		return ms;
-
-	}
-
-	/**
-	 * 
-	 * Return the relative path to a file map
-	 * ex: "files/maps/01.djmap" 
-	 * 
-	 * @param index	The specified index
-	 * @return	The path as a String
-	 */
-	private static String getMapFilePath(int index){
-
-		return pathMaps + index + "."  + extension;
-	}
-
-	/**
-	 * 
-	 * Creates a list containing the different cases of the game
-	 * 
-	 * @return	The LinkedList containing all the Case
-	 */
-	private static LinkedList<Case> getCasesList(){
-
-		LinkedList<Case> listCases = new LinkedList<Case>();
 		
-		listCases.add(new CaseDalle());
-		listCases.add(new CaseEscalier());
-		listCases.add(new CaseFendue());
-		listCases.add(new CaseGlass());	
-		listCases.add(new CaseHerbe());
-		listCases.add(new CaseMur());
-		listCases.add(new CaseLiane());
-		listCases.add(new CaseRocher());
-		listCases.add(new CaseSwitch());
-		listCases.add(new CaseTeleportation());
-		listCases.add(new CaseLave());
-		listCases.add(new CaseWater());
-		listCases.add(new CaseBloquante());	
-		listCases.add(new CaseVide());
-
-		
-		return listCases;
-
-	}
-
-	/**
-	 * 
-	 * Associates a unique index to a Case, it creates the list of available Case
-	 * and uses the index from this list to get the unique index.
-	 * 
-	 * @param c		The Case we want the corresponding index of 
-	 * @return		The index associated to the Case
-	 */
-	private static int getIndexFromCase(Case c){
-
-		String name = c.getClass().getName();
-
-		LinkedList<Case> list = getCasesList();
-
-		for(int i = 0 ; i < list.size() ; i++ ){
-
-			if(name == list.get(i).getClass().getName() )return i;
-
-		}
-
-		return -1;
-
-	}
-
-	/**
-	 * 
-	 * It returns the Case associated to an index
-	 * 
-	 * @param index	The index of the case
-	 * @return		The Case associated to the index, return by default a Case_void if the Case is null
-	 */
-	public static Case getCaseFromIndex(int index){
-
-		LinkedList<Case> list = getCasesList();
-
-		Case c = list.get(index).clone();
-
-		return c == null ? new CaseVide() : c;
+		return workingMaps;
 	}
 }

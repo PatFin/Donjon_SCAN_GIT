@@ -55,36 +55,31 @@ public class EditorWindow extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static void main(String[] a){
-
-		new EditorWindow("Editeur de cartes");
-	}
-
-	//Cadre principal
-	JPanel cadre;
-
-	//Panel menu
-	JPanel panMenu;
-	JButton BNouveau;
-	JButton BSauvegarder;
 	JButton BDelete;
-	JButton BFill;
-	JButton BOuvrir;
 
 	JButton BEssayer;
 
-	//Panel Interactions (boutons)
-	JPanel panInteractions;
-	JSlider sliderThickness; 
-
-	JPanel 	panCases;
+	JButton BFill;
+	JButton BNouveau;
+	JButton BOuvrir;
+	JButton BSauvegarder;
+	//Cadre principal
+	JPanel cadre;
 	LinkedList<CaseButton> LCButtons;
-
 
 	LinkedList<Case> listCases;
 
+	JPanel 	panCases;
 	//Panel dessin
-	PanelEdition panDessin;
+	PanelEdition panDessin; 
+
+	//Panel Interactions (boutons)
+	JPanel panInteractions;
+	//Panel menu
+	JPanel panMenu;
+
+
+	JSlider sliderThickness;
 
 	/**
 	 * Permet de creer la fenetre
@@ -283,11 +278,6 @@ public class EditorWindow extends JFrame{
 				fc.setFileFilter(new FileFilter() {
 
 					@Override
-					public String getDescription() {
-						return null;
-					}
-
-					@Override
 					public boolean accept(File f) {
 						if (f.isDirectory()) {
 							return true;
@@ -309,6 +299,11 @@ public class EditorWindow extends JFrame{
 						}
 
 						return false;
+					}
+
+					@Override
+					public String getDescription() {
+						return null;
 					}
 				});
 				int returnVal = fc.showOpenDialog(cadre);
@@ -355,6 +350,11 @@ public class EditorWindow extends JFrame{
 			bt.addActionListener(new CaseButtonListener(bt, panDessin));
 		}
 
+	}
+
+	public static void main(String[] a){
+
+		new EditorWindow("Editeur de cartes");
 	}
 
 

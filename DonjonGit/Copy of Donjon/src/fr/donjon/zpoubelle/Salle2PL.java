@@ -34,63 +34,6 @@ public class Salle2PL extends SalleQuatre {
 	
 	
 	
-	public static Case[][] addDoors(Case[][] c,Orientation o){
-		
-		int w = c.length;
-		int h = c[0].length;
-		
-		switch(o){
-		case NORD:
-		case SUD:
-			c[(int)w/2][0] = new CasePorte(Orientation.NORD);
-			c[(int)w/2][h-1] = new CasePorte(Orientation.SUD);
-			break;
-
-		case EST:
-		case OUEST:
-			c[0][(int)w/2] = new CasePorte(Orientation.OUEST);
-			c[w-1][(int)h/2] = new CasePorte(Orientation.EST);
-			break;
-
-		}
-
-		return c;
-	}
-
-
-	public static Case[][] getCases(Case[][] c, Orientation o){
-		
-		c = addWalls(c);
-		c = addDoors(c, o);
-		
-		return c;
-	}
-	
-	@Override
-	public void passerLaPorte(Vecteur dir) {
-		super.passerLaPorte(dir);
-		Vecteur pos = new Vecteur(0,0);
-
-
-		switch(Orientation.getOrientation(dir)){
-		case EST:
-			pos.setLocation(1, (height/2)+1);
-			break;
-		case NORD:
-			pos.setLocation( (width/2)+1, height);
-			break;
-		case OUEST:
-			pos.setLocation( width , (height/2)+1 );
-			break;
-		case SUD:
-			pos.setLocation( (width/2)+1 , 1 );
-			break;
-		default:
-			break;
-		}
-		hero.setLocation(pos);
-	}
-
 	@Override
 	public void activerLesPortes(boolean a) {
 
@@ -140,6 +83,63 @@ public class Salle2PL extends SalleQuatre {
 
 		}
 
+	}
+
+
+	@Override
+	public void passerLaPorte(Vecteur dir) {
+		super.passerLaPorte(dir);
+		Vecteur pos = new Vecteur(0,0);
+
+
+		switch(Orientation.getOrientation(dir)){
+		case EST:
+			pos.setLocation(1, (height/2)+1);
+			break;
+		case NORD:
+			pos.setLocation( (width/2)+1, height);
+			break;
+		case OUEST:
+			pos.setLocation( width , (height/2)+1 );
+			break;
+		case SUD:
+			pos.setLocation( (width/2)+1 , 1 );
+			break;
+		default:
+			break;
+		}
+		hero.setLocation(pos);
+	}
+	
+	public static Case[][] addDoors(Case[][] c,Orientation o){
+		
+		int w = c.length;
+		int h = c[0].length;
+		
+		switch(o){
+		case NORD:
+		case SUD:
+			c[w/2][0] = new CasePorte(Orientation.NORD);
+			c[w/2][h-1] = new CasePorte(Orientation.SUD);
+			break;
+
+		case EST:
+		case OUEST:
+			c[0][w/2] = new CasePorte(Orientation.OUEST);
+			c[w-1][h/2] = new CasePorte(Orientation.EST);
+			break;
+
+		}
+
+		return c;
+	}
+
+	public static Case[][] getCases(Case[][] c, Orientation o){
+		
+		c = addWalls(c);
+		c = addDoors(c, o);
+		
+		return c;
 	}
 
 }

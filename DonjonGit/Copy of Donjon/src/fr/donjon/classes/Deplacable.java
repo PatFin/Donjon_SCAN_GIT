@@ -13,8 +13,8 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class Deplacable extends Objet {
 	
-	public Vecteur vvitesse;
 	public int vitDeplacement;
+	public Vecteur vvitesse;
 	
 	/**
 	 * 
@@ -41,6 +41,7 @@ public abstract class Deplacable extends Objet {
 	/**
 	 * Dessin du personnege et de son arme
 	 */
+	@Override
 	abstract public void draw(long t, Graphics g);
 
 	/**
@@ -62,17 +63,17 @@ public abstract class Deplacable extends Objet {
 		this.setLocation((int)v.x, (int)v.y);
 	}
 	
-	@Override
-	public void update(long t){
-
-	}
-
 	/**
 	 * Places the object on the tile which coordinates in the room are given by the parameter
 	 * @param v the coordinates of the tile where the object should be placed
 	 */
 	public void setLocationCase(Vecteur v){
 		this.setLocation((int)v.x*Case.TAILLE,(int) v.y*Case.TAILLE);
+	}
+
+	@Override
+	public void update(long t){
+
 	}
 
 }

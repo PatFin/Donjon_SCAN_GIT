@@ -8,44 +8,53 @@ import java.util.ArrayList;
  *
  */
 public enum Orientation {
-	NORD,SUD,OUEST,EST;
+	EST,NORD,OUEST,SUD;
 	
 	
-	/**
-	 * Generates a random orientation
-	 * @return a random orientation
-	 */
-	public static Orientation random(){
-		Orientation[] o = {NORD,SUD,EST,OUEST};
+	public Vecteur getUnitVector() {
+		return Orientation.getUnitVector(this);
+	}
+	
+	public Orientation opposite(){
+		return Orientation.opposite(this);
+	}
+	
+	public static Orientation getOrientation(Vecteur v){
 		
-		return o[(int)(Math.random()*4)];
+		if(v.x > 0 && v.y == 0)return EST;
+		else if (v.x < 0 && v.y == 0)return OUEST;
+		else if (v.y > 0 && v.x == 0)return SUD;
+		else if (v.y < 0 && v.x == 0)return NORD;
+		else return NORD;
+	}
+	
+	public static ArrayList<Orientation> getOrientationList(){
+		ArrayList<Orientation> o = new ArrayList<Orientation>();
+		o.add(OUEST);
+		o.add(EST);
+		o.add(NORD);
+		o.add(SUD);
+		return o;
 	}
 	
 	/**
-	 * Generates a random orientation which is not that of the one given in parameter
-	 * @param o the non wanted Orientation
-	 * @return any orientation but o
+	 * Gives back the unit vector corresponding to an orientation
+	 * @param o the orientation to be converted into a vector
+	 * @return a unit vector in the orientation given
 	 */
-	public static Orientation random(Orientation o){
-		Orientation a;
-		do{
-			a=random();
-		}while(a==o);
-		return a;
-	}
-	
-	/**
-	 * Generates a random orientation which is not that of the one given in parameter
-	 * @param a a non wanted Orientation
-	 * @param b a non wanted Orientation
-	 * @return any orientation but a or b
-	 */
-	public static Orientation random(Orientation a, Orientation b){
-		Orientation r;
-		do{
-			r=random();
-		}while(r==a || r==b);
-		return r;
+	public static Vecteur getUnitVector(Orientation o){
+		switch(o){
+		case NORD:
+			return Vecteur.vNord;
+		case SUD:
+			return Vecteur.vSud;
+		case EST:
+			return Vecteur.vEst;
+		case OUEST:
+			return Vecteur.vOuest;
+		default:
+			return Vecteur.vNull;
+		}
 	}
 	
 	/**
@@ -71,50 +80,41 @@ public enum Orientation {
 		}
 	}
 	
-	public static ArrayList<Orientation> getOrientationList(){
-		ArrayList<Orientation> o = new ArrayList<Orientation>();
-		o.add(OUEST);
-		o.add(EST);
-		o.add(NORD);
-		o.add(SUD);
-		return o;
-	}
 	
-	public Orientation opposite(){
-		return Orientation.opposite(this);
-	}
-	
-	
-	public static Orientation getOrientation(Vecteur v){
+	/**
+	 * Generates a random orientation
+	 * @return a random orientation
+	 */
+	public static Orientation random(){
+		Orientation[] o = {NORD,SUD,EST,OUEST};
 		
-		if(v.x > 0 && v.y == 0)return EST;
-		else if (v.x < 0 && v.y == 0)return OUEST;
-		else if (v.y > 0 && v.x == 0)return SUD;
-		else if (v.y < 0 && v.x == 0)return NORD;
-		else return NORD;
+		return o[(int)(Math.random()*4)];
 	}
 	
 	/**
-	 * Gives back the unit vector corresponding to an orientation
-	 * @param o the orientation to be converted into a vector
-	 * @return a unit vector in the orientation given
+	 * Generates a random orientation which is not that of the one given in parameter
+	 * @param o the non wanted Orientation
+	 * @return any orientation but o
 	 */
-	public static Vecteur getUnitVector(Orientation o){
-		switch(o){
-		case NORD:
-			return Vecteur.vNord;
-		case SUD:
-			return Vecteur.vSud;
-		case EST:
-			return Vecteur.vEst;
-		case OUEST:
-			return Vecteur.vOuest;
-		default:
-			return Vecteur.vNull;
-		}
+	public static Orientation random(Orientation o){
+		Orientation a;
+		do{
+			a=random();
+		}while(a==o);
+		return a;
 	}
 
-	public Vecteur getUnitVector() {
-		return Orientation.getUnitVector(this);
+	/**
+	 * Generates a random orientation which is not that of the one given in parameter
+	 * @param a a non wanted Orientation
+	 * @param b a non wanted Orientation
+	 * @return any orientation but a or b
+	 */
+	public static Orientation random(Orientation a, Orientation b){
+		Orientation r;
+		do{
+			r=random();
+		}while(r==a || r==b);
+		return r;
 	}
 }

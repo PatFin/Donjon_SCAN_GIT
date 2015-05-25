@@ -10,32 +10,13 @@ import fr.donjon.salles.Salle;
  */
 public class Link {
 
-	private Salle destinationSalle;				//la destination du lien, l'autre salle.
 	private Vecteur destinationCase;			//coordonn�es de la case de destination.
-	
-	private Salle origineSalle;
-	private Vecteur origineCase;
+	private Salle destinationSalle;				//la destination du lien, l'autre salle.
 	
 	private Orientation orientation;
+	private Vecteur origineCase;
 	
-	/**
-	 * Constructeur de link lorsque tous les �l�ments sont connus d'avance.
-	 * @param destination la salle de destination
-	 * @param desVecteur le vecteur qui indique la case de destination
-	 * @param origine la salle d'origine
-	 * @param origVecteur le vecteur qui pointe vers la case qui sert de porte
-	 * @param o l'orientation du lien. ie la position de la porte dans la salle origine
-	 * @param enabled
-	 */
-	public Link(Salle destination, Vecteur desVecteur, Salle origine,Vecteur origVecteur, Orientation o) {
-		this.destinationSalle = destination;
-		this.destinationCase = desVecteur;
-		
-		this.origineSalle = origine;
-		this.origineCase = origVecteur;
-		
-		this.orientation = o;
-	}
+	private Salle origineSalle;
 	
 	/**
 	 * Constructeur utilisé quand on ne connait pas la salle de destination
@@ -57,6 +38,46 @@ public class Link {
 		this.destinationCase = null;
 	}
 	
+	/**
+	 * Constructeur de link lorsque tous les �l�ments sont connus d'avance.
+	 * @param destination la salle de destination
+	 * @param desVecteur le vecteur qui indique la case de destination
+	 * @param origine la salle d'origine
+	 * @param origVecteur le vecteur qui pointe vers la case qui sert de porte
+	 * @param o l'orientation du lien. ie la position de la porte dans la salle origine
+	 * @param enabled
+	 */
+	public Link(Salle destination, Vecteur desVecteur, Salle origine,Vecteur origVecteur, Orientation o) {
+		this.destinationSalle = destination;
+		this.destinationCase = desVecteur;
+		
+		this.origineSalle = origine;
+		this.origineCase = origVecteur;
+		
+		this.orientation = o;
+	}
+	
+	
+	public Vecteur getDestinationVecteur(){
+		return destinationCase;
+	}
+	
+	public Orientation getOrientation(){
+		return this.orientation;
+	}
+	
+	
+	public Vecteur getPalier(){
+		return this.origineCase;
+	}
+	
+	public Salle getSalleDestination(){
+		return destinationSalle;
+	}
+	
+	public Salle getSalleOrigine(){
+		return this.origineSalle;
+	}
 	
 	/**
 	 * Indique si une salle de destination a été spécifiée
@@ -79,33 +100,13 @@ public class Link {
 		this.destinationCase = desVecteur;
 	}
 	
-	
+	@Override
 	public String toString(){
 		if(destinationSalle!=null){
 			return ("Lien desalle "+origineSalle.roomNumber+" vers salle "+destinationSalle.roomNumber);
 		}else{
 			return ("Lien de salle "+origineSalle.roomNumber+" vers null");
 		}
-	}
-	
-	public Vecteur getDestinationVecteur(){
-		return destinationCase;
-	}
-	
-	public Salle getSalleDestination(){
-		return destinationSalle;
-	}
-	
-	public Orientation getOrientation(){
-		return this.orientation;
-	}
-	
-	public Salle getSalleOrigine(){
-		return this.origineSalle;
-	}
-	
-	public Vecteur getPalier(){
-		return this.origineCase;
 	}
 	
 	

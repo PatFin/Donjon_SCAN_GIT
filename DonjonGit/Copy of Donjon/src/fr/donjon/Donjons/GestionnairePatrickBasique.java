@@ -24,8 +24,8 @@ import fr.donjon.utils.Vecteur;
  */
 public class GestionnairePatrickBasique extends GestionnaireSalle{
 
-	private static final int SALLEWIDTH = 10;
 	private static final int SALLEHEIGHT = 7;
+	private static final int SALLEWIDTH = 10;
 
 	/**
 	 * Constructeur d'un donjon non lin�aire
@@ -33,7 +33,7 @@ public class GestionnairePatrickBasique extends GestionnaireSalle{
 	 * @param height hauteur du donjon souhait�
 	 */
 	public GestionnairePatrickBasique(int width, int height){
-		super(new SalleQuatre(new Heros(0,0), Salle.addWalls(MapGenerator.randomForet(5, 5))),(int) width/2, height-1, width, height);
+		super(new SalleQuatre(new Heros(0,0), Salle.addWalls(MapGenerator.randomForet(5, 5))),width/2, height-1, width, height);
 
 		//On place le h�ro au centre de la 1�salle
 		this.sActuelle.hero.setLocationCase(sActuelle.getRoomCenter());
@@ -42,6 +42,25 @@ public class GestionnairePatrickBasique extends GestionnaireSalle{
 		this.sActuelle.addDoor(Orientation.NORD, this.smap);
 
 
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.Donjons.GestionnaireSalle#checkDonjonFini()
+	 */
+	@Override
+	public void checkDonjonFini(){
+		//We go through the array
+		for(int i=0; i<smap.length; i++){
+			for(int j=0; j<smap[0].length;j++){
+				if(!(smap[i][j] == null)){
+					if(!smap[i][j].estFinie() || !smap[i][j].allDoorsHaveDestination()){
+						return;
+					}
+				}
+			}
+		}
+		ecouteur.requestGameOver(true);
 	}
 
 	/*
@@ -133,25 +152,6 @@ public class GestionnairePatrickBasique extends GestionnaireSalle{
 		}
 
 		
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.Donjons.GestionnaireSalle#checkDonjonFini()
-	 */
-	@Override
-	public void checkDonjonFini(){
-		//We go through the array
-		for(int i=0; i<smap.length; i++){
-			for(int j=0; j<smap[0].length;j++){
-				if(!(smap[i][j] == null)){
-					if(!smap[i][j].estFinie() || !smap[i][j].allDoorsHaveDestination()){
-						return;
-					}
-				}
-			}
-		}
-		ecouteur.requestGameOver(true);
 	}
 
 }

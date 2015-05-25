@@ -1,6 +1,5 @@
 package fr.donjon.classes;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
@@ -18,20 +17,20 @@ import fr.donjon.utils.Vecteur;
  */
 public class ArmeLance extends Arme {
 
+	final static int decalageZoneX = 0;
+	final static int decalageZoneY = 10;
 	final static int DMG = 30;
 	final static int DUR = 350;
-	final static String src = "hero_map.png";
+
 	final static String icSrc = "spear.png";
-
-	final static int zoneWidth = 20;
+	final static String src = "hero_map.png";
 	final static int zoneHeight = 60;
-	final static int decalageZoneX = 0;
-	final static int decalageZoneY = 10; 
-
-	private Rectangle zoneDommages = new Rectangle(0,0, zoneWidth, zoneHeight);
-	private LinkedList<Personnage> persoTouches;
+	final static int zoneWidth = 20; 
 
 	Vecteur c = new Vecteur(0,0);
+	private LinkedList<Personnage> persoTouches;
+
+	private Rectangle zoneDommages = new Rectangle(0,0, zoneWidth, zoneHeight);
 	/**
 	 * Objet sans porteur
 	 */
@@ -53,13 +52,6 @@ public class ArmeLance extends Arme {
 		animation = animationS;
 
 		this.persoTouches = new LinkedList<Personnage>();
-	}
-
-	@Override
-	public void stopAttaquer() {
-		//Pas d'anim de finition
-		this.etat = EtatArme.FINISHED;
-		this.persoTouches.clear();
 	}
 
 	@Override
@@ -99,6 +91,13 @@ public class ArmeLance extends Arme {
 
 		}
 
+	}
+
+	@Override
+	public void stopAttaquer() {
+		//Pas d'anim de finition
+		this.etat = EtatArme.FINISHED;
+		this.persoTouches.clear();
 	}
 
 	////////////////////////////////

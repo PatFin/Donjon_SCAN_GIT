@@ -9,11 +9,12 @@ public interface CollisionPattern {
 	
 	public void persoEnterCase(Personnage p);
 	
+	public void persoLeaveCase(Personnage p);
+	
 	public void projEnterCase(Projectile p);
 	
 	public void projLeaveCase(Projectile p);
 	
-	public void persoLeaveCase(Personnage p);
-	
+	@Override
 	public String toString();
 }
