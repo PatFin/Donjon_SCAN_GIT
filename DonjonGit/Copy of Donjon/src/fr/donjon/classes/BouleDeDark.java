@@ -1,7 +1,8 @@
+package fr.donjon.classes;
 /**
  * 
  */
-package fr.donjon.classes;
+
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
