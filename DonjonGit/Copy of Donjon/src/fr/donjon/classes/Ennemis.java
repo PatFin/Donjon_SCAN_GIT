@@ -1,6 +1,5 @@
 package fr.donjon.classes;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
@@ -38,18 +37,16 @@ public abstract class Ennemis extends Personnage{
 	}
 
 	@Override
-	public void draw(long t, Graphics g){
-		super.draw(t, g);
+	public void attaquer(ArrayList<Personnage> cibles,
+			ArrayList<Projectile> projectiles, Vecteur v){
+		if(this.etat!=EtatPersonnage.ATTAQUE){
+			this.etat = EtatPersonnage.ATTAQUE;
+		}
+		this.arme.attaquer(currentRoom.personnages, projectiles, v);
+			
+		this.etat = EtatPersonnage.REPOS;
+		
 	}
-
-	@Override
-	public void update(long t) {
-		super.update(t);
-	}
-
-	@Override
-	abstract public void attaquer(ArrayList<Personnage> cibles,
-			ArrayList<Projectile> projectiles, Vecteur v);
 
 	
 

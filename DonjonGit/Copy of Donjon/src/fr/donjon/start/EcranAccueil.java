@@ -33,9 +33,9 @@ public class EcranAccueil extends JPanel{
 	ImageIcon iconeInfinity = new ImageIcon(ImageManager.getImage("infinity.png", getClass().getSimpleName())); // icone du sigle infini
 	ImageIcon iconeEditeur = new ImageIcon(ImageManager.getImage("mapEditor.png", getClass().getSimpleName())); // icone du sigle mapEditor
 	
-	private JButton boutonJeuLineaire = new JButton("Jeu LinÃ©aire",iconePlayer);
+	private JButton boutonJeuLineaire = new JButton("Jeu Linéaire",iconePlayer);
 	private JButton boutonJeuInfini=new JButton ("Jeu Infini",iconeInfinity);
-	private JButton boutonJeuTest = new JButton("Test_Basique");
+	private JButton boutonJeuTutoriel = new JButton("Tutoriel");
 	private JButton boutonEditeur= new JButton("Editeur de map", iconeEditeur);
 	
 	public EcouteurLauncher ecouteur;
@@ -49,7 +49,7 @@ public class EcranAccueil extends JPanel{
 		Dimension d = new Dimension(180,60);
 		boutonJeuInfini.setPreferredSize(d);
 		boutonJeuLineaire.setPreferredSize(d);
-		boutonJeuTest.setPreferredSize(d);
+		boutonJeuTutoriel.setPreferredSize(d);
 		boutonEditeur.setPreferredSize(d);
 		
 		// lecture de l'image
@@ -58,7 +58,7 @@ public class EcranAccueil extends JPanel{
 
 		// JPANEL ET BOUTONS
 		//Ajout des boutons dans notre panel
-		panel.add(boutonJeuTest);
+		panel.add(boutonJeuTutoriel);
 		panel.add(boutonJeuLineaire);
 		panel.add(boutonJeuInfini);
 		panel.add(boutonEditeur);
@@ -107,7 +107,7 @@ public class EcranAccueil extends JPanel{
 				ecouteur.requestNewGame(new DonjonNonLineaire(5, 8));
 			}
 		});
-		boutonJeuTest.addActionListener(new ActionListener(){
+		boutonJeuTutoriel.addActionListener(new ActionListener(){
 			/**
 			 * Idem
 			 */

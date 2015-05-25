@@ -65,11 +65,6 @@ public class Heros extends Personnage{
 		
 	}
 
-	@Override
-	public void update(long t) {
-		super.update(t);
-	}
-
 	/**
 	 * Demarre le deplacement du personnage dans une direction
 	 * @param v Direction de deplacement du personnage

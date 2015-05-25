@@ -3,6 +3,7 @@
  */
 package fr.donjon.classes;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
@@ -47,20 +48,15 @@ public class ArmePoingSquelette extends Arme{
 	public ArmePoingSquelette(Personnage lanceur) {
 		super(lanceur, DMG, DUR);
 
-		animationN = new Animation(src, new Vecteur(64, 64),4,6,DUR); 
-		animationO = new Animation(src, new Vecteur(64, 64),5,6,DUR);
-		animationS = new Animation(src, new Vecteur(64, 64),6,6,DUR);
-		animationE = new Animation(src, new Vecteur(64, 64),7,6,DUR);
+		Vecteur v = new Vecteur(64, 64);
+		
+		animationN = new Animation(src, v,4,6,DUR); 
+		animationO = new Animation(src, v,5,6,DUR);
+		animationS = new Animation(src, v,6,6,DUR);
+		animationE = new Animation(src, v,7,6,DUR);
 		animation = animationS;
 
 		this.persoTouches = new LinkedList<Personnage>();
-	}
-
-	@Override
-	public void paint(Graphics g, long t) {
-		//g.setColor(Color.CYAN);
-		//g.fillRect(zoneDommages.x, zoneDommages.y, zoneDommages.width, zoneDommages.height);
-		super.paint(g, t);
 	}
 
 	@Override

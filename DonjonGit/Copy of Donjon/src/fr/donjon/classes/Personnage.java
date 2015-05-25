@@ -77,6 +77,7 @@ public abstract class Personnage extends Deplacable{
 		this.lPos = new Vecteur(ax, ay);
 	}
 
+	
 	@Override
 	public void draw(long t, Graphics g) {
 

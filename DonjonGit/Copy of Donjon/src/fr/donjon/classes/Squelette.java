@@ -101,13 +101,9 @@ public class Squelette extends Ennemis {
 				v.normalise();
 				
 				marcher(v);
-			}else if ((t % shootDelay == timerShoot)) { 
-				// (v.getNorm() > 150 && v.getNorm() <= 300) && (t % shootDelay == timerShoot)
-				
+			}else if (t % shootDelay == timerShoot) { 
 				v = v.normalise();
-				
 				this.arme = baton;
-				
 				attaquer(currentRoom.personnages, currentRoom.projectiles, v);
 			}else{
 				this.etat = EtatPersonnage.REPOS;
@@ -116,23 +112,20 @@ public class Squelette extends Ennemis {
 		
 		else if (NIV < 2) {
 			
-			if (v.getNorm() > 30) {
+			if (v.getNorm() > 70) {
 				
 				v = v.normalise();
 				
 				marcher(v);
-			}
-			
-			else if ((t % shootDelay == timerShoot)) {
+			}else if(t % shootDelay == timerShoot){
 				
+				System.out.println("A l'attaque !!!");
 				this.arme = poing;
 				
 				v = v.normalise();
 				
 				attaquer(currentRoom.personnages, currentRoom.projectiles, v);
-			}
-			
-			else {
+			}else {
 				
 				this.etat = EtatPersonnage.REPOS;
 			}
@@ -149,17 +142,6 @@ public class Squelette extends Ennemis {
 			
 			pattern(t);
 		}
-	}
-
-	@Override
-	public void attaquer(ArrayList<Personnage> cibles,
-			ArrayList<Projectile> projectiles, Vecteur v) {
-			
-		this.etat = EtatPersonnage.ATTAQUE;
-
-		this.arme.attaquer(currentRoom.personnages, projectiles, v);
-		
-		this.etat = EtatPersonnage.REPOS;
 	}
 
 	@Override

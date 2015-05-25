@@ -56,11 +56,6 @@ public class ArmeLance extends Arme {
 	}
 
 	@Override
-	public void paint(Graphics g, long t) {
-		super.paint(g, t);
-	}
-
-	@Override
 	public void stopAttaquer() {
 		//Pas d'anim de finition
 		this.etat = EtatArme.FINISHED;
