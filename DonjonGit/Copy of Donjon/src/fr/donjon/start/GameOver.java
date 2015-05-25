@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import fr.donjon.salles.Salle;
 import fr.donjon.utils.GameOverListener;
 import fr.donjon.utils.ImageManager;
 
@@ -26,11 +27,15 @@ public class GameOver extends JPanel {
 	Image hero;
 	
 	final static String alive = "Player_Up.png";
-	final static String dead = "Player_Dead_Alternative.png";
+	final static String dead = "Player_Dead.png";
+	
+	static String looseMessage = "Oops! Looks like you died. You made it to room "+Salle.instances+" though!";
+	static String winMessage = "Congratulations! You went through "+Salle.instances+" rooms without a single scratch!";
 	
 	JButton BQuit;	
 	JButton BRetour;
 	
+	String message;
 	GameOverListener listener;
 	
 	public GameOver(boolean win){
@@ -40,8 +45,10 @@ public class GameOver extends JPanel {
 		
 		if(win){
 			this.hero = ImageManager.getImage(alive, this.getClass().getSimpleName());
+			message = winMessage;
 		}else{
 			this.hero = ImageManager.getImage(dead, this.getClass().getSimpleName());
+			message = looseMessage;
 		}
 		
 		Dimension d = new Dimension(180,60);
@@ -89,5 +96,7 @@ public class GameOver extends JPanel {
 		if (hero!=null) {
 			g.drawImage (hero, (int)(getWidth()/2)-(hero.getWidth(null)/2), (int)(getHeight()/2)-(hero.getHeight(null)/2), this);	
 		}
+		g.setColor(Color.white);
+		g.drawString(message,(int) (getWidth() - message.length()*5)/2,(int) getHeight()/2 + 10 + hero.getHeight(null));
 	}
 }
