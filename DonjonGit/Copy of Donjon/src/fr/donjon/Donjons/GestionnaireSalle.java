@@ -21,7 +21,7 @@ import fr.donjon.utils.Vecteur;
 public abstract class GestionnaireSalle implements EcouteurChangementSalle, EcouteurClavier, GameOverListener{
 
 
-	static SoundLoop doorSound = new SoundLoop(SoundLoop.Door);
+	private static SoundLoop doorSound = new SoundLoop(SoundLoop.DOOR);
 	public Salle[][] smap;			//le tableau de salles du donjon
 
 	protected Salle sActuelle;		//la salle dans laquelle le h�ros se trouve
@@ -252,7 +252,6 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	@Override
 	public void changerDeSalle(Link l) {
 		doorSound.playOnce();
-		System.out.println("We play the door sound");
 		this.changementSalle(l);
 	}
 	

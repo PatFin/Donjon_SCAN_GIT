@@ -21,7 +21,8 @@ public class SoundLoop{
 	
 	public final static String STARWARS = "Ressources/Sounds/RPG Theme.wav";
 	public final static String GOT = "Ressources/sounds/Main Theme.aif";
-	public final static String Door = "Ressources/sounds/doorClose_4.wav";
+	public final static String DOOR = "Ressources/sounds/doorClose_4.wav";
+	public final static String CLIC = "Ressources/sounds/metalClick.wav";
 	
 	Clip audioClip;
 	
