@@ -28,9 +28,10 @@ public class Heros extends Personnage{
 	
 
 	/**
+	 * Constructeur
 	 * 
-	 * @param ax Position x
-	 * @param ay Position y
+	 * @param ax Position x position horizontale du hÈro dans la salle (en pixels)
+	 * @param ay Position y position verticale du hÈro dans la salle (en pixels)
 	 */
 	public Heros(int ax, int ay){
 		super(ax, ay, LNG, LRG, src,
@@ -54,12 +55,16 @@ public class Heros extends Personnage{
 	}
 
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.classes.Personnage#draw(long, java.awt.Graphics)
+	 */
 	public void draw(long t, Graphics g) {
 
 		//Only the Heros has to draw the inventaire
 		this.inventaire.draw(g);
 		
-		//We draw the inventaire under the hero
+		//We draw the hero just like any other character.
 		super.draw(t, g);
 		
 		
@@ -69,46 +74,27 @@ public class Heros extends Personnage{
 	 * Demarre le deplacement du personnage dans une direction
 	 * @param v Direction de deplacement du personnage
 	 */
-	public void marcher(Vecteur v){
-		
-		
-		if(this.etat == EtatPersonnage.ATTAQUE){
-			this.vvitesse = v;
-		}
-		
-		else if(this.etat == EtatPersonnage.REPOS){
-			this.etat = EtatPersonnage.DEPLACEMENT;
-			this.vvitesse = v;
-
-			if(v.y > 0)			this.animation = animationS;
-			else if ( v.y < 0)	this.animation = animationN;
-			else if ( v.x < 0)	this.animation = animationO;
-			else if ( v.x > 0 ) this.animation = animationE;
-			else				this.animation = animationS;
-			
-		}
-		
-		else if (this.etat == EtatPersonnage.DEPLACEMENT){
-			this.vvitesse = v;
-			if(v.y > 0)			this.animation = animationS;
-			else if ( v.y < 0)	this.animation = animationN;
-			else if ( v.x < 0)	this.animation = animationO;
-			else if ( v.x > 0 ) this.animation = animationE;
-			else				this.animation = animationS;
-		}
-		
-		
-	}
-
-	/**
-	 * Permet de mettre a jour le personnage (position, arme...)
-	 */
 	
-
-	@Override
-	public boolean enCollision(Rectangle r) {
-		return super.enCollision(r);
+	public void marcher(Vecteur v){
+		//We store the new displacement value
+		this.vvitesse = v;
+		
+		//If the character was'nt moving we change its state to moving
+		if(this.etat == EtatPersonnage.REPOS){
+			this.etat = EtatPersonnage.DEPLACEMENT;
+		}
+		
+		//We pick the correct animation. If the character is attacking, we don't change the animation
+		//In this case, the image drawn will be that of the character attacking.
+		if(this.etat != EtatPersonnage.ATTAQUE){
+			if(v.y > 0)			this.animation = animationS;
+			else if ( v.y < 0)	this.animation = animationN;
+			else if ( v.x < 0)	this.animation = animationO;
+			else if ( v.x > 0 ) this.animation = animationE;
+			else				this.animation = animationS;
+		}
 	}
+
 	
 	/**
 	 * Methode qui lance l'attaque du h√©ros sur une/des cible(s)
@@ -122,7 +108,6 @@ public class Heros extends Personnage{
 		
 		//Lancement de l'attaque
 		this.etat = EtatPersonnage.ATTAQUE;
-		
 		this.arme.attaquer(personnage, projectiles,v);
 
 	}
@@ -135,12 +120,12 @@ public class Heros extends Personnage{
 	}
 
 
+	/**
+	 * If the hero is colliding with another character, we want to put it back to its previous position
+	 */
 	@Override
 	public void collide(Personnage p) {
 		this.setLocation(lPos);
 	}
-
-
-
 
 }
