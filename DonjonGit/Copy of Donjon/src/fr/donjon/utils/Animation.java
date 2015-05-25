@@ -102,12 +102,12 @@ public class Animation{
 		//Renvoie true si terminee
 		if(isFinished)return true;
 		
-		//Premeir demarrage
+		//Premier demarrage
 		if(timeStart == -1)timeStart = t;
 		
 		//L'animation est terminee
 		if( (t-timeStart)>=duration ){
-			timeStart = t;
+			timeStart = -1;
 			isFinished = true;
 		}
 

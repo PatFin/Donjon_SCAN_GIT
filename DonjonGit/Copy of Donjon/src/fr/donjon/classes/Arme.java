@@ -57,14 +57,15 @@ public abstract class Arme implements Utilisable{
 
 	/**
 	 * 
-	 * Cette methode dessine l'animation du héro lors de l'attaque
+	 * Cette methode dessine l'animation du personnage lors de l'attaque
 	 * 
 	 * @param g
 	 * @param t
 	 */
-	public void paint(Graphics g, long t){
+	public void draw(Graphics g, long t){
 		
 		int T = lanceur.image.width;
+		
 		//Si l'annimation est terminee le personnage passe au repos et on redemarre l'anim de l'arme
 		if(animation.drawOnce(this.lanceur.image.x, this.lanceur.image.y, T, T, g, t)){
 			animation.drawImage(this.lanceur.image.x, this.lanceur.image.y,T, T, g, 0);
