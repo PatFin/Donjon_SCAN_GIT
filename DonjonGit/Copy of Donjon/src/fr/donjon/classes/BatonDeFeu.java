@@ -41,10 +41,6 @@ public class BatonDeFeu extends Arme {
 		animation = animationS;
 	}
 
-	@Override
-	public void paint(Graphics g, long t) {
-		super.paint(g, t);
-	}
 
 	@Override
 	public void stopAttaquer() {

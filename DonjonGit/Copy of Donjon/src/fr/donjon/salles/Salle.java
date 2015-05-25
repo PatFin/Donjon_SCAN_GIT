@@ -143,9 +143,10 @@ public abstract class Salle implements EcouteurClavier{
 	 * @param a true si on veut rendre le passage possible, false sinon.
 	 */
 	public void activerLesPortes(boolean a){
-		Salle.doorOpens.playOnce();
-		for(int i=0; i<portes.size(); i++){
-			portes.get(i).setPassageAutorise(a);
+		Salle.doorOpens.playOnce(); //We play a sound to notice the player the doors have benn opened.
+		
+		for(CasePorte c : this.portes){
+			c.setPassageAutorise(a);
 		}
 	}
 	
