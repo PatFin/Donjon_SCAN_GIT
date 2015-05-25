@@ -1,6 +1,7 @@
 package fr.donjon.salles;
 
 import fr.donjon.cases.CaseDalle;
+import fr.donjon.cases.CaseMur;
 import fr.donjon.cases.CaseSwitch;
 import fr.donjon.classes.Heros;
 import fr.donjon.utils.MapGenerator;

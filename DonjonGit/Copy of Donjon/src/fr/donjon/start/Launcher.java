@@ -78,7 +78,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		this.add(actuel);									//Et on l'affiche
 		game.startGame();								//On demarre le jeu
 		this.pack();									//On adapte la taille de la fenetre
-		music.start();
+		music.loop();
 		this.setResizable(true);
 	}
 

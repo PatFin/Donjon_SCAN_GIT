@@ -20,8 +20,8 @@ public class SoundLoop{
 
 	
 	public final static String STARWARS = "Ressources/Sounds/RPG Theme.wav";
-	
 	public final static String GOT = "Ressources/sounds/Main Theme.aif";
+	public final static String Door = "Ressources/sounds/doorClose_4.wav";
 	
 	Clip audioClip;
 	
@@ -35,7 +35,7 @@ public class SoundLoop{
 	 * @param audioFilePath Path of the audio file.
 	 */
 	public SoundLoop(String FilePath) {
-		File audioFile = new File(STARWARS);
+		File audioFile = new File(FilePath);
 
 		try {
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
@@ -66,14 +66,22 @@ public class SoundLoop{
 	 */
 	public void stop(){
 		audioClip.stop();
+		audioClip.setMicrosecondPosition(0);
+	}
+	
+	/**
+	 * Joue une seule fois le son en question.
+	 */
+	public void playOnce(){
+		audioClip.setMicrosecondPosition(0);
+		audioClip.start();
 	}
 	
 	/**
 	 * Permet de lancer la musique
 	 */
-	public void start(){
+	public void loop(){
 		audioClip.loop(Clip.LOOP_CONTINUOUSLY);
 		audioClip.start();
-		
 	}
 }
