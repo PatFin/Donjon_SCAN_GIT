@@ -42,6 +42,11 @@ public class BatonDeFeu extends Arme {
 	}
 
 	@Override
+	public void paint(Graphics g, long t) {
+		super.paint(g, t);
+	}
+
+	@Override
 	public void stopAttaquer() {
 		this.etat = EtatArme.FINISHED;
 	}
