@@ -107,7 +107,7 @@ public class Animation{
 		
 		//L'animation est terminee
 		if( (t-timeStart)>=duration ){
-			timeStart = -1;
+			timeStart = t;
 			isFinished = true;
 		}
 
