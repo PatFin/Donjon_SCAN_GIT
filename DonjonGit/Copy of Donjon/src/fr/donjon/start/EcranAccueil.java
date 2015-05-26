@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 
 import fr.donjon.Donjons.DonjonLineaire;
 import fr.donjon.Donjons.DonjonNonLineaire;
@@ -36,8 +37,11 @@ public class EcranAccueil extends JPanel{
 	private JButton boutonJeuInfini=new JButton ("Jeu Infini",iconeInfinity);
 	private JButton boutonJeuLineaire = new JButton("Jeu Lin�aire",iconePlayer);
 	private JButton boutonJeuTutoriel = new JButton("Tutoriel");
-	// déclaration des boutons et du panel et de l'icone pour le bouton
-	private JPanel panel = new JPanel();
+	
+	private JSlider taille = new JSlider(5,15,5);
+	
+	private JPanel panel1 = new JPanel(); //Will contain the buttons
+	private JPanel panel2 = new JPanel(); //Will contain the slider giving the size of the donjon
 	
 	public EcouteurLauncher ecouteur;
 
@@ -59,11 +63,15 @@ public class EcranAccueil extends JPanel{
 
 		// JPANEL ET BOUTONS
 		//Ajout des boutons dans notre panel
-		panel.add(boutonJeuTutoriel);
-		panel.add(boutonJeuLineaire);
-		panel.add(boutonJeuInfini);
-		panel.add(boutonEditeur);
-		this.add(panel);
+		panel1.add(boutonJeuTutoriel);
+		panel1.add(boutonJeuLineaire);
+		panel1.add(boutonJeuInfini);
+		panel1.add(boutonEditeur);
+		this.add(panel1);
+		
+		panel2.add(taille);
+		this.add(panel2);
+		
 		// Actions listener
 		this.addListeners();
 		
@@ -83,7 +91,7 @@ public class EcranAccueil extends JPanel{
 				//On r�initialise le nombre de salles
 				Salle.instances = 0;
 				
-				ecouteur.requestNewGame(new DonjonLineaire(10));
+				ecouteur.requestNewGame(new DonjonLineaire(taille.getValue()));
 			}
 		});
 		
@@ -97,7 +105,7 @@ public class EcranAccueil extends JPanel{
 				Salle.instances = 0;
 				
 				//On commande un jeu infini
-				ecouteur.requestNewGame(new DonjonNonLineaire(5, 8));
+				ecouteur.requestNewGame(new DonjonNonLineaire(taille.getValue(), taille.getValue()));
 			}
 		});
 		boutonJeuTutoriel.addActionListener(new ActionListener(){

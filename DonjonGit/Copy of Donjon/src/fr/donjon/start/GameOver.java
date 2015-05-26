@@ -19,9 +19,6 @@ public class GameOver extends JPanel {
 	final static String alive = "Player_Up.png";
 	
 	final static String dead = "Player_Dead.png";
-	static String looseMessage = "Oops! Looks like you died. You made it to room "+Salle.instances+" though!";
-	
-	static String winMessage = "Congratulations! You went through "+Salle.instances+" rooms without a single scratch!";
 	
 	/**
 	 * 
@@ -45,10 +42,10 @@ public class GameOver extends JPanel {
 		
 		if(win){
 			this.hero = ImageManager.getImage(alive, this.getClass().getSimpleName());
-			message = winMessage;
+			message = "Congratulations! You went through "+(Salle.instances-1)+" rooms without a single scratch!";
 		}else{
 			this.hero = ImageManager.getImage(dead, this.getClass().getSimpleName());
-			message = looseMessage;
+			message = "Oops! Looks like you died. You made it to room "+(Salle.instances-1)+" though!";
 		}
 		
 		Dimension d = new Dimension(180,60);

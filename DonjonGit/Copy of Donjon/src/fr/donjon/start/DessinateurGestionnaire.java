@@ -54,8 +54,9 @@ public class DessinateurGestionnaire {
 		BufferedImage imT;
 		Graphics bufT;
 		
-		buffer.setColor(Color.black);
-		buffer.fillRect(0, 0, d, d);
+		//TODO remove this thing.
+		//buffer.setColor(Color.black);
+		//buffer.fillRect(0, 0, sw, sh); //d?
 		
 		
 		//Parcours du gestionnaire

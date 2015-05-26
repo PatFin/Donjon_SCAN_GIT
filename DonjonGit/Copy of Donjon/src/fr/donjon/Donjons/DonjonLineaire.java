@@ -1,7 +1,11 @@
 package fr.donjon.Donjons;
 
+import fr.donjon.cases.Case;
+import fr.donjon.classes.BigBoss;
 import fr.donjon.classes.Heros;
+import fr.donjon.editor.MapFileHandler;
 import fr.donjon.salles.EnigmeSwitch;
+import fr.donjon.salles.EnigmeTeleporteur;
 import fr.donjon.salles.Salle;
 import fr.donjon.salles.SalleQuatre;
 import fr.donjon.utils.EnnemyGenerator;
@@ -42,14 +46,30 @@ public class DonjonLineaire extends GestionnaireSalle{
 	@Override
 	public void fournirNouvelleSalle(Vecteur position, Link l, Salle[][] smap) {
 		//create the new room
-		SalleQuatre s;
 
-		if((l.getSalleOrigine().roomNumber)%(nombreDeSalle/2) == 1){
-			s= new EnigmeSwitch(l.getSalleOrigine().hero);
+		
+		Salle s;
+		
+		if(Salle.instances+1 != nombreDeSalle){
+			switch(Salle.instances%6){
+			case 1:
+				s= new EnigmeTeleporteur(l.getSalleOrigine().hero);
+				break;
+			case 4:
+				s= new EnigmeSwitch(l.getSalleOrigine().hero);
+				break;
+			default:
+				s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
+				s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 20, 100 ));
+			}
 		}else{
-			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
-			s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 20, 100 ));
+			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapFileHandler.getSalleDescriptionFromFile(1000).getMatrix()));
+			s.addEnemy(new BigBoss( (int)s.getRoomCenter().x*Case.TAILLE, (int)s.getRoomCenter().y*Case.TAILLE , s.hero, 1, s) );
 		}
+		
+		
+		
+		
 
 		s.setEcouteur(l.getSalleOrigine().ecouteur);
 

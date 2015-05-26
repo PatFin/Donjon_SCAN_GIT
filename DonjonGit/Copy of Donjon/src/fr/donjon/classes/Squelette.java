@@ -142,6 +142,10 @@ public class Squelette extends Ennemis {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.classes.Personnage#update(long)
+	 */
 	@Override
 	public void update(long t) {
 		
@@ -153,6 +157,10 @@ public class Squelette extends Ennemis {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.classes.Personnage#utiliserObjet(int)
+	 */
 	@Override
 	public void utiliserObjet(int reference) {
 		
