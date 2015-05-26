@@ -27,6 +27,11 @@ import fr.donjon.utils.Vecteur;
  */
 public class DialogNouveau extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	JButton BAnnuler;
 
 	JButton BCreer;

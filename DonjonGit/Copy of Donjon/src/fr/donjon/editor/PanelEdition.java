@@ -26,6 +26,10 @@ import fr.donjon.utils.Vecteur;
  */
 public class PanelEdition extends JPanel implements MouseMotionListener, MouseListener{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	final static int panelHeight = 600;
 	final static int panelWidth = 900;
 
@@ -187,7 +191,6 @@ private void generateGrid(){
 
 	@Override
 	public void mouseClicked(MouseEvent e) { //On ajoute des cases si la souris est cliqu�e
-		// TODO Auto-generated method stub
 		mouse.setLocation(e.getX(), e.getY());	
 		addCases();
 		repaint();
@@ -196,7 +199,6 @@ private void generateGrid(){
 	////////INTERFACE DE SUIVI DE LA SOURIS//////////////////////
 	@Override
 	public void mouseDragged(MouseEvent e) { //Souris cliqu�e et d�place en meme temps -> ajout de cases
-		// TODO Auto-generated method stub
 		mouse.setLocation(e.getX(), e.getY());	
 		addCases();
 		repaint();
@@ -204,38 +206,32 @@ private void generateGrid(){
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {	//On suit juste la souris pour que la brosse se d�place
-		// TODO Auto-generated method stub
 		mouse.setLocation(e.getX(), e.getY());
 		repaint();
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paint(g);
 		
 		//Draw the background of the Panel in gray

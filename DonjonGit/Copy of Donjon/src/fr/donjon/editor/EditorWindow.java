@@ -224,7 +224,7 @@ public class EditorWindow extends JFrame{
 					}
 				};
 
-				DialogNouveau d = new DialogNouveau(null, "Taille de la grille :", true,dl);
+				new DialogNouveau(null, "Taille de la grille :", true,dl);
 
 			}
 		});
@@ -254,7 +254,7 @@ public class EditorWindow extends JFrame{
 					}
 				};
 
-				DialogSauvegarder dl = new DialogSauvegarder(null, "Sauvegarde de carte", true, l);
+				new DialogSauvegarder(null, "Sauvegarde de carte", true, l);
 			}
 		});
 

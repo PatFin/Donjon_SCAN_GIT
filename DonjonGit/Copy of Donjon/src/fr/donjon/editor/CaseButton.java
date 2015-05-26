@@ -21,6 +21,10 @@ import fr.donjon.cases.Case;
  */
 public class CaseButton extends JButton {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	final static int size = 70;
 	Case c;
 

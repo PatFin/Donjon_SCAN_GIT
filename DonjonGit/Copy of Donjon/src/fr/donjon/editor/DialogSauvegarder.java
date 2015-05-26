@@ -22,6 +22,11 @@ import javax.swing.JTextField;
  */
 public class DialogSauvegarder extends JDialog{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	Box content;
 
 	JButton jbCancel;
@@ -66,7 +71,6 @@ public class DialogSauvegarder extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cancelBox();
 			}
 		});
@@ -74,7 +78,6 @@ public class DialogSauvegarder extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				validateBox();
 			}
 		});
@@ -132,7 +135,6 @@ public class DialogSauvegarder extends JDialog{
 		try{
 			index = Integer.parseInt(tfIndex.getText());
 		}catch(NumberFormatException e){
-			JOptionPane jop = new JOptionPane();
 			JOptionPane.showMessageDialog(null, "L'index doit etre un nombre entier !", "Erreur", JOptionPane.WARNING_MESSAGE);
 			tfIndex.setText("0");
 			return;

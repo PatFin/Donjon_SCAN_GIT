@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import fr.donjon.utils.Animation;
 import fr.donjon.utils.EtatArme;
-import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Vecteur;
 
 public class BatonDeFeu extends Arme {
@@ -54,8 +53,6 @@ public class BatonDeFeu extends Arme {
 	@Override
 	public void attaquer(ArrayList<Personnage> personnage,
 			ArrayList<Projectile> proj, Vecteur v) {
-		
-		Orientation o = v.projectMainDirection();
 		
 		super.attaquer(personnage, proj, v);
 		
