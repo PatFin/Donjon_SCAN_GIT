@@ -4,7 +4,6 @@
 package fr.donjon.Donjons;
 
 import fr.donjon.cases.Case;
-import fr.donjon.cases.CasePorte;
 import fr.donjon.salles.Salle;
 import fr.donjon.sound.SoundLoop;
 import fr.donjon.utils.EcouteurChangementSalle;
@@ -332,10 +331,6 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	public void update (long t){
 
 		sActuelle.update(t);	//On raffarichit uniquement la salle actuelle, inutile de faire bouger les ennemis dans tout le donjon.
-
-		for(CasePorte c : sActuelle.portes){
-			System.out.println((this.sActuelle.roomNumber)+""+(c.collision));
-		}
 		
 		centreCamera.setLocation(sActuelle.hero.image.x + sActuelle.hero.image.width/2,
 				sActuelle.hero.image.height/2 + sActuelle.hero.image.y);		//On recentre le vecteur centre cam�ra sur la position du personnage.
