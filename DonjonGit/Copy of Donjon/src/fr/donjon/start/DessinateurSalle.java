@@ -33,9 +33,7 @@ public class DessinateurSalle {
 
 	Salle salle;
 
-	/**
-	 * 
-	 */
+	
 	public DessinateurSalle(Rectangle ecran, Salle s) {
 
 		this.salle = s;

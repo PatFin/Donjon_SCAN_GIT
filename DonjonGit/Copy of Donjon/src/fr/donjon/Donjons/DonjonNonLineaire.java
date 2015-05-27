@@ -30,15 +30,13 @@ public class DonjonNonLineaire extends GestionnaireSalle{
 	 * @param height hauteur du donjon souhait�
 	 */
 	public DonjonNonLineaire(int width, int height){
-		super(new SalleQuatre(new Heros(0,0), Salle.addWalls(MapGenerator.randomForet(5, 5))),width/2, height-1, width, height);
+		super(new SalleQuatre(new Heros(0,0), Salle.addWalls(MapGenerator.randomForet(5, 5))),(int)width/2,(int) height/2, width, height);
 		
 		//On place le h�ro au centre de la 1�salle
 		this.sActuelle.hero.setLocationCase(sActuelle.getRoomCenter());
 		
 		//On ajoute une porte vers le nord de la premi�re salle
 		this.sActuelle.addDoor(Orientation.NORD, this.smap);
-		
-		
 	}
 
 	/*

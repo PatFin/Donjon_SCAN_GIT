@@ -62,7 +62,6 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 	public Rectangle ecran;
 
 	public PanelJeu(GestionnaireSalle gestion) {
-
 		
 		this.setPreferredSize(new Dimension( 15*Case.TAILLE, 10*Case.TAILLE));
 		this.setSize(new Dimension( 15*Case.TAILLE, 10*Case.TAILLE));
@@ -148,9 +147,9 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 		//On dessine la salle 
 		g.drawImage(dessinateur.getImage(g, temps),x,y,null);
 		
-		//Dessin de la map
+		//Dessin de la map si le booléen showMap est true (voir toggleMap dans cette classe).
 		if(showMap){
-			g.drawImage(map.getImage(), 0, 0, getHeight(), getHeight(), null);
+			g.drawImage(map.getImage(gestion.smap, gestion.getsActuelle(), this.temps), 0, 0, getHeight(), getHeight(), null);
 		}
 		
 	}
@@ -227,12 +226,11 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 		
 		if(showMap){
 			showMap = false;
-			timer.start();
+			gestion.getsActuelle().update=true;
 		}
 		else {
 			showMap = true;
-			timer.stop();
-			repaint();
+			gestion.getsActuelle().update=false;
 		}
 		
 	}
