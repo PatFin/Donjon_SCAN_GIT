@@ -12,24 +12,24 @@ package fr.donjon.utils;
 public interface EcouteurClavier {
 
 	/**
-	 * Fait attaquer le hï¿½ros contrï¿½lï¿½ par le joueur
-	 * @param o
+	 * Fait attaquer le hero controle par le joueur
+	 * @param v le vecteur indiquant la direction de l'attaque
 	 */
 	public void attaque(Vecteur v);
 	
 	/**
-	 * Fait se dï¿½placer le hï¿½ros contrï¿½lï¿½ par le joueur
-	 * @param v
+	 * Fait se deplacer le hero controle par le joueur
+	 * @param v le vecteur indiquant la direction de déplacement
 	 */
 	public void deplacement(Vecteur v);
 	
 	/**
-	 * Fait arrï¿½ter d'attaquer le hï¿½ro contrï¿½lï¿½ par le joueur quand celui-ci relache les touches d'attaques.
+	 * Stoppe l'attaque du hero controle par le joueur quand celui-ci relache les touches d'attaques.
 	 */
 	public void stopAttaque();
 	
 	/**
-	 * Fait s'arrï¿½ter de bouger le hï¿½ros quand le joueur relache les touches de dï¿½placement
+	 * Fait s'arreter de bouger le heros quand le joueur relache les touches de deplacement
 	 */
 	public void stopDeplacement();
 	
@@ -41,8 +41,8 @@ public interface EcouteurClavier {
 	public void togglePause();
 	
 	/**
-	 * Fait utiliser le hï¿½ros un objet de son inventaire
-	 * @param reference
+	 * Fait utiliser le heros un objet de son inventaire
+	 * @param reference l'entier contenant l'index de l'objet à utiliser dans son inventaire
 	 */
 	public void utiliseObjet(int reference);
 	

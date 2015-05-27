@@ -19,11 +19,11 @@ public class Link {
 	private Salle origineSalle;
 	
 	/**
-	 * Constructeur utilisé quand on ne connait pas la salle de destination
+	 * Constructeur utilise quand on ne connait pas la salle de destination
+	 * On initialise les parametres connus, laissant les parametres de destination null.
 	 * @param origine la salle d'origine
 	 * @param origVecteur le vecteur qui pointe vers la case qui sert de porte
-	 * @param o l'orientation du lien. ie la position de la porte dans la salle origine
-	 * @param enabled
+	 * @param o l'orientation du lien. ie la position de la porte dans la salle d'origine
 	 */
 	public Link(Salle origine,Vecteur origVecteur, Orientation o){
 		
@@ -39,13 +39,12 @@ public class Link {
 	}
 	
 	/**
-	 * Constructeur de link lorsque tous les �l�ments sont connus d'avance.
+	 * Constructeur de link lorsque tous les elements sont connus d'avance.
 	 * @param destination la salle de destination
 	 * @param desVecteur le vecteur qui indique la case de destination
 	 * @param origine la salle d'origine
-	 * @param origVecteur le vecteur qui pointe vers la case qui sert de porte
+	 * @param origVecteur le vecteur qui pointe vers la case qui sert de porte dans la salle d'origine
 	 * @param o l'orientation du lien. ie la position de la porte dans la salle origine
-	 * @param enabled
 	 */
 	public Link(Salle destination, Vecteur desVecteur, Salle origine,Vecteur origVecteur, Orientation o) {
 		this.destinationSalle = destination;
@@ -57,10 +56,16 @@ public class Link {
 		this.orientation = o;
 	}
 	
-	
+	/**
+	 * Accesseur
+	 * Renvoi le vecteur indiquant la position (dans la salle de destination) de la case sur laquelle le personnage doit atterrir
+	 * @return vecteur utilisable par la m�thode setLocationCase(Vecteur) du personnage.
+	 * @see fr.donjon.classes.Deplacable#setLocationCase(Vecteur)
+	 */
 	public Vecteur getDestinationVecteur(){
 		return destinationCase;
 	}
+	
 	
 	public Orientation getOrientation(){
 		return this.orientation;
@@ -80,8 +85,8 @@ public class Link {
 	}
 	
 	/**
-	 * Indique si une salle de destination a été spécifiée
-	 * 
+	 * Indique si une salle de destination a ete initialis�e
+	 * Plus sp�cifiquement, regarde si la salle de destination a pour valeur null. 
 	 * @return true si destination n'est pas 'null'. false sinon.
 	 */
 	public boolean hasDestination(){
@@ -89,9 +94,9 @@ public class Link {
 	}
 	
 	/**
-	 * Méthode utilisée quand une salle de destination n'a pas été définie dans le constructeur
-	 * ou que l'on veut chager la destination d'une salle.
-	 * 
+	 * Mutateur
+	 * Methode utilisee quand une salle de destination n'a pas ete definie dans le constructeur
+	 * ou que l'on veut chager la destination d'une porte.
 	 * @param des salle de destination
 	 * @param desVecteur vecteur vers la case de destination dans la salle destination
 	 */
@@ -100,10 +105,15 @@ public class Link {
 		this.destinationCase = desVecteur;
 	}
 	
+	/**
+	 * Renvoi les informations pertinentes du lien.
+	 * Donne le num�ro de la salle d'origine
+	 * Donne le num�ro de la salle de destination s'il existe
+	 */
 	@Override
 	public String toString(){
 		if(destinationSalle!=null){
-			return ("Lien desalle "+origineSalle.roomNumber+" vers salle "+destinationSalle.roomNumber);
+			return ("Lien de salle "+origineSalle.roomNumber+" vers salle "+destinationSalle.roomNumber);
 		}else{
 			return ("Lien de salle "+origineSalle.roomNumber+" vers null");
 		}
@@ -111,9 +121,11 @@ public class Link {
 	
 	
 	/**
-	 * Gives a reciprocal link. If there exists a link from room A to B, this method creates the link from room B to A
+	 * Gives a reciprocal link. 
+	 * If there exists a link from room A to B, this method creates the link from room B to A
 	 * @param l the link which reciprocal is to be created
-	 * @return a new link which is the reciprocal of that of l
+	 * @return a new link which is the reciprocal of that of l. It basically have the same arguments as l but switched: salleOrigine becomes salleDestination and so on. The orientation becomes the opposite.
+	 * @see fr.donjon.utils.Orientation#opposite()
 	 */
 	public static Link getReciprocal(Link l){
 		return new Link(l.origineSalle,l.origineCase, l.destinationSalle, l.destinationCase, Orientation.opposite(l.orientation));

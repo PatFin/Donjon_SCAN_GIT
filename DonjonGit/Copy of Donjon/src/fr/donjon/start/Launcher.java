@@ -36,6 +36,8 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	
 	/**
 	 * Constructeur
+	 * On initialise les keyListeners, la musique.
+	 * On affiche le menu et on rend la fenetre visible.
 	 */
 	public Launcher() {
 
@@ -76,6 +78,10 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		}
 	}
 	
+	/**
+	 * Affiche un ecran de GameOver
+	 * @param win true si le joueur a termine le donjon avec succes, false sinon. Ce parametre influe sur le message et l'image qui s'affiche
+	 */
 	public void goToGameOver(Boolean win) {
 		try{
 			this.remove(actuel);
@@ -96,6 +102,11 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 
 	/**
 	 * Affiche le menu
+	 * On retire le JPanel actuel de la fenetre (s'il existe)
+	 * On le remplace par le panel de menu qui a ete cree dans le constructeur de launcher
+	 * On radapte la taille de la fenetre a son contenu et on en empeche son redimensionement.
+	 * On arrete la musique qui pouvait etre en cours de lecture a cause d'un precedent jeu.
+	 * On appelle repaint() pour bien repeindre la fenetre après le changement de panel. 
 	 */
 	public void goToMenu(){
 		
@@ -114,6 +125,10 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		repaint();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.GameOverListener#quit()
+	 */
 	@Override
 	public void quit() {
 		System.exit(0);
@@ -128,6 +143,10 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		goToMenu();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.EcouteurLauncher#requestGameOver(java.lang.Boolean)
+	 */
 	@Override
 	public void requestGameOver(Boolean win) {
 		goToGameOver(win);
@@ -142,14 +161,22 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		startGame(g);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.utils.GameOverListener#retourMenu()
+	 */
 	@Override
 	public void retourMenu() {
 		goToMenu();
 	}
 
 	/**
-	 * Permet de dï¿½marrer le jeu
-	 * @param mode le mode de jeu: 0 Pour jeu lineaire, default jeu non linï¿½aire
+	 * Permet de lancer un nouveau jeu.
+	 * On retire le panel actuel de la fenetre launcher.
+	 * On créé une nouvelle instance de PanelJeu dont le gestionnaire est celui donné en parametre.
+	 * On affiche ce nouveau panel qui devient le panel actuel.
+	 * On lance la musique de jeu et on autorise le changement de taille de la fenetre.
+	 * @param g le gestionnaire de jeu qui contient les mécanismes du jeu.
 	 */
 	public void startGame(GestionnaireSalle g){
 		
@@ -161,16 +188,16 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 		catch (NullPointerException e){
 
 		}
-		game = new PanelJeu(g);				//On crï¿½ï¿½ le nouveau jeu
+		game = new PanelJeu(g);				//On cree le nouveau jeu
 		game.ecouteur = this;
 		
 		actuel=game;
 		
-		this.add(actuel);									//Et on l'affiche
+		this.add(actuel);								//Et on l'affiche
 		game.startGame();								//On demarre le jeu
 		this.pack();									//On adapte la taille de la fenetre
-		music.loop();
-		this.setResizable(true);
+		music.loop();									//On lance la musique en boucle
+		this.setResizable(true);						//On autorise le changement de taille de la fenetre
 	}
 
 	/*
@@ -230,6 +257,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 
 	/**
 	 * Main method which launches the program
+	 * It creates a new window containing a "EcranAccueil"
 	 * @param args nothing required 
 	 */
 	public static void main(String[] args)  {

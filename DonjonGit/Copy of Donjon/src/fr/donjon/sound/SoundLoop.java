@@ -26,7 +26,7 @@ public class SoundLoop{
 	public final static String STARWARS = "Ressources/Sounds/RPG Theme.wav";
 	public final static String TELEPORT = "Ressources/sounds/shoot.wav";
 	
-	Clip audioClip;
+	Clip audioClip;		//Le clip qui est créé à partir de l'audioFilePath fourni en paramètre dans le constructeur.
 	
 	/**
 	 * this flag indicates whether the playback completes or not.
@@ -34,11 +34,11 @@ public class SoundLoop{
 	boolean playCompleted;
 	
 	/**
-	 * Play a given audio file.
-	 * @param audioFilePath Path of the audio file.
+	 * Creates a playable sound in the game.
+	 * @param audioFilePath Path of the audio file from which we need to read.
 	 */
-	public SoundLoop(String FilePath) {
-		File audioFile = new File(FilePath);
+	public SoundLoop(String audioFilePath) {
+		File audioFile = new File(audioFilePath);
 
 		try {
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
@@ -65,7 +65,7 @@ public class SoundLoop{
 	}
 	
 	/**
-	 * Permet de lancer la musique
+	 * Permet de lancer le fichier son en lecture en boucle
 	 */
 	public void loop(){
 		audioClip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -73,7 +73,8 @@ public class SoundLoop{
 	}
 	
 	/**
-	 * Joue une seule fois le son en question.
+	 * Joue une seule fois le son. 
+	 * A chaque appel de cette methode, on rembobine le son et on le lance
 	 */
 	public void playOnce(){
 		audioClip.setMicrosecondPosition(0);
@@ -81,7 +82,7 @@ public class SoundLoop{
 	}
 	
 	/**
-	 * Permet d'arrï¿½ter la musique
+	 * Permet d'interrompre la lecture d'un son et de le remettre à zéro
 	 */
 	public void stop(){
 		audioClip.stop();
