@@ -53,6 +53,7 @@ public class GameOver extends JPanel {
 		BRetour = new JButton("Retour");
 		BQuit.setPreferredSize(d);
 		BRetour.setPreferredSize(d);
+		
 		BQuit.addActionListener(new ActionListener(){
 			/*
 			 * (non-Javadoc)
@@ -63,6 +64,7 @@ public class GameOver extends JPanel {
 				listener.quit();
 			}
 		});
+		
 		BRetour.addActionListener(new ActionListener(){
 			/*
 			 * (non-Javadoc)
