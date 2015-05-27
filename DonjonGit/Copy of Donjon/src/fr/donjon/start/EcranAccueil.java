@@ -118,7 +118,7 @@ public class EcranAccueil extends JPanel{
 				Salle.instances = 0;
 				
 				//On commande un jeu test
-				ecouteur.requestNewGame(new GestionnairePatrickBasique(4, 3));
+				ecouteur.requestNewGame(new GestionnairePatrickBasique());
 			}
 		});
 		

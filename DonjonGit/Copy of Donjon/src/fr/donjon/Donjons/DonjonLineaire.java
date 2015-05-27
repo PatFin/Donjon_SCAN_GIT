@@ -34,7 +34,7 @@ public class DonjonLineaire extends GestionnaireSalle{
 
 		start.createPorteSalleVoisines(this.getSmap());
 
-		//On place le hÃ©ros au centre de la salle
+		//On place le héro au centre de la salle
 		start.hero.setLocationCase(start.getRoomCenter());;
 
 	}
