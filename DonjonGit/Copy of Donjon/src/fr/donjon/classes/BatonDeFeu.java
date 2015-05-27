@@ -10,7 +10,7 @@ import fr.donjon.utils.Vecteur;
 public class BatonDeFeu extends Arme {
 
 	final static int DMG = 0;
-	final static int DUR = 200;
+	final static int DUR = 100;
 	final static String icSrc = "IceBallIcon.png";
 	final static String src = "skeleton_map.png";
 
