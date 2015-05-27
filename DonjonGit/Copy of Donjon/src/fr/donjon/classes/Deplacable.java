@@ -57,6 +57,8 @@ public abstract class Deplacable extends Objet {
 	
 	/**
 	 * Places the object at a certain position given as a vector.
+	 * Attention! The coordinates of the vector are in pixels.
+	 * To place the object on a tile in a room, use method setLocationCase(Vecteur)
 	 * @param v the coordinates of the tile the character should be placed on.
 	 */
 	public void setLocation(Vecteur v){
@@ -65,6 +67,8 @@ public abstract class Deplacable extends Objet {
 	
 	/**
 	 * Places the object on the tile which coordinates in the room are given by the parameter
+	 * Attention! This method will place the object at the tile of coordinates given as a vector in the room.
+	 * To place the object at coordinates as pixels, use method setLocation(Vecteur) or setLocation(int, int)
 	 * @param v the coordinates of the tile where the object should be placed
 	 */
 	public void setLocationCase(Vecteur v){

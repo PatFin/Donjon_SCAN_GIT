@@ -5,8 +5,10 @@ package fr.donjon.Donjons;
 
 import fr.donjon.cases.Case;
 import fr.donjon.classes.BigBoss;
+import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Squelette;
+import fr.donjon.classes.SqueletteFeu;
 import fr.donjon.editor.MapFileHandler;
 import fr.donjon.salles.EnigmeSwitch;
 import fr.donjon.salles.EnigmeTeleporteur;
@@ -78,7 +80,7 @@ public class GestionnairePatrickBasique extends GestionnaireSalle{
 		
 		//On choisit un genre de salle et on le place dans le tableau de salle du donjon
 		SalleQuatre s;
-		
+		Ennemis e;
 		
 		if(Salle.instances+1 != nombreDeSalle){
 			//Salle.instances +1 est la nième la salle qu'on va créer.
@@ -86,12 +88,16 @@ public class GestionnairePatrickBasique extends GestionnaireSalle{
 			case 2:
 				//La deuxième salle aura 1 seul squelette
 				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomChateauRochers(SALLEWIDTH, SALLEHEIGHT)));
-				s.addEnemy(new Squelette(0, 0, h, 1, s));
+				e = new Squelette(0,0,h,1,s);
+				e.setLocationCase(s.getRoomCenter());
+				s.addEnemy(e);
 				break;
 			case 3:
 				//La troisième salle contiendra un squelette qui lance des boules de feu.
-				s= new SalleQuatre(h, Salle.addWalls(MapGenerator.randomChateauLave(SALLEWIDTH, SALLEHEIGHT)));
-				s.addEnemy(new Squelette(0,0,h,1,s));
+				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomChateauLave(SALLEWIDTH, SALLEHEIGHT)));
+				e = new SqueletteFeu(0,0,h,1,s);
+				e.setLocationCase(s.getRoomCenter());
+				s.addEnemy(e);
 				break;
 			case 4:
 				//La quatrième salle sera une énigme switch
