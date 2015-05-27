@@ -8,8 +8,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import fr.donjon.Donjons.DonjonLineaire;
 import fr.donjon.Donjons.DonjonNonLineaire;
@@ -24,24 +27,27 @@ public class EcranAccueil extends JPanel{
 	final static String srcImage = "BackgroundMenu.jpg"; // FICHIER SOURCE POUR CHARGER L'IMAGE
 	
 	private static final long serialVersionUID = 1L;
-	ImageIcon iconeEditeur = new ImageIcon(ImageManager.getImage("mapEditor.png", getClass().getSimpleName())); // icone du sigle mapEditor
-	ImageIcon iconeInfinity = new ImageIcon(ImageManager.getImage("infinity.png", getClass().getSimpleName())); // icone du sigle infini
-	ImageIcon iconePlayer = new ImageIcon(ImageManager.getImage("Player.png", getClass().getSimpleName())); // icone de l'image du joueur
-
-	// dÃ©claration de l'image
+	ImageIcon iconeEditeur = new ImageIcon(ImageManager.getImage("mapEditor.png", getClass().getSimpleName())); 		// icone du sigle mapEditor
+	ImageIcon iconeInfinity = new ImageIcon(ImageManager.getImage("infinity.png", getClass().getSimpleName())); 		// icone du sigle infini
+	ImageIcon iconePlayer = new ImageIcon(ImageManager.getImage("Player.png", getClass().getSimpleName())); 			// icone de l'image du joueur
+	ImageIcon iconePlayerKneeling = new ImageIcon(ImageManager.getImage("Player_Dead_Alternative.png", getClass().getSimpleName()));
+	ImageIcon iconePlayerDead = new ImageIcon(ImageManager.getImage("Player_Dead.png", getClass().getSimpleName()));
+	
+	// declaration de l'image
 	Image im; // IMAGE
 	final int SCREENX=800; // LONGUEUR FENETRE
 	final int SCREENY=600; // LARGEUR FENETRE
 	private JButton boutonEditeur= new JButton("Editeur de map", iconeEditeur);
 	
-	private JButton boutonJeuInfini=new JButton ("Jeu Infini",iconeInfinity);
-	private JButton boutonJeuLineaire = new JButton("Jeu Linï¿½aire",iconePlayer);
-	private JButton boutonJeuTutoriel = new JButton("Tutoriel");
+	private JButton boutonJeuInfini=new JButton ("Labyrinthe",iconePlayerDead);
+	private JButton boutonJeuLineaire = new JButton("Jeu Lineaire",iconePlayerKneeling);
+	private JButton boutonJeuTutoriel = new JButton("Tutoriel", iconePlayer);
 	
-	private JSlider taille = new JSlider(5,15,5);
+	private JSlider taille = new JSlider(5,15,10);
+	private JLabel tailleMessage = new JLabel("Donjon Size: 10");
 	
 	private JPanel panel1 = new JPanel(); //Will contain the buttons
-	private JPanel panel2 = new JPanel(); //Will contain the slider giving the size of the donjon
+	private JPanel panel2 = new JPanel(); //Will contain the slider giving the size of the donjon and the JLabel indicating its value
 	
 	public EcouteurLauncher ecouteur;
 
@@ -69,6 +75,8 @@ public class EcranAccueil extends JPanel{
 		panel1.add(boutonEditeur);
 		this.add(panel1);
 		
+		//Ajout d'un slider pour choisir la taille du donjon
+		panel2.add(tailleMessage);
 		panel2.add(taille);
 		this.add(panel2);
 		
@@ -78,7 +86,8 @@ public class EcranAccueil extends JPanel{
 	}
 
 	/**
-	 * Cette mï¿½thode dï¿½crit les opï¿½rations ï¿½ faire lorsqu'on clique sur chacun des boutons.
+	 * Cette methode rassemble les operations à faire lorsqu'on clique sur chacun des boutons ou qu'on fais varier le slider.
+	 * Cette methode n'est appelée que dans le constructeur pour initialiser les actions à effectuer lorsqu'on touche aux composants.
 	 */
 	private void addListeners(){
 
@@ -114,7 +123,7 @@ public class EcranAccueil extends JPanel{
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e){
-				//On rï¿½initialise le nombre de salles
+				//On reinitialise le nombre de salles qui ont été créées.
 				Salle.instances = 0;
 				
 				//On commande un jeu test
@@ -128,15 +137,27 @@ public class EcranAccueil extends JPanel{
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//On commande l'ï¿½diteur de map
+				//On commande l'editeur de map
 				new EditorWindow("Editeur de cartes");
+			}
+		});
+		
+		//On update le texte du JLabel à chaque fois que le JSLider change de valeur.
+		taille.addChangeListener(new ChangeListener(){
+
+			/*
+			 * (non-Javadoc)
+			 * @see javax.swing.event.ChangeListener#stateChanged(javax.swing.event.ChangeEvent)
+			 */
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				tailleMessage.setText("Donjon Size: "+taille.getValue());
 			}
 		});
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	/**
+	 * On affiche les composants du JPanel this et on rajoute une image de fond.
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -146,5 +167,4 @@ public class EcranAccueil extends JPanel{
 			g.drawImage (im, 0, 0, this);	
 		}
 	}
-	//les actions de la souris
 }
