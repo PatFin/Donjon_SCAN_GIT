@@ -28,8 +28,6 @@ public class ArmePoingSquelette extends Arme{
 	final static String src = "skeleton_map.png";
 	final static int zoneHeight = 40;
 	final static int zoneWidth = 40; 
-
-	int dommages;
 	
 	Vecteur c = new Vecteur(0,0);
 	private LinkedList<Personnage> persoTouches;
@@ -66,7 +64,7 @@ public class ArmePoingSquelette extends Arme{
 
 		for( Personnage p :  cibles){
 			if( p.collisionArmes.intersects(zoneDommages) && p.type == Type.HERO && !persoTouches.contains(p)){
-				p.receiveDammages(dommages);
+				p.receiveDammages(degats);
 				persoTouches.add(p);
 			}
 			

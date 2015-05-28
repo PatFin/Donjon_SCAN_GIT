@@ -88,6 +88,14 @@ public class Effet{
 	public void setVit(int vit) {
 		this.vit = vit;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Effet [atk=" + atk + ", def=" + def + ", vie=" + vie + ", vit="
+				+ vit + "]";
+	}
 
 	
 	 

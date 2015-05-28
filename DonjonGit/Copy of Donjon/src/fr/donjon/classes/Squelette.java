@@ -17,6 +17,7 @@ public class Squelette extends Ennemis {
 	final static int LNG = 64;
 	final static int LRG = 64;
 	final static String src = "skeleton_map.png";
+	
 	static int VIE = 50;
 	static int VIT = 3;
 
@@ -26,9 +27,12 @@ public class Squelette extends Ennemis {
 	public Squelette(int ax, int ay, Personnage cible, int level, Salle room){
 		super(ax, ay, LNG, LRG, src,
 				new Rectangle(17,15,30,49), new Rectangle(22,48,20,16), true,
-				Orientation.SUD, EtatPersonnage.REPOS, Vecteur.vNull,VIT,
-				VIE, DEF , null, cible, room);
+				Orientation.SUD, EtatPersonnage.REPOS, Vecteur.vNull,VIT+(level/3),
+				VIE+(10*level/2), DEF+(level/2) , null, cible, room);
 
+		if(stats.vit >= Heros.VIT) stats.vit = Heros.VIT - 1;
+		if(stats.def >= 10) stats.vit = 9;
+		
 		this.cible = cible;
 
 
@@ -41,7 +45,9 @@ public class Squelette extends Ennemis {
 		this.niveau = level;
 
 
-		this.arme = new ArmePoingSquelette(this,12); 
+		this.arme = new ArmePoingSquelette(this, (11 +(level) ) > 20 ? 20 : 11+level ); 
+		
+		System.out.println(""+stats.toString());
 	}
 
 
