@@ -14,12 +14,12 @@ import fr.donjon.utils.Vecteur;
 public class SqueletteFeu extends Ennemis {
 
 	final static double COEFF = 0.3;
-	static int DEF = 5;
 	final static int LNG = 64;
 	final static int LRG = 64;
 	final static String src = "skeletonfeu_map.png";
 	static int VIE = 75;
-	static int VIT = 2;
+	static int VIT = 3;
+	static int DEF = 5;
 
 
 	public SqueletteFeu(int ax, int ay, Personnage cible, int level, Salle room){
@@ -38,12 +38,9 @@ public class SqueletteFeu extends Ennemis {
 		animation = animationS;
 
 
-		this.inventaire = new Inventaire(2, this);
+		this.arme = new BatonDeFeu(this);
 
-		inventaire.addUtilisable(new ArmeEpee());
-		inventaire.addUtilisable(new BatonDeFeu(this));
 
-		inventaire.useUtilisable(1);
 	}
 
 	@Override
@@ -55,10 +52,12 @@ public class SqueletteFeu extends Ennemis {
 		this.arme.attaquer(currentRoom.personnages, projectiles, v);
 
 		this.etat = EtatPersonnage.REPOS;
+		
 	}
 
 	@Override
 	public void collide(Personnage p) {
+
 		if(p.type == Type.HERO)this.setLocation(lPos);
 		else {
 			Vecteur axis = new Vecteur( this.image.x + this.image.width/2 - (p.image.x + p.image.width/2),
@@ -110,27 +109,23 @@ public class SqueletteFeu extends Ennemis {
 
 		Vecteur v = new Vecteur(dx, dy);
 
-		if (v.getNorm() > 300) {
 
-			v = v.normalise();
+		if (v.getNorm() > 150 && v.getNorm() < 250) {
 
-			if(t %240 == 0) attaquer(currentRoom.personnages, currentRoom.projectiles, v);
+			if(t %240 == 0) attaquer(currentRoom.personnages, currentRoom.projectiles, v.normalise());
 
-		}else if (v.getNorm() < 301) {
+		}else if (v.getNorm() <= 150) {
 
 			v = v.multiplie(-1);
+			marcher(v.normalise());
 
-			v= v.normalise();
-			
-			marcher(v);
-			
-		}else { 
-			
-			v = v.normalise();
-			
-			marcher(v);
 		}
-		
+		else {
+			
+			marcher(v.normalise());
+
+		}
+
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import fr.donjon.cases.Case;
 import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Squelette;
+import fr.donjon.classes.SqueletteFeu;
 import fr.donjon.salles.Salle;
 
 /**
@@ -62,7 +63,13 @@ public class EnnemyGenerator {
 
 			np = pc.ajoute((new Vecteur( Math.cos(i), Math.sin(i) )).multiplie(radius));
 
-			l.add( new Squelette( (int)np.x, (int)np.y, he, s.roomNumber, s) );
+			if(Math.random() > 0.75){
+				l.add( new SqueletteFeu( (int)np.x, (int)np.y, he, s.roomNumber, s) );
+			}
+			else {
+				l.add( new Squelette( (int)np.x, (int)np.y, he, s.roomNumber, s) );
+			}
+			
 		}
 
 		return l;

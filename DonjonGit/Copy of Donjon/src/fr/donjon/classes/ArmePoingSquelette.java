@@ -84,15 +84,6 @@ public class ArmePoingSquelette extends Arme{
 
 	}
 	
-	@Override
-	public void draw(Graphics g, long t) {
-		// TODO Auto-generated method stub
-		super.draw(g, t);
-		
-		g.setColor(Color.cyan);
-		g.fillRect(zoneDommages.x, zoneDommages.y, zoneDommages.width, zoneDommages.height );
-	}
-	
 
 	@Override
 	public void stopAttaquer() {

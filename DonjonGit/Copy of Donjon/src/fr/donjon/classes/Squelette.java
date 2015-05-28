@@ -47,19 +47,19 @@ public class Squelette extends Ennemis {
 
 		this.arme = new ArmePoingSquelette(this, (11 +(level) ) > 20 ? 20 : 11+level ); 
 		
-		System.out.println(""+stats.toString());
+		
 	}
 
 
 	@Override
 	public void collide(Personnage p) {
-		//if(p.type == Type.HERO)this.setLocation(lPos);
-		//else {
+		if(p.type == Type.HERO)this.setLocation(lPos);
+		else {
 			Vecteur axis = new Vecteur( this.image.x + this.image.width/2 - (p.image.x + p.image.width/2),
 					this.image.y + this.image.height/2 - (p.image.y + p.image.height/2) );
 
 			this.marcher(axis.normalise());
-		//}
+		}
 	}
 
 	public void marcher(Vecteur v){
