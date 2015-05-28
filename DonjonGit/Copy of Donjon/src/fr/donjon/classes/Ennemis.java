@@ -16,7 +16,7 @@ import fr.donjon.utils.Vecteur;
  */
 public abstract class Ennemis extends Personnage{
 	
-	static int NIV;
+
 	Personnage cible;
 	
 	Salle currentRoom;

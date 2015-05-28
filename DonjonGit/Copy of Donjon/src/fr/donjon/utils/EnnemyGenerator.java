@@ -62,7 +62,7 @@ public class EnnemyGenerator {
 
 			np = pc.ajoute((new Vecteur( Math.cos(i), Math.sin(i) )).multiplie(radius));
 
-			l.add( new Squelette( (int)np.x, (int)np.y, he, 1, s) );
+			l.add( new Squelette( (int)np.x, (int)np.y, he, s.roomNumber, s) );
 		}
 
 		return l;

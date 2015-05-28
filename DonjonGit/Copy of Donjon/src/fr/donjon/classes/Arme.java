@@ -1,5 +1,6 @@
 package fr.donjon.classes;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -99,6 +100,7 @@ public abstract class Arme implements Utilisable{
 	 * @param t
 	 */
 	public void draw(Graphics g, long t){
+		
 		
 		int T = lanceur.image.width;
 		

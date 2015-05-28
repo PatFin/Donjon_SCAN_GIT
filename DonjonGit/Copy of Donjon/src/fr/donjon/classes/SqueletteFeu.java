@@ -37,7 +37,6 @@ public class SqueletteFeu extends Ennemis {
 		animationE = new Animation(src, new Vecteur(64, 64),3,9,(long)(VIT/COEFF*100));
 		animation = animationS;
 
-		NIV = level;
 
 		this.inventaire = new Inventaire(2, this);
 
