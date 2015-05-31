@@ -110,7 +110,7 @@ public class SqueletteFeu extends Ennemis {
 
 		if (v.getNorm() > 150 && v.getNorm() < 250) {
 
-			if(t %240 == 0) attaquer(currentRoom.personnages, currentRoom.projectiles, v.normalise());
+			if(t %480 == 0) attaquer(currentRoom.personnages, currentRoom.projectiles, v.normalise());
 
 		}else if (v.getNorm() <= 150) {
 
