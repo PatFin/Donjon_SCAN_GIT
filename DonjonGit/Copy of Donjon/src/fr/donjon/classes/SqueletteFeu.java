@@ -49,9 +49,7 @@ public class SqueletteFeu extends Ennemis {
 
 		this.etat = EtatPersonnage.ATTAQUE;
 
-		this.arme.attaquer(currentRoom.personnages, projectiles, v);
-
-		this.etat = EtatPersonnage.REPOS;
+		this.arme.attaquer(cibles, projectiles, v);
 		
 	}
 
