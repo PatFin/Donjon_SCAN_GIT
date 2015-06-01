@@ -18,8 +18,8 @@ import fr.donjon.utils.Vecteur;
  */
 public class Fleche extends Projectile{
 
-	final static int DGT = 7;
-	final static int DIM = 20;
+	final static int DGT = 11;
+	final static int DIM = 25;
 	final static String src = "Arrow.png";
 	final static int VIT = 12;
 	
@@ -27,7 +27,7 @@ public class Fleche extends Projectile{
 	
 
 	public Fleche(int ax, int ay , Vecteur vvitesse) {
-		super(ax, ay, DIM, DIM, src, new Rectangle(15,15, DIM-30, DIM-30), new Rectangle(15,15, DIM-30, DIM-30),
+		super(ax, ay, DIM, DIM, src, new Rectangle(15,15, DIM-18, DIM-18), new Rectangle(15,15, DIM-18, DIM-18),
 				true, vvitesse, VIT, Type.ENNEMI, DGT);
 		
 		Orientation ori = Vecteur.projectMainDirection(vvitesse);
