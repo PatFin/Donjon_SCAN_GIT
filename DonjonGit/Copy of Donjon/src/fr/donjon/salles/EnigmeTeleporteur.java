@@ -56,7 +56,7 @@ public class EnigmeTeleporteur extends SalleQuatre {
 
 	/**
 	 * Constructeur de cette salle
-	 * @param h le h�ros contr�l� par le joueur
+	 * @param h le hero controle par le joueur
 	 */
 	public EnigmeTeleporteur (Heros h){
 		super(h, generateRoomTiles());
@@ -70,7 +70,7 @@ public class EnigmeTeleporteur extends SalleQuatre {
 			}
 		}
 	
-		//On cr�� un chemin de bloc en blocs
+		//On cree un chemin de bloc en bloc
 		for(int z=0; z<3; z++){
 			int r = (int) (Math.random()*4);
 			
@@ -118,7 +118,7 @@ public class EnigmeTeleporteur extends SalleQuatre {
 		}
 		
 		
-		//On met un t�l�porteur vers chaque palier de porte de la salle dans le dernier bloc.
+		//On met un teleporteur vers chaque palier de porte de la salle dans le dernier bloc.
 		int i=0;
 		for(CasePorte p :  this.portes){
 			this.blocs[3].teleporteur[i].collision = new CollisionTeleportation(this.blocs[3].teleporteur[i], this.getCase(p.collisionPorte.lien.getPalier()));

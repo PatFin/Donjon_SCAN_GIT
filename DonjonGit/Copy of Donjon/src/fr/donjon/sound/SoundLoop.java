@@ -6,16 +6,12 @@ import java.io.IOException;
 import javax.sound.sampled.*;
 
 /**
- * Testing code used to play music in the game
+ * 
  * @author chwat
  *
  */
 
-/*
- * Snippets to add to a given class:
- * import fr.donjon.sound.SoundLoop;
- * SoundLoop sound=new SoundLoop("Ressources/Sounds/Main Theme.aif");
- */
+
 public class SoundLoop{
 
 	

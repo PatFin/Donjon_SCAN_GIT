@@ -85,25 +85,25 @@ public class GestionnairePatrickBasique extends GestionnaireSalle{
 		if(Salle.instances+1 != nombreDeSalle){
 			//Salle.instances +1 est la nième la salle qu'on va créer.
 			switch(Salle.instances+1){
-			case 2:
+			case 4:
 				//La deuxième salle aura 1 seul squelette
 				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomChateauRochers(SALLEWIDTH, SALLEHEIGHT)));
 				e = new Squelette(0,0,h,1,s);
 				e.setLocationCase(s.getRoomCenter());
 				s.addEnemy(e);
 				break;
-			case 3:
+			case 5:
 				//La troisième salle contiendra un squelette qui lance des boules de feu.
 				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomChateauLave(SALLEWIDTH, SALLEHEIGHT)));
 				e = new SqueletteFeu(0,0,h,1,s);
 				e.setLocationCase(s.getRoomCenter());
 				s.addEnemy(e);
 				break;
-			case 4:
+			case 2:
 				//La quatrième salle sera une énigme switch
 				s= new EnigmeSwitch(h);
 				break;
-			case 5:
+			case 3:
 				//La cinquième salle sera une énigme téléporteur
 				s= new EnigmeTeleporteur(h);
 				break;	

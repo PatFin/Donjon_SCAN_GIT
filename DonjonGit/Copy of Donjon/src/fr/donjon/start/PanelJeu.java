@@ -30,8 +30,12 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 
 		@Override
 		public void actionPerformed(ActionEvent e){
-			update();
-			temps +=timerTime;
+			tempsTimer +=timerTime;
+			if(!enPause){
+				update();
+				temps = tempsTimer;
+			}
+			repaint();
 		}
 
 	}
@@ -44,6 +48,8 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private boolean enPause;
+	
 	DessinateurSalle dessinateur;
 	EcouteurLauncher ecouteur;
 
@@ -56,6 +62,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 	
 	long ta = -1;
 	long temps;
+	long tempsTimer;
 	
 	Timer timer;
 
@@ -79,12 +86,12 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 		map = new DessinateurGestionnaire(ecran,gestion);
 		
 		showMap = false ;
-		
-		startGame();
+		enPause = false;
 		
 		instance = instances;
 		instances++;
-
+		this.timer.start();
+		startGame();
 	}
 
 
@@ -126,17 +133,17 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 		int Height = getHeight();
 		
 		
-		int x; //coordonnï¿½e horizontale de la camï¿½ra
+		int x; //coordonnee horizontale de la camera
 		if(z.x<Width){
-			//on centre la salle dans la fenï¿½tre
+			//on centre la salle dans la fenetre
 			x=(int)(Width/2-z.x/2); 
 		}else{
-			//on place la camï¿½ra sur le hï¿½ros
+			//on place la camera sur le heros
 			x=(int)(- gestion.getCentreCamera().x + Width/2);
 		}
 		
 		//Cf au dessus
-		int y; //coordonnï¿½e verticale de la camï¿½ra
+		int y; //coordonnee verticale de la camera
 		if(z.y<Height){
 			y=(int)(Height/2-z.y/2);
 		}else{
@@ -149,7 +156,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 		
 		//Dessin de la map si le booléen showMap est true (voir toggleMap dans cette classe).
 		if(showMap){
-			g.drawImage(map.getImage(gestion.smap, gestion.getsActuelle(), this.temps), 0, 0, getHeight(), getHeight(), null);
+			g.drawImage(map.getImage(gestion.smap, gestion.getsActuelle()), 0, 0, getHeight(), getHeight(), null);
 		}
 		
 	}
@@ -189,7 +196,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 	 * Lance le jeu
 	 */
 	public void startGame(){
-		this.timer.start();
+		this.enPause = false;
 	}
 
 	/*
@@ -214,7 +221,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 	 * Met le jeu en pause
 	 */
 	public void stopGame(){
-		this.timer.stop();
+		this.enPause=true;
 	}
 
 	/*
@@ -226,11 +233,11 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 		
 		if(showMap){
 			showMap = false;
-			gestion.getsActuelle().update=true;
+			this.startGame();
 		}
 		else {
 			showMap = true;
-			gestion.getsActuelle().update=false;
+			this.stopGame();
 		}
 		
 	}
@@ -270,8 +277,6 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 		
 
 		gestion.update(temps);
-
-		repaint();
 		
 		if(dessinateur.salle != gestion.getsActuelle()){
 			dessinateur.changerSalle(gestion.getsActuelle());

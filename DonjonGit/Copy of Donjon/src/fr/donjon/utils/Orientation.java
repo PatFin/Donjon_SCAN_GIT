@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public enum Orientation {
 	EST,NORD,OUEST,SUD;
 	
-	
+
 	public Vecteur getUnitVector() {
 		return Orientation.getUnitVector(this);
 	}
