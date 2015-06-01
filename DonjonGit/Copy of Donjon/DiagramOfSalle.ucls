@@ -1,204 +1,2177 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="fr.donjon.testblac.DessinateurSalle" project="Copy of Donjon" 
-    file="/Copy of Donjon/src/fr/donjon/testblac/DessinateurSalle.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="780" y="467"/>    
+  <class id="1" language="java" name="fr.donjon.classes.Ennemis" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/Ennemis.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="633" x="1221" y="3866"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="2" language="java" name="fr.donjon.cases2.CollisionPattern" project="Copy of Donjon" 
-    file="/Copy of Donjon/src/fr/donjon/cases2/CollisionPattern.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="324" y="462"/>    
+  <class id="2" language="java" name="fr.donjon.salles.EnigmeTeleporteur" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/salles/EnigmeTeleporteur.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="188" x="6055" y="2332"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="fr.donjon.classes.ArmePoingSquelette" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/ArmePoingSquelette.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="166" width="203" x="1837" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="fr.donjon.classes.BigBoss" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/BigBoss.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="184" width="356" x="825" y="4162"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="fr.donjon.start.Launcher" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/start/Launcher.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="364" width="229" x="6834" y="-38"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="fr.donjon.salles.SalleQuatre" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/salles/SalleQuatre.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="166" width="277" x="6055" y="2108"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="fr.donjon.utils.JeuKeyAdapter" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/JeuKeyAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="148" width="185" x="6895" y="1488"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="fr.donjon.classes.Drop" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/Drop.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="148" width="256" x="764" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="9" language="java" name="fr.donjon.utils.Orientation" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/Orientation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="238" width="232" x="1917" y="4162"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <interface id="10" language="java" name="fr.donjon.utils.GameOverListener" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/GameOverListener.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="131" x="4932" y="1488"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="3" language="java" name="fr.donjon.testblac.PanelJeu" project="Copy of Donjon" 
-    file="/Copy of Donjon/src/fr/donjon/testblac/PanelJeu.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="256" width="156" x="1185" y="279"/>    
+  <class id="11" language="java" name="fr.donjon.salles.EnigmeTeleporteur.TeleSet" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/salles/EnigmeTeleporteur.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="76" width="107" x="6248" y="2520"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="fr.donjon.testblac.LauncherTest" project="Copy of Donjon" 
-    file="/Copy of Donjon/src/fr/donjon/testblac/LauncherTest.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="202" width="156" x="1185" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="fr.donjon.cases2.CollisionTeleportation" project="Copy of Donjon" 
-    file="/Copy of Donjon/src/fr/donjon/cases2/CollisionTeleportation.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="552" y="306"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="fr.donjon.cases2.CasePorte" project="Copy of Donjon" 
-    file="/Copy of Donjon/src/fr/donjon/cases2/CasePorte.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="302" y="1084"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="7" language="java" name="fr.donjon.testblac.EcouteurChangementSalle" project="Copy of Donjon" 
-    file="/Copy of Donjon/src/fr/donjon/testblac/EcouteurChangementSalle.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="984" y="1200"/>    
+  <interface id="12" language="java" name="fr.donjon.utils.EcouteurChangementSalle" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/EcouteurChangementSalle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="76" width="175" x="528" y="2108"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="8" language="java" name="fr.donjon.cases2.CollisionObstacle" project="Copy of Donjon" 
-    file="/Copy of Donjon/src/fr/donjon/cases2/CollisionObstacle.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="98" y="318"/>    
+  <class id="13" language="java" name="fr.donjon.cases.CaseMur" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseMur.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="196" x="2555" y="3292"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="fr.donjon.testblac.GestionnaireSalle" project="Copy of Donjon" 
-    file="/Copy of Donjon/src/fr/donjon/testblac/GestionnaireSalle.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="436" width="197" x="967" y="575"/>    
+  <class id="14" language="java" name="fr.donjon.start.PanelJeu.TimerAction" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/start/PanelJeu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="194" x="5812" y="734"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="fr.donjon.testblac.Salle" project="Copy of Donjon" 
-    file="/Copy of Donjon/src/fr/donjon/testblac/Salle.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="653" y="1117"/>    
+  <class id="15" language="java" name="fr.donjon.editor.CaseButtonListener" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/editor/CaseButtonListener.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="245" x="4127" y="2332"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="fr.donjon.testblac.GestionnaireBasique" project="Copy of Donjon" 
-    file="/Copy of Donjon/src/fr/donjon/testblac/GestionnaireBasique.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1329" y="755"/>    
+  <class id="16" language="java" name="fr.donjon.start.GameOver" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/start/GameOver.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="178" x="4932" y="868"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="12">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="9"/>  
+  <class id="17" language="java" name="fr.donjon.Donjons.DonjonLineaire" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/Donjons/DonjonLineaire.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="250" x="5124" y="1488"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="fr.donjon.Donjons.GestionnaireSalle" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/Donjons/GestionnaireSalle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="580" width="258" x="6097" y="868"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="19" language="java" name="fr.donjon.utils.EtatPersonnage" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/EtatPersonnage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="76" width="119" x="1957" y="3866"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="20" language="java" name="fr.donjon.utils.CaseProbability" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/CaseProbability.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="76" width="168" x="4536" y="2520"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="fr.donjon.classes.Inventaire" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/Inventaire.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="148" width="177" x="1004" y="3866"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="fr.donjon.classes.ArmeEpee" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/ArmeEpee.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="166" width="142" x="2122" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="fr.donjon.classes.Personnage" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/Personnage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="220" width="590" x="1797" y="3606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="fr.donjon.cases.CaseFendue" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseFendue.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="95" x="2791" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="fr.donjon.salles.EnigmeSwitch" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/salles/EnigmeSwitch.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="130" width="135" x="6283" y="2332"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="fr.donjon.utils.MapGenerator" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/MapGenerator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="184" width="295" x="1587" y="-38"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="fr.donjon.cases.CasePorte" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CasePorte.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="202" width="202" x="5771" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="fr.donjon.classes.BatonDeFeu" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/BatonDeFeu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="184" width="356" x="4281" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="fr.donjon.cases.CaseEscalier" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseEscalier.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="99" x="2926" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="fr.donjon.classes.BouleDeFeu" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/BouleDeFeu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="130" width="162" x="-211" y="3866"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="fr.donjon.classes.BatonDeGlace" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/BatonDeGlace.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="184" width="356" x="4698" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="32" language="java" name="fr.donjon.cases.CollisionPattern" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CollisionPattern.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="166" width="198" x="5113" y="3866"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <package id="33" language="java" name="fr.donjon.utils" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="101" x="2376" y="-38"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="34" language="java" name="fr.donjon.cases.CaseGlass" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseGlass.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="88" x="5414" y="3606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="fr.donjon.cases.CaseLave" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseLave.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="148" width="196" x="4321" y="3606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="fr.donjon.cases.CaseSwitch" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseSwitch.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="129" x="6247" y="3606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="fr.donjon.classes.ArmeLance" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/ArmeLance.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="166" width="148" x="2304" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="38" language="java" name="fr.donjon.salles" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/salles" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="110" x="2972" y="-38"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="39" language="java" name="fr.donjon.sound.SoundLoop" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/sound/SoundLoop.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="130" width="117" x="6500" y="3866"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="fr.donjon.classes.Objet" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/Objet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="148" width="286" x="1102" y="2996"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="fr.donjon.classes.Squelette" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/Squelette.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="166" width="205" x="1221" y="4162"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="fr.donjon.cases.CollisionObstacle" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CollisionObstacle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="184" width="198" x="4578" y="3606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="fr.donjon.utils.Animation" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/Animation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="148" width="250" x="2158" y="3866"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="44" language="java" name="fr.donjon.utils.Utilisable" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/Utilisable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="133" x="409" y="4162"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="45" language="java" name="fr.donjon.classes.Projectile" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/Projectile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="130" width="398" x="764" y="3606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="fr.donjon.classes.BatonDeDark" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/BatonDeDark.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="184" width="356" x="5115" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="47" language="java" name="fr.donjon.editor.DialogListener" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/editor/DialogListener.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="149" x="7275" y="366"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="48" language="java" name="fr.donjon.cases.CaseLiane" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseLiane.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="88" x="3065" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="fr.donjon.classes.Deplacable" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/Deplacable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="166" width="368" x="1123" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="fr.donjon.classes.SqueletteFeu" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/SqueletteFeu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="184" width="356" x="1466" y="4162"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="fr.donjon.cases.CollisionDegats" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CollisionDegats.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="184" width="198" x="4816" y="3606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="fr.donjon.editor.CaseButton" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/editor/CaseButton.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="115" x="4127" y="2520"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="53" language="java" name="fr.donjon.classes.BouleDeGlace" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/BouleDeGlace.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="130" width="168" x="-9" y="3866"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="54" language="java" name="fr.donjon.utils.EcouteurLauncher" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/EcouteurLauncher.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="229" x="6563" y="1488"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <package id="55" language="java" name="fr.donjon.start" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/start" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="103" x="3578" y="-38"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="56" language="java" name="fr.donjon.editor.EditorWindow" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/editor/EditorWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="129" x="4412" y="2332"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="57" language="java" name="fr.donjon.cases.CaseWater" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseWater.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="88" x="3193" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="58" language="java" name="fr.donjon.editor.DialogSauvegarder" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/editor/DialogSauvegarder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="304" x="7103" y="-38"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="59" language="java" name="fr.donjon.start.EcranAccueil" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/start/EcranAccueil.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="178" x="6635" y="366"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="60" language="java" name="fr.donjon.classes.Arme" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/Arme.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="220" width="356" x="2061" y="2996"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="fr.donjon.cases.CollisionPorte" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CollisionPorte.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="202" width="216" x="5713" y="3606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="62" language="java" name="fr.donjon.utils.ImageManager" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/ImageManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="167" x="6521" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="63" language="java" name="fr.donjon.classes" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="121" x="4178" y="-38"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="64" language="java" name="fr.donjon.utils.Link" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/Link.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="256" width="237" x="5713" y="3866"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="65" language="java" name="fr.donjon.cases.CaseRocher" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseRocher.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="196" x="3321" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="66" language="java" name="fr.donjon.Donjons.DonjonNonLineaire" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/Donjons/DonjonNonLineaire.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="250" x="5414" y="1488"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="67" language="java" name="fr.donjon.utils.EcouteurClavier" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/EcouteurClavier.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="184" width="156" x="6853" y="2108"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="68" language="java" name="fr.donjon.utils.ProbabilityMap" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/ProbabilityMap.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="148" width="195" x="4581" y="2332"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="69" language="java" name="fr.donjon.editor.DialogNouveau" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/editor/DialogNouveau.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="130" width="284" x="7447" y="-38"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="70" language="java" name="fr.donjon.cases.CaseMap" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseMap.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="233" x="6521" y="3606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="71" language="java" name="fr.donjon.editor.PanelEdition" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/editor/PanelEdition.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="436" width="193" x="4282" y="2520"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="72" language="java" name="fr.donjon.cases.CollisionTeleportation" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CollisionTeleportation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="220" width="198" x="5492" y="2520"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="73" language="java" name="fr.donjon.cases.CaseBloquante" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseBloquante.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="110" x="5542" y="3606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="74" language="java" name="fr.donjon.salles.Salle" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/salles/Salle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="580" width="244" x="5994" y="1488"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="75" language="java" name="fr.donjon.utils.Effet" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/Effet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="274" width="171" x="4049" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="76" language="java" name="fr.donjon.cases.CollisionVitesse" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CollisionVitesse.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="184" width="198" x="5054" y="3606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="77" language="java" name="fr.donjon.cases.CaseDalle" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseDalle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="88" x="3557" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="78" language="java" name="fr.donjon.sound" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/sound" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="111" x="4797" y="-38"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="79" language="java" name="fr.donjon.cases.Case" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/Case.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="256" width="204" x="4127" y="2996"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="80" language="java" name="fr.donjon.editor.SalleDescription" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/editor/SalleDescription.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="310" width="269" x="4744" y="2520"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="81" language="java" name="fr.donjon.cases.CaseVide" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseVide.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="196" x="3685" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="82" language="java" name="fr.donjon.start.DessinateurGestionnaire" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/start/DessinateurGestionnaire.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="288" x="6046" y="734"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="83" language="java" name="fr.donjon.cases.CaseHerbe" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseHerbe.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="88" x="3921" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="84" language="java" name="fr.donjon.utils.EnnemyGenerator" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/EnnemyGenerator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="130" width="304" x="5407" y="-38"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="85" language="java" name="fr.donjon.cases.CaseTeleportation" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseTeleportation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="196" x="6011" y="3606"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="86" language="java" name="fr.donjon.Donjons.GestionnairePatrickBasique" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/Donjons/GestionnairePatrickBasique.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="250" x="5704" y="1488"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="87" language="java" name="fr.donjon.start.DessinateurSalle" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/start/DessinateurSalle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="148" width="218" x="6437" y="868"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="88" language="java" name="fr.donjon.classes.BouleDeDark" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/BouleDeDark.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="130" width="189" x="199" y="3866"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="89" language="java" name="fr.donjon.cases.CaseSource" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/cases/CaseSource.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="178" x="5553" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="90" language="java" name="fr.donjon.utils.Vecteur" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/Vecteur.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="256" width="264" x="5374" y="4162"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="91" language="java" name="fr.donjon.classes.Heros" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/classes/Heros.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="166" width="356" x="449" y="3866"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="92" language="java" name="fr.donjon.utils.EtatArme" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/EtatArme.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="76" width="119" x="1531" y="3292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="93" language="java" name="fr.donjon.utils.Type" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/utils/Type.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="76" width="119" x="845" y="3866"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <package id="94" language="java" name="fr.donjon.Donjons" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/Donjons" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="122" x="6211" y="-38"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="95" language="java" name="fr.donjon.start.PanelJeu" project="Copy of Donjon" 
+    file="/Copy of Donjon/src/fr/donjon/start/PanelJeu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="328" width="229" x="6366" y="366"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="96">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="23"/>  
   </generalization>  
-  <association id="13">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="14" name="dessinateur">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="15" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <association id="97">    
+    <end type="SOURCE" refId="75" navigable="false">      
+      <attribute id="98" name="p"/>      
+      <multiplicity id="99" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="23" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
-  <association id="16">    
+  <generalization id="100">    
+    <end type="SOURCE" refId="53"/>    
+    <end type="TARGET" refId="45"/>  
+  </generalization>  
+  <association id="101">    
+    <end type="SOURCE" refId="82" navigable="false">      
+      <attribute id="102" name="gest"/>      
+      <multiplicity id="103" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="104">    
+    <bendpoint x="5682" y="3606"/>    
+    <bendpoint x="5682" y="3866"/>    
+    <end type="SOURCE" refId="89" navigable="false">      
+      <attribute id="105" name="positionInMap"/>      
+      <multiplicity id="106" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="107">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="79"/>  
+  </generalization>  
+  <association id="108">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="109" name="type"/>      
+      <multiplicity id="110" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="93" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="111">    
+    <bendpoint x="6822" y="734"/>    
+    <bendpoint x="6843" y="868"/>    
+    <bendpoint x="6843" y="1488"/>    
+    <end type="SOURCE" refId="95"/>    
+    <end type="TARGET" refId="67"/>  
+  </realization>  
+  <association id="112">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="113" name="collisionPorte"/>      
+      <multiplicity id="114" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="61" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="115">    
+    <bendpoint x="5980" y="3606"/>    
+    <bendpoint x="6024" y="3292"/>    
+    <bendpoint x="6024" y="2996"/>    
+    <bendpoint x="6024" y="2520"/>    
+    <bendpoint x="6024" y="2332"/>    
+    <bendpoint x="6024" y="2108"/>    
+    <end type="SOURCE" refId="64" navigable="false">      
+      <attribute id="116" name="origineSalle"/>      
+      <multiplicity id="117" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="118">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="119" name="animationO"/>      
+      <multiplicity id="120" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="121">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="60"/>  
+  </generalization>  
+  <association id="122">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="123" name="smap"/>      
+      <multiplicity id="124" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="125">    
+    <bendpoint x="1764" y="3292"/>    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="126" name="lanceur"/>      
+      <multiplicity id="127" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="128">    
+    <end type="SOURCE" refId="73"/>    
+    <end type="TARGET" refId="89"/>  
+  </generalization>  
+  <generalization id="129">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="60"/>  
+  </generalization>  
+  <association id="130">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="131" name="collisionE"/>      
+      <multiplicity id="132" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="133">    
+    <end type="SOURCE" refId="87" navigable="false">      
+      <attribute id="134" name="salle"/>      
+      <multiplicity id="135" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="136">    
+    <end type="SOURCE" refId="74" navigable="false">      
+      <attribute id="137" name="ecouteur"/>      
+      <multiplicity id="138" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="139">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="79"/>  
+  </generalization>  
+  <association id="140">    
+    <bendpoint x="4505" y="2520"/>    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="141" name="listCases"/>      
+      <multiplicity id="142" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="143">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="45"/>  
+  </generalization>  
+  <realization id="144">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="32"/>  
+  </realization>  
+  <association id="145">    
+    <bendpoint x="2524" y="3292"/>    
+    <bendpoint x="2543" y="3606"/>    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="146" name="animationE"/>      
+      <multiplicity id="147" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="148">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="149" name="anim"/>      
+      <multiplicity id="150" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="151">    
+    <bendpoint x="1213" y="3606"/>    
+    <bendpoint x="1071" y="3292"/>    
+    <bendpoint x="1071" y="2996"/>    
+    <bendpoint x="1071" y="2520"/>    
+    <bendpoint x="1071" y="2332"/>    
+    <bendpoint x="1071" y="2108"/>    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="17" name="salle">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="18" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+      <attribute id="152" name="currentRoom"/>      
+      <multiplicity id="153" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
+    <end type="TARGET" refId="74" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
-  <realization id="19">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
+  <association id="154">    
+    <bendpoint x="4096" y="2108"/>    
+    <bendpoint x="4096" y="2332"/>    
+    <bendpoint x="4096" y="2520"/>    
+    <end type="SOURCE" refId="74" navigable="false">      
+      <attribute id="155" name="cases"/>      
+      <multiplicity id="156" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="157">    
+    <bendpoint x="1806" y="3292"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="158" name="arme"/>      
+      <multiplicity id="159" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="60" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="160">    
+    <end type="SOURCE" refId="43" navigable="false">      
+      <attribute id="161" name="temp"/>      
+      <multiplicity id="162" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="163">    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="32"/>  
   </realization>  
-  <association id="20">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="21" name="panel">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="22" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <association id="164">    
+    <bendpoint x="2503" y="3292"/>    
+    <bendpoint x="2522" y="3606"/>    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="165" name="animationS"/>      
+      <multiplicity id="166" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="43" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
-  <realization id="23">    
-    <bendpoint x="976" y="1051"/>    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <association id="24">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="25" name="ecouteur">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="26" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <generalization id="167">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="168">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="169" name="anim"/>      
+      <multiplicity id="170" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="43" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
-  <realization id="27">    
+  <generalization id="171">    
     <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <association id="28">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="29" name="portes">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="30" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+    <end type="TARGET" refId="40"/>  
+  </generalization>  
+  <association id="172">    
+    <bendpoint x="1701" y="3292"/>    
+    <end type="SOURCE" refId="79" navigable="false">      
+      <attribute id="173" name="projs"/>      
+      <multiplicity id="174" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="45" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
-  <association id="31">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="32" name="smap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="33" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <realization id="175">    
+    <bendpoint x="5781" y="366"/>    
+    <bendpoint x="5781" y="734"/>    
+    <bendpoint x="5781" y="868"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <generalization id="176">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="74"/>  
+  </generalization>  
+  <nesting id="177">    
+    <end type="SOURCE" refId="95"/>    
+    <end type="TARGET" refId="14"/>  
+  </nesting>  
+  <association id="178">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="179" name="inventaire"/>      
+      <multiplicity id="180" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="181">    
+    <bendpoint x="5980" y="3866"/>    
+    <end type="SOURCE" refId="85" navigable="false">      
+      <attribute id="182" name="pos"/>      
+      <multiplicity id="183" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="184">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="185" name="animationE"/>      
+      <multiplicity id="186" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="187">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="188" name="listener"/>      
+      <multiplicity id="189" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
-  <association id="34">    
+  <generalization id="190">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="79"/>  
+  </generalization>  
+  <generalization id="191">    
+    <end type="SOURCE" refId="88"/>    
+    <end type="TARGET" refId="45"/>  
+  </generalization>  
+  <generalization id="192">    
+    <end type="SOURCE" refId="86"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <association id="193">    
+    <bendpoint x="2070" y="3292"/>    
+    <bendpoint x="2417" y="3606"/>    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="194" name="animationN"/>      
+      <multiplicity id="195" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="196">    
+    <bendpoint x="6685" y="734"/>    
+    <bendpoint x="6685" y="868"/>    
+    <end type="SOURCE" refId="59" navigable="false">      
+      <attribute id="197" name="ecouteur"/>      
+      <multiplicity id="198" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="54" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="199">    
+    <end type="SOURCE" refId="90" navigable="false">      
+      <attribute id="200" name="vNord"/>      
+      <multiplicity id="201" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="202">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="203" name="porteur"/>      
+      <multiplicity id="204" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="205">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="206" name="persoTouches"/>      
+      <multiplicity id="207" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="208">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="79"/>  
+  </generalization>  
+  <generalization id="209">    
+    <end type="SOURCE" refId="49"/>    
+    <end type="TARGET" refId="40"/>  
+  </generalization>  
+  <association id="210">    
+    <bendpoint x="1785" y="3292"/>    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="211" name="cibles"/>      
+      <multiplicity id="212" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="213">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="214" name="cible"/>      
+      <multiplicity id="215" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="216">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="217" name="panDessin"/>      
+      <multiplicity id="218" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="71" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="219">    
+    <bendpoint x="6364" y="2996"/>    
+    <bendpoint x="6406" y="3292"/>    
+    <bendpoint x="6406" y="3606"/>    
+    <bendpoint x="6406" y="3866"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="220" name="topLeft"/>      
+      <multiplicity id="221" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="222">    
+    <bendpoint x="6864" y="366"/>    
+    <bendpoint x="6864" y="734"/>    
+    <bendpoint x="6864" y="868"/>    
+    <bendpoint x="6864" y="1488"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="67"/>  
+  </realization>  
+  <realization id="223">    
+    <bendpoint x="5093" y="1488"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <association id="224">    
+    <bendpoint x="2459" y="3606"/>    
+    <bendpoint x="2459" y="3866"/>    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="225" name="c"/>      
+      <multiplicity id="226" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="227">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="49"/>  
+  </generalization>  
+  <association id="228">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="229" name="tele"/>      
+      <multiplicity id="230" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="231">    
+    <bendpoint x="4667" y="3292"/>    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="79"/>  
+  </generalization>  
+  <generalization id="232">    
+    <end type="SOURCE" refId="83"/>    
+    <end type="TARGET" refId="79"/>  
+  </generalization>  
+  <association id="233">    
+    <end type="SOURCE" refId="64" navigable="false">      
+      <attribute id="234" name="destinationCase"/>      
+      <multiplicity id="235" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="236">    
+    <bendpoint x="1926" y="3866"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="237" name="o"/>      
+      <multiplicity id="238" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="239">    
+    <bendpoint x="2106" y="3866"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="240" name="lPos"/>      
+      <multiplicity id="241" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="242">    
+    <end type="SOURCE" refId="48"/>    
+    <end type="TARGET" refId="79"/>  
+  </generalization>  
+  <association id="243">    
+    <bendpoint x="5480" y="2996"/>    
+    <bendpoint x="5522" y="3292"/>    
+    <bendpoint x="5383" y="3606"/>    
+    <bendpoint x="5383" y="3866"/>    
+    <end type="SOURCE" refId="71" navigable="false">      
+      <attribute id="244" name="mouse"/>      
+      <multiplicity id="245" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="246">    
+    <end type="SOURCE" refId="81"/>    
+    <end type="TARGET" refId="79"/>  
+  </generalization>  
+  <association id="247">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="248" name="stats"/>      
+      <multiplicity id="249" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="75" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="250">    
+    <end type="SOURCE" refId="50"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="251">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="252" name="ecouteur"/>      
+      <multiplicity id="253" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="54" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="254">    
+    <bendpoint x="6022" y="3866"/>    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="255" name="pos1"/>      
+      <multiplicity id="256" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="257">    
+    <end type="SOURCE" refId="45"/>    
+    <end type="TARGET" refId="49"/>  
+  </generalization>  
+  <association id="258">    
+    <end type="SOURCE" refId="89" navigable="false">      
+      <attribute id="259" name="map"/>      
+      <multiplicity id="260" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="70" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="261">    
+    <end type="SOURCE" refId="69" navigable="false">      
+      <attribute id="262" name="listener"/>      
+      <multiplicity id="263" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="47" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="264">    
+    <end type="SOURCE" refId="61" navigable="false">      
+      <attribute id="265" name="lien"/>      
+      <multiplicity id="266" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="64" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="267">    
+    <bendpoint x="6822" y="1488"/>    
+    <bendpoint x="6822" y="2108"/>    
+    <bendpoint x="6822" y="2332"/>    
+    <bendpoint x="6822" y="2520"/>    
+    <bendpoint x="6822" y="2996"/>    
+    <bendpoint x="6822" y="3292"/>    
+    <bendpoint x="6822" y="3606"/>    
+    <bendpoint x="6822" y="3866"/>    
+    <end type="SOURCE" refId="87" navigable="false">      
+      <attribute id="268" name="centrage"/>      
+      <multiplicity id="269" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="270">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <association id="271">    
+    <end type="SOURCE" refId="71" navigable="false">      
+      <attribute id="272" name="cases"/>      
+      <multiplicity id="273" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="274">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="60"/>  
+  </generalization>  
+  <generalization id="275">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="60"/>  
+  </generalization>  
+  <realization id="276">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <generalization id="277">    
+    <end type="SOURCE" refId="85"/>    
+    <end type="TARGET" refId="89"/>  
+  </generalization>  
+  <association id="278">    
+    <bendpoint x="6343" y="2996"/>    
+    <bendpoint x="6343" y="3292"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="279" name="teleporteur"/>      
+      <multiplicity id="280" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="85" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="281">    
+    <end type="SOURCE" refId="62" navigable="false">      
+      <attribute id="282" name="map1"/>      
+      <multiplicity id="283" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="70" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="284">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="35" name="gestion">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="36" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+      <attribute id="285" name="persoTouches"/>      
+      <multiplicity id="286" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="287">    
+    <end type="SOURCE" refId="66"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <association id="288">    
+    <bendpoint x="5404" y="3866"/>    
+    <end type="SOURCE" refId="34" navigable="false">      
+      <attribute id="289" name="pos1"/>      
+      <multiplicity id="290" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="291">    
+    <bendpoint x="6511" y="1488"/>    
+    <bendpoint x="6554" y="2108"/>    
+    <bendpoint x="6598" y="2332"/>    
+    <bendpoint x="6643" y="2520"/>    
+    <bendpoint x="6689" y="2996"/>    
+    <bendpoint x="6736" y="3292"/>    
+    <bendpoint x="6784" y="3606"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="292" name="doorSound"/>      
+      <multiplicity id="293" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="294">    
+    <bendpoint x="1745" y="3606"/>    
+    <bendpoint x="1905" y="3866"/>    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="295" name="vvitesse"/>      
+      <multiplicity id="296" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="297">    
+    <end type="SOURCE" refId="72" navigable="false">      
+      <attribute id="298" name="depart"/>      
+      <multiplicity id="299" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="300">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="79"/>  
+  </generalization>  
+  <association id="301">    
+    <bendpoint x="5084" y="3292"/>    
+    <bendpoint x="5282" y="3606"/>    
+    <end type="SOURCE" refId="79" navigable="false">      
+      <attribute id="302" name="collision"/>      
+      <multiplicity id="303" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="304">    
+    <end type="SOURCE" refId="71" navigable="false">      
+      <attribute id="305" name="caseT"/>      
+      <multiplicity id="306" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="307">    
+    <end type="SOURCE" refId="74"/>    
+    <end type="TARGET" refId="67"/>  
+  </realization>  
+  <association id="308">    
+    <bendpoint x="1743" y="3292"/>    
+    <bendpoint x="1766" y="3606"/>    
+    <bendpoint x="1884" y="3866"/>    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="309" name="o"/>      
+      <multiplicity id="310" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="311">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="312" name="persoTouches"/>      
+      <multiplicity id="313" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="314">    
+    <bendpoint x="4290" y="3606"/>    
+    <bendpoint x="4290" y="3866"/>    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="315" name="c"/>      
+      <multiplicity id="316" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="317">    
+    <bendpoint x="5341" y="3606"/>    
+    <bendpoint x="5341" y="3866"/>    
+    <end type="SOURCE" refId="46" navigable="false">      
+      <attribute id="318" name="c"/>      
+      <multiplicity id="319" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="320">    
+    <end type="SOURCE" refId="95" navigable="false">      
+      <attribute id="321" name="map"/>      
+      <multiplicity id="322" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="82" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="323">    
+    <bendpoint x="5501" y="2996"/>    
+    <bendpoint x="5501" y="3292"/>    
+    <bendpoint x="5362" y="3606"/>    
+    <end type="SOURCE" refId="72"/>    
+    <end type="TARGET" refId="32"/>  
+  </realization>  
+  <realization id="324">    
+    <bendpoint x="6406" y="734"/>    
+    <bendpoint x="6406" y="868"/>    
+    <end type="SOURCE" refId="95"/>    
+    <end type="TARGET" refId="54"/>  
+  </realization>  
+  <generalization id="325">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="326">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="89"/>  
+  </generalization>  
+  <association id="327">    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="328" name="etat"/>      
+      <multiplicity id="329" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="92" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="330">    
+    <bendpoint x="5959" y="3606"/>    
+    <bendpoint x="6003" y="3292"/>    
+    <bendpoint x="6003" y="2996"/>    
+    <bendpoint x="6003" y="2520"/>    
+    <bendpoint x="6003" y="2332"/>    
+    <bendpoint x="6003" y="2108"/>    
+    <end type="SOURCE" refId="64" navigable="false">      
+      <attribute id="331" name="destinationSalle"/>      
+      <multiplicity id="332" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="333">    
+    <end type="SOURCE" refId="76"/>    
+    <end type="TARGET" refId="32"/>  
+  </realization>  
+  <realization id="334">    
+    <end type="SOURCE" refId="61"/>    
+    <end type="TARGET" refId="32"/>  
+  </realization>  
+  <generalization id="335">    
+    <end type="SOURCE" refId="89"/>    
+    <end type="TARGET" refId="79"/>  
+  </generalization>  
+  <generalization id="336">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="337">    
+    <bendpoint x="2127" y="3866"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="338" name="tPos"/>      
+      <multiplicity id="339" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="340">    
+    <end type="SOURCE" refId="52" navigable="false">      
+      <attribute id="341" name="c"/>      
+      <multiplicity id="342" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="343">    
+    <bendpoint x="733" y="2108"/>    
+    <bendpoint x="733" y="2332"/>    
+    <bendpoint x="733" y="2520"/>    
+    <bendpoint x="733" y="2996"/>    
+    <bendpoint x="733" y="3292"/>    
+    <bendpoint x="733" y="3606"/>    
+    <end type="SOURCE" refId="74" navigable="false">      
+      <attribute id="344" name="hero"/>      
+      <multiplicity id="345" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="91" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="346">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="347" name="menu"/>      
+      <multiplicity id="348" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="59" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="349">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="350" name="animationS"/>      
+      <multiplicity id="351" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="352">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="353" name="ecouteur"/>      
+      <multiplicity id="354" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="67" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="355">    
+    <bendpoint x="5892" y="2108"/>    
+    <bendpoint x="5892" y="2332"/>    
+    <bendpoint x="5892" y="2520"/>    
+    <bendpoint x="5892" y="2996"/>    
+    <end type="SOURCE" refId="74" navigable="false">      
+      <attribute id="356" name="portes"/>      
+      <multiplicity id="357" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="358">    
+    <end type="SOURCE" refId="64" navigable="false">      
+      <attribute id="359" name="orientation"/>      
+      <multiplicity id="360" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="361">    
+    <bendpoint x="6532" y="1488"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="67"/>  
+  </realization>  
+  <association id="362">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="363" name="game"/>      
+      <multiplicity id="364" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="95" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="365">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="60"/>  
+  </generalization>  
+  <association id="366">    
+    <end type="SOURCE" refId="90" navigable="false">      
+      <attribute id="367" name="vSud"/>      
+      <multiplicity id="368" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="369">    
+    <bendpoint x="4547" y="3606"/>    
+    <bendpoint x="4547" y="3866"/>    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="370" name="c"/>      
+      <multiplicity id="371" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="372">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="60"/>  
+  </generalization>  
+  <association id="373">    
+    <end type="SOURCE" refId="58" navigable="false">      
+      <attribute id="374" name="listener"/>      
+      <multiplicity id="375" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="47" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="376">    
+    <end type="SOURCE" refId="64" navigable="false">      
+      <attribute id="377" name="origineCase"/>      
+      <multiplicity id="378" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="379">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="380" name="sActuelle"/>      
+      <multiplicity id="381" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="382">    
+    <bendpoint x="1092" y="3292"/>    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="383" name="projectiles"/>      
+      <multiplicity id="384" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="385">    
+    <end type="SOURCE" refId="77"/>    
+    <end type="TARGET" refId="79"/>  
+  </generalization>  
+  <generalization id="386">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="387">    
+    <end type="SOURCE" refId="68" navigable="false">      
+      <attribute id="388" name="probs"/>      
+      <multiplicity id="389" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="390">    
+    <bendpoint x="2482" y="3292"/>    
+    <bendpoint x="2480" y="3606"/>    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="391" name="animationO"/>      
+      <multiplicity id="392" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="393">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="394" name="pCase"/>      
+      <multiplicity id="395" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="396">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="397" name="animation"/>      
+      <multiplicity id="398" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="399">    
+    <end type="SOURCE" refId="65"/>    
+    <end type="TARGET" refId="79"/>  
+  </generalization>  
+  <association id="400">    
+    <end type="SOURCE" refId="72" navigable="false">      
+      <attribute id="401" name="arrivee"/>      
+      <multiplicity id="402" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="403">    
+    <bendpoint x="1050" y="2108"/>    
+    <bendpoint x="1050" y="2332"/>    
+    <bendpoint x="1050" y="2520"/>    
+    <bendpoint x="1050" y="2996"/>    
+    <bendpoint x="1050" y="3292"/>    
+    <end type="SOURCE" refId="74" navigable="false">      
+      <attribute id="404" name="projectiles"/>      
+      <multiplicity id="405" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <nesting id="406">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="11"/>  
+  </nesting>  
+  <association id="407">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="408" name="animationN"/>      
+      <multiplicity id="409" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="410">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="411" name="utilisables"/>      
+      <multiplicity id="412" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="44" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="413">    
+    <bendpoint x="5467" y="3866"/>    
+    <end type="SOURCE" refId="73" navigable="false">      
+      <attribute id="414" name="pos1"/>      
+      <multiplicity id="415" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="416">    
+    <bendpoint x="6490" y="1488"/>    
+    <bendpoint x="6490" y="2108"/>    
+    <bendpoint x="6490" y="2332"/>    
+    <bendpoint x="6490" y="2520"/>    
+    <bendpoint x="6490" y="2996"/>    
+    <bendpoint x="6490" y="3292"/>    
+    <bendpoint x="6469" y="3606"/>    
+    <bendpoint x="6469" y="3866"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="417" name="position"/>      
+      <multiplicity id="418" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="419">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="89"/>  
+  </generalization>  
+  <realization id="420">    
+    <bendpoint x="1680" y="3292"/>    
+    <bendpoint x="1192" y="3606"/>    
+    <bendpoint x="418" y="3866"/>    
+    <end type="SOURCE" refId="60"/>    
+    <end type="TARGET" refId="44"/>  
+  </realization>  
+  <association id="421">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="422" name="LCButtons"/>      
+      <multiplicity id="423" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="52" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="424">    
+    <end type="SOURCE" refId="91"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <association id="425">    
+    <bendpoint x="6364" y="734"/>    
+    <end type="SOURCE" refId="95" navigable="false">      
+      <attribute id="426" name="gestion"/>      
+      <multiplicity id="427" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="428">    
+    <bendpoint x="6843" y="366"/>    
+    <bendpoint x="6843" y="734"/>    
+    <bendpoint x="6822" y="868"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="54"/>  
+  </realization>  
+  <association id="429">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="430" name="button"/>      
+      <multiplicity id="431" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="52" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="432">    
+    <bendpoint x="-242" y="3606"/>    
+    <bendpoint x="-242" y="3866"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="44"/>  
+  </realization>  
+  <association id="433">    
+    <bendpoint x="6385" y="734"/>    
+    <bendpoint x="6385" y="868"/>    
+    <end type="SOURCE" refId="95" navigable="false">      
+      <attribute id="434" name="ecouteur"/>      
+      <multiplicity id="435" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="54" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="436">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="437" name="type"/>      
+      <multiplicity id="438" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="93" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="439">    
+    <end type="SOURCE" refId="90" navigable="false">      
+      <attribute id="440" name="vOuest"/>      
+      <multiplicity id="441" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="442">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="443" name="clic"/>      
+      <multiplicity id="444" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="445">    
+    <end type="SOURCE" refId="80" navigable="false">      
+      <attribute id="446" name="matrix"/>      
+      <multiplicity id="447" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="448">    
+    <bendpoint x="6001" y="3866"/>    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="449" name="pos2"/>      
+      <multiplicity id="450" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="451">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="452" name="pan"/>      
+      <multiplicity id="453" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="71" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="454">    
+    <bendpoint x="6448" y="1488"/>    
+    <bendpoint x="6448" y="2108"/>    
+    <bendpoint x="6448" y="2332"/>    
+    <bendpoint x="6448" y="2520"/>    
+    <bendpoint x="6448" y="2996"/>    
+    <bendpoint x="6448" y="3292"/>    
+    <bendpoint x="6427" y="3606"/>    
+    <bendpoint x="6427" y="3866"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="455" name="centreCamera"/>      
+      <multiplicity id="456" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="457">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="458" name="etat"/>      
+      <multiplicity id="459" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="460">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="461" name="blocs"/>      
+      <multiplicity id="462" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="463">    
+    <end type="SOURCE" refId="90" navigable="false">      
+      <attribute id="464" name="vNull"/>      
+      <multiplicity id="465" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="466">    
+    <end type="SOURCE" refId="90" navigable="false">      
+      <attribute id="467" name="vEst"/>      
+      <multiplicity id="468" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="469">    
+    <bendpoint x="2501" y="3606"/>    
+    <bendpoint x="2501" y="3866"/>    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="470" name="c"/>      
+      <multiplicity id="471" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="472">    
+    <bendpoint x="6427" y="2108"/>    
+    <bendpoint x="6469" y="2332"/>    
+    <bendpoint x="6469" y="2520"/>    
+    <bendpoint x="6469" y="2996"/>    
+    <bendpoint x="6469" y="3292"/>    
+    <bendpoint x="6490" y="3606"/>    
+    <end type="SOURCE" refId="74" navigable="false">      
+      <attribute id="473" name="doorOpens"/>      
+      <multiplicity id="474" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="475">    
+    <bendpoint x="7110" y="366"/>    
+    <bendpoint x="7110" y="734"/>    
+    <bendpoint x="7110" y="868"/>    
+    <bendpoint x="7110" y="1488"/>    
+    <bendpoint x="7110" y="2108"/>    
+    <bendpoint x="7110" y="2332"/>    
+    <bendpoint x="7110" y="2520"/>    
+    <bendpoint x="7110" y="2996"/>    
+    <bendpoint x="7110" y="3292"/>    
+    <bendpoint x="7110" y="3606"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="476" name="music"/>      
+      <multiplicity id="477" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="478">    
+    <bendpoint x="6427" y="734"/>    
+    <end type="SOURCE" refId="95" navigable="false">      
+      <attribute id="479" name="dessinateur"/>      
+      <multiplicity id="480" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="87" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="481">    
+    <bendpoint x="4250" y="3292"/>    
+    <bendpoint x="4250" y="3606"/>    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="482" name="animation"/>      
+      <multiplicity id="483" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="484">    
+    <bendpoint x="2438" y="3606"/>    
+    <bendpoint x="2438" y="3866"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="485" name="c"/>      
+      <multiplicity id="486" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="487">    
+    <bendpoint x="6385" y="2520"/>    
+    <bendpoint x="6385" y="2996"/>    
+    <bendpoint x="6385" y="3292"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="488" name="interrupteur"/>      
+      <multiplicity id="489" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="36" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="490">    
+    <bendpoint x="1722" y="2108"/>    
+    <bendpoint x="1722" y="2332"/>    
+    <bendpoint x="1722" y="2520"/>    
+    <bendpoint x="1722" y="2996"/>    
+    <bendpoint x="1722" y="3292"/>    
+    <end type="SOURCE" refId="74" navigable="false">      
+      <attribute id="491" name="personnages"/>      
+      <multiplicity id="492" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="493">    
+    <end type="SOURCE" refId="43" navigable="false">      
+      <attribute id="494" name="taille"/>      
+      <multiplicity id="495" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="90" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="496">    
+    <bendpoint x="2091" y="3292"/>    
+    <end type="SOURCE" refId="79" navigable="false">      
+      <attribute id="497" name="persos"/>      
+      <multiplicity id="498" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="499">    
+    <bendpoint x="6322" y="2996"/>    
+    <bendpoint x="6427" y="3292"/>    
+    <bendpoint x="6448" y="3606"/>    
+    <end type="SOURCE" refId="72" navigable="false">      
+      <attribute id="500" name="teleportSound"/>      
+      <multiplicity id="501" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
     <display labels="false" multiplicity="false"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
