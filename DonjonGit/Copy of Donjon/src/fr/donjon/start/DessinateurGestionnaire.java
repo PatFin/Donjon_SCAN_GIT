@@ -6,8 +6,6 @@ package fr.donjon.start;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -20,9 +18,8 @@ import fr.donjon.salles.Salle;
  * @author Baptiste
  *
  */
-public class DessinateurGestionnaire implements ActionListener {
-	
-	private int temps;
+public class DessinateurGestionnaire{
+
 	Graphics buffer;
 
 	Rectangle ecran;
@@ -113,17 +110,6 @@ public class DessinateurGestionnaire implements ActionListener {
 		
 		return image;
 		
-	}
-	
-	/**
-	 * Methode appelee par le timer private. On incremente juste le compteur qui sert à faire clignoter l'image
-	 * du hero dans la salle actuelle. 
-	 * @param arg0
-	 * @see fr.donjon.start.DessinateurGestionnaire#getImage(Salle[][], Salle, long)
-	 */
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		this.temps++;
 	}
 	
 }
