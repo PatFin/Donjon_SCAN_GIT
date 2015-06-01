@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import fr.donjon.salles.Salle;
 import fr.donjon.utils.Animation;
+import fr.donjon.utils.EtatArme;
 import fr.donjon.utils.EtatPersonnage;
 import fr.donjon.utils.Orientation;
 import fr.donjon.utils.Type;
@@ -20,6 +21,11 @@ public class SqueletteFeu extends Ennemis {
 	static int VIE = 75;
 	static int VIT = 3;
 	static int DEF = 5;
+	
+	public int niveau;
+	
+	private Arme baton;
+	private Arme poing;
 
 
 	public SqueletteFeu(int ax, int ay, Personnage cible, int level, Salle room){
@@ -36,9 +42,12 @@ public class SqueletteFeu extends Ennemis {
 		animationS = new Animation(src, new Vecteur(64, 64),2,9,(long)(VIT/COEFF*100));
 		animationE = new Animation(src, new Vecteur(64, 64),3,9,(long)(VIT/COEFF*100));
 		animation = animationS;
+		
+		niveau = level;
 
 
-		this.arme = new BatonDeFeu(this);
+		baton = new BatonDeFeu(this);
+		poing = new ArmePoingSquelette(this, (11 +(level) ) > 20 ? 20 : 11+level);
 
 
 	}
@@ -110,18 +119,29 @@ public class SqueletteFeu extends Ennemis {
 
 		if (v.getNorm() > 150 && v.getNorm() < 250) {
 
-			if(t %480 == 0) attaquer(currentRoom.personnages, currentRoom.projectiles, v.normalise());
+			if(t %480 == 0){
+				
+				this.arme = baton;
+				attaquer(currentRoom.personnages, currentRoom.projectiles, v.normalise());
+			}
 
-		}else if (v.getNorm() <= 150) {
+		}else if (v.getNorm() <= 150 && v.getNorm() > 20) {
 
-			v = v.multiplie(-1);
-			marcher(v.normalise());
+			marcher(v.normalise());	
 
 		}
-		else {
+		else if(v.getNorm() >= 250) {
 			
 			marcher(v.normalise());
 
+		}
+		
+		else {
+			
+			this.arme = poing;
+			
+			if(this.arme.etat == EtatArme.RUNNING) return;
+			attaquer(currentRoom.personnages, currentRoom.projectiles, v.normalise());
 		}
 
 	}

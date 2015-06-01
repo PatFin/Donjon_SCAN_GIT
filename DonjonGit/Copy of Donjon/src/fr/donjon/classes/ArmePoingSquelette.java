@@ -26,8 +26,8 @@ public class ArmePoingSquelette extends Arme{
 
 	final static String icSrc = null;
 	final static String src = "skeleton_map.png";
-	final static int zoneHeight = 40;
-	final static int zoneWidth = 40; 
+	final static int zoneHeight = 45;
+	final static int zoneWidth = 45; 
 	
 	Vecteur c = new Vecteur(0,0);
 	private LinkedList<Personnage> persoTouches;
