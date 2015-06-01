@@ -47,7 +47,7 @@ public class SqueletteFeu extends Ennemis {
 
 
 		baton = new BatonDeFeu(this);
-		poing = new ArmePoingSquelette(this, (11 +(level) ) > 20 ? 20 : 11+level);
+		poing = new ArmePoingSqueletteFeu(this, (11 +(level) ) > 20 ? 20 : 11+level);
 
 
 	}
