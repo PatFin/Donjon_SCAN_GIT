@@ -30,7 +30,7 @@ public class DonjonNonLineaire extends GestionnaireSalle{
 	 * @param height hauteur du donjon souhait�
 	 */
 	public DonjonNonLineaire(int width, int height){
-		super(new SalleQuatre(new Heros(0,0), Salle.addWalls(MapGenerator.randomForet(5, 5))),(int)width/2,(int) height/2, width, height);
+		super(new SalleQuatre(new Heros(0,0), Salle.addWalls(MapGenerator.randomForet(5, 5))),width-1,height-1, width, height);
 		
 		//On place le h�ro au centre de la 1�salle
 		this.sActuelle.hero.setLocationCase(sActuelle.getRoomCenter());
@@ -97,7 +97,7 @@ public class DonjonNonLineaire extends GestionnaireSalle{
 						mustCreateDoor.add(z);
 					}
 				}catch(NullPointerException e){
-					//La salle n'a pas encore �t� cr�� auparavant
+					//La salle n'a pas encore �t�q cr�� auparavant
 					canCreateDoor.add(z);
 				}catch(ArrayIndexOutOfBoundsException e){
 					//On est sur le bord du donjon, il n'y a plus de salles sur ce c�t� 

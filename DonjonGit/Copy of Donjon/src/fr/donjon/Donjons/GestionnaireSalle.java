@@ -67,7 +67,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	 */
 	public GestionnaireSalle(Salle s, int sx, int sy, int w, int h){
 		this(w,h);
-		smap[sx][sy] = s;
+		this.smap[sx][sy] = s;
 		sActuelle = s;
 		//On permet � la salle d'envoyer les �v�nements de changement de salle � this (gestionaire)
 		sActuelle.setEcouteur(this);

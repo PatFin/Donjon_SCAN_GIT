@@ -14,6 +14,7 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import fr.donjon.Donjons.DonjonInfini;
 import fr.donjon.Donjons.DonjonLineaire;
 import fr.donjon.Donjons.DonjonNonLineaire;
 import fr.donjon.Donjons.GestionnairePatrickBasique;
@@ -39,7 +40,8 @@ public class EcranAccueil extends JPanel{
 	final int SCREENY=600; // LARGEUR FENETRE
 	private JButton boutonEditeur= new JButton("Editeur de map", iconeEditeur);
 	
-	private JButton boutonJeuInfini=new JButton ("Labyrinthe",iconePlayerDead);
+	private JButton boutonJeuInfini=new JButton ("Infini", iconeInfinity);
+	private JButton boutonJeuNonLineaire = new JButton("Labyrinthe",iconePlayerDead);
 	private JButton boutonJeuLineaire = new JButton("Jeu Lineaire",iconePlayerKneeling);
 	private JButton boutonJeuTutoriel = new JButton("Tutoriel", iconePlayer);
 	
@@ -58,6 +60,7 @@ public class EcranAccueil extends JPanel{
 		this.setPreferredSize(new Dimension(SCREENX,SCREENY));
 		
 		Dimension d = new Dimension(180,60);
+		boutonJeuNonLineaire.setPreferredSize(d);
 		boutonJeuInfini.setPreferredSize(d);
 		boutonJeuLineaire.setPreferredSize(d);
 		boutonJeuTutoriel.setPreferredSize(d);
@@ -71,11 +74,12 @@ public class EcranAccueil extends JPanel{
 		//Ajout des boutons dans notre panel
 		panel1.add(boutonJeuTutoriel);
 		panel1.add(boutonJeuLineaire);
+		panel1.add(boutonJeuNonLineaire);
 		panel1.add(boutonJeuInfini);
-		panel1.add(boutonEditeur);
 		this.add(panel1);
 		
-		//Ajout d'un slider pour choisir la taille du donjon
+		//Ajout d'un slider pour choisir la taille du donjon et du bouton d'éditeur.
+		panel2.add(boutonEditeur);
 		panel2.add(tailleMessage);
 		panel2.add(taille);
 		this.add(panel2);
@@ -104,6 +108,15 @@ public class EcranAccueil extends JPanel{
 			}
 		});
 		
+		boutonJeuNonLineaire.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e){
+				Salle.instances=0;
+				
+				ecouteur.requestNewGame(new DonjonNonLineaire(taille.getValue(), taille.getValue()));
+			}
+		});
+		
 		boutonJeuInfini.addActionListener(new ActionListener() {
 			/**
 			 * Idem
@@ -114,7 +127,7 @@ public class EcranAccueil extends JPanel{
 				Salle.instances = 0;
 				
 				//On commande un jeu infini
-				ecouteur.requestNewGame(new DonjonNonLineaire(taille.getValue(), taille.getValue()));
+				ecouteur.requestNewGame(new DonjonInfini(taille.getValue(), taille.getValue()));
 			}
 		});
 		boutonJeuTutoriel.addActionListener(new ActionListener(){
