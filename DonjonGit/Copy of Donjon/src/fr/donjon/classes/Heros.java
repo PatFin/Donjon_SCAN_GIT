@@ -50,6 +50,7 @@ public class Heros extends Personnage{
 		inventaire.addUtilisable(new ArmeEpee());
 		inventaire.addUtilisable(new ArmeLance());
 		inventaire.addUtilisable(new BatonDeGlace());
+		inventaire.addUtilisable(new ArcHeros());
 		
 		inventaire.useUtilisable(0);
 	}
