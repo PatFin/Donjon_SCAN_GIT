@@ -3,31 +3,42 @@ package fr.donjon.utils;
 import java.util.ArrayList;
 
 /**
+ * Enumérateur. 
+ * @author Patrick
  * 
- * @author Vincent
- *
+ * Particulièrement utile pour décrire l'orientation d'un personnage et de choisir l'image associée.
+ * Utilisé également dans les salles pour indiquer l'orientation des portes.
+ * @see fr.donjon.utils.Animation
+ * @see fr.donjon.cases.CollisionPorte
  */
 public enum Orientation {
 	EST,NORD,OUEST,SUD;
 	
 
+	/**
+	 * Renvoi le vecteur associé à l'orientation.
+	 * @return Vecteur unitaire dans la direction de l'orientation.
+	 * @see fr.donjon.utils.Orientation#getUnitVector(Orientation)
+	 */
 	public Vecteur getUnitVector() {
 		return Orientation.getUnitVector(this);
 	}
 	
+	/**
+	 * Renvoi l'orientation opposée à this.
+	 * @return l'opposé de this.
+	 * @see fr.donjon.utils.Orientation#opposite(Orientation)
+	 */
 	public Orientation opposite(){
 		return Orientation.opposite(this);
 	}
+
 	
-	public static Orientation getOrientation(Vecteur v){
-		
-		if(v.x > 0 && v.y == 0)return EST;
-		else if (v.x < 0 && v.y == 0)return OUEST;
-		else if (v.y > 0 && v.x == 0)return SUD;
-		else if (v.y < 0 && v.x == 0)return NORD;
-		else return NORD;
-	}
-	
+	/**
+	 * Cette méthode renvoi une liste contennat chacune des orientations.
+	 * Est utile lorsqu'on cherche à faire des boucles sur chaque orientation.
+	 * @return ArrayList<Orientation> contenant {OUEST,EST,NORD,SUD} 
+	 */
 	public static ArrayList<Orientation> getOrientationList(){
 		ArrayList<Orientation> o = new ArrayList<Orientation>();
 		o.add(OUEST);
@@ -38,9 +49,11 @@ public enum Orientation {
 	}
 	
 	/**
-	 * Gives back the unit vector corresponding to an orientation
-	 * @param o the orientation to be converted into a vector
-	 * @return a unit vector in the orientation given
+	 * Donne le vecteur unitaire associé à une orientation.
+	 * Par exemple l'orientation NORD correspond au vecteur (0,-1)
+	 * L'orientation EST donnera le vecteur (-1,0)
+	 * @param o l'orientation dont on veut obtenir un vecteur
+	 * @return vecteur unitaire dans la direction de l'orientation donnée.
 	 */
 	public static Vecteur getUnitVector(Orientation o){
 		switch(o){
@@ -58,9 +71,11 @@ public enum Orientation {
 	}
 	
 	/**
-	 * Gives the opposite Orientation to that given
-	 * @param o 
-	 * @return the opposite of o
+	 * Donne l'orientation opposée à celle donnée en paramètre.
+	 * NORD est l'opposé de SUD et vice-versa.
+	 * EST est l'opposé de OUEST et vice-versa
+	 * @param o l'orientation dont on veut obtenir l'opposé.
+	 * @return orientation opposé à o.
 	 */
 	public static Orientation opposite(Orientation o){
 		if(o==null){
@@ -82,8 +97,8 @@ public enum Orientation {
 	
 	
 	/**
-	 * Generates a random orientation
-	 * @return a random orientation
+	 * Renvoi une orientation aléatoire.
+	 * @return orientation aléatoire.
 	 */
 	public static Orientation random(){
 		Orientation[] o = {NORD,SUD,EST,OUEST};
@@ -92,9 +107,9 @@ public enum Orientation {
 	}
 	
 	/**
-	 * Generates a random orientation which is not that of the one given in parameter
-	 * @param o the non wanted Orientation
-	 * @return any orientation but o
+	 * Renvoi une orientation aléatoire différente de celle donnée en paramètre
+	 * @param o l'orientation qu'on ne veut pas obtenir.
+	 * @return une orientation aléatoire différente de o.
 	 */
 	public static Orientation random(Orientation o){
 		Orientation a;
@@ -105,10 +120,11 @@ public enum Orientation {
 	}
 
 	/**
-	 * Generates a random orientation which is not that of the one given in parameter
-	 * @param a a non wanted Orientation
-	 * @param b a non wanted Orientation
-	 * @return any orientation but a or b
+	 * Renvoi une orientation aléatoire différente de celles données en paramètre.
+	 * Attention si les deux paramètres sont identiques, renverra une orientation parmi les trois restantes.
+	 * @param a orientation non voulue.
+	 * @param b orientation non voules bis.
+	 * @return une orientation différente de a et de b.
 	 */
 	public static Orientation random(Orientation a, Orientation b){
 		Orientation r;
