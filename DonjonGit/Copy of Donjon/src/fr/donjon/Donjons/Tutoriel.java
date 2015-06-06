@@ -5,6 +5,7 @@ import fr.donjon.classes.BigBoss;
 import fr.donjon.classes.Ennemis;
 import fr.donjon.classes.Heros;
 import fr.donjon.classes.Squelette;
+import fr.donjon.classes.SqueletteArc;
 import fr.donjon.classes.SqueletteFeu;
 import fr.donjon.editor.MapFileHandler;
 import fr.donjon.salles.EnigmeSwitch;
@@ -19,11 +20,11 @@ import fr.donjon.utils.Vecteur;
 /**
  * Gestion d'un tutoriel.
  * @author Patrick
- * Le donjon "tutoriel" est un donjon linéaire vertical.
+ * Le donjon "tutoriel" est un donjon linï¿½aire vertical.
  * On y traverse touts les genres de salle qu'on peut trouver dans un donjon.
- * Touts les genres d'ennemis y sont présentés,seuls d'abord dans une salle.
- * Le boss est présent dans la dernière salle.
- * Les salles énigmes sont aussi présentes.
+ * Touts les genres d'ennemis y sont prï¿½sentï¿½s,seuls d'abord dans une salle.
+ * Le boss est prï¿½sent dans la derniï¿½re salle.
+ * Les salles ï¿½nigmes sont aussi prï¿½sentes.
  */
 public class Tutoriel extends GestionnaireSalle {
 
@@ -34,7 +35,7 @@ public class Tutoriel extends GestionnaireSalle {
 	
 	/**
 	 * Constructeur
-	 * Aucun argument nécessaire.
+	 * Aucun argument nï¿½cessaire.
 	 */
 	public Tutoriel(){
 		super(new SalleQuatre(new Heros(0,0), Salle.addWalls(MapGenerator.randomForet(5, 5))),nombreDeSalle-1, 0, nombreDeSalle, 1);
@@ -81,32 +82,39 @@ public class Tutoriel extends GestionnaireSalle {
 		Ennemis e;
 		
 		if(Salle.instances+1 != nombreDeSalle){
-			//Salle.instances +1 est la nième la salle qu'on va créer.
+			//Salle.instances +1 est la niï¿½me la salle qu'on va crï¿½er.
 			switch(Salle.instances+1){
 			case 4:
-				//La deuxième salle aura 1 seul squelette
+				//La deuxiï¿½me salle aura 1 seul squelette
 				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomChateauRochers(SALLEWIDTH, SALLEHEIGHT)));
 				e = new Squelette(0,0,h,1,s);
 				e.setLocationCase(s.getRoomCenter());
 				s.addEnemy(e);
 				break;
 			case 5:
-				//La troisième salle contiendra un squelette qui lance des boules de feu.
+				//La troisiï¿½me salle contiendra un squelette qui lance des boules de feu.
 				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomChateauLave(SALLEWIDTH, SALLEHEIGHT)));
 				e = new SqueletteFeu(0,0,h,1,s);
 				e.setLocationCase(s.getRoomCenter());
 				s.addEnemy(e);
 				break;
 			case 2:
-				//La quatrième salle sera une énigme switch
+				//La quatriï¿½me salle sera une ï¿½nigme switch
 				s= new EnigmeSwitch(h);
 				break;
 			case 3:
-				//La cinquième salle sera une énigme téléporteur
+				//La cinquiï¿½me salle sera une ï¿½nigme tï¿½lï¿½porteur
 				s= new EnigmeTeleporteur(h);
-				break;	
+				break;
+			case 6:
+				//La sixiÃ¨me salle aura un squelette archer
+				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomForet(SALLEWIDTH, SALLEHEIGHT)));
+				e = new SqueletteArc(0,0,h,1,s);
+				e.setLocationCase(s.getRoomCenter());
+				s.addEnemy(e);
+				break;
 			default:
-				//Pour les salles suivantes on génère des ennemis aléatoirement dans une salle aléatoire.
+				//Pour les salles suivantes on gï¿½nï¿½re des ennemis alï¿½atoirement dans une salle alï¿½atoire.
 				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT)));
 				s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 20, 100 ));
 			}
@@ -119,7 +127,7 @@ public class Tutoriel extends GestionnaireSalle {
 		s.setEcouteur(this);
 		smap[(int)position.x][(int)position.y] = s;
 
-		//On créé les portes vers les autres salles
+		//On crï¿½ï¿½ les portes vers les autres salles
 		s.createPorteSalleVoisines(smap);
 
 		

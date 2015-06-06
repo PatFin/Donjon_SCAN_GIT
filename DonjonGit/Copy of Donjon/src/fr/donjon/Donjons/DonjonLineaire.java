@@ -34,7 +34,7 @@ public class DonjonLineaire extends GestionnaireSalle{
 
 		start.createPorteSalleVoisines(this.getSmap());
 
-		//On place le héro au centre de la salle
+		//On place le hï¿½ro au centre de la salle
 		start.hero.setLocationCase(start.getRoomCenter());;
 
 	}
@@ -60,7 +60,7 @@ public class DonjonLineaire extends GestionnaireSalle{
 				break;
 			default:
 				s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT )));
-				s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 20, 100 ));
+				s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 10, 100 ));
 			}
 		}else{
 			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapFileHandler.getSalleDescriptionFromFile(1000).getMatrix()));

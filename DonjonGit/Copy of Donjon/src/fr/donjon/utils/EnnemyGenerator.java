@@ -63,9 +63,16 @@ public class EnnemyGenerator {
 		for(double i = 0 ; i < 2*Math.PI ; i+=angle){
 
 			np = pc.ajoute((new Vecteur( Math.cos(i), Math.sin(i) )).multiplie(radius));
+			
+			double r=Math.random();
 
-			if(Math.random() > 0.75){
-				l.add( new SqueletteArc( (int)np.x, (int)np.y, he, s.roomNumber, s) );
+			if (r > 0.75){
+				if(r>0.90){
+					l.add(new SqueletteFeu( (int)np.x, (int)np.y, he, s.roomNumber, s) );
+				}
+				else {
+					l.add( new SqueletteArc( (int)np.x, (int)np.y, he, s.roomNumber, s) );
+				}
 			}
 			else {
 				l.add( new Squelette( (int)np.x, (int)np.y, he, s.roomNumber, s) );
