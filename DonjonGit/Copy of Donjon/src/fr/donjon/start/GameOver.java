@@ -13,12 +13,15 @@ import javax.swing.JPanel;
 import fr.donjon.salles.Salle;
 import fr.donjon.utils.GameOverListener;
 import fr.donjon.utils.ImageManager;
+import fr.donjon.sound.SoundLoop;
 
 public class GameOver extends JPanel {
 
 	final static String alive = "Player_Up.png";
 	
 	final static String dead = "Player_Dead.png";
+	
+	SoundLoop music;
 	
 	/**
 	 * 
@@ -43,10 +46,14 @@ public class GameOver extends JPanel {
 		if(win){
 			this.hero = ImageManager.getImage(alive, this.getClass().getSimpleName());
 			message = "Congratulations! You went through "+(Salle.instances-1)+" rooms without a single scratch!";
+			music=new SoundLoop(SoundLoop.VICTORY);
 		}else{
 			this.hero = ImageManager.getImage(dead, this.getClass().getSimpleName());
 			message = "Oops! Looks like you died. You made it to room "+(Salle.instances-1)+" though!";
+			music=new SoundLoop(SoundLoop.DEFEAT);
 		}
+		
+		music.loop();
 		
 		Dimension d = new Dimension(180,60);
 		BQuit = new JButton("Quit");
@@ -61,6 +68,7 @@ public class GameOver extends JPanel {
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				music.stop();
 				listener.quit();
 			}
 		});
@@ -72,6 +80,7 @@ public class GameOver extends JPanel {
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e){
+				music.stop();
 				listener.retourMenu();
 			}
 		});

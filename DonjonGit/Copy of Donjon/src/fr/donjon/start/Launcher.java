@@ -106,7 +106,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	 * On le remplace par le panel de menu qui a ete cree dans le constructeur de launcher
 	 * On radapte la taille de la fenetre a son contenu et on en empeche son redimensionement.
 	 * On arrete la musique qui pouvait etre en cours de lecture a cause d'un precedent jeu.
-	 * On appelle repaint() pour bien repeindre la fenetre après le changement de panel. 
+	 * On appelle repaint() pour bien repeindre la fenetre aprï¿½s le changement de panel. 
 	 */
 	public void goToMenu(){
 		
@@ -173,10 +173,10 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	/**
 	 * Permet de lancer un nouveau jeu.
 	 * On retire le panel actuel de la fenetre launcher.
-	 * On créé une nouvelle instance de PanelJeu dont le gestionnaire est celui donné en parametre.
+	 * On crï¿½ï¿½ une nouvelle instance de PanelJeu dont le gestionnaire est celui donnï¿½ en parametre.
 	 * On affiche ce nouveau panel qui devient le panel actuel.
 	 * On lance la musique de jeu et on autorise le changement de taille de la fenetre.
-	 * @param g le gestionnaire de jeu qui contient les mécanismes du jeu.
+	 * @param g le gestionnaire de jeu qui contient les mï¿½canismes du jeu.
 	 */
 	public void startGame(GestionnaireSalle g){
 		

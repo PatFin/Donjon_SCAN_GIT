@@ -19,10 +19,12 @@ public class SoundLoop{
 	public final static String DOOR = "Ressources/sounds/doorClose_4.wav";
 	public final static String DOOROPENS = "Ressources/sounds/metalLatch.wav";
 	public final static String GOT = "Ressources/sounds/Main Theme.aif";
-	public final static String STARWARS = "Ressources/Sounds/RPG Theme.wav";
+	public final static String STARWARS = "Ressources/sounds/RPG Theme.wav";
+	public final static String DEFEAT = "Ressources/sounds/Game Over.wav";
+	public final static String VICTORY = "Ressources/sounds/Tal Tal.wav";
 	public final static String TELEPORT = "Ressources/sounds/shoot.wav";
 	
-	Clip audioClip;		//Le clip qui est créé à partir de l'audioFilePath fourni en paramètre dans le constructeur.
+	Clip audioClip;		//Le clip qui est crï¿½ï¿½ ï¿½ partir de l'audioFilePath fourni en paramï¿½tre dans le constructeur.
 	
 	/**
 	 * this flag indicates whether the playback completes or not.
@@ -78,10 +80,15 @@ public class SoundLoop{
 	}
 	
 	/**
-	 * Permet d'interrompre la lecture d'un son et de le remettre à zéro
+	 * Permet d'interrompre la lecture d'un son et de le remettre ï¿½ zï¿½ro
 	 */
 	public void stop(){
 		audioClip.stop();
 		audioClip.setMicrosecondPosition(0);
+	}
+	
+	public void mute(){
+		BooleanControl muteControl = (BooleanControl) audioClip.getControl(BooleanControl.Type.MUTE);
+		muteControl.setValue(true);
 	}
 }
