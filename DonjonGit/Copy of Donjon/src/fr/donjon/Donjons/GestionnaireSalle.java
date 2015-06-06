@@ -136,6 +136,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 				}
 			}
 		}
+		this.sActuelle.update=false;
 		ecouteur.requestGameOver(true);
 	}
 
@@ -144,6 +145,7 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 	 */
 	public void checkHeroStillAlive() {
 		if(!this.sActuelle.hero.living){
+			this.sActuelle.update=false;
 			ecouteur.requestGameOver(false);
 		}
 	}
@@ -334,8 +336,10 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 		
 		centreCamera.setLocation(sActuelle.hero.image.x + sActuelle.hero.image.width/2,
 				sActuelle.hero.image.height/2 + sActuelle.hero.image.y);		//On recentre le vecteur centre cam�ra sur la position du personnage.
-		this.checkHeroStillAlive();
-		this.checkDonjonFini();
+		if(this.sActuelle.update){
+			this.checkHeroStillAlive();
+			this.checkDonjonFini();
+		}
 	}
 	
 	/*

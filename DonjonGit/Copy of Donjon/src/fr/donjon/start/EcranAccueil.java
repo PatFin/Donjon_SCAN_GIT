@@ -17,7 +17,7 @@ import javax.swing.event.ChangeListener;
 import fr.donjon.Donjons.DonjonInfini;
 import fr.donjon.Donjons.DonjonLineaire;
 import fr.donjon.Donjons.DonjonNonLineaire;
-import fr.donjon.Donjons.GestionnairePatrickBasique;
+import fr.donjon.Donjons.Tutoriel;
 import fr.donjon.editor.EditorWindow;
 import fr.donjon.salles.Salle;
 import fr.donjon.utils.EcouteurLauncher;
@@ -140,7 +140,7 @@ public class EcranAccueil extends JPanel{
 				Salle.instances = 0;
 				
 				//On commande un jeu test
-				ecouteur.requestNewGame(new GestionnairePatrickBasique());
+				ecouteur.requestNewGame(new Tutoriel());
 			}
 		});
 		
