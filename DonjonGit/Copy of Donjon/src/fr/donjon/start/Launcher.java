@@ -80,7 +80,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	
 	/**
 	 * Affiche un ecran de GameOver
-	 * @param win true si le joueur a termine le donjon avec succes, false sinon. Ce parametre influe sur le message et l'image qui s'affiche
+	 * @param win true si le joueur a termine le donjon avec succes, false sinon. Ce parametre influe sur le message et l'image qui s'affichent et sur la musique qui sera jouee
 	 */
 	public void goToGameOver(Boolean win) {
 		try{
@@ -105,7 +105,7 @@ public class Launcher extends JFrame implements EcouteurClavier, EcouteurLaunche
 	 * On retire le JPanel actuel de la fenetre (s'il existe)
 	 * On le remplace par le panel de menu qui a ete cree dans le constructeur de launcher
 	 * On radapte la taille de la fenetre a son contenu et on en empeche son redimensionement.
-	 * On arrete la musique qui pouvait etre en cours de lecture a cause d'un precedent jeu.
+	 * On arrete la musique qui pouvait etre en cours de lecture a cause d'un precedent jeu et on lance celle adaptée au game over.
 	 * On appelle repaint() pour bien repeindre la fenetre apr�s le changement de panel. 
 	 */
 	public void goToMenu(){
