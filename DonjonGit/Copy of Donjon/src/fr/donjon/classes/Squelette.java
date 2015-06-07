@@ -27,7 +27,7 @@ public class Squelette extends Ennemis {
 	public Squelette(int ax, int ay, Personnage cible, int level, Salle room){
 		super(ax, ay, LNG, LRG, src,
 				new Rectangle(17,15,30,49), new Rectangle(22,48,20,16), true,
-				Orientation.SUD, EtatPersonnage.REPOS, Vecteur.vNull,VIT+(level/3),
+				Orientation.SUD, EtatPersonnage.REPOS, Vecteur.vNull,VIT,
 				VIE+(10*level/2), DEF+(level/2) , null, cible, room);
 
 		if(stats.vit >= Heros.VIT) stats.vit = Heros.VIT - 1;
