@@ -73,7 +73,7 @@ public class Tutoriel extends GestionnaireSalle {
 				e.setLocationCase(s.getRoomCenter());
 				s.addEnemy(e);
 				break;
-			case 3:
+			case 4:
 				//La troisi�me salle contiendra un squelette qui lance des boules de feu.
 				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomChateauLave(SALLEWIDTH, SALLEHEIGHT)));
 				e = new SqueletteFeu(0,0,h,1,s);
@@ -88,7 +88,7 @@ public class Tutoriel extends GestionnaireSalle {
 				//La cinqui�me salle sera une �nigme t�l�porteur
 				s= new EnigmeTeleporteur(h);
 				break;
-			case 4:
+			case 3:
 				//La sixième salle aura un squelette archer
 				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomForet(SALLEWIDTH, SALLEHEIGHT)));
 				e = new SqueletteArc(0,0,h,1,s);
