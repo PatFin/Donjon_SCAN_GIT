@@ -16,7 +16,9 @@ public class CaseBloquante extends CaseSource {
 	static Vecteur pos1 = new Vecteur(1,0);
 	
 	/**
-	 * @param pos
+	 * Constructeur 
+	 * Aucun paramètre nécessaire.
+	 * Par défaut aucun évènement ne se produit si un objet rentre en collision avec la case.
 	 */
 	public CaseBloquante() {
 		super(pos1);
@@ -53,6 +55,10 @@ public class CaseBloquante extends CaseSource {
 		});
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.cases.CaseSource#clone()
+	 */
 	@Override
 	public Case clone() {
 		return new CaseBloquante();

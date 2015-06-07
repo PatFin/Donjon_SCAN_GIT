@@ -40,7 +40,7 @@ public class EnigmeSwitch extends SalleQuatre {
 			this.cases[(int)(c.x-NUMBERSWITCHES/2)+i][(int)c.y] = s;
 			interrupteur[i] = s;
 		}
-		//On gï¿½nï¿½re un code
+		//On génère un code.
 		generateCode();
 		
 	}

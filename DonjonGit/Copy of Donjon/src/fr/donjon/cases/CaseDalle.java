@@ -1,13 +1,19 @@
 package fr.donjon.cases;
 
-
+/**
+ * CaseDalle est une case ordinaire qui n'a pas de comportement particulier.
+ * Elle prend l'apparence de quatre petite dalles.
+ * @author Patrick
+ *
+ */
 public class CaseDalle extends Case{
 	
 	final static String image = "Case_dalle.png";
 	
 	/**
-	 * Constructeur de cette case.
-	 * Il s'agit d'une case ordinaire qui n'a pas de comportement particulier.
+	 * Constructeur
+	 * Aucun paramètre nécessaire, elle n'a pas de comportement particulier.
+	 * 
 	 */
 	public CaseDalle(){
 		super(image);
