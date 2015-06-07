@@ -6,7 +6,6 @@ package fr.donjon.cases;
  * @author Vincent
  *
  */
-
 public class CaseHerbe extends Case{
 
 
@@ -19,6 +18,10 @@ public class CaseHerbe extends Case{
 		super(image);
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.donjon.cases.Case#clone()
+	 */
 	@Override
 	public Case clone() {
 		return new CaseHerbe();

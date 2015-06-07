@@ -6,6 +6,7 @@ package fr.donjon.cases;
 import fr.donjon.utils.Vecteur;
 
 /**
+ * 
  * @author Baptiste
  *
  */
