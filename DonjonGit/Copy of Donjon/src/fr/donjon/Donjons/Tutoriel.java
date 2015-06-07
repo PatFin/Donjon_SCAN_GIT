@@ -35,7 +35,7 @@ public class Tutoriel extends GestionnaireSalle {
 	
 	/**
 	 * Constructeur
-	 * Aucun argument nï¿½cessaire.
+	 * Aucun argument nécessaire
 	 */
 	public Tutoriel(){
 		super(new SalleQuatre(new Heros(0,0), Salle.addWalls(MapGenerator.randomForet(5, 5))),nombreDeSalle-1, 0, nombreDeSalle, 1);
@@ -84,29 +84,29 @@ public class Tutoriel extends GestionnaireSalle {
 		if(Salle.instances+1 != nombreDeSalle){
 			//Salle.instances +1 est la niï¿½me la salle qu'on va crï¿½er.
 			switch(Salle.instances+1){
-			case 4:
-				//La deuxiï¿½me salle aura 1 seul squelette
+			case 2:
+				//La deuxième salle aura 1 seul squelette
 				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomChateauRochers(SALLEWIDTH, SALLEHEIGHT)));
 				e = new Squelette(0,0,h,1,s);
 				e.setLocationCase(s.getRoomCenter());
 				s.addEnemy(e);
 				break;
-			case 5:
+			case 3:
 				//La troisiï¿½me salle contiendra un squelette qui lance des boules de feu.
 				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomChateauLave(SALLEWIDTH, SALLEHEIGHT)));
 				e = new SqueletteFeu(0,0,h,1,s);
 				e.setLocationCase(s.getRoomCenter());
 				s.addEnemy(e);
 				break;
-			case 2:
+			case 6:
 				//La quatriï¿½me salle sera une ï¿½nigme switch
 				s= new EnigmeSwitch(h);
 				break;
-			case 3:
+			case 5:
 				//La cinquiï¿½me salle sera une ï¿½nigme tï¿½lï¿½porteur
 				s= new EnigmeTeleporteur(h);
 				break;
-			case 6:
+			case 4:
 				//La sixiÃ¨me salle aura un squelette archer
 				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomForet(SALLEWIDTH, SALLEHEIGHT)));
 				e = new SqueletteArc(0,0,h,1,s);
@@ -127,7 +127,7 @@ public class Tutoriel extends GestionnaireSalle {
 		s.setEcouteur(this);
 		smap[(int)position.x][(int)position.y] = s;
 
-		//On crï¿½ï¿½ les portes vers les autres salles
+		//On créé les portes vers les autres salles
 		s.createPorteSalleVoisines(smap);
 
 		
