@@ -49,24 +49,6 @@ public class Tutoriel extends GestionnaireSalle {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see fr.donjon.Donjons.GestionnaireSalle#checkDonjonFini()
-	 */
-	@Override
-	public void checkDonjonFini(){
-		//We go through the array
-		for(int i=0; i<smap.length; i++){
-			for(int j=0; j<smap[0].length;j++){
-				if(!(smap[i][j] == null)){
-					if(!smap[i][j].estFinie() || !smap[i][j].allDoorsHaveDestination()){
-						return;
-					}
-				}
-			}
-		}
-		ecouteur.requestGameOver(true);
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -116,7 +98,7 @@ public class Tutoriel extends GestionnaireSalle {
 			default:
 				//Pour les salles suivantes on g�n�re des ennemis al�atoirement dans une salle al�atoire.
 				s = new SalleQuatre(h, Salle.addWalls(MapGenerator.randomMap(SALLEWIDTH, SALLEHEIGHT)));
-				s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 20, 100 ));
+				s.personnages.addAll(EnnemyGenerator.generateCircle(s.hero, s, 10, 100 ));
 			}
 		}else{
 			s = new SalleQuatre(l.getSalleOrigine().hero, Salle.addWalls(MapFileHandler.getSalleDescriptionFromFile(1000).getMatrix()));

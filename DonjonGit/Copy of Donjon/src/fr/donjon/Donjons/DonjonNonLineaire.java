@@ -55,7 +55,9 @@ public class DonjonNonLineaire extends GestionnaireSalle{
 				}
 			}
 		}
-		ecouteur.requestGameOver(true);
+		if(this.sActuelle.hero.living){
+			ecouteur.requestGameOver(true);
+		}
 	}
 	
 	/*

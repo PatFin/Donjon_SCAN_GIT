@@ -137,7 +137,9 @@ public abstract class GestionnaireSalle implements EcouteurChangementSalle, Ecou
 			}
 		}
 		this.sActuelle.update=false;
-		ecouteur.requestGameOver(true);
+		if(this.sActuelle.hero.living){
+			ecouteur.requestGameOver(true);
+		}
 	}
 
 	/**
