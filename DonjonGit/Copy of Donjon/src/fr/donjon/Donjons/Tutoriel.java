@@ -45,8 +45,6 @@ public class Tutoriel extends GestionnaireSalle {
 
 		//On ajoute une porte vers le nord de la premi�re salle
 		this.sActuelle.createPorteSalleVoisines(smap);
-
-
 	}
 
 

@@ -31,17 +31,12 @@ import fr.donjon.cases.CaseWater;
  * @author Baptiste
  *
  */
-public class MapFileHandler {
+public final class MapFileHandler {
 
 	final static String absolutePath = (new File("")).getAbsolutePath();
 	final static String extension = "djmap";
 	final static String pathMaps = "files/maps/" ;
 	
-	/**
-	 * Don't use it, its a static class
-	 */
-	public MapFileHandler() {
-	}
 
 	/**
 	 * 

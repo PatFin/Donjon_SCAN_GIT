@@ -56,7 +56,7 @@ public class EnigmeTeleporteur extends SalleQuatre {
 
 	/**
 	 * Constructeur de cette salle
-	 * @param h le hero controle par le joueur
+	 * @param h le hero controlé par le joueur
 	 */
 	public EnigmeTeleporteur (Heros h){
 		super(h, generateRoomTiles());

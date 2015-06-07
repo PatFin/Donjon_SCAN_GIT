@@ -67,7 +67,7 @@ public final class MapGenerator {
 
 	
 	/**
-	 * Gï¿½nï¿½re un tableau de cases de dimensions donnï¿½es en paramï¿½tre. 
+	 * Génère un tableau de cases de dimensions donnï¿½es en paramï¿½tre. 
 	 * randomChateauLave propose une distribution alï¿½atoire de:
 	 * CaseLave 	proba 0.1
 	 * CaseRocher 	proba 0.1

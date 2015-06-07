@@ -110,9 +110,9 @@ public class DonjonNonLineaire extends GestionnaireSalle{
 		//On d�termine combien de portes et lesquelles parmi celles possibles on va cr�er
 		
 		if(!canCreateDoor.isEmpty()){
-			r=(int)(Math.random()*6*43);
+			r=(int)(Math.random()*7*42);
 			
-			switch(r%6){
+			switch(r%7){
 			case 0:
 			case 1:
 			case 2:
