@@ -244,6 +244,7 @@ public class EditorWindow extends JFrame{
 						SalleDescription sd = new SalleDescription(panDessin.cases, panDessin.width, panDessin.height, index, name);
 						int finalIndex = MapFileHandler.createMapFile(sd, false);
 						if(index != finalIndex){
+							
 							JOptionPane.showMessageDialog(null, "L'index existe déja, nouveau index: "+finalIndex, "Index deja existant :", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
