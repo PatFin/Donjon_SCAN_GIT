@@ -34,10 +34,7 @@ import fr.donjon.cases.CaseSwitch;
 import fr.donjon.cases.CaseTeleportation;
 import fr.donjon.cases.CaseVide;
 import fr.donjon.cases.CaseWater;
-import fr.donjon.utils.JeuKeyAdapter;
 import fr.donjon.utils.Vecteur;
-import fr.donjon.zpoubelle.SalleEssai;
-import fr.donjon.zpoubelle.SimplePanel;
 
 
 /**
@@ -317,8 +314,8 @@ public class EditorWindow extends JFrame{
 				
 			}
 		});
-
-		BEssayer.addActionListener(new ActionListener() {
+		//TODO implémenter une nouvelle façon de tester une salle.
+		/**BEssayer.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -346,7 +343,7 @@ public class EditorWindow extends JFrame{
 
 			}
 		});
-
+*/
 		for(CaseButton bt : LCButtons){
 			bt.addActionListener(new CaseButtonListener(bt, panDessin));
 		}
