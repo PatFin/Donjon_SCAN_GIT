@@ -17,7 +17,7 @@ import fr.donjon.Donjons.GestionnaireSalle;
 import fr.donjon.utils.EcouteurClavier;
 import fr.donjon.utils.EcouteurLauncher;
 import fr.donjon.utils.Vecteur;
-import fr.donjon.zpoubelle.Case;
+import fr.donjon.cases.Case;
 
 
 public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLauncher{
@@ -154,7 +154,7 @@ public class PanelJeu extends JPanel implements EcouteurClavier, EcouteurLaunche
 		//On dessine la salle 
 		g.drawImage(dessinateur.getImage(g, temps),x,y,null);
 		
-		//Dessin de la map si le booléen showMap est true (voir toggleMap dans cette classe).
+		//Dessin de la map si le boolï¿½en showMap est true (voir toggleMap dans cette classe).
 		if(showMap){
 			g.drawImage(map.getImage(gestion.smap, gestion.getsActuelle()), 0, 0, getHeight(), getHeight(), null);
 		}

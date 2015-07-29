@@ -8,11 +8,11 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import fr.donjon.cases.Case;
 import fr.donjon.classes.Objet;
 import fr.donjon.classes.Projectile;
 import fr.donjon.salles.Salle;
 import fr.donjon.utils.Vecteur;
-import fr.donjon.zpoubelle.Case;
 
 /**
  * @author Baptiste
